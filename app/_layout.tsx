@@ -1,5 +1,4 @@
 import { Stack } from "expo-router";
-
 import { NativeWindStyleSheet } from "nativewind";
 
 NativeWindStyleSheet.setOutput({
@@ -8,8 +7,8 @@ NativeWindStyleSheet.setOutput({
 
 export default function RootLayout() {
   return (
-    <Stack>
-      <Stack.Screen name="index" />
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="(tabs)" />
     </Stack>
   );
 }
