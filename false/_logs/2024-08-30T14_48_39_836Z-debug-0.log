@@ -1,0 +1,24 @@
+0 verbose cli /usr/bin/node /usr/bin/npm
+1 info using npm@10.8.2
+2 info using node@v22.6.0
+3 silly config load:file:/usr/lib/node_modules/npm/npmrc
+4 silly config load:file:/home/pain/Documents/react-native/projects/beatbox/.npmrc
+5 silly config load:file:/home/pain/.npmrc
+6 silly config load:file:/etc/npmrc
+7 verbose title npm start
+8 verbose argv "start" "--cache" "false"
+9 verbose logfile logs-max:10 dir:/home/pain/Documents/react-native/projects/beatbox/false/_logs/2024-08-30T14_48_39_836Z-
+10 verbose logfile /home/pain/Documents/react-native/projects/beatbox/false/_logs/2024-08-30T14_48_39_836Z-debug-0.log
+11 silly logfile done cleaning log files
+12 http fetch GET 200 https://registry.npmjs.org/npm 30128ms
+13 verbose cwd /home/pain/Documents/react-native/projects/beatbox
+14 verbose os Linux 6.10.4-zen2-1-zen
+15 verbose node v22.6.0
+16 verbose npm  v10.8.2
+17 notice
+17 notice New [36mpatch[39m version of npm available! [36m10.8.2[39m -> [34m10.8.3[39m
+17 notice Changelog: [34mhttps://github.com/npm/cli/releases/tag/v10.8.3[39m
+17 notice To update run: [4mnpm install -g npm@10.8.3[24m
+17 notice  { force: true, [Symbol(proc-log.meta)]: true }
+18 verbose exit 0
+19 info ok
