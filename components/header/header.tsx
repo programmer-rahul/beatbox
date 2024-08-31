@@ -8,7 +8,7 @@ const Header = () => {
     <SafeAreaView>
       <View className="px-6 py-1 flex flex-row justify-between items-center border-b border-neutral-300">
         <View>
-          <Text className="text-2xl font-semibold text-rose-600">BeatBox</Text>
+          <Text className="text-2xl font-semibold text-lime-600">BeatBox</Text>
         </View>
         <View>
           <Feather name="search" size={22} />

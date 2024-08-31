@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { Alert, Linking, Text, View } from "react-native";
 import * as MediaLibrary from "expo-media-library";
+import { TMusicFile } from "@/types/music";
+import ListMusicFiles from "@/components/home/list-music-files";
 
 export default function Index() {
-  const [musicFiles, setMusicFiles] = useState<MediaLibrary.Asset[]>([]);
+  const [musicFiles, setMusicFiles] = useState<TMusicFile[]>([]);
   const [isPermissionGranted, setIsPermissionGranted] = useState(false);
 
   // check permissions
@@ -56,11 +58,10 @@ export default function Index() {
   }, [musicFiles]);
 
   return (
-    <View className="flex flex-col justify-center items-center h-full gap-4">
-      {musicFiles && <Text className="text-3xl">All Songs Count</Text>}
-      <Text className="text-5xl font-semibold text-neutral-700">
-        {musicFiles.length}
-      </Text>
+    <View className="flex flex-col h-full px-6 py-2">
+      {isPermissionGranted && musicFiles.length > 0 && (
+        <ListMusicFiles musicFiles={musicFiles} />
+      )}
     </View>
   );
 }
