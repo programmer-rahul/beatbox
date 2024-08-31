@@ -58,7 +58,7 @@ export default function Index() {
   }, [musicFiles]);
 
   return (
-    <View className="flex flex-col h-full px-6 py-2">
+    <View className="flex flex-col h-full px-6 py-1">
       {isPermissionGranted && musicFiles.length > 0 && (
         <ListMusicFiles musicFiles={musicFiles} />
       )}

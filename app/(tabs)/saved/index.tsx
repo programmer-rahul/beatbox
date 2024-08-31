@@ -1,10 +1,12 @@
 import { Text, View } from "react-native";
 import React from "react";
+import { Link } from "expo-router";
 
 const Saved = () => {
   return (
-    <View className="bg-yellow-700 h-full">
-      <Text>Saved</Text>
+    <View className="h-full">
+      <Text>Saved</Text>  
+      <Link href={"/player"}>Player</Link>
     </View>
   );
 };
