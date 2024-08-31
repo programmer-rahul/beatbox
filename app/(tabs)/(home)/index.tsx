@@ -28,12 +28,13 @@ export default function Index() {
     }
   };
 
+  // scan all media files from device
   const getMediaFiles = async () => {
-    const media = await MediaLibrary.getAssetsAsync({
+    const medias = await MediaLibrary.getAssetsAsync({
       mediaType: "audio",
     });
-    if (media.assets.length > 0) {
-      setMusicFiles(media.assets);
+    if (medias.assets.length > 0) {
+      setMusicFiles(medias.assets);
     }
   };
 
@@ -51,7 +52,7 @@ export default function Index() {
 
   // when we have all music files
   useEffect(() => {
-    console.log("Music Files :- ", musicFiles);
+    // console.log("Music Files :- ", musicFiles);
   }, [musicFiles]);
 
   return (

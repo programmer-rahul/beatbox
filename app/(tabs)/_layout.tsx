@@ -1,10 +1,11 @@
 import React from "react";
 import { Tabs } from "expo-router";
 import Feather from "@expo/vector-icons/Feather";
+import Header from "@/components/header/header";
 
 const TabLayout = () => {
   return (
-    <Tabs screenOptions={{ headerShown: false }}>
+    <Tabs screenOptions={{ headerShown: true, header: () => <Header /> }}>
       <Tabs.Screen
         name="(home)/index"
         options={{
