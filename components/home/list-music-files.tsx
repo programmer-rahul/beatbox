@@ -1,13 +1,11 @@
-import { View, Text } from "react-native";
-import React from "react";
+import { View, Text, FlatList } from "react-native";
 import { TMusicFile } from "@/types/music";
-import Feather from "@expo/vector-icons/Feather";
-import Entypo from "@expo/vector-icons/Entypo";
+import ListMusic from "./list-music";
 
 const ListMusicFiles = ({ musicFiles }: { musicFiles: TMusicFile[] }) => {
   return (
-    <>
-      <View className="flex flex-row justify-between items-center pb-2">
+    <View className="space-y-4 mb-12">
+      <View className="flex flex-row justify-between items-center">
         <Text className="text-base font-bold text-neutral-800">
           All Music files
         </Text>
@@ -16,27 +14,15 @@ const ListMusicFiles = ({ musicFiles }: { musicFiles: TMusicFile[] }) => {
         </Text>
       </View>
 
-      <View className="space-y-2">
-        {musicFiles.map((music, index) => (
-          <View
-            key={index}
-            className="flex-row justify-between items-center bg-lime-100 p-1 rounded-md"
-          >
-            <View className="flex-row items-center space-x-2 w-4/5">
-              <View className="w-9 h-9 items-center justify-center bg-lime-200/20 border border-lime-600 rounded-md">
-                <Feather name="music" size={22} color="#65a30d" />
-              </View>
-              <View>
-                <Text numberOfLines={1}>{music.filename}</Text>
-              </View>
-            </View>
-            <View>
-              <Entypo name="dots-three-horizontal" size={20} />
-            </View>
-          </View>
-        ))}
+      <View>
+        <FlatList
+          data={musicFiles}
+          renderItem={({ item }) => (
+            <ListMusic filename={item.filename} duration={item.duration} />
+          )}
+        />
       </View>
-    </>
+    </View>
   );
 };
 
