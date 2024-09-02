@@ -3,10 +3,15 @@ import { Alert, Linking, View } from "react-native";
 import * as MediaLibrary from "expo-media-library";
 import { TMusicFile } from "@/types/music";
 import ListMusicFiles from "@/components/home/list-music-files";
+import useZustandStore from "@/store/zustand-store";
 
 export default function Index() {
-  const [musicFiles, setMusicFiles] = useState<TMusicFile[]>([]);
-  const [isPermissionGranted, setIsPermissionGranted] = useState(false);
+  const {
+    allMusicFiles,
+    addMusicFiles,
+    isPermissionGranted,
+    setIsPermissionGranted,
+  } = useZustandStore((state) => state);
 
   // check permissions
   const checkIsHavePermissions = async () => {
@@ -36,7 +41,7 @@ export default function Index() {
       mediaType: "audio",
     });
     if (medias.assets.length > 0) {
-      setMusicFiles(medias.assets);
+      addMusicFiles(medias.assets);
     }
   };
 
@@ -54,13 +59,13 @@ export default function Index() {
 
   // when we have all music files
   useEffect(() => {
-    // console.log("Music Files :- ", musicFiles);
-  }, [musicFiles]);
+    // console.log("Music Files :- ", allMusicFiles);
+  }, [allMusicFiles]);
 
   return (
     <View className="flex flex-col h-full px-6 py-1">
-      {isPermissionGranted && musicFiles.length > 0 && (
-        <ListMusicFiles musicFiles={musicFiles} />
+      {isPermissionGranted && allMusicFiles.length > 0 && (
+        <ListMusicFiles musicFiles={allMusicFiles} />
       )}
     </View>
   );

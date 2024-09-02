@@ -4,7 +4,7 @@ import ListMusic from "./list-music";
 
 const ListMusicFiles = ({ musicFiles }: { musicFiles: TMusicFile[] }) => {
   return (
-    <View className="space-y-4 mb-12">
+    <View className="space-y-2 mb-12">
       <View className="flex flex-row justify-between items-center">
         <Text className="text-base font-bold text-neutral-800">
           All Music files
@@ -17,9 +17,9 @@ const ListMusicFiles = ({ musicFiles }: { musicFiles: TMusicFile[] }) => {
       <View>
         <FlatList
           data={musicFiles}
-          renderItem={({ item }) => (
-            <ListMusic filename={item.filename} duration={item.duration} />
-          )}
+          renderItem={({ item }) => {
+            return <ListMusic musicFile={item} />;
+          }}
         />
       </View>
     </View>

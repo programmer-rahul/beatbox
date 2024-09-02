@@ -5,8 +5,11 @@ import Feather from "@expo/vector-icons/Feather";
 import Entypo from "@expo/vector-icons/Entypo";
 import { Link } from "expo-router";
 import MusicPlayerControls from "@/components/player/music-player-controls";
+import useZustandStore from "@/store/zustand-store";
 
 const Index = () => {
+  const { currentMusic } = useZustandStore();
+
   return (
     <SafeAreaView className="px-4 space-y-10">
       <View className="py-1 flex flex-row justify-between items-center border-b border-neutral-300">
@@ -25,7 +28,7 @@ const Index = () => {
             className="text-base font-semibold w-full max-w-[80%]"
             numberOfLines={1}
           >
-            Brown Munde Official Video AsDf Got it
+            {currentMusic?.filename}
           </Text>
           <Feather name="heart" size={22} />
         </View>
