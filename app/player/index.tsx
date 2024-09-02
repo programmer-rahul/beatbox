@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Feather from "@expo/vector-icons/Feather";
@@ -8,7 +8,7 @@ import MusicPlayerControls from "@/components/player/music-player-controls";
 import useZustandStore from "@/store/zustand-store";
 
 const Index = () => {
-  const { currentMusic } = useZustandStore();
+  const { currentMusic, changeMusic } = useZustandStore();
 
   return (
     <SafeAreaView className="px-4 space-y-10">
@@ -30,11 +30,18 @@ const Index = () => {
           >
             {currentMusic?.filename}
           </Text>
-          <Feather name="heart" size={22} />
+          <Pressable>
+            <Feather name="heart" size={22} />
+          </Pressable>
         </View>
       </View>
       <View>
-        <MusicPlayerControls />
+        {currentMusic?.duration && (
+          <MusicPlayerControls
+            duration={currentMusic.duration}
+            musicId={currentMusic.id}
+          />
+        )}
       </View>
     </SafeAreaView>
   );

@@ -11,6 +11,25 @@ const useZustandStore = create<TZustandStore>((set) => ({
 
   currentMusic: null,
   setCurrentMusic: (music) => set(() => ({ currentMusic: music })),
+  changeMusic: (currentMusicId, inc) =>
+    set((state) => {
+      const musicIndex = state.allMusicFiles.findIndex(
+        (music) => music.id === currentMusicId
+      );
+
+      if (
+        (musicIndex === 0 && inc < 0) ||
+        (musicIndex === state.allMusicFiles.length - 1 && inc >= 1)
+      ) {
+        return {
+          currentMusic: state.currentMusic,
+        };
+      }
+
+      return {
+        currentMusic: state.allMusicFiles[musicIndex + inc],
+      };
+    }),
 }));
 
 export default useZustandStore;

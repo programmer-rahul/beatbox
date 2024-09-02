@@ -9,4 +9,5 @@ export type TZustandStore = {
 
   currentMusic: TMusicFile | null;
   setCurrentMusic: (music: TMusicFile) => void;
+  changeMusic: (currentMusicId: string,inc : number) => void;
 };
