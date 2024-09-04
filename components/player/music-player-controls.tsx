@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Feather from "@expo/vector-icons/Feather";
 import CustomRangeSlider from "../reusable/custom-range-slider";
 import { formatMusicFileDuration } from "@/lib/helper";
@@ -22,6 +22,7 @@ const MusicPlayerControls = ({
     setIsMusicPlaying,
     isMusicPlaying,
   } = useZustandStore();
+  const [currentPosition, setCurrentPosition] = useState(0);
 
   useEffect(() => {
     if (currentMusic) {
@@ -46,9 +47,15 @@ const MusicPlayerControls = ({
     if (!currentMusic) return;
     const { sound } = await Audio.Sound.createAsync(
       { uri: currentMusic.uri },
-      { shouldPlay: true }
+      { shouldPlay: true },
+      (status) => {
+        if (status.isLoaded) {
+          setCurrentPosition(status.positionMillis / 1000);
+        }
+      }
     );
     addMusicTrack(sound);
+    //
   };
 
   const pauseSong = () => {
@@ -63,9 +70,15 @@ const MusicPlayerControls = ({
     <View className="space-y-10">
       {/* slider */}
       <View>
-        <CustomRangeSlider totalMusicDuration={duration} />
+        <CustomRangeSlider
+          totalMusicDuration={duration}
+          currentPosition={currentPosition}
+          setCurrentPosition={setCurrentPosition}
+        />
         <View className="px-4 flex-row justify-between">
-          <Text className="text-xs text-neutral-500">0:00</Text>
+          <Text className="text-xs text-neutral-500">
+            {formatMusicFileDuration(currentPosition)}
+          </Text>
           <Text className="text-xs text-neutral-500 text-right">
             {formatMusicFileDuration(duration)}
           </Text>

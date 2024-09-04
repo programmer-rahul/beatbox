@@ -1,20 +1,32 @@
 import { View } from "react-native";
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import Slider from "@react-native-community/slider";
+import useZustandStore from "@/store/zustand-store";
 
 const CustomRangeSlider = ({
   totalMusicDuration,
+  currentPosition,
+  setCurrentPosition,
 }: {
   totalMusicDuration: number;
+  currentPosition: number;
+  setCurrentPosition: Dispatch<SetStateAction<number>>;
 }) => {
+  const { musicTrack } = useZustandStore();
   return (
     <View>
       <Slider
         minimumValue={1}
         maximumValue={Math.floor(totalMusicDuration)}
         onValueChange={(value) => {
-          console.log("changed", value);
+          setCurrentPosition(value);
+          try {
+            musicTrack?.setPositionAsync(value * 1000);
+          } catch (error) {
+            console.log("error in changing seeking music", error);
+          }
         }}
+        value={currentPosition}
         thumbTintColor="#65a30d"
         minimumTrackTintColor="#65a30d"
       />
