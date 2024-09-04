@@ -1,28 +1,34 @@
 import { View, Text, Pressable } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Feather from "@expo/vector-icons/Feather";
-import Entypo from "@expo/vector-icons/Entypo";
-import { Link } from "expo-router";
+import AntDesign from "@expo/vector-icons/AntDesign";
 import MusicPlayerControls from "@/components/player/music-player-controls";
 import useZustandStore from "@/store/zustand-store";
+import PlayerScreenHeader from "@/components/player/player-screen-header";
 
 const Index = () => {
-  const { currentMusic, changeMusic } = useZustandStore();
+  const {
+    currentMusic,
+    savedMusicsList,
+    addMusicInSavedMusicList,
+    removeMusicInSavedMusicList,
+  } = useZustandStore();
+
+  const [isSavedMusic, setIsSavedMusic] = useState(() => {
+    if (!currentMusic) return false;
+    return savedMusicsList.some((music) => music.musicId === currentMusic.id);
+  });
 
   return (
     <SafeAreaView className="px-4 space-y-10">
-      <View className="py-1 flex flex-row justify-between items-center border-b border-neutral-300">
-        <View>
-          <Link href={"/(home)"}>
-            <Feather name="chevron-left" size={26} />
-          </Link>
-        </View>
-        <Entypo name="dots-three-vertical" size={18} />
-      </View>
+      <PlayerScreenHeader />
+
       <View className="space-y-4">
-        <View className="w-4/5 aspect-square rounded-full border border-lime-300 bg-lime-200/20 self-center my-10"></View>
-        {/* song name  */}
+        <View className="w-4/5 aspect-square rounded-full border border-lime-300 bg-lime-200/20 self-center my-10 items-center justify-center">
+          <Feather name="music" size={180} color="#65a30d" />
+        </View>
+        {/* music name  */}
         <View className="flex-row justify-between items-center">
           <Text
             className="text-base font-semibold w-full max-w-[80%]"
@@ -30,11 +36,27 @@ const Index = () => {
           >
             {currentMusic?.filename}
           </Text>
-          <Pressable>
-            <Feather name="heart" size={22} />
-          </Pressable>
+          <AntDesign
+            name={isSavedMusic ? "heart" : "hearto"}
+            size={22}
+            color="#65a30d"
+            onPress={() => {
+              if (!currentMusic) return;
+
+              // manage global state for saved musics
+              if (isSavedMusic) {
+                removeMusicInSavedMusicList(currentMusic.id);
+              } else {
+                addMusicInSavedMusicList(currentMusic.id);
+              }
+
+              // for ui perpose
+              setIsSavedMusic(!isSavedMusic);
+            }}
+          />
         </View>
       </View>
+
       <View>
         {currentMusic?.duration && (
           <MusicPlayerControls

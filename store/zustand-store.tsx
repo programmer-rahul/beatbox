@@ -30,6 +30,19 @@ const useZustandStore = create<TZustandStore>((set) => ({
         currentMusic: state.allMusicFiles[musicIndex + inc],
       };
     }),
+
+  savedMusicsList: [],
+  addMusicInSavedMusicList: (musicId) =>
+    set((state) => ({
+      savedMusicsList: [...state.savedMusicsList, { musicId }],
+    })),
+  removeMusicInSavedMusicList: (musicId) => {
+    set((state) => ({
+      savedMusicsList: state.savedMusicsList.filter(
+        (music) => music.musicId !== musicId
+      ),
+    }));
+  },
 }));
 
 export default useZustandStore;

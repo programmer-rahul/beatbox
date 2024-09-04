@@ -17,7 +17,7 @@ const MusicPlayerControls = ({
     <View className="space-y-10">
       {/* slider */}
       <View>
-        <CustomRangeSlider />
+        <CustomRangeSlider totalMusicDuration={duration} />
         <View className="px-4 flex-row justify-between">
           <Text className="text-xs text-neutral-500">0:00</Text>
           <Text className="text-xs text-neutral-500 text-right">
@@ -32,16 +32,16 @@ const MusicPlayerControls = ({
             changeMusic(musicId, -1);
           }}
         >
-          <Feather name="skip-back" size={30} />
+          <Feather name="skip-back" size={30} color="#292929" />
         </Pressable>
-        <Feather name="play-circle" size={44} />
+        <Feather name="play-circle" size={44} color="#292929" />
 
         <Pressable
           onPress={() => {
             changeMusic(musicId, 1);
           }}
         >
-          <Feather name="skip-forward" size={30} />
+          <Feather name="skip-forward" size={30} color="#292929" />
         </Pressable>
       </View>
     </View>

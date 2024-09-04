@@ -26,7 +26,7 @@ export default function Index() {
     } else {
       Alert.alert(
         "Permissions Required",
-        "We need access to your media library to display your songs.",
+        "We need access to your media library to display your Music files.",
         [
           { text: "Cancel", style: "cancel" },
           { text: "Open Settings", onPress: () => Linking.openSettings() },
@@ -65,7 +65,7 @@ export default function Index() {
   return (
     <View className="flex flex-col h-full px-6 py-1">
       {isPermissionGranted && allMusicFiles.length > 0 && (
-        <ListMusicFiles musicFiles={allMusicFiles} />
+        <ListMusicFiles musicFiles={allMusicFiles} heading="All Music Files" />
       )}
     </View>
   );
