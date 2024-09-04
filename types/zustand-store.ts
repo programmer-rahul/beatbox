@@ -1,4 +1,5 @@
 import { TMusicFile } from "./music";
+import { Audio } from "expo-av";
 
 export type TZustandStore = {
   allMusicFiles: TMusicFile[];
@@ -10,6 +11,13 @@ export type TZustandStore = {
   currentMusic: TMusicFile | null;
   setCurrentMusic: (music: TMusicFile) => void;
   changeMusic: (currentMusicId: string, inc: number) => void;
+
+  isMusicPlaying: boolean;
+  setIsMusicPlaying: (value: boolean) => void;
+
+  musicTrack: null | Audio.Sound;
+  clearMusicTrack: () => void;
+  addMusicTrack: (track: Audio.Sound) => void;
 
   savedMusicsList: { musicId: string }[];
   addMusicInSavedMusicList: (musicId: string) => void;

@@ -1,5 +1,5 @@
-import { View, Text, Pressable } from "react-native";
-import React, { useState } from "react";
+import { View, Text } from "react-native";
+import { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Feather from "@expo/vector-icons/Feather";
 import AntDesign from "@expo/vector-icons/AntDesign";
