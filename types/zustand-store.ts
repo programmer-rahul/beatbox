@@ -19,6 +19,9 @@ export type TZustandStore = {
   clearMusicTrack: () => void;
   addMusicTrack: (track: Audio.Sound) => void;
 
+  currentPosition: number;
+  setCurrentPosition: (position: number) => void;
+
   savedMusicsList: { musicId: string }[];
   addMusicInSavedMusicList: (musicId: string) => void;
   removeMusicInSavedMusicList: (musicId: string) => void;

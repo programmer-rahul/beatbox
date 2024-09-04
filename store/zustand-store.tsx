@@ -38,6 +38,12 @@ const useZustandStore = create<TZustandStore>((set) => ({
   clearMusicTrack: () => set(() => ({ musicTrack: null })),
   addMusicTrack: (track) => set(() => ({ musicTrack: track })),
 
+  currentPosition: 0,
+  setCurrentPosition: (position) =>
+    set(() => ({
+      currentPosition: position,
+    })),
+
   savedMusicsList: [],
   addMusicInSavedMusicList: (musicId) =>
     set((state) => ({

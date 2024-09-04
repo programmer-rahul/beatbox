@@ -2,13 +2,13 @@ import { View, Text, Pressable } from "react-native";
 import Feather from "@expo/vector-icons/Feather";
 import Entypo from "@expo/vector-icons/Entypo";
 import { formatMusicFileDuration } from "@/lib/helper";
-import { Link, useNavigation, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import useZustandStore from "@/store/zustand-store";
 import { TMusicFile } from "@/types/music";
 
 const ListMusic = ({ musicFile }: { musicFile: TMusicFile }) => {
   const { navigate } = useRouter();
-  const { setCurrentMusic } = useZustandStore();
+  const { setCurrentMusic, currentMusic } = useZustandStore();
 
   const { filename, duration } = musicFile;
 

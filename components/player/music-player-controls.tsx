@@ -1,10 +1,10 @@
 import { View, Text } from "react-native";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Feather from "@expo/vector-icons/Feather";
 import CustomRangeSlider from "../reusable/custom-range-slider";
 import { formatMusicFileDuration } from "@/lib/helper";
 import useZustandStore from "@/store/zustand-store";
-import { Audio } from "expo-av";
+import useMusic from "@/hooks/useMusic";
 
 const MusicPlayerControls = ({
   duration,
@@ -17,12 +17,13 @@ const MusicPlayerControls = ({
     changeMusic,
     currentMusic,
     musicTrack,
-    addMusicTrack,
+    currentPosition,
     clearMusicTrack,
     setIsMusicPlaying,
     isMusicPlaying,
   } = useZustandStore();
-  const [currentPosition, setCurrentPosition] = useState(0);
+
+  const { playSong, pauseSong, resumeSong } = useMusic();
 
   useEffect(() => {
     if (currentMusic) {
@@ -43,38 +44,11 @@ const MusicPlayerControls = ({
     }
   }, [isMusicPlaying]);
 
-  const playSong = async () => {
-    if (!currentMusic) return;
-    const { sound } = await Audio.Sound.createAsync(
-      { uri: currentMusic.uri },
-      { shouldPlay: true },
-      (status) => {
-        if (status.isLoaded) {
-          setCurrentPosition(status.positionMillis / 1000);
-        }
-      }
-    );
-    addMusicTrack(sound);
-    //
-  };
-
-  const pauseSong = () => {
-    musicTrack?.pauseAsync();
-  };
-
-  const resumeSong = () => {
-    musicTrack?.playAsync();
-  };
-
   return (
     <View className="space-y-10">
       {/* slider */}
       <View>
-        <CustomRangeSlider
-          totalMusicDuration={duration}
-          currentPosition={currentPosition}
-          setCurrentPosition={setCurrentPosition}
-        />
+        <CustomRangeSlider totalMusicDuration={duration} />
         <View className="px-4 flex-row justify-between">
           <Text className="text-xs text-neutral-500">
             {formatMusicFileDuration(currentPosition)}

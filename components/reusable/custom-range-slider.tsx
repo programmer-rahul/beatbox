@@ -5,14 +5,10 @@ import useZustandStore from "@/store/zustand-store";
 
 const CustomRangeSlider = ({
   totalMusicDuration,
-  currentPosition,
-  setCurrentPosition,
 }: {
   totalMusicDuration: number;
-  currentPosition: number;
-  setCurrentPosition: Dispatch<SetStateAction<number>>;
 }) => {
-  const { musicTrack } = useZustandStore();
+  const { musicTrack, currentPosition, setCurrentPosition } = useZustandStore();
   return (
     <View>
       <Slider
