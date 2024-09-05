@@ -15,34 +15,36 @@ const MusicPlayerControls = ({
 }) => {
   const {
     changeMusic,
-    currentMusic,
-    musicTrack,
     currentPosition,
-    clearMusicTrack,
     setIsMusicPlaying,
+    setCurrentPosition,
     isMusicPlaying,
+    currentMusic,
   } = useZustandStore();
 
   const { playSong, pauseSong, resumeSong } = useMusic();
 
-  useEffect(() => {
-    if (currentMusic) {
-      musicTrack?.unloadAsync();
-      musicTrack?.stopAsync();
-      clearMusicTrack();
+  // when music pause and play
+  const onMusicPlayPause = () => {
+    if (!currentMusic) return;
+    setIsMusicPlaying(!isMusicPlaying);
+    isMusicPlaying ? pauseSong() : resumeSong();
+  };
 
-      isMusicPlaying && playSong();
-      !isMusicPlaying && setIsMusicPlaying(true);
-    }
-  }, [currentMusic]);
+  // when changing music
+  const onMusicPreviousNext = (inc: 1 | -1) => {
+    const { status, uri } = changeMusic(musicId, inc);
 
-  useEffect(() => {
-    if (isMusicPlaying) {
-      musicTrack ? resumeSong() : playSong();
-    } else {
-      pauseSong();
-    }
-  }, [isMusicPlaying]);
+    // if there are no next or previous song
+    if (!status) return;
+
+    // reset slider position
+    setCurrentPosition(0);
+
+    // play next song
+    setIsMusicPlaying(true);
+    playSong(uri);
+  };
 
   return (
     <View className="space-y-10">
@@ -64,27 +66,19 @@ const MusicPlayerControls = ({
           name="skip-back"
           size={30}
           color="#292929"
-          onPress={() => {
-            changeMusic(musicId, -1);
-          }}
+          onPress={() => onMusicPreviousNext(-1)}
         />
         <Feather
           name={isMusicPlaying ? "pause-circle" : "play-circle"}
           size={44}
           color="#292929"
-          onPress={() => {
-            console.log("pressing");
-            setIsMusicPlaying(!isMusicPlaying);
-          }}
+          onPress={onMusicPlayPause}
         />
-
         <Feather
           name="skip-forward"
           size={30}
           color="#292929"
-          onPress={() => {
-            changeMusic(musicId, 1);
-          }}
+          onPress={() => onMusicPreviousNext(1)}
         />
       </View>
     </View>

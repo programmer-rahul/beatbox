@@ -2,13 +2,24 @@ import useZustandStore from "@/store/zustand-store";
 import { Audio } from "expo-av";
 
 const useMusic = () => {
-  const { currentMusic, setCurrentPosition, addMusicTrack, musicTrack } =
-    useZustandStore();
+  const {
+    currentMusic,
+    setCurrentPosition,
+    addMusicTrack,
+    musicTrack,
+    clearMusicTrack,
+  } = useZustandStore();
 
-  const playSong = async () => {
+  const playSong = async (musicUri: string) => {
+    // unload music if already running
+    musicTrack?.unloadAsync();
+    musicTrack?.stopAsync();
+    clearMusicTrack();
+
     if (!currentMusic) return;
+
     const { sound } = await Audio.Sound.createAsync(
-      { uri: currentMusic.uri },
+      { uri: musicUri },
       { shouldPlay: true },
       (status) => {
         if (status.isLoaded) {
