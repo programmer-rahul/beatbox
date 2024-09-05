@@ -13,37 +13,16 @@ const MusicPlayerControls = ({
   duration: number;
   musicId: string;
 }) => {
-  const {
-    changeMusic,
-    currentPosition,
-    setIsMusicPlaying,
-    setCurrentPosition,
-    isMusicPlaying,
-    currentMusic,
-  } = useZustandStore();
+  const { currentPosition, setIsMusicPlaying, isMusicPlaying, currentMusic } =
+    useZustandStore();
 
-  const { playSong, pauseSong, resumeSong } = useMusic();
+  const { pauseSong, resumeSong, playPreviousOrNextSong } = useMusic();
 
   // when music pause and play
   const onMusicPlayPause = () => {
     if (!currentMusic) return;
     setIsMusicPlaying(!isMusicPlaying);
     isMusicPlaying ? pauseSong() : resumeSong();
-  };
-
-  // when changing music
-  const onMusicPreviousNext = (inc: 1 | -1) => {
-    const { status, uri } = changeMusic(musicId, inc);
-
-    // if there are no next or previous song
-    if (!status) return;
-
-    // reset slider position
-    setCurrentPosition(0);
-
-    // play next song
-    setIsMusicPlaying(true);
-    playSong(uri);
   };
 
   return (
@@ -66,7 +45,7 @@ const MusicPlayerControls = ({
           name="skip-back"
           size={30}
           color="#292929"
-          onPress={() => onMusicPreviousNext(-1)}
+          onPress={() => playPreviousOrNextSong(-1, musicId)}
         />
         <Feather
           name={isMusicPlaying ? "pause-circle" : "play-circle"}
@@ -78,7 +57,7 @@ const MusicPlayerControls = ({
           name="skip-forward"
           size={30}
           color="#292929"
-          onPress={() => onMusicPreviousNext(1)}
+          onPress={() => playPreviousOrNextSong(1, musicId)}
         />
       </View>
     </View>
