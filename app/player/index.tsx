@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Feather from "@expo/vector-icons/Feather";
 import AntDesign from "@expo/vector-icons/AntDesign";
@@ -15,10 +15,16 @@ const Index = () => {
     removeMusicInSavedMusicList,
   } = useZustandStore();
 
-  const [isSavedMusic, setIsSavedMusic] = useState(() => {
+  const checkIsSavedMusic = () => {
     if (!currentMusic) return false;
     return savedMusicsList.some((music) => music.musicId === currentMusic.id);
-  });
+  };
+
+  const [isSavedMusic, setIsSavedMusic] = useState(checkIsSavedMusic);
+
+  useEffect(() => {
+    setIsSavedMusic(checkIsSavedMusic);
+  }, [currentMusic]);
 
   return (
     <SafeAreaView className="px-4 space-y-10">
