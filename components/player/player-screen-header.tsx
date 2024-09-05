@@ -1,5 +1,4 @@
 import { View } from "react-native";
-import React from "react";
 import Entypo from "@expo/vector-icons/Entypo";
 import Feather from "@expo/vector-icons/Feather";
 

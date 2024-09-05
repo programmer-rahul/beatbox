@@ -1,5 +1,4 @@
 import { View, Text } from "react-native";
-import { useEffect } from "react";
 import Feather from "@expo/vector-icons/Feather";
 import CustomRangeSlider from "../reusable/custom-range-slider";
 import { formatMusicFileDuration } from "@/lib/helper";

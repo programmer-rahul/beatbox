@@ -1,4 +1,3 @@
-import React from "react";
 import { Tabs } from "expo-router";
 import Feather from "@expo/vector-icons/Feather";
 import Header from "@/components/header/header";

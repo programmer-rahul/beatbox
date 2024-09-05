@@ -1,5 +1,5 @@
 import { Text, View } from "react-native";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useZustandStore from "@/store/zustand-store";
 import ListMusicFiles from "@/components/home/list-music-files";
 import { TMusicFile } from "@/types/music";

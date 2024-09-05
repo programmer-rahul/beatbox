@@ -1,5 +1,4 @@
 import { View } from "react-native";
-import React, { Dispatch, SetStateAction } from "react";
 import Slider from "@react-native-community/slider";
 import useZustandStore from "@/store/zustand-store";
 

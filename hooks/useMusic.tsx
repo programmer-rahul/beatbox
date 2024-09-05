@@ -1,5 +1,5 @@
 import useZustandStore from "@/store/zustand-store";
-import { Audio, AVPlaybackStatus } from "expo-av";
+import { Audio } from "expo-av";
 import { useEffect, useState } from "react";
 
 const useMusic = () => {
@@ -23,7 +23,7 @@ const useMusic = () => {
       clearMusicTrack();
     }
 
-    const { sound, status } = await Audio.Sound.createAsync(
+    const { sound } = await Audio.Sound.createAsync(
       { uri: musicUri },
       { shouldPlay: true },
       (status) => {
@@ -48,7 +48,7 @@ const useMusic = () => {
 
       if (!currentMusic) return;
       playPreviousOrNextSong(1, currentMusic.id);
-      
+
       setDidSongFinished(false);
     }
   }, [didSongFinished]);

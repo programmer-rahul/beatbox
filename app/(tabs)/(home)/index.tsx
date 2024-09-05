@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Alert, Linking, View } from "react-native";
 import * as MediaLibrary from "expo-media-library";
-import { TMusicFile } from "@/types/music";
 import ListMusicFiles from "@/components/home/list-music-files";
 import useZustandStore from "@/store/zustand-store";
 
