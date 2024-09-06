@@ -14,7 +14,6 @@ const CustomRangeSlider = ({
         minimumValue={1}
         maximumValue={Math.floor(totalMusicDuration)}
         onValueChange={(value) => {
-          setCurrentPosition(value);
           try {
             musicTrack?.setPositionAsync(value * 1000);
           } catch (error) {

@@ -1,6 +1,6 @@
 import useZustandStore from "@/store/zustand-store";
 import { Audio } from "expo-av";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const useMusic = () => {
   const {
@@ -13,45 +13,62 @@ const useMusic = () => {
     setIsMusicPlaying,
   } = useZustandStore();
 
-  const [didSongFinished, setDidSongFinished] = useState<boolean>(false);
+  const [didSongFinish, setDidSongFinish] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false); // Lock mechanism
+  const actionInProgressRef = useRef<boolean>(false); // Ref to prevent race conditions
 
   const playSong = async (musicUri: string) => {
-    // unload music if already running
-    if (musicTrack) {
-      musicTrack?.unloadAsync();
-      musicTrack?.stopAsync();
-      clearMusicTrack();
-    }
+    if (isLoading || actionInProgressRef.current) return; // Block if a song is already loading or an action is in progress
+    setIsLoading(true); // Set the lock
+    actionInProgressRef.current = true; // Prevent multiple actions
 
-    const { sound } = await Audio.Sound.createAsync(
-      { uri: musicUri },
-      { shouldPlay: true },
-      (status) => {
-        if (status.isLoaded) {
-          setCurrentPosition(status.positionMillis / 1000);
+    try {
+      // Unload previous track if one is playing
+      if (musicTrack) {
+        await musicTrack.stopAsync();
+        await musicTrack.unloadAsync();
+        clearMusicTrack();
+      }
 
-          if (status.didJustFinish) {
-            setDidSongFinished(true);
+      // Reset slider position
+      setCurrentPosition(0);
+
+      // Create and play the new track
+      const { sound } = await Audio.Sound.createAsync(
+        { uri: musicUri },
+        { shouldPlay: true, progressUpdateIntervalMillis: 1000 },
+        (status) => {
+          if (status.isLoaded) {
+            setCurrentPosition(status.positionMillis / 1000);
+
+            if (status.didJustFinish) {
+              setDidSongFinish(true);
+            }
           }
         }
-      }
-    );
+      );
 
-    addMusicTrack(sound);
+      setIsMusicPlaying(true);
+      addMusicTrack(sound);
+    } catch (error) {
+      console.log("Error loading song:", error);
+    }
+
+    setIsLoading(false); // Release the lock after the song is loaded
+    actionInProgressRef.current = false; // Reset action flag
   };
 
-  // when song is finished then play next song
+  // Handle song completion and play the next song
   useEffect(() => {
-    if (didSongFinished) {
-      // play next song
+    if (didSongFinish) {
       setIsMusicPlaying(false);
 
       if (!currentMusic) return;
       playPreviousOrNextSong(1, currentMusic.id);
 
-      setDidSongFinished(false);
+      setDidSongFinish(false);
     }
-  }, [didSongFinished]);
+  }, [didSongFinish]);
 
   const pauseSong = () => {
     musicTrack?.pauseAsync();
@@ -61,18 +78,16 @@ const useMusic = () => {
     musicTrack?.playAsync();
   };
 
-  const playPreviousOrNextSong = (inc: 1 | -1, musicId: string) => {
+  const playPreviousOrNextSong = async (inc: 1 | -1, musicId: string) => {
+    if (isLoading || actionInProgressRef.current) return; // Prevent multiple actions
+
     const { status, uri } = changeMusic(musicId, inc);
 
-    // if there are no next or previous song
+    // If there are no next or previous songs
     if (!status) return;
 
-    // reset slider position
-    setCurrentPosition(0);
-
-    // play next song
-    setIsMusicPlaying(true);
-    playSong(uri);
+    // Play next song
+    await playSong(uri);
   };
 
   return { playSong, pauseSong, resumeSong, playPreviousOrNextSong };
