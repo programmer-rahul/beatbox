@@ -17,6 +17,7 @@ const useMusic = () => {
     setIsMusicPlaying,
     setCurrentMusic,
     isMusicPlaying,
+    isLooping,
   } = useZustandStore();
 
   const [didSongFinish, setDidSongFinish] = useState<boolean>(false);
@@ -70,7 +71,7 @@ const useMusic = () => {
       setIsMusicPlaying(false);
 
       if (!currentMusic) return;
-      playPreviousOrNextSong(1, currentMusic.id);
+      playPreviousOrNextSong(1, currentMusic.id, true);
 
       setDidSongFinish(false);
     }
@@ -84,16 +85,29 @@ const useMusic = () => {
     musicTrack?.playAsync();
   };
 
-  const playPreviousOrNextSong = async (inc: 1 | -1, musicId: string) => {
+  const playPreviousOrNextSong = async (
+    inc: 1 | -1,
+    musicId: string,
+    isCurrentSongFinished = false
+  ) => {
     if (isLoading || actionInProgressRef.current) return; // Prevent multiple actions
 
-    const { status, uri } = changeMusic(musicId, inc);
+    let songUri = "";
+    
+    // if looping is on then play current song again
+    if (isLooping && isCurrentSongFinished) {
+      if (!currentMusic) return;
+      songUri = currentMusic.uri;
+    } else {
+      const { status, uri } = changeMusic(musicId, inc);
+      songUri = uri;
 
-    // If there are no next or previous songs
-    if (!status) return;
+      // If there are no next or previous songs
+      if (!status) return;
+    }
 
-    // Play next song
-    await playSong(uri);
+    // Play song
+    await playSong(songUri);
   };
 
   // helper functions

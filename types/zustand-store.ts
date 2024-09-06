@@ -28,4 +28,10 @@ export type TZustandStore = {
   savedMusicsList: { musicId: string }[];
   addMusicInSavedMusicList: (musicId: string) => void;
   removeMusicInSavedMusicList: (musicId: string) => void;
+
+  isLooping: boolean;
+  setIsLooping: (value: boolean) => void;
+
+  isShuffling: boolean;
+  setIsShuffling: (value: boolean) => void;
 };

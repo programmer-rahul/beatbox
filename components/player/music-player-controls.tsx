@@ -4,6 +4,7 @@ import CustomRangeSlider from "../reusable/custom-range-slider";
 import { formatMusicFileDuration } from "@/lib/helper";
 import useZustandStore from "@/store/zustand-store";
 import useMusic from "@/hooks/useMusic";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
 const MusicPlayerControls = ({
   duration,
@@ -12,8 +13,14 @@ const MusicPlayerControls = ({
   duration: number;
   musicId: string;
 }) => {
-  const { currentPosition, setIsMusicPlaying, isMusicPlaying, currentMusic } =
-    useZustandStore();
+  const {
+    currentPosition,
+    isMusicPlaying,
+    isLooping,
+    isShuffling,
+    setIsLooping,
+    setIsShuffling,
+  } = useZustandStore();
 
   const { onMusicPlayPause, playPreviousOrNextSong } = useMusic();
 
@@ -33,6 +40,12 @@ const MusicPlayerControls = ({
       </View>
 
       <View className="flex-row gap-4 justify-center items-center">
+        <MaterialCommunityIcons
+          name="repeat-variant"
+          size={30}
+          color={isLooping ? "#65a30d" : "#292929"}
+          onPress={() => setIsLooping(!isLooping)}
+        />
         <Feather
           name="skip-back"
           size={30}
@@ -50,6 +63,12 @@ const MusicPlayerControls = ({
           size={30}
           color="#292929"
           onPress={() => playPreviousOrNextSong(1, musicId)}
+        />
+        <MaterialCommunityIcons
+          name="shuffle"
+          size={30}
+          color={isShuffling ? "#65a30d" : "#292929"}
+          onPress={() => setIsShuffling(!isShuffling)}
         />
       </View>
     </View>

@@ -1,5 +1,6 @@
 import { Stack } from "expo-router";
 import { NativeWindStyleSheet } from "nativewind";
+import {} from "expo-font";
 
 NativeWindStyleSheet.setOutput({
   default: "native",

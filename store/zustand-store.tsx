@@ -63,6 +63,12 @@ const useZustandStore = create<TZustandStore>((set) => ({
       ),
     }));
   },
+
+  isLooping: false,
+  setIsLooping: (value) => set(() => ({ isLooping: value })),
+
+  isShuffling: false,
+  setIsShuffling: (value) => set(() => ({ isShuffling: value })),
 }));
 
 export default useZustandStore;
