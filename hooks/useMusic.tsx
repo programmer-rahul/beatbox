@@ -1,8 +1,12 @@
 import useZustandStore from "@/store/zustand-store";
+import { TMusicFile } from "@/types/music";
 import { Audio } from "expo-av";
+import { useRouter } from "expo-router";
 import { useEffect, useState, useRef } from "react";
 
 const useMusic = () => {
+  const { navigate } = useRouter();
+
   const {
     currentMusic,
     setCurrentPosition,
@@ -11,6 +15,8 @@ const useMusic = () => {
     clearMusicTrack,
     changeMusic,
     setIsMusicPlaying,
+    setCurrentMusic,
+    isMusicPlaying,
   } = useZustandStore();
 
   const [didSongFinish, setDidSongFinish] = useState<boolean>(false);
@@ -90,7 +96,39 @@ const useMusic = () => {
     await playSong(uri);
   };
 
-  return { playSong, pauseSong, resumeSong, playPreviousOrNextSong };
+  // helper functions
+  const onMusicPlayPause = () => {
+    if (!currentMusic) return;
+    setIsMusicPlaying(!isMusicPlaying);
+    isMusicPlaying ? pauseSong() : resumeSong();
+  };
+
+  const onMusicFilePress = (musicFile: TMusicFile) => {
+    setCurrentMusic(musicFile);
+
+    // resume current song
+    if (currentMusic?.id === musicFile.id) {
+    }
+    // start new song
+    else {
+      // start playing song
+      playSong(musicFile.uri);
+    }
+
+    !isMusicPlaying && setIsMusicPlaying(true);
+
+    // change route
+    navigate("/player");
+  };
+
+  return {
+    playSong,
+    pauseSong,
+    resumeSong,
+    playPreviousOrNextSong,
+    onMusicPlayPause,
+    onMusicFilePress,
+  };
 };
 
 export default useMusic;

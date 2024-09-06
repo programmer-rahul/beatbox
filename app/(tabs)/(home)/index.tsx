@@ -3,6 +3,7 @@ import { Alert, Linking, View } from "react-native";
 import * as MediaLibrary from "expo-media-library";
 import ListMusicFiles from "@/components/home/list-music-files";
 import useZustandStore from "@/store/zustand-store";
+import SongPreviewBar from "@/components/home/tabs/song-preview-bar";
 
 export default function Index() {
   const {
@@ -10,6 +11,7 @@ export default function Index() {
     addMusicFiles,
     isPermissionGranted,
     setIsPermissionGranted,
+    currentMusic,
   } = useZustandStore((state) => state);
 
   // check permissions
@@ -62,7 +64,8 @@ export default function Index() {
   }, [allMusicFiles]);
 
   return (
-    <View className="flex flex-col h-full px-6 py-1">
+    <View className="flex flex-col h-full py-1">
+      {currentMusic && <SongPreviewBar />}
       {isPermissionGranted && allMusicFiles.length > 0 && (
         <ListMusicFiles musicFiles={allMusicFiles} heading="All Music Files" />
       )}

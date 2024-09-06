@@ -15,14 +15,7 @@ const MusicPlayerControls = ({
   const { currentPosition, setIsMusicPlaying, isMusicPlaying, currentMusic } =
     useZustandStore();
 
-  const { pauseSong, resumeSong, playPreviousOrNextSong } = useMusic();
-
-  // when music pause and play
-  const onMusicPlayPause = () => {
-    if (!currentMusic) return;
-    setIsMusicPlaying(!isMusicPlaying);
-    isMusicPlaying ? pauseSong() : resumeSong();
-  };
+  const { onMusicPlayPause, playPreviousOrNextSong } = useMusic();
 
   return (
     <View className="space-y-10">

@@ -4,9 +4,10 @@ import useZustandStore from "@/store/zustand-store";
 import ListMusicFiles from "@/components/home/list-music-files";
 import { TMusicFile } from "@/types/music";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import SongPreviewBar from "@/components/home/tabs/song-preview-bar";
 
 const Saved = () => {
-  const { savedMusicsList, isPermissionGranted, allMusicFiles } =
+  const { savedMusicsList, isPermissionGranted, allMusicFiles, currentMusic } =
     useZustandStore();
 
   const [allSavedMusicFiles, setAllSavedMusicFiles] = useState<TMusicFile[]>(
@@ -25,7 +26,8 @@ const Saved = () => {
   }, [savedMusicsList]);
 
   return (
-    <View className="flex flex-col h-full px-6 py-1">
+    <View className="flex flex-col h-full py-1">
+      {currentMusic && <SongPreviewBar />}
       {isPermissionGranted && savedMusicsList.length > 0 ? (
         <ListMusicFiles
           musicFiles={allSavedMusicFiles}
@@ -35,7 +37,7 @@ const Saved = () => {
         <View className="flex-row gap-2 items-center justify-center h-full">
           <Text className="text-2xl font-semibold">No Saved Music Files</Text>
           <AntDesign name="hearto" size={30} color="#65a30d" />
-        </View> 
+        </View>
       )}
     </View>
   );
