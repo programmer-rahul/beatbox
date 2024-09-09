@@ -1,13 +1,12 @@
 import { View, Text } from "react-native";
 import { useEffect, useState } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
 import Feather from "@expo/vector-icons/Feather";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import MusicPlayerControls from "@/components/player/music-player-controls";
 import useZustandStore from "@/store/zustand-store";
 import PlayerScreenHeader from "@/components/player/player-screen-header";
 
-const Index = () => {
+const PlayerScreen = () => {
   const {
     currentMusic,
     savedMusicsList,
@@ -27,7 +26,7 @@ const Index = () => {
   }, [currentMusic]);
 
   return (
-    <SafeAreaView className="px-4 space-y-10">
+    <View className="px-4 space-y-10 ">
       <PlayerScreenHeader />
 
       <View className="space-y-4">
@@ -71,8 +70,8 @@ const Index = () => {
           />
         )}
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
-export default Index;
+export default PlayerScreen;

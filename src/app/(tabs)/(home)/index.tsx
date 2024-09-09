@@ -5,7 +5,7 @@ import ListMusicFiles from "@/components/home/list-music-files";
 import useZustandStore from "@/store/zustand-store";
 import SongPreviewBar from "@/components/home/tabs/song-preview-bar";
 
-export default function Index() {
+export default function HomeScreen() {
   const {
     allMusicFiles,
     addMusicFiles,

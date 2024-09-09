@@ -6,7 +6,7 @@ import { TMusicFile } from "@/types/music";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import SongPreviewBar from "@/components/home/tabs/song-preview-bar";
 
-const Saved = () => {
+const SavedScreen = () => {
   const { savedMusicsList, isPermissionGranted, allMusicFiles, currentMusic } =
     useZustandStore();
 
@@ -26,7 +26,7 @@ const Saved = () => {
   }, [savedMusicsList]);
 
   return (
-    <View className="flex flex-col h-full py-1">
+    <View className="flex flex-col h-full py-1 ">
       {currentMusic && <SongPreviewBar />}
       {isPermissionGranted && savedMusicsList.length > 0 ? (
         <ListMusicFiles
@@ -43,4 +43,4 @@ const Saved = () => {
   );
 };
 
-export default Saved;
+export default SavedScreen;

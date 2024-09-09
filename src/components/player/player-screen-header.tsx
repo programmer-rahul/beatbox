@@ -7,7 +7,7 @@ import { useNavigation } from "expo-router";
 const PlayerScreenHeader = () => {
   const { goBack } = useNavigation();
   return (
-    <View className="py-1 flex flex-row justify-between items-center border-b border-neutral-300">
+    <View className="py-1 flex flex-row justify-between items-center border-b border-neutral-300 ">
       <Feather
         name="chevron-left"
         size={26}

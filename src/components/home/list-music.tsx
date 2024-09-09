@@ -10,7 +10,7 @@ const ListMusic = ({ musicFile }: { musicFile: TMusicFile }) => {
   const { onMusicFilePress } = useMusic();
 
   return (
-    <View className="flex-row justify-between items-center border border-lime-300 bg-lime-200/20 p-1 rounded-md mb-2">
+    <View className="flex-row justify-between items-center border border-lime-300 bg-lime-200/20 p-1 rounded-md mb-2 ">
       <Pressable
         className="w-[88%] flex-row space-x-2"
         onPress={() => onMusicFilePress(musicFile)}

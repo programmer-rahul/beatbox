@@ -6,7 +6,7 @@ const TabLayout = () => {
   return (
     <Tabs screenOptions={{ headerShown: true, header: () => <Header /> }}>
       <Tabs.Screen
-        name="(home)/index"
+        name="(home)"
         options={{
           title: "Home",
           tabBarIcon: ({ color }) => (
@@ -15,7 +15,7 @@ const TabLayout = () => {
         }}
       />
       <Tabs.Screen
-        name="saved/index"
+        name="saved"
         options={{
           title: "Saved",
           tabBarIcon: ({ color }) => (
@@ -24,7 +24,7 @@ const TabLayout = () => {
         }}
       />
       <Tabs.Screen
-        name="settings/index"
+        name="settings"
         options={{
           title: "Settings",
           tabBarIcon: ({ color }) => (

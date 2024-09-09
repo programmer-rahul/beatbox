@@ -29,7 +29,7 @@ const MusicPlayerControls = ({
       {/* slider */}
       <View>
         <CustomRangeSlider totalMusicDuration={duration} />
-        <View className="px-4 flex-row justify-between">
+        <View className="px-4 flex-row justify-between ">
           <Text className="text-xs text-neutral-500">
             {formatMusicFileDuration(currentPosition)}
           </Text>

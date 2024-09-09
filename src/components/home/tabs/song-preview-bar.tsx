@@ -11,14 +11,14 @@ const SongPreviewBar = () => {
     useMusic();
 
   return (
-    <View className="w-full h-14 absolute items-center justify-center bg-stone-200 border-t border-slate-100 bottom-0 z-10">
+    <View className="w-full h-14 absolute items-center justify-center  bg-stone-200 border-t border-slate-100 bottom-0 z-10">
       {currentMusic && (
         <View className="flex-row items-center justify-between w-full px-2">
           <Pressable
             className="flex-row space-x-2 items-center w-[70%]"
             onPress={() => onMusicFilePress(currentMusic)}
           >
-            <View className="w-11 h-11 items-center rounded-full justify-center bg-lime-200/20 border border-lime-600">
+            <View className="w-11 h-11 items-center rounded-full justify-center bg-lime-200/20 border border-lime -600">
               <Feather name="music" size={22} color="#65a30d" />
             </View>
             <View>
