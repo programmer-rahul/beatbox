@@ -1,6 +1,6 @@
 import { Stack } from "expo-router";
 import { NativeWindStyleSheet } from "nativewind";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 
 NativeWindStyleSheet.setOutput({
@@ -9,10 +9,12 @@ NativeWindStyleSheet.setOutput({
 
 export default function RootLayout() {
   return (
-    <SafeAreaProvider>
+    <SafeAreaView className="h-full">
+    <>
       <RootNavigation />
-      <StatusBar style="auto" />
-    </SafeAreaProvider>
+      <StatusBar style="auto"/>
+    </>
+    </SafeAreaView>
   );
 }
 

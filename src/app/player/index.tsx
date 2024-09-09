@@ -26,7 +26,7 @@ const PlayerScreen = () => {
   }, [currentMusic]);
 
   return (
-    <View className="px-4 space-y-10 ">
+    <View className="px-4 space-y-10 border-4 border-red-500">
       <PlayerScreenHeader />
 
       <View className="space-y-4">
