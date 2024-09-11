@@ -1,10 +1,9 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import Feather from "@expo/vector-icons/Feather";
-import CustomRangeSlider from "../reusable/custom-range-slider";
-import { formatMusicFileDuration } from "@/lib/helper";
 import useZustandStore from "@/store/zustand-store";
 import useMusic from "@/hooks/useMusic";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import PlayerMusicSlider from "./player-music-slider";
 
 const MusicPlayerControls = ({
   duration,
@@ -14,7 +13,6 @@ const MusicPlayerControls = ({
   musicId: string;
 }) => {
   const {
-    currentPosition,
     isMusicPlaying,
     isLooping,
     isShuffling,
@@ -27,17 +25,7 @@ const MusicPlayerControls = ({
   return (
     <View className="space-y-10">
       {/* slider */}
-      <View>
-        <CustomRangeSlider totalMusicDuration={duration} />
-        <View className="px-4 flex-row justify-between ">
-          <Text className="text-xs text-neutral-500">
-            {formatMusicFileDuration(currentPosition)}
-          </Text>
-          <Text className="text-xs text-neutral-500 text-right">
-            {formatMusicFileDuration(duration)}
-          </Text>
-        </View>
-      </View>
+      <PlayerMusicSlider duration={duration} />
 
       <View className="flex-row gap-4 justify-center items-center">
         <MaterialCommunityIcons

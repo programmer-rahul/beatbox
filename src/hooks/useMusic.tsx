@@ -32,8 +32,9 @@ const useMusic = () => {
     try {
       // Unload previous track if one is playing
       if (musicTrack) {
-        await musicTrack.stopAsync();
-        await musicTrack.unloadAsync();
+        const status1 = await musicTrack.stopAsync();
+        const status2 = await musicTrack.unloadAsync();
+
         clearMusicTrack();
       }
 
@@ -68,12 +69,7 @@ const useMusic = () => {
   // Handle song completion and play the next song
   useEffect(() => {
     if (didSongFinish) {
-      setIsMusicPlaying(false);
-
-      if (!currentMusic) return;
-      playPreviousOrNextSong(1, currentMusic.id, true);
-
-      setDidSongFinish(false);
+      onSongFinish();
     }
   }, [didSongFinish]);
 
@@ -81,7 +77,7 @@ const useMusic = () => {
     musicTrack?.pauseAsync();
   };
 
-  const resumeSong = () => {
+  const resumeSong = async () => {
     musicTrack?.playAsync();
   };
 
@@ -93,7 +89,7 @@ const useMusic = () => {
     if (isLoading || actionInProgressRef.current) return; // Prevent multiple actions
 
     let songUri = "";
-    
+
     // if looping is on then play current song again
     if (isLooping && isCurrentSongFinished) {
       if (!currentMusic) return;
@@ -108,6 +104,16 @@ const useMusic = () => {
 
     // Play song
     await playSong(songUri);
+  };
+
+  // events
+  const onSongFinish = () => {
+    setIsMusicPlaying(false);
+
+    if (!currentMusic) return;
+    playPreviousOrNextSong(1, currentMusic.id, true);
+
+    setDidSongFinish(false);
   };
 
   // helper functions
