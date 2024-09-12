@@ -7,7 +7,6 @@ const Header = () => {
       <View>
         <Text className="text-3xl font-semibold">BeatBox</Text>
       </View>
-      <Text className="text-2xl">Tailwind</Text>
       <View>
         <Feather name="search" size={22} />
       </View>

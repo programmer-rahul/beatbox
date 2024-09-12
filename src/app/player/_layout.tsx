@@ -7,7 +7,7 @@ const PlayerScreenLayout = () => {
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="index" />
       </Stack>
-      <StatusBar style="dark" backgroundColor="#aacd88" />
+      <StatusBar style="dark" backgroundColor="blue" />
     </>
   );
 };

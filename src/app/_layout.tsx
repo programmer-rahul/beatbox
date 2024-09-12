@@ -1,8 +1,6 @@
 import { Stack } from "expo-router";
-import { NativeWindStyleSheet } from "nativewind";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
-import { View } from "react-native";
 
 // NativeWindStyleSheet.setOutput({
 //   default: undefined,
@@ -10,12 +8,10 @@ import { View } from "react-native";
 
 export default function RootLayout() {
   return (
-    <View className="h-full border border-red-500">
-      <SafeAreaView className="h-full">
-        <RootNavigation />
-        <StatusBar style="auto" backgroundColor="#99cdda" />
-      </SafeAreaView>
-    </View>
+    <SafeAreaView className="h-full">
+      <RootNavigation />
+      <StatusBar style="auto" backgroundColor="blue" />
+    </SafeAreaView>
   );
 }
 
