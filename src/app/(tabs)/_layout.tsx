@@ -1,6 +1,6 @@
 import { Tabs } from "expo-router";
-import Feather from "@expo/vector-icons/Feather";
 import Header from "@/components/header/header";
+import { Ionicons, Octicons } from "@expo/vector-icons";
 
 const TabLayout = () => {
   return (
@@ -9,8 +9,12 @@ const TabLayout = () => {
         name="(home)"
         options={{
           title: "Home",
-          tabBarIcon: ({ color }) => (
-            <Feather size={20} name="home" color={color} />
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              size={20}
+              name={focused ? "home-sharp" : "home-outline"}
+              color={color}
+            />
           ),
         }}
       />
@@ -18,8 +22,12 @@ const TabLayout = () => {
         name="saved"
         options={{
           title: "Saved",
-          tabBarIcon: ({ color }) => (
-            <Feather size={20} name="heart" color={color} />
+          tabBarIcon: ({ color, focused }) => (
+            <Octicons
+              size={20}
+              name={focused ? "heart-fill" : "heart"}
+              color={color}
+            />
           ),
         }}
       />
@@ -27,8 +35,12 @@ const TabLayout = () => {
         name="settings"
         options={{
           title: "Settings",
-          tabBarIcon: ({ color }) => (
-            <Feather size={20} name="settings" color={color} />
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              size={20}
+              name={focused ? "settings-sharp" : "settings-outline"}
+              color={color}
+            />
           ),
         }}
       />

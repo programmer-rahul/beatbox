@@ -32,13 +32,13 @@ const SavedScreen = () => {
     <View className="flex flex-col h-full py-1 ">
       {!isPermissionGranted ? (
         <PermissionRequired />
-      ) : savedMusicsList.length < 0 ? (
+      ) : savedMusicsList.length === 0 ? (
         <NoSavedMusicFiles />
       ) : (
         <>
           <ListMusicFiles
             musicFiles={allSavedMusicFiles}
-            heading="All Music Files"
+            heading="All Saved Files"
           />
           {currentMusic && <SongPreviewBar />}
         </>
