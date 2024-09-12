@@ -11,7 +11,7 @@ const ListMusic = ({ musicFile }: { musicFile: TMusicFile }) => {
   const { onMusicFilePress } = useMusic();
 
   return (
-    <View className="flex-row justify-between items-center rounded-md mb-4 py-1">
+    <View className="flex-row justify-between items-center rounded-md mb-4">
       <Pressable
         className="flex-1 flex-row space-x-2"
         onPress={() => onMusicFilePress(musicFile)}
@@ -19,6 +19,7 @@ const ListMusic = ({ musicFile }: { musicFile: TMusicFile }) => {
         <View className="h-10 aspect-square items-center justify-center bg-main/20 border border-main rounded-md">
           <Feather name="music" size={22} color={COLORS.main} />
         </View>
+
         <View className="flex-1">
           <Text
             className="text-primaryText text-xs font-spacemono"
@@ -26,10 +27,11 @@ const ListMusic = ({ musicFile }: { musicFile: TMusicFile }) => {
           >
             {filename}
           </Text>
-          <Text className="text-secondaryText font-spacemono">
+          <Text className="text-secondaryText text-xs font-spacemono">
             {formatMusicFileDuration(duration)}
           </Text>
         </View>
+
       </Pressable>
       <View>
         <Entypo

@@ -4,6 +4,7 @@ import useZustandStore from "@/store/zustand-store";
 import useMusic from "@/hooks/useMusic";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import PlayerMusicSlider from "./player-music-slider";
+import COLORS from "@/constants/colors";
 
 const MusicPlayerControls = ({
   duration,
@@ -23,7 +24,7 @@ const MusicPlayerControls = ({
   const { onMusicPlayPause, playPreviousOrNextSong } = useMusic();
 
   return (
-    <View className="space-y-10">
+    <View className="space-y-8">
       {/* slider */}
       <PlayerMusicSlider duration={duration} />
 
@@ -31,31 +32,31 @@ const MusicPlayerControls = ({
         <MaterialCommunityIcons
           name="repeat-variant"
           size={30}
-          color={isLooping ? "#65a30d" : "#292929"}
+          color={isLooping ? COLORS.primaryText : COLORS.secondaryIcon}
           onPress={() => setIsLooping(!isLooping)}
         />
         <Feather
           name="skip-back"
           size={30}
-          color="#292929"
+          color={COLORS.secondaryIcon}
           onPress={() => playPreviousOrNextSong(-1, musicId)}
         />
         <Feather
           name={isMusicPlaying ? "pause-circle" : "play-circle"}
-          size={44}
-          color="#292929"
+          size={50}
+          color={isMusicPlaying ? COLORS.main : COLORS.primaryIcon}
           onPress={onMusicPlayPause}
         />
         <Feather
           name="skip-forward"
           size={30}
-          color="#292929"
+          color={COLORS.secondaryIcon}
           onPress={() => playPreviousOrNextSong(1, musicId)}
         />
         <MaterialCommunityIcons
           name="shuffle"
           size={30}
-          color={isShuffling ? "#65a30d" : "#292929"}
+          color={isShuffling ? COLORS.primaryText : COLORS.secondaryIcon}
           onPress={() => setIsShuffling(!isShuffling)}
         />
       </View>

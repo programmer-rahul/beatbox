@@ -7,12 +7,14 @@ const PlayerMusicNameDisplay = () => {
 
   return (
     <View className="flex-row justify-between items-center">
-      <Text
-        className="text-base font-semibold w-full max-w-[80%]"
-        numberOfLines={1}
-      >
-        {currentMusic?.filename}
-      </Text>
+      <View className="flex-1 pr-4">
+        <Text
+          className="text-base font-semibold font-spacemono text-primaryText"
+          numberOfLines={1}
+        >
+          {currentMusic?.filename}
+        </Text>
+      </View>
       <PlayerSavedMusicIcon />
     </View>
   );

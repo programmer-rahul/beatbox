@@ -4,7 +4,7 @@ import COLORS from "@/constants/colors";
 
 const Header = () => {
   return (
-    <View className="px-4 py-2 flex flex-row justify-between items-center bg-primaryBg">
+    <View className="px-4 py-2 pb-4 flex flex-row justify-between items-center bg-green-500">
       <View>
         <Text className="text-xl font-semibold text-main font-spacemono">
           BeatBox

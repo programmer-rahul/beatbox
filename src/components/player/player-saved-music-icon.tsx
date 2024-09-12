@@ -1,6 +1,8 @@
+import COLORS from "@/constants/colors";
 import useZustandStore from "@/store/zustand-store";
 import { AntDesign } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
+import { View } from "react-native";
 
 const PlayerSavedMusicIcon = () => {
   const {
@@ -24,24 +26,26 @@ const PlayerSavedMusicIcon = () => {
     setIsSavedMusic(checkIsSavedMusic);
   }, [currentMusic]);
   return (
-    <AntDesign
-      name={isSavedMusic ? "heart" : "hearto"}
-      size={22}
-      color="#65a30d"
-      onPress={() => {
-        if (!currentMusic) return;
+    <View>
+      <AntDesign
+        name={isSavedMusic ? "heart" : "hearto"}
+        size={22}
+        color={COLORS.main}
+        onPress={() => {
+          if (!currentMusic) return;
 
-        // manage global state for saved musics
-        if (isSavedMusic) {
-          removeMusicInSavedMusicList(currentMusic.id);
-        } else {
-          addMusicInSavedMusicList(currentMusic.id);
-        }
+          // manage global state for saved musics
+          if (isSavedMusic) {
+            removeMusicInSavedMusicList(currentMusic.id);
+          } else {
+            addMusicInSavedMusicList(currentMusic.id);
+          }
 
-        // for ui perpose
-        setIsSavedMusic(!isSavedMusic);
-      }}
-    />
+          // for ui perpose
+          setIsSavedMusic(!isSavedMusic);
+        }}
+      />
+    </View>
   );
 };
 

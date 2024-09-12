@@ -10,7 +10,7 @@ const ListMusicFiles = ({
   heading: string;
 }) => {
   return (
-    <View className="space-y-2 px-4">
+    <View className="gap-4 px-4">
       <View className="flex flex-row justify-between items-center">
         <Text className="text-xs font-bold text-primaryText font-spacemono">
           {heading}

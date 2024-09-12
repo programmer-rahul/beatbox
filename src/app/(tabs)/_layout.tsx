@@ -14,7 +14,7 @@ const TabLayout = () => {
         },
         tabBarIconStyle: {
           color: "red",
-          fontFamily : 'SpaceMono'
+          fontFamily: "SpaceMono",
         },
         tabBarActiveTintColor: COLORS.main,
         tabBarInactiveTintColor: COLORS.secondaryIcon,
@@ -31,6 +31,20 @@ const TabLayout = () => {
               color={color}
             />
           ),
+        }}
+      />
+      <Tabs.Screen
+        name="player"
+        options={{
+          title: "Player",
+          tabBarIcon: ({ color, focused }) => (
+            <Octicons
+              size={20}
+              name={focused ? "play" : "play"}
+              color={color}
+            />
+          ),
+          headerShown: false,
         }}
       />
       <Tabs.Screen

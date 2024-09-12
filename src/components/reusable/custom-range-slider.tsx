@@ -3,6 +3,7 @@ import Slider from "@react-native-community/slider";
 import useZustandStore from "@/store/zustand-store";
 import { useCallback } from "react";
 import { debounce } from "@/lib/helper";
+import COLORS from "@/constants/colors";
 
 const CustomRangeSlider = ({
   totalMusicDuration,
@@ -32,8 +33,8 @@ const CustomRangeSlider = ({
           }
         }}
         value={currentPosition}
-        thumbTintColor="#65a30d"
-        minimumTrackTintColor="#65a30d"
+        thumbTintColor={COLORS.main}
+        minimumTrackTintColor={COLORS.secondaryText}
       />
     </View>
   );
