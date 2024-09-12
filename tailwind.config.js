@@ -8,6 +8,9 @@ module.exports = {
       colors: {
         ...colors,
       },
+      fontFamily: {
+        spacemono: ["SpaceMono", "Sans-Serif"],
+      },
     },
   },
   plugins: [],

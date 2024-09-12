@@ -1,10 +1,25 @@
 import { Tabs } from "expo-router";
 import Header from "@/components/header/header";
 import { Ionicons, Octicons } from "@expo/vector-icons";
+import COLORS from "@/constants/colors";
 
 const TabLayout = () => {
   return (
-    <Tabs screenOptions={{ headerShown: true, header: () => <Header /> }}>
+    <Tabs
+      screenOptions={{
+        headerShown: true,
+        header: () => <Header />,
+        tabBarStyle: {
+          backgroundColor: COLORS.primaryBg,
+        },
+        tabBarIconStyle: {
+          color: "red",
+          fontFamily : 'SpaceMono'
+        },
+        tabBarActiveTintColor: COLORS.main,
+        tabBarInactiveTintColor: COLORS.secondaryIcon,
+      }}
+    >
       <Tabs.Screen
         name="(home)"
         options={{

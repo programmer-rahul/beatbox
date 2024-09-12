@@ -10,15 +10,17 @@ const ListMusicFiles = ({
   heading: string;
 }) => {
   return (
-    <View className="space-y-2 px-6 ">
+    <View className="space-y-2 px-4">
       <View className="flex flex-row justify-between items-center">
-        <Text className="text-base font-bold text-neutral-800">{heading}</Text>
-        <Text className="text-sm font-bold text-neutral-500">
+        <Text className="text-xs font-bold text-primaryText font-spacemono">
+          {heading}
+        </Text>
+        <Text className="text-xs font-bold text-secondaryText font-spacemono">
           {musicFiles.length}
         </Text>
       </View>
 
-      <View className="mb-12">
+      <View className="mb-20 pl-2">
         <FlatList
           data={musicFiles}
           renderItem={({ item }) => {

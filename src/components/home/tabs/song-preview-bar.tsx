@@ -3,6 +3,7 @@ import useZustandStore from "@/store/zustand-store";
 import { Feather } from "@expo/vector-icons";
 import { formatMusicFileDuration } from "@/lib/helper";
 import useMusic from "@/hooks/useMusic";
+import COLORS from "@/constants/colors";
 
 const SongPreviewBar = () => {
   const { currentMusic, currentPosition, isMusicPlaying } = useZustandStore();
@@ -11,29 +12,29 @@ const SongPreviewBar = () => {
     useMusic();
 
   return (
-    <View className="w-full h-14 absolute items-center justify-center  bg-stone-200 border-t border-slate-100 bottom-0 z-10">
+    <View className="w-full h-12 absolute items-center justify-center bg-zinc-300 bottom-0 z-10 rounded-t-lg px-4">
       {currentMusic && (
-        <View className="flex-row items-center justify-between w-full px-2">
+        <View className="flex-row items-center gap-2 justify-between w-full">
           <Pressable
-            className="flex-row space-x-2 items-center w-[70%]"
+            className="flex-row space-x-2 items-center flex-1"
             onPress={() => onMusicFilePress(currentMusic)}
           >
-            <View className="w-11 h-11 items-center rounded-full justify-center bg-lime-200/20 border border-lime -600">
-              <Feather name="music" size={22} color="#65a30d" />
+            <View className="w-10 aspect-square items-center rounded-full justify-center border-2 border-main/60">
+              <Feather name="music" size={22} color={COLORS.main} />
             </View>
-            <View>
+            <View className="flex-1">
               <Text
-                className="text-neutral-900 text-xs font-semibold"
+                className="text-primaryText text-xs font-semibold"
                 numberOfLines={1}
               >
                 {currentMusic.filename}
               </Text>
               <View className="flex-row items-center">
-                <Text className="text-neutral-900 text-xs">
+                <Text className="text-secondaryText text-xs">
                   {formatMusicFileDuration(currentPosition)}
                 </Text>
                 <Text> : </Text>
-                <Text className="text-neutral-500 text-xs">
+                <Text className="text-secondaryText text-xs">
                   {formatMusicFileDuration(currentMusic.duration)}
                 </Text>
               </View>
@@ -43,13 +44,13 @@ const SongPreviewBar = () => {
             <Feather
               name={isMusicPlaying ? "pause-circle" : "play-circle"}
               size={30}
-              color="#65a30d"
+              color={COLORS.primaryIcon}
               onPress={onMusicPlayPause}
             />
             <Feather
               name="skip-forward"
               size={30}
-              color="#65a30d"
+              color={COLORS.primaryIcon}
               onPress={() => playPreviousOrNextSong(1, currentMusic.id)}
             />
           </View>

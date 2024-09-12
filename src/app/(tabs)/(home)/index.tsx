@@ -15,7 +15,7 @@ export default function HomeScreen() {
   usePermission();
 
   return (
-    <View className="flex flex-col h-full py-1">
+    <View className="flex flex-col h-full py-1 bg-primaryBg">
       {!isPermissionGranted ? (
         <PermissionRequired />
       ) : allMusicFiles.length < 0 ? (
