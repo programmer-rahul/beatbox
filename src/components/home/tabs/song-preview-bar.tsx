@@ -18,7 +18,7 @@ const SongPreviewBar = () => {
           className="flex-row space-x-2 items-center flex-1"
           onPress={() => onMusicFilePress(currentMusic)}
         >
-          <View className="w-10 aspect-square items-center rounded-full justify-center border-2 border-main/60">
+          <View className="w-10 aspect-square items-center rounded-full justify-center border-2 border-main/40">
             <Feather name="music" size={22} color={COLORS.main} />
           </View>
           <View className="flex-1">
@@ -43,7 +43,7 @@ const SongPreviewBar = () => {
           <Feather
             name={isMusicPlaying ? "pause-circle" : "play-circle"}
             size={30}
-            color={isMusicPlaying ? COLORS.primaryIcon : COLORS.secondaryIcon}
+            color={isMusicPlaying ? COLORS.main : COLORS.secondaryIcon}
             onPress={onMusicPlayPause}
           />
           <Feather

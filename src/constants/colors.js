@@ -6,7 +6,7 @@ const defaultColors = {
   secondaryText: colors.gray[500],
 
   primaryBg: colors.gray[100],
-  secondaryBg: colors.gray[300],
+  secondaryBg: colors.slate[300],
 
   primaryIcon: colors.slate[900],
   secondaryIcon: colors.gray[500],

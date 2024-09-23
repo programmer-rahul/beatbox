@@ -29,7 +29,7 @@ const SavedScreen = () => {
   }, [savedMusicsList]);
 
   return (
-    <View className="flex flex-col h-full py-1 ">
+    <View className="flex flex-col h-full py-1 bg-primaryBg">
       {!isPermissionGranted ? (
         <PermissionRequired />
       ) : savedMusicsList.length === 0 ? (

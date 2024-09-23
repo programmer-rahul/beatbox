@@ -42,7 +42,7 @@ const MusicPlayerControls = () => {
         <Feather
           name={isMusicPlaying ? "pause-circle" : "play-circle"}
           size={70}
-          color={isMusicPlaying ? COLORS.main : COLORS.primaryIcon}
+          color={isMusicPlaying ? COLORS.main : COLORS.secondaryIcon}
           onPress={onMusicPlayPause}
         />
         <Feather

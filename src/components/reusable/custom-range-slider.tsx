@@ -15,8 +15,8 @@ const CustomRangeSlider = ({
   // Debounced slider update
   const debouncedSliderPosition = useCallback(
     debounce((value: number) => {
-      musicTrack?.setPositionAsync(value * 1000); // Set song position in milliseconds
-    }, 300), // 300ms debounce delay
+      musicTrack?.setPositionAsync(value * 1000);
+    }, 300),
     [musicTrack]
   );
 
@@ -34,7 +34,8 @@ const CustomRangeSlider = ({
         }}
         value={currentPosition}
         thumbTintColor={COLORS.main}
-        minimumTrackTintColor={COLORS.secondaryText}
+        minimumTrackTintColor={COLORS.main}
+        maximumTrackTintColor={COLORS.secondaryIcon}
       />
     </View>
   );

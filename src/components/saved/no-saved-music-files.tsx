@@ -5,9 +5,9 @@ import { Text, View } from "react-native";
 const NoSavedMusicFiles = () => {
   return (
     <View className="flex-row gap-2 items-center justify-center h-full">
-      <Text className="text-2xl font-semibold">No Saved Music Files</Text>
+      <Text className="text-2xl font-semibold font-spacemono text-primaryText">No Saved Music Files</Text>
       <View className="absolute opacity-10 top-60">
-        <AntDesign name="hearto" size={350} color={COLORS.main} />
+        <AntDesign name="hearto" size={380} color={COLORS.main} />
       </View>
     </View>
   );

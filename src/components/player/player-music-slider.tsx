@@ -2,7 +2,6 @@ import { Text, View } from "react-native";
 import CustomRangeSlider from "../reusable/custom-range-slider";
 import { formatMusicFileDuration } from "@/lib/helper";
 import useZustandStore from "@/store/zustand-store";
-import { useEffect } from "react";
 
 const PlayerMusicSlider = ({ duration }: { duration: number }) => {
   const { currentPosition } = useZustandStore();

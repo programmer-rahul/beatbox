@@ -12,7 +12,7 @@ const PlayerScreen = () => {
   const { currentMusic } = useZustandStore();
 
   return (
-    <View className="px-4 space-y-10 flex-1">
+    <View className="px-4 space-y-10 flex-1 bg-primaryBg">
       <PlayerScreenHeader />
 
       {currentMusic ? (
