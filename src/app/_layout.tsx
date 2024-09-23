@@ -45,7 +45,6 @@ const RootNavigation = () => {
       }}
     >
       <Stack.Screen name="(tabs)" />
-      <Stack.Screen name="player" />
     </Stack>
   );
 };

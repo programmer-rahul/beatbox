@@ -56,7 +56,7 @@ const MusicPlayerControls = () => {
         />
         <MaterialCommunityIcons
           name="shuffle"
-          size={30}
+          size={20}
           color={isShuffling ? COLORS.primaryText : COLORS.secondaryIcon}
           onPress={() => setIsShuffling(!isShuffling)}
         />
