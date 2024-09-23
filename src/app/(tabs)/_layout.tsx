@@ -1,6 +1,6 @@
 import { Tabs } from "expo-router";
 import Header from "@/components/header/header";
-import { Ionicons, Octicons } from "@expo/vector-icons";
+import { AntDesign, Ionicons, Octicons } from "@expo/vector-icons";
 import COLORS from "@/constants/colors";
 
 const TabLayout = () => {
@@ -38,9 +38,9 @@ const TabLayout = () => {
         options={{
           title: "Player",
           tabBarIcon: ({ color, focused }) => (
-            <Octicons
+            <AntDesign
               size={20}
-              name={focused ? "play" : "play"}
+              name={focused ? "play" : "playcircleo"}
               color={color}
             />
           ),

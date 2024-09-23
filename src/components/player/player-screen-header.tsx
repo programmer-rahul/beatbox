@@ -7,7 +7,7 @@ import { useNavigation } from "expo-router";
 const PlayerScreenHeader = () => {
   const { goBack } = useNavigation();
   return (
-    <View className="py-1 flex flex-row justify-center items-center border-b border-neutral-300 ">
+    <View className="py-2 flex flex-row justify-center items-center border-b border-neutral-300 ">
       <Text className="font-semibold font-spacemono text-primaryText">Now Playing</Text>
     </View>
   );

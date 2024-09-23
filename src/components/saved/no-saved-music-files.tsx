@@ -6,7 +6,9 @@ const NoSavedMusicFiles = () => {
   return (
     <View className="flex-row gap-2 items-center justify-center h-full">
       <Text className="text-2xl font-semibold">No Saved Music Files</Text>
-      <AntDesign name="hearto" size={30} color={COLORS.main} />
+      <View className="absolute opacity-10 top-60">
+        <AntDesign name="hearto" size={350} color={COLORS.main} />
+      </View>
     </View>
   );
 };

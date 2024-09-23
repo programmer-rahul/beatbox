@@ -19,7 +19,7 @@ const MusicPlayerControls = () => {
   const { onMusicPlayPause, playPreviousOrNextSong } = useMusic();
 
   return (
-    <View className="space-y-8">
+    <View className="space-y-4">
       {/* slider */}
       <PlayerMusicSlider duration={currentMusic?.duration ?? 0} />
 
@@ -41,7 +41,7 @@ const MusicPlayerControls = () => {
         />
         <Feather
           name={isMusicPlaying ? "pause-circle" : "play-circle"}
-          size={50}
+          size={70}
           color={isMusicPlaying ? COLORS.main : COLORS.primaryIcon}
           onPress={onMusicPlayPause}
         />
@@ -56,7 +56,7 @@ const MusicPlayerControls = () => {
         />
         <MaterialCommunityIcons
           name="shuffle"
-          size={20}
+          size={25}
           color={isShuffling ? COLORS.primaryText : COLORS.secondaryIcon}
           onPress={() => setIsShuffling(!isShuffling)}
         />
