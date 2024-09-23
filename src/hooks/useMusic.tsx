@@ -9,6 +9,7 @@ const useMusic = () => {
 
   const {
     currentMusic,
+    currentPosition,
     setCurrentPosition,
     addMusicTrack,
     musicTrack,
@@ -32,8 +33,8 @@ const useMusic = () => {
     try {
       // Unload previous track if one is playing
       if (musicTrack) {
-        const status1 = await musicTrack.stopAsync();
-        const status2 = await musicTrack.unloadAsync();
+        await musicTrack.stopAsync();
+        await musicTrack.unloadAsync();
 
         clearMusicTrack();
       }
@@ -46,9 +47,10 @@ const useMusic = () => {
         { uri: musicUri },
         { shouldPlay: true, progressUpdateIntervalMillis: 1000 },
         (status) => {
+          console.log("status");
           if (status.isLoaded) {
             setCurrentPosition(status.positionMillis / 1000);
-
+            console.log("isLoaded");
             if (status.didJustFinish) {
               setDidSongFinish(true);
             }
@@ -131,6 +133,7 @@ const useMusic = () => {
     }
     // start new song
     else {
+      setCurrentPosition(0);
       // start playing song
       playSong(musicFile.uri);
     }

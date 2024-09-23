@@ -6,7 +6,7 @@ import PlayerMusicNameDisplay from "@/components/player/player-music-name-displa
 
 const PlayerScreen = () => {
   return (
-    <View className="px-4 space-y-10 bg-green-500 flex-1">
+    <View className="px-4 space-y-10 flex-1">
       <PlayerScreenHeader />
 
       <View>

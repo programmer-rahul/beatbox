@@ -6,19 +6,14 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import PlayerMusicSlider from "./player-music-slider";
 import COLORS from "@/constants/colors";
 
-const MusicPlayerControls = ({
-  duration,
-  musicId,
-}: {
-  duration: number;
-  musicId: string;
-}) => {
+const MusicPlayerControls = () => {
   const {
     isMusicPlaying,
     isLooping,
     isShuffling,
     setIsLooping,
     setIsShuffling,
+    currentMusic,
   } = useZustandStore();
 
   const { onMusicPlayPause, playPreviousOrNextSong } = useMusic();
@@ -26,7 +21,7 @@ const MusicPlayerControls = ({
   return (
     <View className="space-y-8">
       {/* slider */}
-      <PlayerMusicSlider duration={duration} />
+      <PlayerMusicSlider duration={currentMusic?.duration ?? 0} />
 
       <View className="flex-row gap-4 justify-center items-center">
         <MaterialCommunityIcons
@@ -39,7 +34,10 @@ const MusicPlayerControls = ({
           name="skip-back"
           size={30}
           color={COLORS.secondaryIcon}
-          onPress={() => playPreviousOrNextSong(-1, musicId)}
+          onPress={() => {
+            if (!currentMusic) return;
+            playPreviousOrNextSong(-1, currentMusic.id);
+          }}
         />
         <Feather
           name={isMusicPlaying ? "pause-circle" : "play-circle"}
@@ -51,7 +49,10 @@ const MusicPlayerControls = ({
           name="skip-forward"
           size={30}
           color={COLORS.secondaryIcon}
-          onPress={() => playPreviousOrNextSong(1, musicId)}
+          onPress={() => {
+            if (!currentMusic) return;
+            playPreviousOrNextSong(1, currentMusic.id);
+          }}
         />
         <MaterialCommunityIcons
           name="shuffle"
