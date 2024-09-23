@@ -32,7 +32,7 @@ export default function RootLayout() {
       <SafeAreaView className="flex-1">
         <RootNavigation />
       </SafeAreaView>
-      <StatusBar style="auto" backgroundColor={COLORS.primaryBg} />
+      <StatusBar style="dark" backgroundColor={COLORS.primaryBg} />
     </>
   );
 }
