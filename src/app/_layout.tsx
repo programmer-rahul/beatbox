@@ -1,24 +1,31 @@
 import { SplashScreen, Stack } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
-import { View } from "react-native";
 import COLORS from "@/constants/colors";
 import { useFonts } from "expo-font";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import playbackService from "@/lib/playback-service";
+import TrackPlayer from "react-native-track-player";
+import useSetupTrackPlayer from "@/hooks/useSetupTrackPlayer";
 
 // NativeWindStyleSheet.setOutput({
 //   default: undefined,
 // });
 
+TrackPlayer.registerPlaybackService(() => playbackService);
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  const isTrackPlayerInitialized = useRef(false);
+
   const [loaded, error] = useFonts({
     SpaceMono: require("@/assets/fonts/SpaceMono-Regular.ttf"),
   });
 
+  useSetupTrackPlayer({ isTrackPlayerInitialized });
+
   useEffect(() => {
-    if (loaded || error) {
+    if ((loaded && isTrackPlayerInitialized) || error) {
       SplashScreen.hideAsync();
     }
   }, [loaded, error]);

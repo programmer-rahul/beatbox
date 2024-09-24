@@ -4,12 +4,13 @@ import { Feather } from "@expo/vector-icons";
 import { formatMusicFileDuration } from "@/lib/helper";
 import useMusic from "@/hooks/useMusic";
 import COLORS from "@/constants/colors";
+import { useProgress } from "react-native-track-player";
 
 const SongPreviewBar = () => {
-  const { currentMusic, currentPosition, isMusicPlaying } = useZustandStore();
+  const { currentMusic, isMusicPlaying } = useZustandStore();
+  const progress = useProgress();
 
-  const { onMusicPlayPause, playPreviousOrNextSong, onMusicFilePress } =
-    useMusic();
+  const { onTrackPlayPause, playNextTrack, onMusicFilePress } = useMusic();
 
   return currentMusic ? (
     <View className="w-full h-14 absolute items-center justify-center bg-secondaryBg bottom-0 z-10 rounded-t-lg px-4">
@@ -30,10 +31,13 @@ const SongPreviewBar = () => {
             </Text>
             <View className="flex-row items-center">
               <Text className="text-secondaryText text-xs font-spacemono">
-                {formatMusicFileDuration(currentPosition)}
+                {formatMusicFileDuration(progress.position)}
               </Text>
-              <Text> : </Text>
-              <Text className="text-secondaryText text-xs">
+              <Text className="text-secondaryText text-xs font-spacemono">
+                {" "}
+                :{" "}
+              </Text>
+              <Text className="text-secondaryText text-xs font-spacemono">
                 {formatMusicFileDuration(currentMusic.duration)}
               </Text>
             </View>
@@ -44,13 +48,13 @@ const SongPreviewBar = () => {
             name={isMusicPlaying ? "pause-circle" : "play-circle"}
             size={30}
             color={isMusicPlaying ? COLORS.main : COLORS.secondaryIcon}
-            onPress={onMusicPlayPause}
+            onPress={onTrackPlayPause}
           />
           <Feather
             name="skip-forward"
             size={30}
             color={COLORS.secondaryIcon}
-            onPress={() => playPreviousOrNextSong(1, currentMusic.id)}
+            onPress={() => playNextTrack(currentMusic.id)}
           />
         </View>
       </View>

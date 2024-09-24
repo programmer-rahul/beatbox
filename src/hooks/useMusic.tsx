@@ -1,131 +1,22 @@
 import useZustandStore from "@/store/zustand-store";
 import { TMusicFile } from "@/types/music";
-import { Audio } from "expo-av";
 import { useRouter } from "expo-router";
-import { useEffect, useState, useRef } from "react";
+import TrackPlayer from "react-native-track-player";
+import useTrack from "./useTrack";
 
 const useMusic = () => {
   const { navigate } = useRouter();
+  const { playTrack } = useTrack();
 
   const {
     currentMusic,
-    currentPosition,
-    setCurrentPosition,
-    addMusicTrack,
-    musicTrack,
-    clearMusicTrack,
-    changeMusic,
     setIsMusicPlaying,
     setCurrentMusic,
     isMusicPlaying,
-    isLooping,
+    allMusicFiles,
   } = useZustandStore();
 
-  const [didSongFinish, setDidSongFinish] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(false); // Lock mechanism
-  const actionInProgressRef = useRef<boolean>(false); // Ref to prevent race conditions
-
-  const playSong = async (musicUri: string) => {
-    if (isLoading || actionInProgressRef.current) return; // Block if a song is already loading or an action is in progress
-    setIsLoading(true); // Set the lock
-    actionInProgressRef.current = true; // Prevent multiple actions
-
-    try {
-      // Unload previous track if one is playing
-      if (musicTrack) {
-        await musicTrack.stopAsync();
-        await musicTrack.unloadAsync();
-
-        clearMusicTrack();
-      }
-
-      // Reset slider position
-      setCurrentPosition(0);
-
-      // Create and play the new track
-      const { sound } = await Audio.Sound.createAsync(
-        { uri: musicUri },
-        { shouldPlay: true, progressUpdateIntervalMillis: 1000 },
-        (status) => {
-          console.log("status");
-          if (status.isLoaded) {
-            setCurrentPosition(status.positionMillis / 1000);
-            console.log("isLoaded");
-            if (status.didJustFinish) {
-              setDidSongFinish(true);
-            }
-          }
-        }
-      );
-
-      setIsMusicPlaying(true);
-      addMusicTrack(sound);
-    } catch (error) {
-      console.log("Error loading song:", error);
-    }
-
-    setIsLoading(false); // Release the lock after the song is loaded
-    actionInProgressRef.current = false; // Reset action flag
-  };
-
-  // Handle song completion and play the next song
-  useEffect(() => {
-    if (didSongFinish) {
-      onSongFinish();
-    }
-  }, [didSongFinish]);
-
-  const pauseSong = () => {
-    musicTrack?.pauseAsync();
-  };
-
-  const resumeSong = async () => {
-    musicTrack?.playAsync();
-  };
-
-  const playPreviousOrNextSong = async (
-    inc: 1 | -1,
-    musicId: string,
-    isCurrentSongFinished = false
-  ) => {
-    if (isLoading || actionInProgressRef.current) return; // Prevent multiple actions
-
-    let songUri = "";
-
-    // if looping is on then play current song again
-    if (isLooping && isCurrentSongFinished) {
-      if (!currentMusic) return;
-      songUri = currentMusic.uri;
-    } else {
-      const { status, uri } = changeMusic(musicId, inc);
-      songUri = uri;
-
-      // If there are no next or previous songs
-      if (!status) return;
-    }
-
-    // Play song
-    await playSong(songUri);
-  };
-
-  // events
-  const onSongFinish = () => {
-    setIsMusicPlaying(false);
-
-    if (!currentMusic) return;
-    playPreviousOrNextSong(1, currentMusic.id, true);
-
-    setDidSongFinish(false);
-  };
-
-  // helper functions
-  const onMusicPlayPause = () => {
-    if (!currentMusic) return;
-    setIsMusicPlaying(!isMusicPlaying);
-    isMusicPlaying ? pauseSong() : resumeSong();
-  };
-
-  const onMusicFilePress = (musicFile: TMusicFile) => {
+  const onMusicFilePress = async (musicFile: TMusicFile) => {
     setCurrentMusic(musicFile);
 
     // resume current song
@@ -133,9 +24,20 @@ const useMusic = () => {
     }
     // start new song
     else {
-      setCurrentPosition(0);
+      await TrackPlayer.reset();
+      const homeTracks = allMusicFiles.map((musicFile) => ({
+        url: musicFile.uri,
+      }));
+      console.log("homeTracks : ", homeTracks);
+
+      await TrackPlayer.add(homeTracks);
+
+      const currentMusicTrackIndex = allMusicFiles.findIndex(
+        (music) => music.uri === musicFile.uri
+      );
+
       // start playing song
-      playSong(musicFile.uri);
+      playTrack(currentMusicTrackIndex);
     }
 
     !isMusicPlaying && setIsMusicPlaying(true);
@@ -145,11 +47,6 @@ const useMusic = () => {
   };
 
   return {
-    playSong,
-    pauseSong,
-    resumeSong,
-    playPreviousOrNextSong,
-    onMusicPlayPause,
     onMusicFilePress,
   };
 };

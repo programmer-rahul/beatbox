@@ -5,10 +5,10 @@ import useMusic from "@/hooks/useMusic";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import PlayerMusicSlider from "./player-music-slider";
 import COLORS from "@/constants/colors";
+import useTrack from "@/hooks/useTrack";
 
 const MusicPlayerControls = () => {
   const {
-    isMusicPlaying,
     isLooping,
     isShuffling,
     setIsLooping,
@@ -16,7 +16,8 @@ const MusicPlayerControls = () => {
     currentMusic,
   } = useZustandStore();
 
-  const { onMusicPlayPause, playPreviousOrNextSong } = useMusic();
+  const { onTrackPlayPause, playNextTrack, playPreviousTrack, playbackState } =
+    useTrack();
 
   return (
     <View className="space-y-4">
@@ -36,14 +37,16 @@ const MusicPlayerControls = () => {
           color={COLORS.secondaryIcon}
           onPress={() => {
             if (!currentMusic) return;
-            playPreviousOrNextSong(-1, currentMusic.id);
+            playPreviousTrack(currentMusic.id);
           }}
         />
         <Feather
-          name={isMusicPlaying ? "pause-circle" : "play-circle"}
+          name={playbackState === "playing" ? "pause-circle" : "play-circle"}
           size={70}
-          color={isMusicPlaying ? COLORS.main : COLORS.secondaryIcon}
-          onPress={onMusicPlayPause}
+          color={
+            playbackState === "playing" ? COLORS.main : COLORS.secondaryIcon
+          }
+          onPress={onTrackPlayPause}
         />
         <Feather
           name="skip-forward"
@@ -51,7 +54,7 @@ const MusicPlayerControls = () => {
           color={COLORS.secondaryIcon}
           onPress={() => {
             if (!currentMusic) return;
-            playPreviousOrNextSong(1, currentMusic.id);
+            playNextTrack(currentMusic.id);
           }}
         />
         <MaterialCommunityIcons
