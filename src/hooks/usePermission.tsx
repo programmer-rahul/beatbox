@@ -2,17 +2,39 @@ import { useEffect } from "react";
 import { Alert, Linking, View } from "react-native";
 import * as MediaLibrary from "expo-media-library";
 import useZustandStore from "@/store/zustand-store";
+import permissionStore from "@/store/permission-store";
 
 const usePermission = () => {
-  const { addMusicFiles, isPermissionGranted, setIsPermissionGranted } =
-    useZustandStore((state) => state);
+  // const { addMusicFiles, isPermissionGranted, setIsPermissionGranted } =
+  //   useZustandStore((state) => state);
 
-  // check permissions
-  const checkIsHavePermissions = async () => {
+  // scan all media files from device
+  // const getMediaFiles = async () => {
+  //   const medias = await MediaLibrary.getAssetsAsync({
+  //     mediaType: "audio",
+  //     first: 150,
+  //   });
+
+  //   console.log("medias", medias);
+
+  //   if (medias.assets.length > 0) {
+  //     addMusicFiles(medias.assets);
+  //   }
+  // };
+
+  const { isHavePermission, setIsHavePermission } = permissionStore();
+
+  // check for permissions
+  useEffect(() => {
+    !isHavePermission && askForPermissions();
+  }, []);
+
+  // show permissions dialog
+  const askForPermissions = async () => {
     const { status } = await MediaLibrary.requestPermissionsAsync();
 
     if (status === "granted") {
-      setIsPermissionGranted(true);
+      setIsHavePermission(true);
     } else {
       Alert.alert(
         "Permissions Required",
@@ -25,28 +47,7 @@ const usePermission = () => {
     }
   };
 
-  // scan all media files from device
-  const getMediaFiles = async () => {
-    const medias = await MediaLibrary.getAssetsAsync({
-      mediaType: "audio",
-    });
-
-    if (medias.assets.length > 0) {
-      addMusicFiles(medias.assets);
-    }
-  };
-
-  // initial render
-  useEffect(() => {
-    checkIsHavePermissions();
-  }, []);
-
-  // to check permissions
-  useEffect(() => {
-    if (isPermissionGranted) {
-      getMediaFiles();
-    }
-  }, [isPermissionGranted]);
+  return { isHavePermission };
 };
 
 export default usePermission;

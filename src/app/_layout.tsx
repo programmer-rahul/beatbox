@@ -7,8 +7,9 @@ import { useEffect, useRef } from "react";
 import playbackService from "@/lib/playback-service";
 import TrackPlayer from "react-native-track-player";
 import useSetupTrackPlayer from "@/hooks/useSetupTrackPlayer";
-
-// NativeWindStyleSheet.setOutput({
+import usePermission from "@/hooks/usePermission";
+import PermissionRequired from "@/components/reusable/permission-required";
+import Header from "@/components/header/header";
 //   default: undefined,
 // });
 
@@ -45,13 +46,18 @@ export default function RootLayout() {
 }
 
 const RootNavigation = () => {
-  return (
+  const { isHavePermission } = usePermission();
+
+  return isHavePermission ? (
     <Stack
       screenOptions={{
-        headerShown: false,
+        headerShown: true,
+        header: () => <Header />,
       }}
     >
       <Stack.Screen name="(tabs)" />
     </Stack>
+  ) : (
+    <PermissionRequired />
   );
 };

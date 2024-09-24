@@ -7,8 +7,7 @@ const TabLayout = () => {
   return (
     <Tabs
       screenOptions={{
-        headerShown: true,
-        header: () => <Header />,
+        headerShown: false,
         tabBarStyle: {
           backgroundColor: COLORS.primaryBg,
         },

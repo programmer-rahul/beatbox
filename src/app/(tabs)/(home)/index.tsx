@@ -13,13 +13,9 @@ export default function HomeScreen() {
     (state) => state
   );
 
-  usePermission();
-
   return (
     <View className="flex flex-col h-full py-1 bg-primaryBg">
-      {!isPermissionGranted ? (
-        <PermissionRequired />
-      ) : allMusicFiles.length < 0 ? (
+      {allMusicFiles.length < 0 ? (
         <NoMusicFilesFound />
       ) : (
         <>
