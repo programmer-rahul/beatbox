@@ -1,12 +1,12 @@
 import { View, Text, FlatList } from "react-native";
-import { TMusicFile } from "@/types/music";
 import ListMusic from "./list-music";
+import { TMusicTrack } from "@/types/store/track-store";
 
 const ListMusicFiles = ({
   musicFiles,
   heading,
 }: {
-  musicFiles: TMusicFile[];
+  musicFiles: TMusicTrack[];
   heading: string;
 }) => {
   return (

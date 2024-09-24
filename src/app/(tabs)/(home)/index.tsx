@@ -1,30 +1,27 @@
 import { View } from "react-native";
-
 import ListMusicFiles from "@/components/home/list-music-files";
-import useZustandStore from "@/store/zustand-store";
-import SongPreviewBar from "@/components/home/tabs/song-preview-bar";
 import NoMusicFilesFound from "@/components/home/no-music-files-found";
-import PermissionRequired from "@/components/reusable/permission-required";
-import usePermission from "@/hooks/usePermission";
-import useTrackEvents from "@/hooks/useTrackEvents";
+import useMusicTracks from "@/hooks/useMusicTracks";
+import COLORS from "@/constants/colors";
+import SongPreviewBar from "@/components/home/tabs/song-preview-bar";
 
 export default function HomeScreen() {
-  const { allMusicFiles, isPermissionGranted, currentMusic } = useZustandStore(
-    (state) => state
-  );
+  const { allLocalMusicTracks, currentMusicTrack } = useMusicTracks();
 
   return (
-    <View className="flex flex-col h-full py-1 bg-primaryBg">
-      {allMusicFiles.length < 0 ? (
-        <NoMusicFilesFound />
-      ) : (
-        <>
+    <View
+      className="flex flex-col h-full py-1"
+      style={{ backgroundColor: COLORS.primaryBg }}
+    >
+      {allLocalMusicTracks.length <= 0 && <NoMusicFilesFound />}
+      {allLocalMusicTracks.length > 0 && (
+        <View>
           <ListMusicFiles
-            musicFiles={allMusicFiles}
+            musicFiles={allLocalMusicTracks}
             heading="All Music Files"
           />
-          {currentMusic && <SongPreviewBar />}
-        </>
+          {currentMusicTrack && <SongPreviewBar />}
+        </View>
       )}
     </View>
   );

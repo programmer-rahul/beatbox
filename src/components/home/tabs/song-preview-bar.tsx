@@ -5,19 +5,21 @@ import { formatMusicFileDuration } from "@/lib/helper";
 import useMusic from "@/hooks/useMusic";
 import COLORS from "@/constants/colors";
 import useTrack from "@/hooks/useTrack";
+import useMusicTracks from "@/hooks/useMusicTracks";
+import trackStore from "@/store/track-store";
 
 const SongPreviewBar = () => {
-  const { currentMusic } = useZustandStore();
+  const { currentMusicTrack } = trackStore();
   const { onMusicFilePress } = useMusic();
   const { onTrackPlayPause, playNextTrack, isTrackPlaying, progress } =
     useTrack();
 
-  return currentMusic ? (
+  return currentMusicTrack ? (
     <View className="w-full h-14 absolute items-center justify-center bg-secondaryBg bottom-0 z-10 rounded-t-lg px-4">
       <View className="flex-row items-center gap-2 justify-between w-full">
         <Pressable
           className="flex-row space-x-2 items-center flex-1"
-          onPress={() => onMusicFilePress(currentMusic)}
+          onPress={() => onMusicFilePress(currentMusicTrack)}
         >
           <View className="w-10 aspect-square items-center rounded-full justify-center border-2 border-main/40">
             <Feather name="music" size={22} color={COLORS.main} />
@@ -27,7 +29,7 @@ const SongPreviewBar = () => {
               className="text-primaryText text-xs font-spacemono font-medium"
               numberOfLines={1}
             >
-              {currentMusic.filename}
+              {currentMusicTrack.title}
             </Text>
             <View className="flex-row items-center">
               <Text className="text-secondaryText text-xs font-spacemono">
@@ -37,7 +39,7 @@ const SongPreviewBar = () => {
                 :
               </Text>
               <Text className="text-secondaryText text-xs font-spacemono">
-                {formatMusicFileDuration(currentMusic.duration)}
+                {formatMusicFileDuration(currentMusicTrack.duration)}
               </Text>
             </View>
           </View>
@@ -53,7 +55,7 @@ const SongPreviewBar = () => {
             name="skip-forward"
             size={30}
             color={COLORS.secondaryIcon}
-            onPress={() => playNextTrack(currentMusic.id)}
+            onPress={() => playNextTrack(currentMusicTrack.id)}
           />
         </View>
       </View>
