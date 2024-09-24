@@ -4,13 +4,13 @@ import { Feather } from "@expo/vector-icons";
 import { formatMusicFileDuration } from "@/lib/helper";
 import useMusic from "@/hooks/useMusic";
 import COLORS from "@/constants/colors";
-import { useProgress } from "react-native-track-player";
+import useTrack from "@/hooks/useTrack";
 
 const SongPreviewBar = () => {
-  const { currentMusic, isMusicPlaying } = useZustandStore();
-  const progress = useProgress();
-
-  const { onTrackPlayPause, playNextTrack, onMusicFilePress } = useMusic();
+  const { currentMusic } = useZustandStore();
+  const { onMusicFilePress } = useMusic();
+  const { onTrackPlayPause, playNextTrack, isTrackPlaying, progress } =
+    useTrack();
 
   return currentMusic ? (
     <View className="w-full h-14 absolute items-center justify-center bg-secondaryBg bottom-0 z-10 rounded-t-lg px-4">
@@ -34,8 +34,7 @@ const SongPreviewBar = () => {
                 {formatMusicFileDuration(progress.position)}
               </Text>
               <Text className="text-secondaryText text-xs font-spacemono">
-                {" "}
-                :{" "}
+                :
               </Text>
               <Text className="text-secondaryText text-xs font-spacemono">
                 {formatMusicFileDuration(currentMusic.duration)}
@@ -45,9 +44,9 @@ const SongPreviewBar = () => {
         </Pressable>
         <View className="flex-row items-center space-x-3">
           <Feather
-            name={isMusicPlaying ? "pause-circle" : "play-circle"}
+            name={isTrackPlaying() ? "pause-circle" : "play-circle"}
             size={30}
-            color={isMusicPlaying ? COLORS.main : COLORS.secondaryIcon}
+            color={isTrackPlaying() ? COLORS.main : COLORS.secondaryIcon}
             onPress={onTrackPlayPause}
           />
           <Feather

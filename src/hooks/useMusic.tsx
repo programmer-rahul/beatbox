@@ -1,12 +1,11 @@
 import useZustandStore from "@/store/zustand-store";
 import { TMusicFile } from "@/types/music";
 import { useRouter } from "expo-router";
-import TrackPlayer from "react-native-track-player";
 import useTrack from "./useTrack";
 
 const useMusic = () => {
   const { navigate } = useRouter();
-  const { playTrack } = useTrack();
+  const { playTrack, TrackPlayer } = useTrack();
 
   const {
     currentMusic,

@@ -8,15 +8,10 @@ import COLORS from "@/constants/colors";
 import useTrack from "@/hooks/useTrack";
 
 const MusicPlayerControls = () => {
-  const {
-    isLooping,
-    isShuffling,
-    setIsLooping,
-    setIsShuffling,
-    currentMusic,
-  } = useZustandStore();
+  const { isLooping, isShuffling, setIsLooping, setIsShuffling, currentMusic } =
+    useZustandStore();
 
-  const { onTrackPlayPause, playNextTrack, playPreviousTrack, playbackState } =
+  const { onTrackPlayPause, playNextTrack, playPreviousTrack, isTrackPlaying } =
     useTrack();
 
   return (
@@ -41,11 +36,9 @@ const MusicPlayerControls = () => {
           }}
         />
         <Feather
-          name={playbackState === "playing" ? "pause-circle" : "play-circle"}
+          name={isTrackPlaying() ? "pause-circle" : "play-circle"}
           size={70}
-          color={
-            playbackState === "playing" ? COLORS.main : COLORS.secondaryIcon
-          }
+          color={isTrackPlaying() ? COLORS.main : COLORS.secondaryIcon}
           onPress={onTrackPlayPause}
         />
         <Feather

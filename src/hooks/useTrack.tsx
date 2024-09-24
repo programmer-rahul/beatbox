@@ -1,14 +1,14 @@
 import useZustandStore from "@/store/zustand-store";
-import { useEffect } from "react";
 import TrackPlayer, {
-  State,
   usePlaybackState,
+  useProgress,
 } from "react-native-track-player";
 
 const useTrack = () => {
   const { changeMusic, isMusicPlaying, setIsMusicPlaying } = useZustandStore();
 
   const { state: playbackState } = usePlaybackState();
+  const progress = useProgress();
 
   const playTrack = async (trackIndex: number) => {
     await TrackPlayer.skip(trackIndex);
@@ -40,17 +40,15 @@ const useTrack = () => {
     isMusicPlaying ? pauseTrack() : resumeTrack();
   };
 
-//   useEffect(() => {
-//     console.log("changing", Math.random() * 1000);
-//     console.log(
-//       "changing",
-//       TrackPlayer.getPlaybackState().then((yes) => {
-//         console.log("yes", yes);
-//       })
-//     );
-
-//     console.log("playbackStat", playbackState);
-//   }, []);
+  const isTrackPlaying = () => {
+    if (
+      playbackState === "playing" ||
+      playbackState === "ready" ||
+      playbackState === "buffering"
+    )
+      return true;
+    else return false;
+  };
 
   return {
     playTrack,
@@ -61,6 +59,8 @@ const useTrack = () => {
     onTrackPlayPause,
     TrackPlayer,
     playbackState,
+    isTrackPlaying,
+    progress,
   };
 };
 
