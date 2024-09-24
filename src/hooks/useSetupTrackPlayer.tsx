@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import TrackPlayer, { Capability } from "react-native-track-player";
+import useTrackEvents from "./useTrackEvents";
 
 const setupTrackPlayer = async () => {
   await TrackPlayer.setupPlayer();

@@ -1,7 +1,6 @@
 import { View } from "react-native";
 import Feather from "@expo/vector-icons/Feather";
 import useZustandStore from "@/store/zustand-store";
-import useMusic from "@/hooks/useMusic";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import PlayerMusicSlider from "./player-music-slider";
 import COLORS from "@/constants/colors";

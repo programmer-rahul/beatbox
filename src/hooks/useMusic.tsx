@@ -7,13 +7,7 @@ const useMusic = () => {
   const { navigate } = useRouter();
   const { playTrack, TrackPlayer } = useTrack();
 
-  const {
-    currentMusic,
-    setIsMusicPlaying,
-    setCurrentMusic,
-    isMusicPlaying,
-    allMusicFiles,
-  } = useZustandStore();
+  const { currentMusic, setCurrentMusic, allMusicFiles } = useZustandStore();
 
   const onMusicFilePress = async (musicFile: TMusicFile) => {
     setCurrentMusic(musicFile);
@@ -26,6 +20,8 @@ const useMusic = () => {
       await TrackPlayer.reset();
       const homeTracks = allMusicFiles.map((musicFile) => ({
         url: musicFile.uri,
+        title: musicFile.filename,
+        duration: musicFile.duration,
       }));
       console.log("homeTracks : ", homeTracks);
 
@@ -36,13 +32,11 @@ const useMusic = () => {
       );
 
       // start playing song
-      playTrack(currentMusicTrackIndex);
+      playTrack(currentMusicTrackIndex).then(() => {
+        // change route
+        navigate("/player");
+      });
     }
-
-    !isMusicPlaying && setIsMusicPlaying(true);
-
-    // change route
-    navigate("/player");
   };
 
   return {

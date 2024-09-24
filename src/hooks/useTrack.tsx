@@ -1,11 +1,17 @@
 import useZustandStore from "@/store/zustand-store";
+import { useEffect, useState } from "react";
 import TrackPlayer, {
+  Event,
+  useActiveTrack,
   usePlaybackState,
   useProgress,
+  useTrackPlayerEvents,
 } from "react-native-track-player";
 
 const useTrack = () => {
   const { changeMusic, isMusicPlaying, setIsMusicPlaying } = useZustandStore();
+
+  const [trackTitle, setTrackTitle] = useState("");
 
   const { state: playbackState } = usePlaybackState();
   const progress = useProgress();
@@ -44,11 +50,14 @@ const useTrack = () => {
     if (
       playbackState === "playing" ||
       playbackState === "ready" ||
-      playbackState === "buffering"
+      playbackState === "buffering" ||
+      playbackState === "loading"
     )
       return true;
     else return false;
   };
+
+  const activeTrack = useActiveTrack();
 
   return {
     playTrack,
@@ -60,6 +69,7 @@ const useTrack = () => {
     TrackPlayer,
     playbackState,
     isTrackPlaying,
+    activeTrack,
     progress,
   };
 };

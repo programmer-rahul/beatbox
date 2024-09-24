@@ -1,9 +1,9 @@
-import useZustandStore from "@/store/zustand-store";
 import { Text, View } from "react-native";
 import PlayerSavedMusicIcon from "./player-saved-music-icon";
+import useTrack from "@/hooks/useTrack";
 
 const PlayerMusicNameDisplay = () => {
-  const { currentMusic } = useZustandStore();
+  const { activeTrack } = useTrack();
 
   return (
     <View className="flex-row justify-between items-center px-4">
@@ -12,7 +12,7 @@ const PlayerMusicNameDisplay = () => {
           className="text-base font-semibold font-spacemono text-primaryText"
           numberOfLines={1}
         >
-          {currentMusic?.filename}
+          {activeTrack?.title}
         </Text>
       </View>
       <PlayerSavedMusicIcon />
