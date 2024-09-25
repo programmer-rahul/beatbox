@@ -5,6 +5,7 @@ const usePlayerEvents = () => {
   const { setIsTrackPlaying, currentMusicTrack, changeCurrentMusicTrack } =
     useTrackStore();
 
+  // to handle events from notification
   useTrackPlayerEvents(
     [
       Event.RemotePlay,
@@ -26,6 +27,16 @@ const usePlayerEvents = () => {
       }
     }
   );
+
+  useTrackPlayerEvents([Event.PlaybackActiveTrackChanged], (event) => {
+    if (event.lastTrack && event.track && currentMusicTrack) {
+      event.lastTrack.url === currentMusicTrack.url &&
+        changeCurrentMusicTrack(currentMusicTrack.url, "next");
+    }
+  });
+  useTrackPlayerEvents([Event.RemoteDuck], (event) => {
+    console.log("event", event);
+  });
 };
 
 export default usePlayerEvents;

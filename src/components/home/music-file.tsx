@@ -62,7 +62,7 @@ const MusicFile = ({
         onPress={onMusicFilePress}
       >
         <View className="h-10 aspect-square items-center justify-center bg-main/20 border border-main rounded-md">
-          {musicFile.cover ? (
+          {musicFile.cover.length ? (
             <Image
               source={{ uri: musicFile.cover }}
               className="w-full h-full rounded-md"

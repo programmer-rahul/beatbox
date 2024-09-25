@@ -30,7 +30,7 @@ const MiniMusicPlayer = () => {
           onPress={() => navigate("/player")}
         >
           <View className="w-10 aspect-square items-center rounded-full justify-center border-2 border-main/40">
-            {currentMusicTrack.cover ? (
+            {currentMusicTrack.cover.length ? (
               <Image
                 source={{ uri: currentMusicTrack.cover }}
                 className="w-full h-full rounded-full"

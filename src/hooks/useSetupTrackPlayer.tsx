@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import TrackPlayer, { Capability } from "react-native-track-player";
 
 const setupTrackPlayer = async () => {
-  await TrackPlayer.setupPlayer();
+  await TrackPlayer.setupPlayer({});
 
   await TrackPlayer.updateOptions({
     capabilities: [
@@ -10,9 +10,7 @@ const setupTrackPlayer = async () => {
       Capability.Pause,
       Capability.SkipToNext,
       Capability.SkipToPrevious,
-      Capability.Stop,
     ],
-
     compactCapabilities: [Capability.Play, Capability.Pause],
   });
 };
