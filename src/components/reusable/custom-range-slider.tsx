@@ -1,15 +1,15 @@
 import { View } from "react-native";
 import Slider from "@react-native-community/slider";
 import COLORS from "@/constants/colors";
-import useTrack from "@/hooks/useTrack";
 import useTrackStore from "@/store/track-store";
+import TrackPlayer, { useProgress } from "react-native-track-player";
 
 const CustomRangeSlider = ({
   totalMusicDuration,
 }: {
   totalMusicDuration: number;
 }) => {
-  const { progress, TrackPlayer } = useTrack();
+  const progress = useProgress();
   const { currentMusicTrack } = useTrackStore();
 
   return (

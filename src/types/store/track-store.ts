@@ -7,7 +7,7 @@ interface TMusicTrack {
   duration: number;
 }
 
-interface TuseTrackStore {
+interface TTrackStore {
   allLocalMusicTracks: TMusicTrack[];
   setAllLocalMusicTracks: (newLocalMusicTracks: TMusicTrack[]) => void;
 
@@ -18,6 +18,9 @@ interface TuseTrackStore {
     type: "previous" | "next"
   ) => void;
 
+  isTrackPlaying: boolean;
+  setIsTrackPlaying: (value: boolean) => void;
+
   isLoopingTrack: boolean;
   setIsLoopingTrack: (value: boolean) => void;
 
@@ -25,4 +28,4 @@ interface TuseTrackStore {
   setIsShufflingQueue: (value: boolean) => void;
 }
 
-export { TMusicTrack, TuseTrackStore };
+export { TMusicTrack, TTrackStore };

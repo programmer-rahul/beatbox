@@ -21,8 +21,6 @@ const useMusicTracks = () => {
 
   useEffect(() => {
     allLocalMusicTracks.length <= 0 && fetchLocalMusicFiles();
-
-    console.log('music Track');
   }, []);
 
   return { allLocalMusicTracks, currentMusicTrack };

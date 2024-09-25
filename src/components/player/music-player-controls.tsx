@@ -3,14 +3,11 @@ import Feather from "@expo/vector-icons/Feather";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import PlayerMusicSlider from "./player-music-slider";
 import COLORS from "@/constants/colors";
-import useTrack from "@/hooks/useTrack";
 import useTrackStore from "@/store/track-store";
 import TrackPlayer from "react-native-track-player";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const MusicPlayerControls = () => {
-  const { isTrackPlaying, playPreviousTrack, playNextTrack } = useTrack();
-
   const {
     currentMusicTrack,
     changeCurrentMusicTrack,
@@ -18,10 +15,11 @@ const MusicPlayerControls = () => {
     setIsLoopingTrack,
     isShufflingQueue,
     setIsShufflingQueue,
+    isTrackPlaying,
   } = useTrackStore();
 
   const onTrackPlayPauseHandler = () => {
-    isTrackPlaying() ? TrackPlayer.pause() : TrackPlayer.play();
+    isTrackPlaying ? TrackPlayer.pause() : TrackPlayer.play();
   };
 
   useEffect(() => {
@@ -52,16 +50,21 @@ const MusicPlayerControls = () => {
           }}
         />
         <Feather
-          name={isTrackPlaying() ? "pause-circle" : "play-circle"}
+          name={isTrackPlaying ? "pause-circle" : "play-circle"}
           size={70}
-          color={isTrackPlaying() ? COLORS.main : COLORS.secondaryIcon}
+          color={isTrackPlaying ? COLORS.main : COLORS.secondaryIcon}
           onPress={onTrackPlayPauseHandler}
         />
         <Feather
           name="skip-forward"
           size={30}
           color={COLORS.secondaryIcon}
-          onPress={() => playNextTrack}
+          onPress={async () => {
+            if (!currentMusicTrack) return;
+            changeCurrentMusicTrack(currentMusicTrack.url, "next");
+            await TrackPlayer.skipToNext();
+            await TrackPlayer.play();
+          }}
         />
         <MaterialCommunityIcons
           name="shuffle"

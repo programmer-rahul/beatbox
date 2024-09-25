@@ -20,11 +20,17 @@ const ListMusicFiles = ({
         </Text>
       </View>
 
-      <View className="pl-2 mb-28">
+      <View className="pl-2 mb-20">
         <FlatList
           data={musicFiles}
-          renderItem={({ item }) => {
-            return <MusicFile musicFile={item} />;
+          renderItem={({ item, index }) => {
+            return (
+              <MusicFile
+                musicFile={item}
+                index={index}
+                lastFile={index + 1 === musicFiles.length}
+              />
+            );
           }}
           keyExtractor={(item) => item.url}
           initialNumToRender={10}

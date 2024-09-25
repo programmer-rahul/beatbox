@@ -9,7 +9,15 @@ import TrackPlayer from "react-native-track-player";
 import { useRouter } from "expo-router";
 import useQueueStore from "@/store/queue-store";
 
-const MusicFile = ({ musicFile }: { musicFile: TMusicTrack }) => {
+const MusicFile = ({
+  musicFile,
+  index,
+  lastFile,
+}: {
+  musicFile: TMusicTrack;
+  index?: number;
+  lastFile: boolean;
+}) => {
   const { allLocalMusicTracks, currentMusicTrack, setCurrentMusicTrack } =
     useTrackStore();
 
@@ -39,7 +47,12 @@ const MusicFile = ({ musicFile }: { musicFile: TMusicTrack }) => {
   };
 
   return (
-    <View className="flex-row justify-between items-center rounded-md mt-4">
+    <View
+      className="flex-row justify-between items-center rounded-md mt-4"
+      style={{
+        marginBottom: lastFile ? 50 : 0,
+      }}
+    >
       <Pressable
         className="flex-1 flex-row space-x-2"
         onPress={onMusicFilePress}

@@ -1,9 +1,9 @@
-import { TuseTrackStore } from "@/types/store/track-store";
+import { TTrackStore } from "@/types/store/track-store";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const useTrackStore = create<TuseTrackStore>()(
+const useTrackStore = create<TTrackStore>()(
   persist(
     (set) => ({
       allLocalMusicTracks: [],
@@ -35,6 +35,8 @@ const useTrackStore = create<TuseTrackStore>()(
           }
         }),
 
+      isTrackPlaying: false,
+      setIsTrackPlaying: (value) => set(() => ({ isTrackPlaying: value })),
       isLoopingTrack: false,
       setIsLoopingTrack: (value) => set(() => ({ isLoopingTrack: value })),
       isShufflingQueue: false,
