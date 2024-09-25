@@ -1,15 +1,13 @@
 import { Pressable, Text, View } from "react-native";
-import useZustandStore from "@/store/zustand-store";
 import { Feather } from "@expo/vector-icons";
 import { formatMusicFileDuration } from "@/lib/helper";
 import useMusic from "@/hooks/useMusic";
 import COLORS from "@/constants/colors";
 import useTrack from "@/hooks/useTrack";
-import useMusicTracks from "@/hooks/useMusicTracks";
-import trackStore from "@/store/track-store";
+import useTrackStore from "@/store/track-store";
 
 const MiniMusicPlayer = () => {
-  const { currentMusicTrack } = trackStore();
+  const { currentMusicTrack } = useTrackStore();
   const { onMusicFilePress } = useMusic();
   const { onTrackPlayPause, playNextTrack, isTrackPlaying, progress } =
     useTrack();

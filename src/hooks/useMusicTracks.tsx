@@ -1,11 +1,11 @@
-import trackStore from "@/store/track-store";
+import useTrackStore from "@/store/track-store";
 import { TMusicTrack } from "@/types/store/track-store";
 import { useEffect } from "react";
 import { getAll } from "react-native-get-music-files";
 
 const useMusicTracks = () => {
   const { allLocalMusicTracks, setAllLocalMusicTracks, currentMusicTrack } =
-    trackStore();
+    useTrackStore();
 
   const fetchLocalMusicFiles = async () => {
     const fetchedMusicFiles = await getAll({

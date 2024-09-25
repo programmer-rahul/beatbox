@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { Alert, Linking } from "react-native";
 import * as MediaLibrary from "expo-media-library";
-import permissionStore from "@/store/permission-store";
+import usePermissionStore from "@/store/permission-store";
 
 const usePermission = () => {
-  const { isHavePermission, setIsHavePermission } = permissionStore();
+  const { isHavePermission, setIsHavePermission } = usePermissionStore();
 
   // check for permissions
   useEffect(() => {

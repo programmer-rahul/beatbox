@@ -1,12 +1,12 @@
 import { Text, View } from "react-native";
 import CustomRangeSlider from "../reusable/custom-range-slider";
 import { formatMusicFileDuration } from "@/lib/helper";
-import trackStore from "@/store/track-store";
+import useTrackStore from "@/store/track-store";
 import { useProgress } from "react-native-track-player";
 
 const PlayerMusicSlider = () => {
   const progress = useProgress();
-  const { currentMusicTrack } = trackStore();
+  const { currentMusicTrack } = useTrackStore();
 
   return currentMusicTrack ? (
     <View>

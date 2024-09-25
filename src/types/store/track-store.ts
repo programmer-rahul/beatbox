@@ -7,7 +7,7 @@ interface TMusicTrack {
   duration: number;
 }
 
-interface TTrackStore {
+interface TuseTrackStore {
   allLocalMusicTracks: TMusicTrack[];
   setAllLocalMusicTracks: (newLocalMusicTracks: TMusicTrack[]) => void;
 
@@ -25,4 +25,4 @@ interface TTrackStore {
   setIsShufflingQueue: (value: boolean) => void;
 }
 
-export { TMusicTrack, TTrackStore };
+export { TMusicTrack, TuseTrackStore };

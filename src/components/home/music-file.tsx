@@ -4,33 +4,38 @@ import Entypo from "@expo/vector-icons/Entypo";
 import { formatMusicFileDuration } from "@/lib/helper";
 import COLORS from "@/constants/colors";
 import { TMusicTrack } from "@/types/store/track-store";
-import trackStore from "@/store/track-store";
+import useTrackStore from "@/store/track-store";
 import TrackPlayer from "react-native-track-player";
 import { useRouter } from "expo-router";
+import useQueueStore from "@/store/queue-store";
 
 const MusicFile = ({ musicFile }: { musicFile: TMusicTrack }) => {
-  const { navigate } = useRouter();
-
   const { allLocalMusicTracks, currentMusicTrack, setCurrentMusicTrack } =
-    trackStore();
+    useTrackStore();
+
+  const { currentQueue, setCurrentQueue } = useQueueStore();
 
   const onMusicFilePress = async () => {
     setCurrentMusicTrack(musicFile);
 
     if (currentMusicTrack?.url !== musicFile.url) {
-      await TrackPlayer.reset();
+      if (!currentQueue.tracksCount) {
+        await TrackPlayer.reset();
+        await TrackPlayer.add(allLocalMusicTracks);
 
-      await TrackPlayer.add(allLocalMusicTracks);
+        setCurrentQueue({
+          type: "home",
+          tracksCount: allLocalMusicTracks.length,
+        });
+      }
 
-      const trackIndex = allLocalMusicTracks.findIndex(
+      let trackIndex = allLocalMusicTracks.findIndex(
         (localMusicTrack) => localMusicTrack.url === musicFile.url
       );
 
       await TrackPlayer.skip(trackIndex);
       await TrackPlayer.play();
     }
-
-    navigate("/player");
   };
 
   return (

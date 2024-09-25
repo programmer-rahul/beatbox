@@ -4,7 +4,7 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import PlayerMusicSlider from "./player-music-slider";
 import COLORS from "@/constants/colors";
 import useTrack from "@/hooks/useTrack";
-import trackStore from "@/store/track-store";
+import useTrackStore from "@/store/track-store";
 import TrackPlayer from "react-native-track-player";
 import { useEffect, useState } from "react";
 
@@ -18,7 +18,7 @@ const MusicPlayerControls = () => {
     setIsLoopingTrack,
     isShufflingQueue,
     setIsShufflingQueue,
-  } = trackStore();
+  } = useTrackStore();
 
   const onTrackPlayPauseHandler = () => {
     isTrackPlaying() ? TrackPlayer.pause() : TrackPlayer.play();

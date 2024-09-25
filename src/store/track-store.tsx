@@ -1,9 +1,9 @@
-import { TTrackStore } from "@/types/store/track-store";
+import { TuseTrackStore } from "@/types/store/track-store";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const trackStore = create<TTrackStore>()(
+const useTrackStore = create<TuseTrackStore>()(
   persist(
     (set) => ({
       allLocalMusicTracks: [],
@@ -57,4 +57,4 @@ const trackStore = create<TTrackStore>()(
   )
 );
 
-export default trackStore;
+export default useTrackStore;

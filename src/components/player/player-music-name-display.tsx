@@ -1,9 +1,9 @@
 import { Text, View } from "react-native";
 import PlayerSavedMusicIcon from "./player-saved-music-icon";
-import trackStore from "@/store/track-store";
+import useTrackStore from "@/store/track-store";
 
 const PlayerMusicNameDisplay = () => {
-  const { currentMusicTrack } = trackStore();
+  const { currentMusicTrack } = useTrackStore();
 
   return (
     <View className="flex-row justify-between items-center px-2">
