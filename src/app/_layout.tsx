@@ -9,7 +9,7 @@ import TrackPlayer from "react-native-track-player";
 import useSetupTrackPlayer from "@/hooks/useSetupTrackPlayer";
 import usePermission from "@/hooks/usePermission";
 import PermissionRequired from "@/components/reusable/permission-required";
-import Header from "@/components/header/header";
+import usePlayerEvents from "@/hooks/usePlayerEvents";
 
 TrackPlayer.registerPlaybackService(() => playbackService);
 SplashScreen.preventAutoHideAsync();
@@ -45,6 +45,9 @@ export default function RootLayout() {
 
 const RootNavigation = () => {
   const { isHavePermission } = usePermission();
+
+  // mount player events
+  usePlayerEvents();
 
   return isHavePermission ? (
     <Stack screenOptions={{ headerShown: false }}>

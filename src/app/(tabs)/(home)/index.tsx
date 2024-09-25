@@ -1,4 +1,4 @@
-import { Pressable, ScrollView, Text, View } from "react-native";
+import { View } from "react-native";
 import ListMusicFiles from "@/components/home/list-music-files";
 import NoMusicFilesFound from "@/components/home/no-music-files-found";
 import useMusicTracks from "@/hooks/useMusicTracks";
@@ -7,7 +7,6 @@ import MiniMusicPlayer from "@/components/home/tabs/mini-music-player";
 
 export default function HomeScreen() {
   const { allLocalMusicTracks, currentMusicTrack } = useMusicTracks();
-
   return (
     <View
       className="flex flex-col flex-1 py-1"
