@@ -10,8 +10,6 @@ import useSetupTrackPlayer from "@/hooks/useSetupTrackPlayer";
 import usePermission from "@/hooks/usePermission";
 import PermissionRequired from "@/components/reusable/permission-required";
 import Header from "@/components/header/header";
-//   default: undefined,
-// });
 
 TrackPlayer.registerPlaybackService(() => playbackService);
 SplashScreen.preventAutoHideAsync();

@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import ListMusicFiles from "@/components/home/list-music-files";
 import NoMusicFilesFound from "@/components/home/no-music-files-found";
 import useMusicTracks from "@/hooks/useMusicTracks";
