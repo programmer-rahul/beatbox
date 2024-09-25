@@ -12,7 +12,7 @@ const useQueueStore = create<TQueueStore>()(
       setCurrentQueue: (newQueue) => set(() => ({ currentQueue: newQueue })),
     }),
     {
-      name: "permission-store",
+      name: "queue-store",
       storage: createJSONStorage(() => AsyncStorage),
       partialize: ({}) => ({}),
     }

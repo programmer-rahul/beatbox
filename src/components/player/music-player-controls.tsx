@@ -4,8 +4,7 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import PlayerMusicSlider from "./player-music-slider";
 import COLORS from "@/constants/colors";
 import useTrackStore from "@/store/track-store";
-import TrackPlayer from "react-native-track-player";
-import { useEffect } from "react";
+import TrackPlayer, { RepeatMode } from "react-native-track-player";
 
 const MusicPlayerControls = () => {
   const {
@@ -16,15 +15,13 @@ const MusicPlayerControls = () => {
     isShufflingQueue,
     setIsShufflingQueue,
     isTrackPlaying,
+    setIsTrackPlaying,
   } = useTrackStore();
 
   const onTrackPlayPauseHandler = () => {
     isTrackPlaying ? TrackPlayer.pause() : TrackPlayer.play();
+    setIsTrackPlaying(!isTrackPlaying);
   };
-
-  useEffect(() => {
-    console.log("inside controls");
-  });
 
   return (
     <View className="space-y-4">
@@ -36,7 +33,12 @@ const MusicPlayerControls = () => {
           name="repeat-variant"
           size={30}
           color={isLoopingTrack ? COLORS.primaryText : COLORS.secondaryIcon}
-          onPress={() => setIsLoopingTrack(!isLoopingTrack)}
+          onPress={() => {
+            setIsLoopingTrack(!isLoopingTrack);
+            TrackPlayer.setRepeatMode(
+              isLoopingTrack ? RepeatMode.Queue : RepeatMode.Track
+            );
+          }}
         />
         <Feather
           name="skip-back"

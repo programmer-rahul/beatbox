@@ -12,6 +12,10 @@ const TabLayout = () => {
         tabBarStyle: {
           backgroundColor: COLORS.primaryBg,
         },
+        tabBarItemStyle: {
+          paddingBottom: 6,
+        },
+
         tabBarActiveTintColor: COLORS.main,
         tabBarInactiveTintColor: COLORS.secondaryIcon,
       }}
@@ -51,19 +55,6 @@ const TabLayout = () => {
             <Octicons
               size={20}
               name={focused ? "heart-fill" : "heart"}
-              color={color}
-            />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="settings"
-        options={{
-          title: "Settings",
-          tabBarIcon: ({ color, focused }) => (
-            <Ionicons
-              size={20}
-              name={focused ? "settings-sharp" : "settings-outline"}
               color={color}
             />
           ),

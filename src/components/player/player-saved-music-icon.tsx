@@ -1,21 +1,21 @@
 import COLORS from "@/constants/colors";
-import useZustandStore from "@/store/zustand-store";
+import useSavedStore from "@/store/saved-store";
+import useTrackStore from "@/store/track-store";
 import { AntDesign } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
 import { View } from "react-native";
 
 const PlayerSavedMusicIcon = () => {
-  const {
-    currentMusic,
-    savedMusicsList,
-    addMusicInSavedMusicList,
-    removeMusicInSavedMusicList,
-  } = useZustandStore();
+  const { currentMusicTrack } = useTrackStore();
+  const { allSavedMusicTracks, addTrackInSavedMusic, removeTrackInSavedMusic } =
+    useSavedStore();
 
   // check whether current song is saved song or not
   const checkIsSavedMusic = () => {
-    if (!currentMusic) return false;
-    return savedMusicsList.some((music) => music.musicId === currentMusic.id);
+    if (!currentMusicTrack) return false;
+    return allSavedMusicTracks.some(
+      (savedMusic) => savedMusic.url === currentMusicTrack.url
+    );
   };
 
   // state for saved music
@@ -24,8 +24,8 @@ const PlayerSavedMusicIcon = () => {
   // check on initial render that current song is in saved song list or not
   useEffect(() => {
     setIsSavedMusic(checkIsSavedMusic);
-  }, [currentMusic]);
-  
+  }, [currentMusicTrack]);
+
   return (
     <View>
       <AntDesign
@@ -33,13 +33,15 @@ const PlayerSavedMusicIcon = () => {
         size={22}
         color={COLORS.main}
         onPress={() => {
-          if (!currentMusic) return;
+          if (!currentMusicTrack) return;
 
           // manage global state for saved musics
           if (isSavedMusic) {
-            removeMusicInSavedMusicList(currentMusic.id);
+            // removeMusicInSavedMusicLis(currentMusic.id);
+            removeTrackInSavedMusic(currentMusicTrack.url);
           } else {
-            addMusicInSavedMusicList(currentMusic.id);
+            // addMusicInSavedMusicList(currentMusic.id);
+            addTrackInSavedMusic(currentMusicTrack);
           }
 
           // for ui perpose

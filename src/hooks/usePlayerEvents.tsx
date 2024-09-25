@@ -1,9 +1,16 @@
-import { Event, useTrackPlayerEvents } from "react-native-track-player";
+import TrackPlayer, {
+  Event,
+  useTrackPlayerEvents,
+} from "react-native-track-player";
 import useTrackStore from "@/store/track-store";
 
 const usePlayerEvents = () => {
-  const { setIsTrackPlaying, currentMusicTrack, changeCurrentMusicTrack } =
-    useTrackStore();
+  const {
+    setIsTrackPlaying,
+    currentMusicTrack,
+    changeCurrentMusicTrack,
+    isLoopingTrack,
+  } = useTrackStore();
 
   // to handle events from notification
   useTrackPlayerEvents(
@@ -28,14 +35,17 @@ const usePlayerEvents = () => {
     }
   );
 
+  // to handle music finish
   useTrackPlayerEvents([Event.PlaybackActiveTrackChanged], (event) => {
-    if (event.lastTrack && event.track && currentMusicTrack) {
-      event.lastTrack.url === currentMusicTrack.url &&
-        changeCurrentMusicTrack(currentMusicTrack.url, "next");
+    if (
+      event.lastTrack &&
+      event.track &&
+      currentMusicTrack &&
+      !isLoopingTrack
+    ) {
+      if (event.lastTrack.url !== currentMusicTrack.url) return;
+      changeCurrentMusicTrack(currentMusicTrack.url, "next");
     }
-  });
-  useTrackPlayerEvents([Event.RemoteDuck], (event) => {
-    console.log("event", event);
   });
 };
 

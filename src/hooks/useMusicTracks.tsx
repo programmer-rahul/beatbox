@@ -10,7 +10,7 @@ const useMusicTracks = () => {
   const fetchLocalMusicFiles = async () => {
     const fetchedMusicFiles = await getAll({
       limit: 200,
-      coverQuality: 1,
+      coverQuality: 100,
       minSongDuration: 10,
     });
 

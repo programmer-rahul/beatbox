@@ -7,6 +7,7 @@ import { TMusicTrack } from "@/types/store/track-store";
 import useTrackStore from "@/store/track-store";
 import TrackPlayer from "react-native-track-player";
 import useQueueStore from "@/store/queue-store";
+import { useRouter } from "expo-router";
 
 const MusicFile = ({
   musicFile,
@@ -24,6 +25,7 @@ const MusicFile = ({
   } = useTrackStore();
 
   const { currentQueue, setCurrentQueue } = useQueueStore();
+  const { navigate } = useRouter();
 
   const onMusicFilePress = async () => {
     setCurrentMusicTrack(musicFile);
@@ -47,6 +49,8 @@ const MusicFile = ({
       await TrackPlayer.play();
 
       setIsTrackPlaying(true);
+    } else {
+      navigate("/player");
     }
   };
 

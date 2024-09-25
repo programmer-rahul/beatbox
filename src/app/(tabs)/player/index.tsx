@@ -52,8 +52,8 @@ const NoMusicFileSelected = () => {
           Play Now
         </Link>
       </View>
-      <View className="absolute -z-10 opacity-10 right-4">
-        <Feather name="music" size={400} color={COLORS.main} />
+      <View className="absolute -z-10 opacity-10">
+        <Feather name="music" size={350} color={COLORS.main} />
       </View>
     </View>
   );
