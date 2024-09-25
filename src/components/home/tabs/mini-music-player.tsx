@@ -1,24 +1,43 @@
-import { Pressable, Text, View } from "react-native";
+import { Image, Pressable, Text, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { formatMusicFileDuration } from "@/lib/helper";
 import COLORS from "@/constants/colors";
 import useTrackStore from "@/store/track-store";
-import { useProgress } from "react-native-track-player";
+import TrackPlayer, { useProgress } from "react-native-track-player";
+import { useRouter } from "expo-router";
 
 const MiniMusicPlayer = () => {
   const progress = useProgress();
+  const { navigate } = useRouter();
 
-  const { currentMusicTrack, isTrackPlaying } = useTrackStore();
+  const {
+    currentMusicTrack,
+    changeCurrentMusicTrack,
+    isTrackPlaying,
+    setIsTrackPlaying,
+  } = useTrackStore();
+
+  const onTrackPlayPause = async () => {
+    isTrackPlaying ? TrackPlayer.pause() : TrackPlayer.play();
+    setIsTrackPlaying(!isTrackPlaying);
+  };
 
   return currentMusicTrack ? (
     <View className="w-full h-14 absolute bottom-0 items-center justify-center bg-secondaryBg z-10 rounded-t-lg px-4">
       <View className="flex-row items-center gap-2 justify-between w-full">
         <Pressable
           className="flex-row space-x-2 items-center flex-1"
-          // onPress={() => onMusicFilePress(currentMusicTrack)}
+          onPress={() => navigate("/player")}
         >
           <View className="w-10 aspect-square items-center rounded-full justify-center border-2 border-main/40">
-            <Feather name="music" size={22} color={COLORS.main} />
+            {currentMusicTrack.cover ? (
+              <Image
+                source={{ uri: currentMusicTrack.cover }}
+                className="w-full h-full rounded-full"
+              />
+            ) : (
+              <Feather name="music" size={22} color={COLORS.main} />
+            )}
           </View>
           <View className="flex-1">
             <Text
@@ -48,13 +67,16 @@ const MiniMusicPlayer = () => {
             name={isTrackPlaying ? "pause-circle" : "play-circle"}
             size={30}
             color={isTrackPlaying ? COLORS.main : COLORS.secondaryIcon}
-            // onPress={onTrackPlayPause}
+            onPress={onTrackPlayPause}
           />
           <Feather
             name="skip-forward"
             size={30}
             color={COLORS.secondaryIcon}
-            // onPress={() => playNextTrack(currentMusicTrack.id)}
+            onPress={() => {
+              changeCurrentMusicTrack(currentMusicTrack.url, "next");
+              TrackPlayer.skipToNext();
+            }}
           />
         </View>
       </View>

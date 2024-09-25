@@ -1,4 +1,4 @@
-import { View, Text, Pressable } from "react-native";
+import { View, Text, Pressable, Image } from "react-native";
 import Feather from "@expo/vector-icons/Feather";
 import Entypo from "@expo/vector-icons/Entypo";
 import { formatMusicFileDuration } from "@/lib/helper";
@@ -6,20 +6,22 @@ import COLORS from "@/constants/colors";
 import { TMusicTrack } from "@/types/store/track-store";
 import useTrackStore from "@/store/track-store";
 import TrackPlayer from "react-native-track-player";
-import { useRouter } from "expo-router";
 import useQueueStore from "@/store/queue-store";
 
 const MusicFile = ({
   musicFile,
-  index,
   lastFile,
 }: {
   musicFile: TMusicTrack;
   index?: number;
   lastFile: boolean;
 }) => {
-  const { allLocalMusicTracks, currentMusicTrack, setCurrentMusicTrack } =
-    useTrackStore();
+  const {
+    allLocalMusicTracks,
+    currentMusicTrack,
+    setCurrentMusicTrack,
+    setIsTrackPlaying,
+  } = useTrackStore();
 
   const { currentQueue, setCurrentQueue } = useQueueStore();
 
@@ -43,6 +45,8 @@ const MusicFile = ({
 
       await TrackPlayer.skip(trackIndex);
       await TrackPlayer.play();
+
+      setIsTrackPlaying(true);
     }
   };
 
@@ -58,7 +62,14 @@ const MusicFile = ({
         onPress={onMusicFilePress}
       >
         <View className="h-10 aspect-square items-center justify-center bg-main/20 border border-main rounded-md">
-          <Feather name="music" size={22} color={COLORS.main} />
+          {musicFile.cover ? (
+            <Image
+              source={{ uri: musicFile.cover }}
+              className="w-full h-full rounded-md"
+            />
+          ) : (
+            <Feather name="music" size={22} color={COLORS.main} />
+          )}
         </View>
 
         <View className="flex-1">
