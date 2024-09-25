@@ -3,20 +3,19 @@ import PlayerScreenHeader from "@/components/player/player-screen-header";
 import PlayerControls from "@/components/player/player-controls";
 import PlayerAlbumDisplay from "@/components/player/player-album-display";
 import PlayerMusicNameDisplay from "@/components/player/player-music-name-display";
-import useZustandStore from "@/store/zustand-store";
-import { Link } from "expo-router";
-import { Feather } from "@expo/vector-icons";
 import COLORS from "@/constants/colors";
+import trackStore from "@/store/track-store";
+import { Feather } from "@expo/vector-icons";
+import { Link } from "expo-router";
 
 const PlayerScreen = () => {
-  const { currentMusic } = useZustandStore();
+  const { currentMusicTrack } = trackStore();
 
   return (
     <View className="px-4 space-y-10 flex-1 bg-primaryBg">
-      <PlayerScreenHeader />
-
-      {currentMusic ? (
+      {currentMusicTrack ? (
         <View className="flex-1 space-y-16">
+          <PlayerScreenHeader />
           <View className="space-y-16">
             <View className="mt-16">
               <PlayerAlbumDisplay />

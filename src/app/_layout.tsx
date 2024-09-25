@@ -47,12 +47,7 @@ const RootNavigation = () => {
   const { isHavePermission } = usePermission();
 
   return isHavePermission ? (
-    <Stack
-      screenOptions={{
-        headerShown: true,
-        header: () => <Header />,
-      }}
-    >
+    <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="(tabs)" />
     </Stack>
   ) : (

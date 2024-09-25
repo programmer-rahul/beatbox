@@ -25,6 +25,7 @@ const PlayerSavedMusicIcon = () => {
   useEffect(() => {
     setIsSavedMusic(checkIsSavedMusic);
   }, [currentMusic]);
+  
   return (
     <View>
       <AntDesign

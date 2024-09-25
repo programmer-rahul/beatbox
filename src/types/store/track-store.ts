@@ -13,6 +13,16 @@ interface TTrackStore {
 
   currentMusicTrack: null | TMusicTrack;
   setCurrentMusicTrack: (musicTrack: TMusicTrack) => void;
+  changeCurrentMusicTrack: (
+    currentMusicTrackUrl: string,
+    type: "previous" | "next"
+  ) => void;
+
+  isLoopingTrack: boolean;
+  setIsLoopingTrack: (value: boolean) => void;
+
+  isShufflingQueue: boolean;
+  setIsShufflingQueue: (value: boolean) => void;
 }
 
 export { TMusicTrack, TTrackStore };

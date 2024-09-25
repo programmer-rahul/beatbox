@@ -1,9 +1,9 @@
 import { Text, View } from "react-native";
 import PlayerSavedMusicIcon from "./player-saved-music-icon";
-import useTrack from "@/hooks/useTrack";
+import trackStore from "@/store/track-store";
 
 const PlayerMusicNameDisplay = () => {
-  const { activeTrack } = useTrack();
+  const { currentMusicTrack } = trackStore();
 
   return (
     <View className="flex-row justify-between items-center px-4">
@@ -12,7 +12,7 @@ const PlayerMusicNameDisplay = () => {
           className="text-base font-semibold font-spacemono text-primaryText"
           numberOfLines={1}
         >
-          {activeTrack?.title}
+          {currentMusicTrack?.title}
         </Text>
       </View>
       <PlayerSavedMusicIcon />

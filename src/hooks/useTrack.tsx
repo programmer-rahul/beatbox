@@ -30,9 +30,11 @@ const useTrack = () => {
   };
 
   const playNextTrack = async (musicId: string) => {
-    changeMusic(musicId, 1);
-    await TrackPlayer.skipToNext();
-    await TrackPlayer.play();
+    // changeMusic(musicId, 1);
+    // await TrackPlayer.skipToNext();
+    // await TrackPlayer.play();
+
+    
   };
 
   const playPreviousTrack = async (musicId: string) => {

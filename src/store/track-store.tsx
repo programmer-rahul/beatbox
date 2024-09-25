@@ -13,11 +13,46 @@ const trackStore = create<TTrackStore>()(
       currentMusicTrack: null,
       setCurrentMusicTrack: (musicTrack) =>
         set(() => ({ currentMusicTrack: musicTrack })),
+      changeCurrentMusicTrack: (currentMusicTrackUrl, type) =>
+        set((state) => {
+          const currentTrackIndex = state.allLocalMusicTracks.findIndex(
+            (localMusicTrack) => localMusicTrack.url === currentMusicTrackUrl
+          );
+
+          if (
+            (currentTrackIndex <= 0 && type === "previous") ||
+            (currentTrackIndex + 1 >= state.allLocalMusicTracks.length &&
+              type === "next")
+          )
+            return {};
+          else {
+            return {
+              currentMusicTrack:
+                type === "previous"
+                  ? state.allLocalMusicTracks[currentTrackIndex - 1]
+                  : state.allLocalMusicTracks[currentTrackIndex + 1],
+            };
+          }
+        }),
+
+      isLoopingTrack: false,
+      setIsLoopingTrack: (value) => set(() => ({ isLoopingTrack: value })),
+      isShufflingQueue: false,
+      setIsShufflingQueue: (value) => set(() => ({ isLoopingTrack: value })),
     }),
+
     {
       name: "track-store",
       storage: createJSONStorage(() => AsyncStorage),
-      partialize: ({ allLocalMusicTracks }) => ({ allLocalMusicTracks }),
+      partialize: ({
+        allLocalMusicTracks,
+        isLoopingTrack,
+        isShufflingQueue,
+      }) => ({
+        allLocalMusicTracks,
+        isLoopingTrack,
+        isShufflingQueue,
+      }),
     }
   )
 );
