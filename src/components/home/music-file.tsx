@@ -8,9 +8,8 @@ import trackStore from "@/store/track-store";
 import TrackPlayer from "react-native-track-player";
 import { useRouter } from "expo-router";
 
-const ListMusic = ({ musicFile }: { musicFile: TMusicTrack }) => {
+const MusicFile = ({ musicFile }: { musicFile: TMusicTrack }) => {
   const { navigate } = useRouter();
-  const { title, duration } = musicFile;
 
   const { allLocalMusicTracks, currentMusicTrack, setCurrentMusicTrack } =
     trackStore();
@@ -18,23 +17,15 @@ const ListMusic = ({ musicFile }: { musicFile: TMusicTrack }) => {
   const onMusicFilePress = async () => {
     setCurrentMusicTrack(musicFile);
 
-    if (currentMusicTrack?.url !== musicFile.url && 0) {
+    if (currentMusicTrack?.url !== musicFile.url) {
       await TrackPlayer.reset();
 
-      const homeTracks = allLocalMusicTracks.map((musicTrack) => ({
-        url: musicTrack.url,
-        title: musicTrack.title,
-        duration: musicTrack.duration,
-        album: musicTrack.album,
-        artist: musicTrack.artist,
-        artwork: musicTrack.cover,
-      }));
-
-      await TrackPlayer.add(homeTracks);
+      await TrackPlayer.add(allLocalMusicTracks);
 
       const trackIndex = allLocalMusicTracks.findIndex(
         (localMusicTrack) => localMusicTrack.url === musicFile.url
       );
+
       await TrackPlayer.skip(trackIndex);
       await TrackPlayer.play();
     }
@@ -57,10 +48,10 @@ const ListMusic = ({ musicFile }: { musicFile: TMusicTrack }) => {
             className="text-primaryText text-xs font-spacemono"
             numberOfLines={1}
           >
-            {title}
+            {musicFile.title}
           </Text>
           <Text className="text-secondaryText text-xs font-spacemono">
-            {formatMusicFileDuration(duration)}
+            {formatMusicFileDuration(musicFile.duration, "milliseconds")}
           </Text>
         </View>
       </Pressable>
@@ -75,4 +66,4 @@ const ListMusic = ({ musicFile }: { musicFile: TMusicTrack }) => {
   );
 };
 
-export default ListMusic;
+export default MusicFile;

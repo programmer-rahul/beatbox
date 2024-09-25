@@ -4,7 +4,8 @@ import { useEffect } from "react";
 import { getAll } from "react-native-get-music-files";
 
 const useMusicTracks = () => {
-  const { allLocalMusicTracks, setAllLocalMusicTracks,currentMusicTrack } = trackStore();
+  const { allLocalMusicTracks, setAllLocalMusicTracks, currentMusicTrack } =
+    trackStore();
 
   const fetchLocalMusicFiles = async () => {
     const fetchedMusicFiles = await getAll({
@@ -22,7 +23,7 @@ const useMusicTracks = () => {
     allLocalMusicTracks.length <= 0 && fetchLocalMusicFiles();
   }, []);
 
-  return { allLocalMusicTracks,currentMusicTrack };
+  return { allLocalMusicTracks, currentMusicTrack };
 };
 
 export default useMusicTracks;

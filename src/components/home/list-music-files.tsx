@@ -1,5 +1,5 @@
 import { View, Text, FlatList } from "react-native";
-import ListMusic from "./list-music";
+import MusicFile from "./music-file";
 import { TMusicTrack } from "@/types/store/track-store";
 
 const ListMusicFiles = ({
@@ -24,7 +24,7 @@ const ListMusicFiles = ({
         <FlatList
           data={musicFiles}
           renderItem={({ item }) => {
-            return <ListMusic musicFile={item} />;
+            return <MusicFile musicFile={item} />;
           }}
           showsVerticalScrollIndicator={false}
         />
