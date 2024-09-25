@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import useZustandStore from "@/store/zustand-store";
 import ListMusicFiles from "@/components/home/list-music-files";
 import { TMusicFile } from "@/types/music";
-import SongPreviewBar from "@/components/home/tabs/song-preview-bar";
 import PermissionRequired from "@/components/reusable/permission-required";
 import NoSavedMusicFiles from "@/components/saved/no-saved-music-files";
+import MiniMusicPlayer from "@/components/home/tabs/mini-music-player";
 
 const SavedScreen = () => {
   const { savedMusicsList, isPermissionGranted, allMusicFiles, currentMusic } =
@@ -40,7 +40,7 @@ const SavedScreen = () => {
             musicFiles={allSavedMusicFiles}
             heading="All Saved Files"
           />
-          {currentMusic && <SongPreviewBar />}
+          {currentMusic && <MiniMusicPlayer />}
         </>
       )}
     </View>

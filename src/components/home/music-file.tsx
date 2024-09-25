@@ -34,7 +34,7 @@ const MusicFile = ({ musicFile }: { musicFile: TMusicTrack }) => {
   };
 
   return (
-    <View className="flex-row justify-between items-center rounded-md mb-4">
+    <View className="flex-row justify-between items-center rounded-md mt-4">
       <Pressable
         className="flex-1 flex-row space-x-2"
         onPress={onMusicFilePress}

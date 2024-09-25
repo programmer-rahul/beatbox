@@ -10,7 +10,7 @@ const ListMusicFiles = ({
   heading: string;
 }) => {
   return (
-    <View className="gap-4 px-4">
+    <View className="px-4 gap-1">
       <View className="flex flex-row justify-between items-center">
         <Text className="text-xs font-bold text-primaryText font-spacemono">
           {heading}
@@ -20,12 +20,17 @@ const ListMusicFiles = ({
         </Text>
       </View>
 
-      <View className="mb-20 pl-2">
+      <View className="pl-2 mb-28">
         <FlatList
           data={musicFiles}
           renderItem={({ item }) => {
             return <MusicFile musicFile={item} />;
           }}
+          keyExtractor={(item) => item.url}
+          initialNumToRender={10}
+          maxToRenderPerBatch={5}
+          windowSize={10}
+          removeClippedSubviews={true}
           showsVerticalScrollIndicator={false}
         />
       </View>

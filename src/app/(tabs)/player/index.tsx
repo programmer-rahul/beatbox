@@ -14,18 +14,19 @@ const PlayerScreen = () => {
   return (
     <View className="px-4 space-y-10 flex-1 bg-primaryBg">
       {currentMusicTrack ? (
-        <View className="flex-1 space-y-16">
+        <View className="flex-1">
           <PlayerScreenHeader />
-          <View className="space-y-16">
-            <View className="mt-16">
+          <View className="flex-1">
+            <View
+              className="h-3/4 flex flex-col justify-center"
+              style={{ rowGap: 20 }}
+            >
               <PlayerAlbumDisplay />
-            </View>
-            <View>
               <PlayerMusicNameDisplay />
             </View>
-          </View>
-          <View>
-            <PlayerControls />
+            <View>
+              <PlayerControls />
+            </View>
           </View>
         </View>
       ) : (

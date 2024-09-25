@@ -6,7 +6,7 @@ const PlayerMusicNameDisplay = () => {
   const { currentMusicTrack } = trackStore();
 
   return (
-    <View className="flex-row justify-between items-center px-4">
+    <View className="flex-row justify-between items-center px-2">
       <View className="flex-1 pr-4">
         <Text
           className="text-base font-semibold font-spacemono text-primaryText"
