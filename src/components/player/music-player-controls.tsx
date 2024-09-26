@@ -16,7 +16,16 @@ const MusicPlayerControls = () => {
     setIsShufflingQueue,
     isTrackPlaying,
     setIsTrackPlaying,
-  } = useTrackStore();
+  } = useTrackStore([
+    "currentMusicTrack",
+    "changeCurrentMusicTrack",
+    "isLoopingTrack",
+    "setIsLoopingTrack",
+    "isShufflingQueue",
+    "setIsShufflingQueue",
+    "isTrackPlaying",
+    "setIsTrackPlaying",
+  ]);
 
   const onTrackPlayPauseHandler = () => {
     isTrackPlaying ? TrackPlayer.pause() : TrackPlayer.play();

@@ -3,7 +3,7 @@ import PlayerSavedMusicIcon from "./player-saved-music-icon";
 import useTrackStore from "@/store/track-store";
 
 const PlayerMusicNameDisplay = () => {
-  const { currentMusicTrack } = useTrackStore();
+  const { currentMusicTrack } = useTrackStore(["currentMusicTrack"]);
 
   return (
     <View className="flex-row items-center justify-between px-2">

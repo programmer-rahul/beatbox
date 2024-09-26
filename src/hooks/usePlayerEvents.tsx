@@ -10,7 +10,12 @@ const usePlayerEvents = () => {
     currentMusicTrack,
     changeCurrentMusicTrack,
     isLoopingTrack,
-  } = useTrackStore();
+  } = useTrackStore([
+    "setIsTrackPlaying",
+    "currentMusicTrack",
+    "changeCurrentMusicTrack",
+    "isLoopingTrack",
+  ]);
 
   // to handle events from notification
   useTrackPlayerEvents(

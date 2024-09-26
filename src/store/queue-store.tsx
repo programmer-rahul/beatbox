@@ -1,3 +1,4 @@
+import { createStoreWithShallow } from "@/lib/create-store-with-shallow";
 import { TQueueStore } from "@/types/store/queue-store";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
@@ -19,4 +20,4 @@ const useQueueStore = create<TQueueStore>()(
   ),
 );
 
-export default useQueueStore;
+export default createStoreWithShallow(useQueueStore);

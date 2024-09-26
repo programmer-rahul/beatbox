@@ -2,6 +2,7 @@ import { TTrackStore } from "@/types/store/track-store";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { createStoreWithShallow } from "@/lib/create-store-with-shallow";
 
 const useTrackStore = create<TTrackStore>()(
   persist(
@@ -59,4 +60,4 @@ const useTrackStore = create<TTrackStore>()(
   ),
 );
 
-export default useTrackStore;
+export default createStoreWithShallow(useTrackStore);

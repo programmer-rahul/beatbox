@@ -6,8 +6,8 @@ import useSavedStore from "@/store/saved-store";
 import useTrackStore from "@/store/track-store";
 
 const SavedScreen = () => {
-  const { allSavedMusicTracks } = useSavedStore();
-  const { currentMusicTrack } = useTrackStore();
+  const { allSavedMusicTracks } = useSavedStore(["allSavedMusicTracks"]);
+  const { currentMusicTrack } = useTrackStore(["currentMusicTrack"]);
 
   return (
     <View className="flex h-full flex-col bg-primaryBg py-1">

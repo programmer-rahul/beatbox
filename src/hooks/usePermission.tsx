@@ -5,7 +5,10 @@ import usePermissionStore from "@/store/permission-store";
 import { useRouter } from "expo-router";
 
 const usePermission = () => {
-  const { isHavePermission, setIsHavePermission } = usePermissionStore();
+  const { isHavePermission, setIsHavePermission } = usePermissionStore([
+    "isHavePermission",
+    "setIsHavePermission",
+  ]);
   const { navigate } = useRouter();
 
   const handleDeepLink = (event: { url: string }) => {

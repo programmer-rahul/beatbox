@@ -5,9 +5,10 @@ import COLORS from "@/constants/colors";
 import useTrackStore from "@/store/track-store";
 import TrackPlayer, { useProgress } from "react-native-track-player";
 import { useRouter } from "expo-router";
+import { memo, useEffect } from "react";
 
 const MiniMusicPlayer = () => {
-  const progress = useProgress();
+  // const progress = useProgress();
   const { navigate } = useRouter();
 
   const {
@@ -15,7 +16,16 @@ const MiniMusicPlayer = () => {
     changeCurrentMusicTrack,
     isTrackPlaying,
     setIsTrackPlaying,
-  } = useTrackStore();
+  } = useTrackStore([
+    "currentMusicTrack",
+    "changeCurrentMusicTrack",
+    "isTrackPlaying",
+    "setIsTrackPlaying",
+  ]);
+
+  useEffect(() => {
+    console.log("inside mini-music-player");
+  });
 
   const onTrackPlayPause = async () => {
     isTrackPlaying ? TrackPlayer.pause() : TrackPlayer.play();
@@ -48,7 +58,7 @@ const MiniMusicPlayer = () => {
             </Text>
             <View className="flex-row items-center">
               <Text className="font-spacemono text-xs text-secondaryText">
-                {formatMusicFileDuration(progress.position, "seconds")}
+                {formatMusicFileDuration(0, "seconds")}
               </Text>
               <Text className="font-spacemono text-xs text-secondaryText">
                 :
@@ -84,4 +94,4 @@ const MiniMusicPlayer = () => {
   ) : null;
 };
 
-export default MiniMusicPlayer;
+export default memo(MiniMusicPlayer);

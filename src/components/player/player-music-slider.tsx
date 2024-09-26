@@ -6,7 +6,7 @@ import { useProgress } from "react-native-track-player";
 
 const PlayerMusicSlider = () => {
   const progress = useProgress();
-  const { currentMusicTrack } = useTrackStore();
+  const { currentMusicTrack } = useTrackStore(["currentMusicTrack"]);
 
   return currentMusicTrack ? (
     <View>

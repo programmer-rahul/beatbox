@@ -6,9 +6,13 @@ import { useEffect, useState } from "react";
 import { View } from "react-native";
 
 const PlayerSavedMusicIcon = () => {
-  const { currentMusicTrack } = useTrackStore();
+  const { currentMusicTrack } = useTrackStore(["currentMusicTrack"]);
   const { allSavedMusicTracks, addTrackInSavedMusic, removeTrackInSavedMusic } =
-    useSavedStore();
+    useSavedStore([
+      "allSavedMusicTracks",
+      "addTrackInSavedMusic",
+      "removeTrackInSavedMusic",
+    ]);
 
   // check whether current song is saved song or not
   const checkIsSavedMusic = () => {

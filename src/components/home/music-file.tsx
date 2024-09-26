@@ -8,7 +8,7 @@ import useTrackStore from "@/store/track-store";
 import TrackPlayer from "react-native-track-player";
 import useQueueStore from "@/store/queue-store";
 import { useRouter } from "expo-router";
-import React from "react";
+import React, { useState } from "react";
 
 const MusicFile = React.memo(
   ({
@@ -24,9 +24,17 @@ const MusicFile = React.memo(
       currentMusicTrack,
       setCurrentMusicTrack,
       setIsTrackPlaying,
-    } = useTrackStore();
+    } = useTrackStore([
+      "allLocalMusicTracks",
+      "currentMusicTrack",
+      "setCurrentMusicTrack",
+      "setIsTrackPlaying",
+    ]);
 
-    const { currentQueue, setCurrentQueue } = useQueueStore();
+    const { currentQueue, setCurrentQueue } = useQueueStore([
+      "currentQueue",
+      "setCurrentQueue",
+    ]);
     const { navigate } = useRouter();
 
     const onMusicFilePress = async () => {
@@ -56,6 +64,8 @@ const MusicFile = React.memo(
       }
     };
 
+    const [musicCover, setMusicCover] = useState("");
+
     return (
       <View
         className="mt-4 flex-row items-center justify-between rounded-md"
@@ -68,9 +78,9 @@ const MusicFile = React.memo(
           onPress={onMusicFilePress}
         >
           <View className="aspect-square h-10 items-center justify-center rounded-md border border-main bg-main/20">
-            {musicFile.cover.length ? (
+            {musicCover.length ? (
               <Image
-                source={{ uri: musicFile.cover }}
+                source={{ uri: musicCover }}
                 className="h-full w-full rounded-md"
               />
             ) : (

@@ -1,6 +1,7 @@
 import { View, Text, FlatList } from "react-native";
 import MusicFile from "./music-file";
 import { TMusicTrack } from "@/types/store/track-store";
+import { memo, useEffect } from "react";
 
 const ListMusicFiles = ({
   musicFiles,
@@ -9,6 +10,9 @@ const ListMusicFiles = ({
   musicFiles: TMusicTrack[];
   heading: string;
 }) => {
+  useEffect(() => {
+    console.log("insidde list-music-files");
+  });
   return (
     <View className="gap-1 px-4">
       <View className="flex flex-row items-center justify-between">

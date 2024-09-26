@@ -10,7 +10,7 @@ const CustomRangeSlider = ({
   totalMusicDuration: number;
 }) => {
   const progress = useProgress();
-  const { currentMusicTrack } = useTrackStore();
+  const { currentMusicTrack } = useTrackStore(["currentMusicTrack"]);
 
   return (
     <View>

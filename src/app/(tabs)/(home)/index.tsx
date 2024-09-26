@@ -4,9 +4,18 @@ import NoMusicFilesFound from "@/components/home/no-music-files-found";
 import useMusicTracks from "@/hooks/useMusicTracks";
 import COLORS from "@/constants/colors";
 import MiniMusicPlayer from "@/components/home/tabs/mini-music-player";
+import useTrackStore from "@/store/track-store";
+import { useEffect } from "react";
 
 export default function HomeScreen() {
-  const { allLocalMusicTracks, currentMusicTrack } = useMusicTracks();
+  const { allLocalMusicTracks } = useTrackStore(["allLocalMusicTracks"]);
+
+  useMusicTracks();
+
+  useEffect(() => {
+    console.log("inside home page", allLocalMusicTracks.length);
+  });
+
   return (
     <View
       className="flex flex-1 flex-col py-1"
@@ -21,7 +30,7 @@ export default function HomeScreen() {
               heading="All Music Files"
             />
           </View>
-          {currentMusicTrack && <MiniMusicPlayer />}
+          <MiniMusicPlayer />
         </View>
       )}
     </View>
