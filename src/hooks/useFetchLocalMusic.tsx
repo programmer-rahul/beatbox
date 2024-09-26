@@ -2,7 +2,7 @@ import useTrackStore from "@/store/track-store";
 import { useEffect } from "react";
 import { getAll } from "react-native-get-music-files";
 
-const useMusicTracks = () => {
+const useFetchLocalMusic = () => {
   const { allLocalMusicTracks, setAllLocalMusicTracks } = useTrackStore([
     "allLocalMusicTracks",
     "setAllLocalMusicTracks",
@@ -29,4 +29,4 @@ const useMusicTracks = () => {
   });
 };
 
-export default useMusicTracks;
+export default useFetchLocalMusic;

@@ -1,7 +1,12 @@
-import { View, Text, FlatList } from "react-native";
+import { View, FlatList } from "react-native";
 import MusicFile from "./music-file";
 import { TMusicTrack } from "@/types/store/track-store";
-import { memo, useEffect } from "react";
+import ListMusicFilesHeader from "./list-music-files-header";
+import useQueueStore from "@/store/queue-store";
+import useTrackStore from "@/store/track-store";
+import { useRouter } from "expo-router";
+import TrackPlayer from "react-native-track-player";
+import useMusic from "@/hooks/useMusic";
 
 const ListMusicFiles = ({
   musicFiles,
@@ -10,19 +15,15 @@ const ListMusicFiles = ({
   musicFiles: TMusicTrack[];
   heading: string;
 }) => {
-  useEffect(() => {
-    console.log("insidde list-music-files");
-  });
+  const musicFilesLength = musicFiles.length;
+  console.log("inside list-music-files");
+
   return (
     <View className="gap-1 px-4">
-      <View className="flex flex-row items-center justify-between">
-        <Text className="font-spacemono text-xs font-bold text-primaryText">
-          {heading}
-        </Text>
-        <Text className="font-spacemono text-xs font-bold text-secondaryText">
-          {musicFiles.length}
-        </Text>
-      </View>
+      <ListMusicFilesHeader
+        heading={heading}
+        musicFilesLength={musicFilesLength}
+      />
 
       <View className="mb-20 pl-2">
         <FlatList
@@ -32,13 +33,13 @@ const ListMusicFiles = ({
               <MusicFile
                 musicFile={item}
                 index={index}
-                lastFile={index + 1 === musicFiles.length}
+                lastFile={musicFilesLength == index + 1}
               />
             );
           }}
           keyExtractor={(item) => item.url}
-          initialNumToRender={5}
-          maxToRenderPerBatch={12}
+          initialNumToRender={15}
+          maxToRenderPerBatch={15}
           showsVerticalScrollIndicator={false}
         />
       </View>

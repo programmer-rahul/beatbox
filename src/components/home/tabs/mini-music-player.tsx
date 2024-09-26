@@ -3,34 +3,16 @@ import { Feather } from "@expo/vector-icons";
 import { formatMusicFileDuration } from "@/lib/helper";
 import COLORS from "@/constants/colors";
 import useTrackStore from "@/store/track-store";
-import TrackPlayer, { useProgress } from "react-native-track-player";
 import { useRouter } from "expo-router";
-import { memo, useEffect } from "react";
+import PlayPauseIcon from "@/components/reusable/icons/play-pause-icon";
+import PlayNextMusicIcon from "@/components/reusable/icons/play-next-music-icon";
+import DisplayCurrentMusicPosition from "@/components/reusable/display-current-music-position";
 
 const MiniMusicPlayer = () => {
-  // const progress = useProgress();
+  const { currentMusicTrack } = useTrackStore(["currentMusicTrack"]);
   const { navigate } = useRouter();
 
-  const {
-    currentMusicTrack,
-    changeCurrentMusicTrack,
-    isTrackPlaying,
-    setIsTrackPlaying,
-  } = useTrackStore([
-    "currentMusicTrack",
-    "changeCurrentMusicTrack",
-    "isTrackPlaying",
-    "setIsTrackPlaying",
-  ]);
-
-  useEffect(() => {
-    console.log("inside mini-music-player");
-  });
-
-  const onTrackPlayPause = async () => {
-    isTrackPlaying ? TrackPlayer.pause() : TrackPlayer.play();
-    setIsTrackPlaying(!isTrackPlaying);
-  };
+  console.log("inside mini-music-player");
 
   return currentMusicTrack ? (
     <View className="absolute -bottom-1 z-10 h-14 w-full items-center justify-center rounded-t-lg bg-secondaryBg px-4">
@@ -39,11 +21,11 @@ const MiniMusicPlayer = () => {
           className="flex-1 flex-row items-center space-x-2"
           onPress={() => navigate("/player")}
         >
-          <View className="aspect-square w-10 items-center justify-center rounded-full border-2 border-main/40">
+          <View className="aspect-square w-10 items-center justify-center border-2 border-main/40">
             {currentMusicTrack.cover.length ? (
               <Image
                 source={{ uri: currentMusicTrack.cover }}
-                className="h-full w-full rounded-full"
+                className="h-full w-full"
               />
             ) : (
               <Feather name="music" size={22} color={COLORS.main} />
@@ -57,9 +39,7 @@ const MiniMusicPlayer = () => {
               {currentMusicTrack.title}
             </Text>
             <View className="flex-row items-center">
-              <Text className="font-spacemono text-xs text-secondaryText">
-                {formatMusicFileDuration(0, "seconds")}
-              </Text>
+              <DisplayCurrentMusicPosition />
               <Text className="font-spacemono text-xs text-secondaryText">
                 :
               </Text>
@@ -73,25 +53,12 @@ const MiniMusicPlayer = () => {
           </View>
         </Pressable>
         <View className="flex-row items-center space-x-3">
-          <Feather
-            name={isTrackPlaying ? "pause-circle" : "play-circle"}
-            size={30}
-            color={isTrackPlaying ? COLORS.main : COLORS.secondaryIcon}
-            onPress={onTrackPlayPause}
-          />
-          <Feather
-            name="skip-forward"
-            size={30}
-            color={COLORS.secondaryIcon}
-            onPress={() => {
-              changeCurrentMusicTrack(currentMusicTrack.url, "next");
-              TrackPlayer.skipToNext();
-            }}
-          />
+          <PlayPauseIcon />
+          <PlayNextMusicIcon />
         </View>
       </View>
     </View>
   ) : null;
 };
 
-export default memo(MiniMusicPlayer);
+export default MiniMusicPlayer;

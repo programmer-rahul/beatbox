@@ -9,7 +9,7 @@ import { Feather } from "@expo/vector-icons";
 import { Link } from "expo-router";
 
 const PlayerScreen = () => {
-  const { currentMusicTrack } = useTrackStore(['currentMusicTrack']);
+  const { currentMusicTrack } = useTrackStore(["currentMusicTrack"]);
 
   return (
     <View className="flex-1 space-y-10 bg-primaryBg px-4">

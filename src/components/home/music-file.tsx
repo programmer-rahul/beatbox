@@ -3,12 +3,12 @@ import Feather from "@expo/vector-icons/Feather";
 import Entypo from "@expo/vector-icons/Entypo";
 import { formatMusicFileDuration } from "@/lib/helper";
 import COLORS from "@/constants/colors";
+import React, { memo, useState } from "react";
+import useQueueStore, { queueStore } from "@/store/queue-store";
+import useTrackStore, { trackStore } from "@/store/track-store";
 import { TMusicTrack } from "@/types/store/track-store";
-import useTrackStore from "@/store/track-store";
-import TrackPlayer from "react-native-track-player";
-import useQueueStore from "@/store/queue-store";
 import { useRouter } from "expo-router";
-import React, { useState } from "react";
+import TrackPlayer from "react-native-track-player";
 
 const MusicFile = React.memo(
   ({
@@ -19,29 +19,20 @@ const MusicFile = React.memo(
     index?: number;
     lastFile: boolean;
   }) => {
-    const {
-      allLocalMusicTracks,
-      currentMusicTrack,
-      setCurrentMusicTrack,
-      setIsTrackPlaying,
-    } = useTrackStore([
-      "allLocalMusicTracks",
-      "currentMusicTrack",
-      "setCurrentMusicTrack",
-      "setIsTrackPlaying",
-    ]);
+    console.log("inside music file");
 
-    const { currentQueue, setCurrentQueue } = useQueueStore([
-      "currentQueue",
-      "setCurrentQueue",
-    ]);
+    const { allLocalMusicTracks, setCurrentMusicTrack, setIsTrackPlaying } =
+      useTrackStore([
+        "allLocalMusicTracks",
+        "setCurrentMusicTrack",
+        "setIsTrackPlaying",
+      ]);
+    const { setCurrentQueue } = useQueueStore(["setCurrentQueue"]);
     const { navigate } = useRouter();
 
-    const onMusicFilePress = async () => {
-      setCurrentMusicTrack(musicFile);
-
-      if (currentMusicTrack?.url !== musicFile.url) {
-        if (!currentQueue.tracksCount) {
+    const onMusicFilePress = async (musicFile: TMusicTrack) => {
+      if (trackStore.getState().currentMusicTrack?.url !== musicFile.url) {
+        if (!queueStore.getState().currentQueue.tracksCount) {
           await TrackPlayer.reset();
           await TrackPlayer.add(allLocalMusicTracks);
 
@@ -62,6 +53,8 @@ const MusicFile = React.memo(
       } else {
         navigate("/player");
       }
+
+      setCurrentMusicTrack(musicFile);
     };
 
     const [musicCover, setMusicCover] = useState("");
@@ -75,7 +68,7 @@ const MusicFile = React.memo(
       >
         <Pressable
           className="flex-1 flex-row space-x-2"
-          onPress={onMusicFilePress}
+          onPress={() => onMusicFilePress(musicFile)}
         >
           <View className="aspect-square h-10 items-center justify-center rounded-md border border-main bg-main/20">
             {musicCover.length ? (

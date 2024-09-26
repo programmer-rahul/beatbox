@@ -1,20 +1,15 @@
 import { View } from "react-native";
 import ListMusicFiles from "@/components/home/list-music-files";
 import NoMusicFilesFound from "@/components/home/no-music-files-found";
-import useMusicTracks from "@/hooks/useMusicTracks";
 import COLORS from "@/constants/colors";
 import MiniMusicPlayer from "@/components/home/tabs/mini-music-player";
 import useTrackStore from "@/store/track-store";
-import { useEffect } from "react";
+import useFetchLocalMusic from "@/hooks/useFetchLocalMusic";
 
 export default function HomeScreen() {
   const { allLocalMusicTracks } = useTrackStore(["allLocalMusicTracks"]);
-
-  useMusicTracks();
-
-  useEffect(() => {
-    console.log("inside home page", allLocalMusicTracks.length);
-  });
+  useFetchLocalMusic();
+  console.log("inside home page", allLocalMusicTracks.length);
 
   return (
     <View

@@ -19,5 +19,5 @@ const useQueueStore = create<TQueueStore>()(
     },
   ),
 );
-
+export { useQueueStore as queueStore };
 export default createStoreWithShallow(useQueueStore);

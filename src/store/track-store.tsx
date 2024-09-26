@@ -14,10 +14,11 @@ const useTrackStore = create<TTrackStore>()(
       currentMusicTrack: null,
       setCurrentMusicTrack: (musicTrack) =>
         set(() => ({ currentMusicTrack: musicTrack })),
-      changeCurrentMusicTrack: (currentMusicTrackUrl, type) =>
+      changeCurrentMusicTrack: (type) =>
         set((state) => {
           const currentTrackIndex = state.allLocalMusicTracks.findIndex(
-            (localMusicTrack) => localMusicTrack.url === currentMusicTrackUrl,
+            (localMusicTrack) =>
+              localMusicTrack.url === state.currentMusicTrack?.url,
           );
 
           if (
@@ -60,4 +61,5 @@ const useTrackStore = create<TTrackStore>()(
   ),
 );
 
+export { useTrackStore as trackStore };
 export default createStoreWithShallow(useTrackStore);
