@@ -4,7 +4,7 @@ import React, { memo } from "react";
 import TrackPlayer from "react-native-track-player";
 import useTrackStore from "@/store/track-store";
 
-function PlayPauseIcon({ size = 35 }: { size?: number }) {
+function PlayPauseMusicIcon({ size = 35 }: { size?: number }) {
   const { isTrackPlaying, setIsTrackPlaying } = useTrackStore([
     "isTrackPlaying",
     "setIsTrackPlaying",
@@ -26,4 +26,4 @@ function PlayPauseIcon({ size = 35 }: { size?: number }) {
   );
 }
 
-export default memo(PlayPauseIcon);
+export default memo(PlayPauseMusicIcon);

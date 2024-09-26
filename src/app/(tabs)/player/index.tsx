@@ -1,33 +1,22 @@
 import { Text, View } from "react-native";
 import PlayerScreenHeader from "@/components/player/player-screen-header";
-import PlayerControls from "@/components/player/player-controls";
-import PlayerAlbumDisplay from "@/components/player/player-album-display";
-import PlayerMusicNameDisplay from "@/components/player/player-music-name-display";
 import COLORS from "@/constants/colors";
 import useTrackStore from "@/store/track-store";
 import { Feather } from "@expo/vector-icons";
 import { Link } from "expo-router";
+import PlayerScreenView from "@/components/player/player-screen-view";
 
 const PlayerScreen = () => {
   const { currentMusicTrack } = useTrackStore(["currentMusicTrack"]);
+
+  console.log("inside player screen");
 
   return (
     <View className="flex-1 space-y-10 bg-primaryBg px-4">
       {currentMusicTrack ? (
         <View className="flex-1">
           <PlayerScreenHeader />
-          <View className="flex-1">
-            <View
-              className="flex h-3/4 flex-col justify-center"
-              style={{ rowGap: 20 }}
-            >
-              <PlayerAlbumDisplay />
-              <PlayerMusicNameDisplay />
-            </View>
-            <View>
-              <PlayerControls />
-            </View>
-          </View>
+          <PlayerScreenView />
         </View>
       ) : (
         <NoMusicFileSelected />
@@ -39,6 +28,8 @@ const PlayerScreen = () => {
 export default PlayerScreen;
 
 const NoMusicFileSelected = () => {
+  console.log("inside no music file selected");
+
   return (
     <View className="relative flex flex-1 items-center justify-center">
       <View className="flex items-center justify-center gap-2">

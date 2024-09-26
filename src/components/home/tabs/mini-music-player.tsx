@@ -4,9 +4,9 @@ import { formatMusicFileDuration } from "@/lib/helper";
 import COLORS from "@/constants/colors";
 import useTrackStore from "@/store/track-store";
 import { useRouter } from "expo-router";
-import PlayPauseIcon from "@/components/reusable/icons/play-pause-icon";
-import PlayNextMusicIcon from "@/components/reusable/icons/play-next-music-icon";
+import PlayPauseMusicIcon from "@/components/reusable/icons/play-pause-music-icon";
 import DisplayCurrentMusicPosition from "@/components/reusable/display-current-music-position";
+import PlayPreviusNextMusicIcon from "@/components/reusable/icons/play-previus-next-music-icon";
 
 const MiniMusicPlayer = () => {
   const { currentMusicTrack } = useTrackStore(["currentMusicTrack"]);
@@ -53,8 +53,8 @@ const MiniMusicPlayer = () => {
           </View>
         </Pressable>
         <View className="flex-row items-center space-x-3">
-          <PlayPauseIcon />
-          <PlayNextMusicIcon />
+          <PlayPauseMusicIcon />
+          <PlayPreviusNextMusicIcon type="next" />
         </View>
       </View>
     </View>

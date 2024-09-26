@@ -5,6 +5,10 @@ import PlayerMusicSlider from "./player-music-slider";
 import COLORS from "@/constants/colors";
 import useTrackStore from "@/store/track-store";
 import TrackPlayer, { RepeatMode } from "react-native-track-player";
+import PlayPreviusNextMusicIcon from "../reusable/icons/play-previus-next-music-icon";
+import PlayPauseMusicIcon from "../reusable/icons/play-pause-music-icon";
+import LoppMusicTrackIcon from "../reusable/icons/loop-music-track-icon";
+import ShuffleMusicQueueIcon from "../reusable/icons/shuffle-music-queue-icon copy";
 
 const MusicPlayerControls = () => {
   const {
@@ -38,51 +42,22 @@ const MusicPlayerControls = () => {
       <PlayerMusicSlider />
 
       <View className="flex-row items-center justify-center gap-4">
-        <MaterialCommunityIcons
-          name="repeat-variant"
-          size={30}
-          color={isLoopingTrack ? COLORS.primaryText : COLORS.secondaryIcon}
-          onPress={() => {
-            setIsLoopingTrack(!isLoopingTrack);
-            TrackPlayer.setRepeatMode(
-              isLoopingTrack ? RepeatMode.Queue : RepeatMode.Track,
-            );
-          }}
-        />
-        <Feather
-          name="skip-back"
-          size={30}
-          color={COLORS.secondaryIcon}
-          onPress={async () => {
-            if (!currentMusicTrack) return;
-            changeCurrentMusicTrack(currentMusicTrack.url, "previous");
-            await TrackPlayer.skipToPrevious();
-            await TrackPlayer.play();
-          }}
-        />
-        <Feather
-          name={isTrackPlaying ? "pause-circle" : "play-circle"}
-          size={70}
-          color={isTrackPlaying ? COLORS.main : COLORS.secondaryIcon}
-          onPress={onTrackPlayPauseHandler}
-        />
-        <Feather
-          name="skip-forward"
-          size={30}
-          color={COLORS.secondaryIcon}
-          onPress={async () => {
-            if (!currentMusicTrack) return;
-            changeCurrentMusicTrack(currentMusicTrack.url, "next");
-            await TrackPlayer.skipToNext();
-            await TrackPlayer.play();
-          }}
-        />
-        <MaterialCommunityIcons
-          name="shuffle"
-          size={25}
-          color={isShufflingQueue ? COLORS.primaryText : COLORS.secondaryIcon}
-          onPress={() => setIsShufflingQueue(!isShufflingQueue)}
-        />
+        <View>
+          <LoppMusicTrackIcon />
+        </View>
+        <View>
+          <PlayPreviusNextMusicIcon type="previous" size={30} />
+        </View>
+        <View>
+          <PlayPauseMusicIcon size={70} />
+        </View>
+        <View>
+          <PlayPreviusNextMusicIcon type="next" size={30} />
+        </View>
+
+        <View>
+          <ShuffleMusicQueueIcon />
+        </View>
       </View>
     </View>
   );

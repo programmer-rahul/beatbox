@@ -3,7 +3,7 @@ import { View } from "react-native";
 
 const HomeScreenLayout = () => {
   return (
-    <View className="flex-1 border">
+    <View className="flex-1">
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="index" />
       </Stack>

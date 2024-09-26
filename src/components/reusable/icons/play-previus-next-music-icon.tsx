@@ -4,7 +4,13 @@ import React, { memo } from "react";
 import TrackPlayer from "react-native-track-player";
 import useTrackStore from "@/store/track-store";
 
-function PlayNextMusicIcon({ size = 35 }: { size?: number }) {
+function PlayPreviousNextMusicIcon({
+  size = 35,
+  type,
+}: {
+  size?: number;
+  type: "previous" | "next";
+}) {
   const { changeCurrentMusicTrack } = useTrackStore([
     "changeCurrentMusicTrack",
   ]);
@@ -12,15 +18,17 @@ function PlayNextMusicIcon({ size = 35 }: { size?: number }) {
 
   return (
     <Feather
-      name="skip-forward"
+      name={type === "previous" ? "skip-back" : "skip-forward"}
       size={size}
       color={COLORS.secondaryIcon}
       onPress={() => {
-        changeCurrentMusicTrack("next");
-        TrackPlayer.skipToNext();
+        type === "previous"
+          ? TrackPlayer.skipToPrevious()
+          : TrackPlayer.skipToNext();
+        changeCurrentMusicTrack(type);
       }}
     />
   );
 }
 
-export default memo(PlayNextMusicIcon);
+export default memo(PlayPreviousNextMusicIcon);

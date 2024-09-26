@@ -14,7 +14,8 @@ const useTrackStore = create<TTrackStore>()(
       currentMusicTrack: null,
       setCurrentMusicTrack: (musicTrack) =>
         set(() => ({ currentMusicTrack: musicTrack })),
-      changeCurrentMusicTrack: (type) =>
+      changeCurrentMusicTrack: (type) => {
+        let itChanged = false;
         set((state) => {
           const currentTrackIndex = state.allLocalMusicTracks.findIndex(
             (localMusicTrack) =>
@@ -25,9 +26,11 @@ const useTrackStore = create<TTrackStore>()(
             (currentTrackIndex <= 0 && type === "previous") ||
             (currentTrackIndex + 1 >= state.allLocalMusicTracks.length &&
               type === "next")
-          )
+          ) {
+            itChanged = false;
             return {};
-          else {
+          } else {
+            itChanged = true;
             return {
               currentMusicTrack:
                 type === "previous"
@@ -35,7 +38,10 @@ const useTrackStore = create<TTrackStore>()(
                   : state.allLocalMusicTracks[currentTrackIndex + 1],
             };
           }
-        }),
+        });
+
+        return itChanged;
+      },
 
       isTrackPlaying: false,
       setIsTrackPlaying: (value) => set(() => ({ isTrackPlaying: value })),
