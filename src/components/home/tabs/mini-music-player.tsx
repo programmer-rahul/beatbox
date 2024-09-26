@@ -23,7 +23,7 @@ const MiniMusicPlayer = () => {
   };
 
   return currentMusicTrack ? (
-    <View className="w-full h-14 absolute bottom-0 items-center justify-center bg-secondaryBg z-10 rounded-t-lg px-4">
+    <View className="w-full h-14 absolute -bottom-1 items-center justify-center bg-secondaryBg z-10 rounded-t-lg px-4">
       <View className="flex-row items-center gap-2 justify-between w-full">
         <Pressable
           className="flex-row space-x-2 items-center flex-1"

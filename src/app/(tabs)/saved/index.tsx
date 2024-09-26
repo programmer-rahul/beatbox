@@ -17,7 +17,7 @@ const SavedScreen = () => {
           <View>
             <ListMusicFiles
               musicFiles={allSavedMusicTracks}
-              heading="All Music Files"
+              heading="Saved Music Files"
             />
           </View>
           {currentMusicTrack && <MiniMusicPlayer />}

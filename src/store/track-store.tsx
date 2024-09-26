@@ -40,7 +40,7 @@ const useTrackStore = create<TTrackStore>()(
       isLoopingTrack: false,
       setIsLoopingTrack: (value) => set(() => ({ isLoopingTrack: value })),
       isShufflingQueue: false,
-      setIsShufflingQueue: (value) => set(() => ({ isLoopingTrack: value })),
+      setIsShufflingQueue: (value) => set(() => ({ isShufflingQueue: value })),
     }),
 
     {

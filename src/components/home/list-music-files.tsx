@@ -33,10 +33,8 @@ const ListMusicFiles = ({
             );
           }}
           keyExtractor={(item) => item.url}
-          initialNumToRender={10}
-          maxToRenderPerBatch={5}
-          windowSize={10}
-          removeClippedSubviews={true}
+          initialNumToRender={5}
+          maxToRenderPerBatch={12}
           showsVerticalScrollIndicator={false}
         />
       </View>
