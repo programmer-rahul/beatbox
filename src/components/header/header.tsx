@@ -5,12 +5,12 @@ import COLORS from "@/constants/colors";
 const Header = () => {
   return (
     <View
-      className="px-4 py-2 pb-4 flex flex-row justify-between items-center"
+      className="flex flex-row items-center justify-between px-4 py-2 pb-4"
       style={{ backgroundColor: COLORS.primaryBg }}
     >
       <View>
         <Text
-          className="text-xl font-semibold font-spacemono"
+          className="font-spacemono text-xl font-semibold"
           style={{ color: COLORS.main }}
         >
           BeatBox

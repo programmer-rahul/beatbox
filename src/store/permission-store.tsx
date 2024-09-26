@@ -13,8 +13,8 @@ const usePermissionStore = create<TusePermissionStore>()(
       name: "permission-store",
       storage: createJSONStorage(() => AsyncStorage),
       partialize: ({ isHavePermission }) => ({ isHavePermission }),
-    }
-  )
+    },
+  ),
 );
 
 export default usePermissionStore;

@@ -15,7 +15,7 @@ interface TTrackStore {
   setCurrentMusicTrack: (musicTrack: TMusicTrack) => void;
   changeCurrentMusicTrack: (
     currentMusicTrackUrl: string,
-    type: "previous" | "next"
+    type: "previous" | "next",
   ) => void;
 
   isTrackPlaying: boolean;

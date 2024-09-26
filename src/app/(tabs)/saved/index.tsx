@@ -10,7 +10,7 @@ const SavedScreen = () => {
   const { currentMusicTrack } = useTrackStore();
 
   return (
-    <View className="flex flex-col h-full py-1 bg-primaryBg">
+    <View className="flex h-full flex-col bg-primaryBg py-1">
       {allSavedMusicTracks.length <= 0 && <NoSavedMusicFiles />}
       {allSavedMusicTracks.length > 0 && (
         <View className="flex-1">

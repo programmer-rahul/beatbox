@@ -44,7 +44,7 @@ const MusicFile = React.memo(
         }
 
         let trackIndex = allLocalMusicTracks.findIndex(
-          (localMusicTrack) => localMusicTrack.url === musicFile.url
+          (localMusicTrack) => localMusicTrack.url === musicFile.url,
         );
 
         await TrackPlayer.skip(trackIndex);
@@ -58,7 +58,7 @@ const MusicFile = React.memo(
 
     return (
       <View
-        className="flex-row justify-between items-center rounded-md mt-4"
+        className="mt-4 flex-row items-center justify-between rounded-md"
         style={{
           marginBottom: lastFile ? 50 : 0,
         }}
@@ -67,11 +67,11 @@ const MusicFile = React.memo(
           className="flex-1 flex-row space-x-2"
           onPress={onMusicFilePress}
         >
-          <View className="h-10 aspect-square items-center justify-center bg-main/20 border border-main rounded-md">
+          <View className="aspect-square h-10 items-center justify-center rounded-md border border-main bg-main/20">
             {musicFile.cover.length ? (
               <Image
                 source={{ uri: musicFile.cover }}
-                className="w-full h-full rounded-md"
+                className="h-full w-full rounded-md"
               />
             ) : (
               <Feather name="music" size={22} color={COLORS.main} />
@@ -80,12 +80,12 @@ const MusicFile = React.memo(
 
           <View className="flex-1">
             <Text
-              className="text-primaryText text-xs font-spacemono"
+              className="font-spacemono text-xs text-primaryText"
               numberOfLines={1}
             >
               {musicFile.title}
             </Text>
-            <Text className="text-secondaryText text-xs font-spacemono">
+            <Text className="font-spacemono text-xs text-secondaryText">
               {formatMusicFileDuration(musicFile.duration, "milliseconds")}
             </Text>
           </View>
@@ -99,7 +99,7 @@ const MusicFile = React.memo(
         </View>
       </View>
     );
-  }
+  },
 );
 
 export default MusicFile;

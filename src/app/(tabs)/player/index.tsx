@@ -12,13 +12,13 @@ const PlayerScreen = () => {
   const { currentMusicTrack } = useTrackStore();
 
   return (
-    <View className="px-4 space-y-10 flex-1 bg-primaryBg">
+    <View className="flex-1 space-y-10 bg-primaryBg px-4">
       {currentMusicTrack ? (
         <View className="flex-1">
           <PlayerScreenHeader />
           <View className="flex-1">
             <View
-              className="h-3/4 flex flex-col justify-center"
+              className="flex h-3/4 flex-col justify-center"
               style={{ rowGap: 20 }}
             >
               <PlayerAlbumDisplay />
@@ -40,14 +40,14 @@ export default PlayerScreen;
 
 const NoMusicFileSelected = () => {
   return (
-    <View className="flex items-center justify-center flex-1 relative">
+    <View className="relative flex flex-1 items-center justify-center">
       <View className="flex items-center justify-center gap-2">
-        <Text className="text-xl text-center font-semibold font-spacemono">
+        <Text className="text-center font-spacemono text-xl font-semibold">
           No Music File Selected Right Now
         </Text>
         <Link
           href="/(home)"
-          className="text-xl rounded-md px-3 py-1 bg-main text-primaryBg/90 font-spacemono font-medium"
+          className="rounded-md bg-main px-3 py-1 font-spacemono text-xl font-medium text-primaryBg/90"
         >
           Play Now
         </Link>

@@ -2,8 +2,8 @@ import { Text, View } from "react-native";
 
 const NoMusicFilesFound = () => {
   return (
-    <View className="justify-center items-center h-full">
-      <Text className="text-2xl font-semibold text-primaryText font-spacemono text-center">
+    <View className="h-full items-center justify-center">
+      <Text className="text-center font-spacemono text-2xl font-semibold text-primaryText">
         No Music Files Found
       </Text>
     </View>

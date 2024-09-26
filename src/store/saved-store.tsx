@@ -14,7 +14,7 @@ const useSavedStore = create<TSavedStore>()(
       removeTrackInSavedMusic: (savedTrackUrl) =>
         set((state) => ({
           allSavedMusicTracks: state.allSavedMusicTracks.filter(
-            (savedMusic) => savedMusic.url !== savedTrackUrl
+            (savedMusic) => savedMusic.url !== savedTrackUrl,
           ),
         })),
     }),
@@ -22,8 +22,8 @@ const useSavedStore = create<TSavedStore>()(
       name: "saved-store",
       storage: createJSONStorage(() => AsyncStorage),
       partialize: ({ allSavedMusicTracks }) => ({ allSavedMusicTracks }),
-    }
-  )
+    },
+  ),
 );
 
 export default useSavedStore;

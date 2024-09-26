@@ -12,7 +12,7 @@ export type TZustandStore = {
   setCurrentMusic: (music: TMusicFile) => void;
   changeMusic: (
     currentMusicId: string,
-    inc: number
+    inc: number,
   ) => { status: boolean; uri: string };
 
   isMusicPlaying: boolean;

@@ -6,11 +6,11 @@ import { Image, View } from "react-native";
 const PlayerAlbumDisplay = () => {
   const { currentMusicTrack } = useTrackStore();
   return (
-    <View className="w-11/12 aspect-square rounded-full border-8 border-main/40 bg-main/30 self-center items-center justify-center">
+    <View className="aspect-square w-11/12 items-center justify-center self-center rounded-full border-8 border-main/40 bg-main/30">
       {currentMusicTrack?.cover ? (
         <Image
           source={{ uri: currentMusicTrack.cover }}
-          className="w-full h-full rounded-full"
+          className="h-full w-full rounded-full"
         />
       ) : (
         <Feather name="music" size={180} color={COLORS.main} />

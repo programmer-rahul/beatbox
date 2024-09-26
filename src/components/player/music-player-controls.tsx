@@ -28,7 +28,7 @@ const MusicPlayerControls = () => {
       {/* slider */}
       <PlayerMusicSlider />
 
-      <View className="flex-row gap-4 justify-center items-center">
+      <View className="flex-row items-center justify-center gap-4">
         <MaterialCommunityIcons
           name="repeat-variant"
           size={30}
@@ -36,7 +36,7 @@ const MusicPlayerControls = () => {
           onPress={() => {
             setIsLoopingTrack(!isLoopingTrack);
             TrackPlayer.setRepeatMode(
-              isLoopingTrack ? RepeatMode.Queue : RepeatMode.Track
+              isLoopingTrack ? RepeatMode.Queue : RepeatMode.Track,
             );
           }}
         />

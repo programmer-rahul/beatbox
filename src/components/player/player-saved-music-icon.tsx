@@ -14,7 +14,7 @@ const PlayerSavedMusicIcon = () => {
   const checkIsSavedMusic = () => {
     if (!currentMusicTrack) return false;
     return allSavedMusicTracks.some(
-      (savedMusic) => savedMusic.url === currentMusicTrack.url
+      (savedMusic) => savedMusic.url === currentMusicTrack.url,
     );
   };
 

@@ -9,7 +9,7 @@ export default function HomeScreen() {
   const { allLocalMusicTracks, currentMusicTrack } = useMusicTracks();
   return (
     <View
-      className="flex flex-col flex-1 py-1"
+      className="flex flex-1 flex-col py-1"
       style={{ backgroundColor: COLORS.primaryBg }}
     >
       {allLocalMusicTracks.length <= 0 && <NoMusicFilesFound />}

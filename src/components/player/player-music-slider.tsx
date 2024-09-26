@@ -11,11 +11,11 @@ const PlayerMusicSlider = () => {
   return currentMusicTrack ? (
     <View>
       <CustomRangeSlider totalMusicDuration={currentMusicTrack?.duration} />
-      <View className="px-4 flex-row justify-between ">
+      <View className="flex-row justify-between px-4">
         <Text className="text-xs text-secondaryText">
           {formatMusicFileDuration(progress.position, "seconds")}
         </Text>
-        <Text className="text-xs text-secondaryText text-right">
+        <Text className="text-right text-xs text-secondaryText">
           {formatMusicFileDuration(currentMusicTrack.duration, "milliseconds")}
         </Text>
       </View>

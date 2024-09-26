@@ -32,7 +32,7 @@ const usePlayerEvents = () => {
         currentMusicTrack &&
           changeCurrentMusicTrack(currentMusicTrack.url, "next");
       }
-    }
+    },
   );
 
   // to handle music finish

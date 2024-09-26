@@ -23,17 +23,17 @@ const MiniMusicPlayer = () => {
   };
 
   return currentMusicTrack ? (
-    <View className="w-full h-14 absolute -bottom-1 items-center justify-center bg-secondaryBg z-10 rounded-t-lg px-4">
-      <View className="flex-row items-center gap-2 justify-between w-full">
+    <View className="absolute -bottom-1 z-10 h-14 w-full items-center justify-center rounded-t-lg bg-secondaryBg px-4">
+      <View className="w-full flex-row items-center justify-between gap-2">
         <Pressable
-          className="flex-row space-x-2 items-center flex-1"
+          className="flex-1 flex-row items-center space-x-2"
           onPress={() => navigate("/player")}
         >
-          <View className="w-10 aspect-square items-center rounded-full justify-center border-2 border-main/40">
+          <View className="aspect-square w-10 items-center justify-center rounded-full border-2 border-main/40">
             {currentMusicTrack.cover.length ? (
               <Image
                 source={{ uri: currentMusicTrack.cover }}
-                className="w-full h-full rounded-full"
+                className="h-full w-full rounded-full"
               />
             ) : (
               <Feather name="music" size={22} color={COLORS.main} />
@@ -41,22 +41,22 @@ const MiniMusicPlayer = () => {
           </View>
           <View className="flex-1">
             <Text
-              className="text-primaryText text-xs font-spacemono font-medium"
+              className="font-spacemono text-xs font-medium text-primaryText"
               numberOfLines={1}
             >
               {currentMusicTrack.title}
             </Text>
             <View className="flex-row items-center">
-              <Text className="text-secondaryText text-xs font-spacemono">
+              <Text className="font-spacemono text-xs text-secondaryText">
                 {formatMusicFileDuration(progress.position, "seconds")}
               </Text>
-              <Text className="text-secondaryText text-xs font-spacemono">
+              <Text className="font-spacemono text-xs text-secondaryText">
                 :
               </Text>
-              <Text className="text-secondaryText text-xs font-spacemono">
+              <Text className="font-spacemono text-xs text-secondaryText">
                 {formatMusicFileDuration(
                   currentMusicTrack.duration,
-                  "milliseconds"
+                  "milliseconds",
                 )}
               </Text>
             </View>

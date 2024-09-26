@@ -10,17 +10,17 @@ const ListMusicFiles = ({
   heading: string;
 }) => {
   return (
-    <View className="px-4 gap-1">
-      <View className="flex flex-row justify-between items-center">
-        <Text className="text-xs font-bold text-primaryText font-spacemono">
+    <View className="gap-1 px-4">
+      <View className="flex flex-row items-center justify-between">
+        <Text className="font-spacemono text-xs font-bold text-primaryText">
           {heading}
         </Text>
-        <Text className="text-xs font-bold text-secondaryText font-spacemono">
+        <Text className="font-spacemono text-xs font-bold text-secondaryText">
           {musicFiles.length}
         </Text>
       </View>
 
-      <View className="pl-2 mb-20">
+      <View className="mb-20 pl-2">
         <FlatList
           data={musicFiles}
           renderItem={({ item, index }) => {

@@ -37,7 +37,7 @@ const usePermission = () => {
         [
           { text: "Cancel", style: "cancel" },
           { text: "Open Settings", onPress: () => Linking.openSettings() },
-        ]
+        ],
       );
     }
   };

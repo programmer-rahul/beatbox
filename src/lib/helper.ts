@@ -1,6 +1,6 @@
 const formatMusicFileDuration = (
   duration: number,
-  type: "seconds" | "milliseconds" = "seconds"
+  type: "seconds" | "milliseconds" = "seconds",
 ): string => {
   const totalSeconds =
     type === "milliseconds"

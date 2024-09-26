@@ -16,7 +16,7 @@ const useTrackStore = create<TTrackStore>()(
       changeCurrentMusicTrack: (currentMusicTrackUrl, type) =>
         set((state) => {
           const currentTrackIndex = state.allLocalMusicTracks.findIndex(
-            (localMusicTrack) => localMusicTrack.url === currentMusicTrackUrl
+            (localMusicTrack) => localMusicTrack.url === currentMusicTrackUrl,
           );
 
           if (
@@ -55,8 +55,8 @@ const useTrackStore = create<TTrackStore>()(
         isLoopingTrack,
         isShufflingQueue,
       }),
-    }
-  )
+    },
+  ),
 );
 
 export default useTrackStore;

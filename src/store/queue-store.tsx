@@ -15,8 +15,8 @@ const useQueueStore = create<TQueueStore>()(
       name: "queue-store",
       storage: createJSONStorage(() => AsyncStorage),
       partialize: ({}) => ({}),
-    }
-  )
+    },
+  ),
 );
 
 export default useQueueStore;
