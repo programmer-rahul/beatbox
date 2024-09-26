@@ -15,13 +15,21 @@ const MiniMusicPlayer = () => {
   console.log("inside mini-music-player");
 
   return currentMusicTrack ? (
-    <View className="absolute -bottom-1 z-10 h-14 w-full items-center justify-center rounded-t-lg bg-secondaryBg pl-5 pr-2">
+    <View
+      className="absolute -bottom-1 z-10 h-14 w-full items-center justify-center rounded-t-lg pl-6 pr-2"
+      style={{
+        backgroundColor: COLORS.secondaryBg,
+      }}
+    >
       <View className="w-full flex-row items-center justify-between gap-2">
         <Pressable
           className="flex-1 flex-row items-center space-x-2"
           onPress={() => navigate("/player")}
         >
-          <View className="aspect-square h-10 items-center justify-center rounded-md bg-main/20">
+          <View
+            className="aspect-square h-10 items-center justify-center rounded-md"
+            style={{ backgroundColor: COLORS.main + "22" }}
+          >
             {currentMusicTrack.cover.length ? (
               <Image
                 source={{ uri: currentMusicTrack.cover }}
@@ -35,15 +43,28 @@ const MiniMusicPlayer = () => {
             <Text
               className="font-spacemono text-xs font-medium text-primaryText"
               numberOfLines={1}
+              style={{
+                color: COLORS.primaryBg,
+              }}
             >
               {currentMusicTrack.title}
             </Text>
             <View className="flex-row items-center">
               <DisplayCurrentMusicPosition />
-              <Text className="font-spacemono text-xs text-secondaryText">
+              <Text
+                className="font-spacemono text-xs text-secondaryText"
+                style={{
+                  color: COLORS.secondaryText,
+                }}
+              >
                 :
               </Text>
-              <Text className="font-spacemono text-xs text-secondaryText">
+              <Text
+                className="font-spacemono text-xs text-secondaryText"
+                style={{
+                  color: COLORS.secondaryText,
+                }}
+              >
                 {formatMusicFileDuration(
                   currentMusicTrack.duration,
                   "milliseconds",

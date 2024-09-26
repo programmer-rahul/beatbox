@@ -20,7 +20,7 @@ const ListMusicFiles = ({
         musicFilesLength={musicFilesLength}
       />
 
-      <View className="mb-20 pl-2">
+      <View className="mb-20">
         <FlatList
           data={musicFiles}
           renderItem={({ item, index }) => {
@@ -33,8 +33,8 @@ const ListMusicFiles = ({
             );
           }}
           keyExtractor={(item) => item.url}
-          initialNumToRender={15}
-          maxToRenderPerBatch={15}
+          initialNumToRender={10}
+          maxToRenderPerBatch={10}
           showsVerticalScrollIndicator={false}
         />
       </View>

@@ -1,3 +1,4 @@
+import COLORS from "@/constants/colors";
 import { formatMusicFileDuration } from "@/lib/helper";
 import React from "react";
 import { Text } from "react-native";
@@ -7,7 +8,12 @@ function DisplayCurrentMusicPosition() {
   const progress = useProgress();
   //   console.log("inside music progress display");
   return (
-    <Text className="font-spacemono text-xs text-secondaryText">
+    <Text
+      className="font-spacemono text-xs text-secondaryText"
+      style={{
+        color: COLORS.secondaryText,
+      }}
+    >
       {formatMusicFileDuration(progress.position, "seconds")}
     </Text>
   );

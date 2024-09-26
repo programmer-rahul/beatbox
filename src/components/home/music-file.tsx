@@ -70,7 +70,10 @@ const MusicFile = React.memo(
           className="flex-1 flex-row space-x-2"
           onPress={() => onMusicFilePress(musicFile)}
         >
-          <View className="aspect-square h-10 items-center justify-center rounded-md bg-main/20">
+          <View
+            className="aspect-square h-10 items-center justify-center rounded-md bg-main"
+            style={{ backgroundColor: COLORS.main + "22" }}
+          >
             {musicCover.length ? (
               <Image
                 source={{ uri: musicCover }}
@@ -85,10 +88,18 @@ const MusicFile = React.memo(
             <Text
               className="font-spacemono text-xs text-primaryText"
               numberOfLines={1}
+              style={{
+                color: COLORS.primaryText,
+              }}
             >
               {musicFile.title}
             </Text>
-            <Text className="font-spacemono text-xs text-secondaryText">
+            <Text
+              className="font-spacemono text-xs text-secondaryText"
+              style={{
+                color: COLORS.secondaryText,
+              }}
+            >
               {formatMusicFileDuration(musicFile.duration, "milliseconds")}
             </Text>
           </View>

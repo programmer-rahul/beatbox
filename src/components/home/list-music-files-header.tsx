@@ -1,3 +1,4 @@
+import COLORS from "@/constants/colors";
 import { Text, View } from "react-native";
 
 function ListMusicFilesHeader({
@@ -8,11 +9,21 @@ function ListMusicFilesHeader({
   musicFilesLength: number;
 }) {
   return (
-    <View className="flex flex-row items-center justify-between">
-      <Text className="font-spacemono text-xs font-bold text-primaryText">
+    <View className="flex flex-row items-center justify-between px-2">
+      <Text
+        className="font-spacemono text-xs font-bold text-primaryText"
+        style={{
+          color: COLORS.primaryText,
+        }}
+      >
         {heading}
       </Text>
-      <Text className="font-spacemono text-xs font-bold text-secondaryText">
+      <Text
+        className="font-spacemono text-xs font-bold text-secondaryText"
+        style={{
+          color: COLORS.secondaryText,
+        }}
+      >
         {musicFilesLength}
       </Text>
     </View>

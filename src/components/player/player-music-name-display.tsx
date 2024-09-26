@@ -1,6 +1,7 @@
 import { Text, View } from "react-native";
 import PlayerSavedMusicIcon from "./player-saved-music-icon";
 import useTrackStore from "@/store/track-store";
+import COLORS from "@/constants/colors";
 
 const PlayerMusicNameDisplay = () => {
   const { currentMusicTrack } = useTrackStore(["currentMusicTrack"]);
@@ -11,6 +12,9 @@ const PlayerMusicNameDisplay = () => {
         <Text
           className="font-spacemono text-base font-semibold text-primaryText"
           numberOfLines={1}
+          style={{
+            color: COLORS.primaryText,
+          }}
         >
           {currentMusicTrack?.title}
         </Text>

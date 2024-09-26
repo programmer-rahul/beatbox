@@ -12,7 +12,12 @@ const PlayerScreen = () => {
   console.log("inside player screen");
 
   return (
-    <View className="flex-1 space-y-10 bg-primaryBg px-4">
+    <View
+      className="flex-1 space-y-10 bg-primaryBg px-4"
+      style={{
+        backgroundColor: COLORS.primaryBg,
+      }}
+    >
       {currentMusicTrack ? (
         <View className="flex-1">
           <PlayerScreenHeader />
@@ -39,6 +44,10 @@ const NoMusicFileSelected = () => {
         <Link
           href="/(home)"
           className="rounded-md bg-main px-3 py-1 font-spacemono text-xl font-medium text-primaryBg/90"
+          style={{
+            color: COLORS.primaryBg,
+            backgroundColor: COLORS.main,
+          }}
         >
           Play Now
         </Link>
