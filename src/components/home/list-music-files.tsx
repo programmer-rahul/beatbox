@@ -2,11 +2,6 @@ import { View, FlatList } from "react-native";
 import MusicFile from "./music-file";
 import { TMusicTrack } from "@/types/store/track-store";
 import ListMusicFilesHeader from "./list-music-files-header";
-import useQueueStore from "@/store/queue-store";
-import useTrackStore from "@/store/track-store";
-import { useRouter } from "expo-router";
-import TrackPlayer from "react-native-track-player";
-import useMusic from "@/hooks/useMusic";
 
 const ListMusicFiles = ({
   musicFiles,
@@ -16,7 +11,7 @@ const ListMusicFiles = ({
   heading: string;
 }) => {
   const musicFilesLength = musicFiles.length;
-  console.log("inside list-music-files");
+  console.log("inside list-music-files", heading);
 
   return (
     <View className="gap-1 px-4">

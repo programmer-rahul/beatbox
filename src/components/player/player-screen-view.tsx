@@ -5,6 +5,7 @@ import PlayerControls from "./player-controls";
 import PlayerMusicNameDisplay from "./player-music-name-display";
 
 function PlayerScreenView() {
+  console.log("inside player screen view");
   return (
     <View className="flex-1">
       <View

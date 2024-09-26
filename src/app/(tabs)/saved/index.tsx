@@ -3,11 +3,9 @@ import ListMusicFiles from "@/components/home/list-music-files";
 import NoSavedMusicFiles from "@/components/saved/no-saved-music-files";
 import MiniMusicPlayer from "@/components/home/tabs/mini-music-player";
 import useSavedStore from "@/store/saved-store";
-import useTrackStore from "@/store/track-store";
 
 const SavedScreen = () => {
   const { allSavedMusicTracks } = useSavedStore(["allSavedMusicTracks"]);
-  const { currentMusicTrack } = useTrackStore(["currentMusicTrack"]);
 
   return (
     <View className="flex h-full flex-col bg-primaryBg py-1">
@@ -20,7 +18,7 @@ const SavedScreen = () => {
               heading="Saved Music Files"
             />
           </View>
-          {currentMusicTrack && <MiniMusicPlayer />}
+          <MiniMusicPlayer />
         </View>
       )}
     </View>
