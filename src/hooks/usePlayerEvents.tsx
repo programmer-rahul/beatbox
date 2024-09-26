@@ -30,12 +30,10 @@ const usePlayerEvents = () => {
       if (event.type === Event.RemotePlay) setIsTrackPlaying(true);
       if (event.type === Event.RemotePause) setIsTrackPlaying(false);
       if (event.type === Event.RemotePrevious) {
-        currentMusicTrack &&
-          changeCurrentMusicTrack(currentMusicTrack.url, "previous");
+        currentMusicTrack && changeCurrentMusicTrack("previous");
       }
       if (event.type === Event.RemoteNext) {
-        currentMusicTrack &&
-          changeCurrentMusicTrack(currentMusicTrack.url, "next");
+        currentMusicTrack && changeCurrentMusicTrack("next");
       }
     },
   );
@@ -49,7 +47,7 @@ const usePlayerEvents = () => {
       !isLoopingTrack
     ) {
       if (event.lastTrack.url !== currentMusicTrack.url) return;
-      changeCurrentMusicTrack(currentMusicTrack.url, "next");
+      changeCurrentMusicTrack("next");
     }
   });
 };

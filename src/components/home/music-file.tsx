@@ -70,7 +70,7 @@ const MusicFile = React.memo(
           className="flex-1 flex-row space-x-2"
           onPress={() => onMusicFilePress(musicFile)}
         >
-          <View className="aspect-square h-10 items-center justify-center rounded-md border border-main bg-main/20">
+          <View className="aspect-square h-10 items-center justify-center rounded-md bg-main/20">
             {musicCover.length ? (
               <Image
                 source={{ uri: musicCover }}

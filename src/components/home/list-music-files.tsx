@@ -14,7 +14,7 @@ const ListMusicFiles = ({
   console.log("inside list-music-files", heading);
 
   return (
-    <View className="gap-1 px-4">
+    <View className="gap-1 px-5">
       <ListMusicFilesHeader
         heading={heading}
         musicFilesLength={musicFilesLength}
