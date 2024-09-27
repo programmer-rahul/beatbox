@@ -3,12 +3,14 @@ import Feather from "@expo/vector-icons/Feather";
 import Entypo from "@expo/vector-icons/Entypo";
 import { formatMusicFileDuration } from "@/lib/helper";
 import COLORS from "@/constants/colors";
-import React, { memo, useState } from "react";
+import React, { useState } from "react";
 import useQueueStore, { queueStore } from "@/store/queue-store";
 import useTrackStore, { trackStore } from "@/store/track-store";
+import { savedStore } from "@/store/saved-store";
 import { TMusicTrack } from "@/types/store/track-store";
-import { useRouter } from "expo-router";
+import { usePathname, useRouter } from "expo-router";
 import TrackPlayer from "react-native-track-player";
+import { TQueueType } from "@/types/store/queue-store";
 
 const MusicFile = React.memo(
   ({
@@ -19,30 +21,37 @@ const MusicFile = React.memo(
     index?: number;
     lastFile: boolean;
   }) => {
-    console.log("inside music file");
-
-    const { allLocalMusicTracks, setCurrentMusicTrack, setIsTrackPlaying } =
-      useTrackStore([
-        "allLocalMusicTracks",
-        "setCurrentMusicTrack",
-        "setIsTrackPlaying",
-      ]);
+    const { setCurrentMusicTrack, setIsTrackPlaying } = useTrackStore([
+      "setCurrentMusicTrack",
+      "setIsTrackPlaying",
+    ]);
     const { setCurrentQueue } = useQueueStore(["setCurrentQueue"]);
     const { navigate } = useRouter();
+    const pathname = usePathname();
 
-    const onMusicFilePress = async (musicFile: TMusicTrack) => {
-      if (trackStore.getState().currentMusicTrack?.url !== musicFile.url) {
-        if (!queueStore.getState().currentQueue.tracksCount) {
+    const onMusicFilePress = async (
+      musicFile: TMusicTrack,
+      queueType: TQueueType,
+    ) => {
+      const currentSelectedQueueMusicFiles =
+        queueType === "home"
+          ? trackStore.getState().allLocalMusicTracks
+          : savedStore.getState().allSavedMusicTracks;
+      const currentMusicTrack = trackStore.getState().currentMusicTrack;
+      const currentQueue = queueStore.getState().currentQueue;
+
+      if (currentMusicTrack?.url !== musicFile.url) {
+        if (!currentQueue.tracksCount || currentQueue.type !== queueType) {
           await TrackPlayer.reset();
-          await TrackPlayer.add(allLocalMusicTracks);
+          await TrackPlayer.add(currentSelectedQueueMusicFiles);
 
           setCurrentQueue({
-            type: "home",
-            tracksCount: allLocalMusicTracks.length,
+            type: queueType,
+            tracksCount: currentSelectedQueueMusicFiles.length,
           });
         }
 
-        let trackIndex = allLocalMusicTracks.findIndex(
+        let trackIndex = currentSelectedQueueMusicFiles.findIndex(
           (localMusicTrack) => localMusicTrack.url === musicFile.url,
         );
 
@@ -57,7 +66,7 @@ const MusicFile = React.memo(
       setCurrentMusicTrack(musicFile);
     };
 
-    const [musicCover, setMusicCover] = useState("");
+    const [musicCover] = useState("");
 
     return (
       <View
@@ -68,7 +77,12 @@ const MusicFile = React.memo(
       >
         <Pressable
           className="flex-1 flex-row items-center space-x-2"
-          onPress={() => onMusicFilePress(musicFile)}
+          onPress={() =>
+            onMusicFilePress(
+              musicFile,
+              pathname === "/saved" ? "saved" : "home",
+            )
+          }
         >
           <View
             className="aspect-square h-10 items-center justify-center rounded-md bg-main"

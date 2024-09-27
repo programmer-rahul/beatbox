@@ -3,6 +3,8 @@ import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createStoreWithShallow } from "@/lib/create-store-with-shallow";
+import { queueStore } from "./queue-store";
+import { savedStore } from "./saved-store";
 
 const useTrackStore = create<TTrackStore>()(
   persist(
@@ -17,14 +19,20 @@ const useTrackStore = create<TTrackStore>()(
       changeCurrentMusicTrack: (type) => {
         let itChanged = false;
         set((state) => {
-          const currentTrackIndex = state.allLocalMusicTracks.findIndex(
+          const currentQueue = queueStore.getState().currentQueue;
+          const currentSelectedQueueMusicFiles =
+            currentQueue.type === "home"
+              ? state.allLocalMusicTracks
+              : savedStore.getState().allSavedMusicTracks;
+
+          const currentTrackIndex = currentSelectedQueueMusicFiles.findIndex(
             (localMusicTrack) =>
               localMusicTrack.url === state.currentMusicTrack?.url,
           );
 
           if (
             (currentTrackIndex <= 0 && type === "previous") ||
-            (currentTrackIndex + 1 >= state.allLocalMusicTracks.length &&
+            (currentTrackIndex + 1 >= currentSelectedQueueMusicFiles.length &&
               type === "next")
           ) {
             itChanged = false;
@@ -34,8 +42,8 @@ const useTrackStore = create<TTrackStore>()(
             return {
               currentMusicTrack:
                 type === "previous"
-                  ? state.allLocalMusicTracks[currentTrackIndex - 1]
-                  : state.allLocalMusicTracks[currentTrackIndex + 1],
+                  ? currentSelectedQueueMusicFiles[currentTrackIndex - 1]
+                  : currentSelectedQueueMusicFiles[currentTrackIndex + 1],
             };
           }
         });

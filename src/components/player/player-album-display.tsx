@@ -7,10 +7,11 @@ const PlayerAlbumDisplay = () => {
   const { currentMusicTrack } = useTrackStore(["currentMusicTrack"]);
   return (
     <View
-      className="aspect-square w-11/12 items-center justify-center self-center rounded-full border-8 border-main/40 bg-main/30"
+      className="aspect-square w-11/12 items-center justify-center self-center rounded-full border-main/40 bg-main/30"
       style={{
         backgroundColor: COLORS.main + "33",
         borderColor: COLORS.main + "44",
+        borderWidth: !currentMusicTrack?.cover ? 6 : 0,
       }}
     >
       {currentMusicTrack?.cover ? (

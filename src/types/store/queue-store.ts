@@ -1,5 +1,7 @@
+type TQueueType = "home" | "saved" | "playlist";
+
 interface TQueue {
-  type: "home" | "saved" | "playlist";
+  type: TQueueType;
   tracksCount?: number;
 }
 
@@ -8,4 +10,4 @@ interface TQueueStore {
   setCurrentQueue: (newQueue: TQueue) => void;
 }
 
-export { TQueueStore };
+export { TQueueStore, TQueue, TQueueType };

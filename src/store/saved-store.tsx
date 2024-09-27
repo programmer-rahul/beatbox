@@ -26,5 +26,5 @@ const useSavedStore = create<TSavedStore>()(
     },
   ),
 );
-
+export {useSavedStore as savedStore}
 export default createStoreWithShallow(useSavedStore);

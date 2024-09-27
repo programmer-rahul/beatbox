@@ -17,13 +17,13 @@ const MiniMusicPlayer = () => {
 
   return currentMusicTrack ? (
     <View
-      className="absolute -bottom-1 z-10 h-14 w-full rounded-t-lg"
+      className="absolute -bottom-1 z-10 h-14 w-full rounded-t-xl"
       style={{
         backgroundColor: COLORS.primaryBg,
       }}
     >
       <View
-        className="h-full w-full items-center justify-center rounded-t-lg"
+        className="h-full w-full items-center justify-center rounded-t-xl"
         style={{
           backgroundColor: COLORS.secondaryBg,
         }}
