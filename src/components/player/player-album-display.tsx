@@ -1,5 +1,5 @@
 import COLORS from "@/constants/colors";
-import useTrackStore from "@/store/track-store";
+import useTrackStore, { trackStore } from "@/store/track-store";
 import { Feather } from "@expo/vector-icons";
 import { Image, View } from "react-native";
 
@@ -16,7 +16,9 @@ const PlayerAlbumDisplay = () => {
     >
       {currentMusicTrack?.cover ? (
         <Image
-          source={{ uri: currentMusicTrack.cover }}
+          source={{
+            uri: trackStore.getState().allCoverImages[currentMusicTrack.url],
+          }}
           className="h-full w-full rounded-full"
         />
       ) : (

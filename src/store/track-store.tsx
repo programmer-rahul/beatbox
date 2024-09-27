@@ -57,6 +57,10 @@ const useTrackStore = create<TTrackStore>()(
       setIsLoopingTrack: (value) => set(() => ({ isLoopingTrack: value })),
       isShufflingQueue: false,
       setIsShufflingQueue: (value) => set(() => ({ isShufflingQueue: value })),
+
+      allCoverImages: {},
+      setAllCoverImages: (coverImages) =>
+        set(() => ({ allCoverImages: coverImages })),
     }),
 
     {

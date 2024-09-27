@@ -3,7 +3,7 @@ import Feather from "@expo/vector-icons/Feather";
 import Entypo from "@expo/vector-icons/Entypo";
 import { formatMusicFileDuration } from "@/lib/helper";
 import COLORS from "@/constants/colors";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useQueueStore, { queueStore } from "@/store/queue-store";
 import useTrackStore, { trackStore } from "@/store/track-store";
 import { savedStore } from "@/store/saved-store";
@@ -66,7 +66,14 @@ const MusicFile = React.memo(
       setCurrentMusicTrack(musicFile);
     };
 
-    const [musicCover] = useState("");
+    const [musicCover, setMusicCover] = useState("");
+
+    useEffect(() => {
+      if (musicFile.cover) {
+        const musicCover = trackStore.getState().allCoverImages[musicFile.url];
+        setMusicCover(musicCover);
+      }
+    }, []);
 
     return (
       <View
@@ -88,7 +95,7 @@ const MusicFile = React.memo(
             className="aspect-square h-10 items-center justify-center rounded-md bg-main"
             style={{ backgroundColor: COLORS.main + "22" }}
           >
-            {musicCover.length ? (
+            {musicCover ? (
               <Image
                 source={{ uri: musicCover }}
                 className="h-full w-full rounded-md"

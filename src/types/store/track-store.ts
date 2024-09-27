@@ -2,7 +2,7 @@ interface TMusicTrack {
   title: string;
   album: string;
   artist: string;
-  cover: string;
+  cover: boolean;
   url: string;
   duration: number;
 }
@@ -23,6 +23,11 @@ interface TTrackStore {
 
   isShufflingQueue: boolean;
   setIsShufflingQueue: (value: boolean) => void;
+
+  allCoverImages: {
+    [key: string]: string;
+  };
+  setAllCoverImages: (coverImages: { [key: string]: string }) => void;
 }
 
 export { TMusicTrack, TTrackStore };
