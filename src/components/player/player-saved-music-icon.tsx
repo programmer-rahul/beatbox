@@ -5,7 +5,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
 import { View } from "react-native";
 
-const PlayerSavedMusicIcon = () => {
+const PlayerSavedMusicIcon = ({ size = 25 }: { size?: number }) => {
   const { currentMusicTrack } = useTrackStore(["currentMusicTrack"]);
   const { allSavedMusicTracks, addTrackInSavedMusic, removeTrackInSavedMusic } =
     useSavedStore([
@@ -34,7 +34,7 @@ const PlayerSavedMusicIcon = () => {
     <View>
       <AntDesign
         name={isSavedMusic ? "heart" : "hearto"}
-        size={22}
+        size={size}
         color={COLORS.main}
         onPress={() => {
           if (!currentMusicTrack) return;

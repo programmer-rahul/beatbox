@@ -1,7 +1,5 @@
 import { SplashScreen, Stack } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { StatusBar } from "expo-status-bar";
-import COLORS from "@/constants/colors";
 import { useFonts } from "expo-font";
 import { useEffect, useRef } from "react";
 import playbackService from "@/lib/playback-service";

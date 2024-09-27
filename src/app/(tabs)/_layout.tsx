@@ -1,16 +1,39 @@
-import { Tabs } from "expo-router";
+import { Tabs, usePathname } from "expo-router";
 import Header from "@/components/header/header";
 import { AntDesign, Ionicons, Octicons } from "@expo/vector-icons";
 import COLORS from "@/constants/colors";
+import { useEffect } from "react";
+import {
+  setStatusBarBackgroundColor,
+  setStatusBarStyle,
+} from "expo-status-bar";
 
 const TabLayout = () => {
+  const currentTab = usePathname();
+
+  useEffect(() => {
+    if (currentTab === "/player") {
+      setStatusBarBackgroundColor(COLORS.secondaryBg, false);
+      setStatusBarStyle("dark");
+    } else {
+      setStatusBarBackgroundColor(COLORS.primaryBg, false);
+      setStatusBarStyle("light");
+    }
+  }, [currentTab]);
+
   return (
     <Tabs
       screenOptions={{
         headerShown: true,
         header: () => <Header />,
         tabBarStyle: {
-          backgroundColor: COLORS.primaryBg,
+          backgroundColor:
+            currentTab === "/player" ? COLORS.secondaryBg : COLORS.primaryBg,
+
+          borderColor:
+            currentTab === "/player"
+              ? COLORS.secondaryIcon
+              : COLORS.secondaryBg,
         },
         tabBarItemStyle: {
           paddingVertical: 6,

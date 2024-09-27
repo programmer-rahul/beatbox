@@ -1,6 +1,4 @@
-import COLORS from "@/constants/colors";
 import { Stack } from "expo-router";
-import { StatusBar } from "expo-status-bar";
 import { View } from "react-native";
 
 const HomeScreenLayout = () => {
@@ -9,11 +7,6 @@ const HomeScreenLayout = () => {
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="index" />
       </Stack>
-      <StatusBar
-        style="light"
-        backgroundColor={COLORS.primaryBg}
-        animated={true}
-      />
     </View>
   );
 };

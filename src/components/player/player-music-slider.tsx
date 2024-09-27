@@ -10,7 +10,7 @@ const PlayerMusicSlider = () => {
   const { currentMusicTrack } = useTrackStore(["currentMusicTrack"]);
 
   return currentMusicTrack ? (
-    <View>
+    <View className="my-6 mb-3">
       <CustomRangeSlider totalMusicDuration={currentMusicTrack?.duration} />
       <View className="flex-row justify-between px-4">
         <Text

@@ -8,7 +8,7 @@ import PlayBackwardMusicIcon from "../reusable/icons/play-backward-music-icon";
 function MusicPlayerControlButtons() {
   console.log("inside music player control buttons");
   return (
-    <View className="space-x- flex-row items-center justify-evenly px-2">
+    <View className="flex-row items-center justify-evenly px-2">
       <View>
         <PlayPreviusNextMusicIcon type="previous" size={40} />
       </View>

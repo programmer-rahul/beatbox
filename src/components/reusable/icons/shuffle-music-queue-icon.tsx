@@ -2,7 +2,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import useTrackStore from "@/store/track-store";
 import COLORS from "@/constants/colors";
 
-function ShuffleMusicQueueIcon() {
+function ShuffleMusicQueueIcon({ size = 25 }: { size?: number }) {
   const { isShufflingQueue, setIsShufflingQueue } = useTrackStore([
     "isShufflingQueue",
     "setIsShufflingQueue",
@@ -11,8 +11,8 @@ function ShuffleMusicQueueIcon() {
   return (
     <MaterialCommunityIcons
       name="shuffle"
-      size={25}
-      color={isShufflingQueue ? COLORS.primaryText : COLORS.secondaryIcon}
+      size={size}
+      color={isShufflingQueue ? COLORS.main + "cc" : COLORS.secondaryIcon}
       onPress={() => setIsShufflingQueue(!isShufflingQueue)}
     />
   );

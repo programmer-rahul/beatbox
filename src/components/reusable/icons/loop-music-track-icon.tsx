@@ -3,7 +3,7 @@ import useTrackStore from "@/store/track-store";
 import COLORS from "@/constants/colors";
 import TrackPlayer, { RepeatMode } from "react-native-track-player";
 
-function LoopMusicTrackIcon() {
+function LoopMusicTrackIcon({ size = 25 }: { size?: number }) {
   const { isLoopingTrack, setIsLoopingTrack } = useTrackStore([
     "isLoopingTrack",
     "setIsLoopingTrack",
@@ -12,8 +12,8 @@ function LoopMusicTrackIcon() {
   return (
     <MaterialCommunityIcons
       name="repeat-variant"
-      size={30}
-      color={isLoopingTrack ? COLORS.primaryText : COLORS.secondaryIcon}
+      size={size}
+      color={isLoopingTrack ? COLORS.main + "cc" : COLORS.secondaryIcon}
       onPress={() => {
         setIsLoopingTrack(!isLoopingTrack);
         TrackPlayer.setRepeatMode(

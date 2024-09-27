@@ -8,7 +8,7 @@ const defaultColors = {
   primaryBg: colors.slate[800],
   secondaryBg: colors.amber[200],
 
-  primaryIcon: colors.gray[900],
+  primaryIcon: colors.slate[800],
   secondaryIcon: colors.gray[500],
 };
 
