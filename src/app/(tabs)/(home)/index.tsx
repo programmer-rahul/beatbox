@@ -9,7 +9,7 @@ import useFetchLocalMusic from "@/hooks/useFetchLocalMusic";
 export default function HomeScreen() {
   const { allLocalMusicTracks } = useTrackStore(["allLocalMusicTracks"]);
   useFetchLocalMusic();
-  console.log("inside home page", allLocalMusicTracks.length);
+  console.log("inside home page");
 
   return (
     <View

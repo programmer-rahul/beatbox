@@ -20,7 +20,7 @@ const ListMusicFiles = ({
         musicFilesLength={musicFilesLength}
       />
 
-      <View className="mb-20">
+      <View className="mb-2">
         <FlatList
           data={musicFiles}
           renderItem={({ item, index }) => {

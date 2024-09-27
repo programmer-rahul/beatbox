@@ -63,11 +63,11 @@ const MusicFile = React.memo(
       <View
         className="mt-4 flex-row items-center justify-between rounded-md"
         style={{
-          marginBottom: lastFile ? 50 : 0,
+          marginBottom: lastFile ? 120 : 0,
         }}
       >
         <Pressable
-          className="flex-1 flex-row space-x-2"
+          className="flex-1 flex-row items-center space-x-2"
           onPress={() => onMusicFilePress(musicFile)}
         >
           <View
@@ -84,20 +84,32 @@ const MusicFile = React.memo(
             )}
           </View>
 
-          <View className="flex-1">
+          <View className="flex-1 flex-row items-center self-center">
+            <View className="flex flex-1 justify-center">
+              <Text
+                className="flex-1 font-spacemono text-xs text-primaryText"
+                numberOfLines={1}
+                style={{
+                  color: COLORS.primaryText,
+                }}
+              >
+                {musicFile.title}
+              </Text>
+              <Text
+                className="flex-1 font-spacemono text-xs text-primaryText"
+                numberOfLines={1}
+                style={{
+                  color: COLORS.secondaryText,
+                }}
+              >
+                {musicFile.artist}
+              </Text>
+            </View>
             <Text
-              className="font-spacemono text-xs text-primaryText"
-              numberOfLines={1}
+              className="ml-2 rounded-md px-2 py-[2px] font-spacemono text-xs text-secondaryText"
               style={{
-                color: COLORS.primaryText,
-              }}
-            >
-              {musicFile.title}
-            </Text>
-            <Text
-              className="font-spacemono text-xs text-secondaryText"
-              style={{
-                color: COLORS.secondaryText,
+                color: COLORS.primaryText + "66",
+                backgroundColor: COLORS.secondaryText + "33",
               }}
             >
               {formatMusicFileDuration(musicFile.duration, "milliseconds")}

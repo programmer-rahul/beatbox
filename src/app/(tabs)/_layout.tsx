@@ -13,7 +13,7 @@ const TabLayout = () => {
           backgroundColor: COLORS.primaryBg,
         },
         tabBarItemStyle: {
-          paddingBottom: 6,
+          paddingVertical: 6,
         },
 
         tabBarActiveTintColor: COLORS.main,

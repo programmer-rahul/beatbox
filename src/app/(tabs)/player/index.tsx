@@ -15,7 +15,7 @@ const PlayerScreen = () => {
     <View
       className="flex-1 space-y-10 bg-primaryBg px-4"
       style={{
-        backgroundColor: COLORS.primaryBg,
+        backgroundColor: COLORS.secondaryBg,
       }}
     >
       {currentMusicTrack ? (

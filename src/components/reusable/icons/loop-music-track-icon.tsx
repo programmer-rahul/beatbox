@@ -3,7 +3,7 @@ import useTrackStore from "@/store/track-store";
 import COLORS from "@/constants/colors";
 import TrackPlayer, { RepeatMode } from "react-native-track-player";
 
-function LoppMusicTrackIcon() {
+function LoopMusicTrackIcon() {
   const { isLoopingTrack, setIsLoopingTrack } = useTrackStore([
     "isLoopingTrack",
     "setIsLoopingTrack",
@@ -24,4 +24,4 @@ function LoppMusicTrackIcon() {
   );
 }
 
-export default LoppMusicTrackIcon;
+export default LoopMusicTrackIcon;
