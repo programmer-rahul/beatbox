@@ -15,7 +15,7 @@ function PlayerScreenView() {
         <PlayerAlbumDisplay />
         <PlayerMusicNameDisplay />
       </View>
-      <View>
+      <View className="flex-1">
         <PlayerControls />
       </View>
     </View>

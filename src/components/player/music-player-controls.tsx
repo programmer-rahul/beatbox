@@ -9,7 +9,7 @@ import AddMusicToPlaylistIcon from "../reusable/icons/add-music-to-playlist-icon
 const MusicPlayerControls = () => {
   console.log("inside music player controls");
   return (
-    <View className="">
+    <View className="h-full justify-evenly">
       <View className="flex-row items-center justify-between px-8">
         <View className="flex-row items-center space-x-4">
           <View>
@@ -28,8 +28,12 @@ const MusicPlayerControls = () => {
           </View>
         </View>
       </View>
-      <PlayerMusicSlider />
-      <MusicPlayerControlButtons />
+      <View>
+        <PlayerMusicSlider />
+      </View>
+      <View>
+        <MusicPlayerControlButtons />
+      </View>
     </View>
   );
 };
