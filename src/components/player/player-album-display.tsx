@@ -4,7 +4,10 @@ import { Feather } from "@expo/vector-icons";
 import { Image, View } from "react-native";
 
 const PlayerAlbumDisplay = () => {
-  const { currentMusicTrack } = useTrackStore(["currentMusicTrack"]);
+  const { currentMusicTrack, allCoverImages } = useTrackStore([
+    "currentMusicTrack",
+    "allCoverImages",
+  ]);
   return (
     <View
       className="aspect-square w-11/12 items-center justify-center self-center rounded-full border-main/40 bg-main/30"
@@ -14,10 +17,10 @@ const PlayerAlbumDisplay = () => {
         borderWidth: !currentMusicTrack?.cover ? 6 : 0,
       }}
     >
-      {currentMusicTrack?.cover ? (
+      {currentMusicTrack?.cover && allCoverImages[currentMusicTrack.url] ? (
         <Image
           source={{
-            uri: trackStore.getState().allCoverImages[currentMusicTrack.url],
+            uri: allCoverImages[currentMusicTrack.url],
           }}
           className="h-full w-full rounded-full"
         />

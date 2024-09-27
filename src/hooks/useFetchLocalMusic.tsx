@@ -1,14 +1,14 @@
-import useTrackStore from "@/store/track-store";
-import { useEffect } from "react";
+import useTrackStore, { trackStore } from "@/store/track-store";
+import { useEffect, useState } from "react";
 import { getAll } from "react-native-get-music-files";
 
 const useFetchLocalMusic = () => {
-  const { allLocalMusicTracks, setAllLocalMusicTracks, setAllCoverImages } =
-    useTrackStore([
-      "allLocalMusicTracks",
-      "setAllLocalMusicTracks",
-      "setAllCoverImages",
-    ]);
+  const { setAllLocalMusicTracks, setAllCoverImages } = useTrackStore([
+    "setAllLocalMusicTracks",
+    "setAllCoverImages",
+  ]);
+
+  const [isFetching, setIsFetching] = useState(true);
 
   const fetchLocalMusicFiles = async () => {
     const fetchedMusicFiles = await getAll({
@@ -17,11 +17,12 @@ const useFetchLocalMusic = () => {
     });
 
     if (Array.isArray(fetchedMusicFiles)) {
-      allLocalMusicTracks.length <= 0 &&
+      console.log("len", trackStore.getState().allLocalMusicTracks.length <= 0);
+      trackStore.getState().allLocalMusicTracks.length <= 0 &&
         setAllLocalMusicTracks(
           fetchedMusicFiles.map((musicFile) => ({
             ...musicFile,
-            cover: !musicFile.cover,
+            cover: musicFile.cover ? true : false,
           })),
         );
 
@@ -35,6 +36,8 @@ const useFetchLocalMusic = () => {
 
       setAllCoverImages(coverImages);
     }
+
+    setIsFetching(false);
   };
 
   useEffect(() => {
@@ -42,8 +45,10 @@ const useFetchLocalMusic = () => {
   }, []);
 
   useEffect(() => {
-    console.log("inside useMusicTrack");
+    console.log("inside useFetchLocalMusic");
   });
+
+  return { isFetching };
 };
 
 export default useFetchLocalMusic;

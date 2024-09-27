@@ -2,7 +2,7 @@ import { Image, Pressable, Text, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { formatMusicFileDuration } from "@/lib/helper";
 import COLORS from "@/constants/colors";
-import useTrackStore, { trackStore } from "@/store/track-store";
+import useTrackStore from "@/store/track-store";
 import { useRouter } from "expo-router";
 import PlayPauseMusicIcon from "@/components/reusable/icons/play-pause-music-icon";
 import DisplayCurrentMusicPosition from "@/components/reusable/display-current-music-position";
@@ -10,7 +10,10 @@ import PlayPreviusNextMusicIcon from "@/components/reusable/icons/play-previus-n
 import { useProgress } from "react-native-track-player";
 
 const MiniMusicPlayer = () => {
-  const { currentMusicTrack } = useTrackStore(["currentMusicTrack"]);
+  const { currentMusicTrack, allCoverImages } = useTrackStore([
+    "currentMusicTrack",
+    "allCoverImages",
+  ]);
   const { navigate } = useRouter();
 
   console.log("inside mini-music-player");
@@ -37,12 +40,11 @@ const MiniMusicPlayer = () => {
               className="aspect-square h-10 items-center justify-center rounded-md"
               style={{ backgroundColor: COLORS.main + "22" }}
             >
-              {currentMusicTrack.cover ? (
+              {currentMusicTrack.cover &&
+              allCoverImages[currentMusicTrack.url] ? (
                 <Image
                   source={{
-                    uri: trackStore.getState().allCoverImages[
-                      currentMusicTrack.url
-                    ],
+                    uri: allCoverImages[currentMusicTrack.url],
                   }}
                   className="h-full w-full rounded-md"
                 />

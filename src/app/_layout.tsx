@@ -46,6 +46,8 @@ const RootNavigation = () => {
   // mount player events
   usePlayerEvents();
 
+  console.log("here at rootNavigation");
+
   return isHavePermission ? (
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="(tabs)" />

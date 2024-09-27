@@ -5,6 +5,7 @@ import useTrackStore from "@/store/track-store";
 import { Feather } from "@expo/vector-icons";
 import { Link } from "expo-router";
 import PlayerScreenView from "@/components/player/player-screen-view";
+import { memo } from "react";
 
 const PlayerScreen = () => {
   const { currentMusicTrack } = useTrackStore(["currentMusicTrack"]);
@@ -30,7 +31,7 @@ const PlayerScreen = () => {
   );
 };
 
-export default PlayerScreen;
+export default memo(PlayerScreen);
 
 const NoMusicFileSelected = () => {
   console.log("inside no music file selected");

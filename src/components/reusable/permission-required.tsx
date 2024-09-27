@@ -10,7 +10,7 @@ const PermissionRequired = () => {
       }}
     >
       <Text
-        className="text-4xl font-semibold text-primaryText"
+        className="text-2xl font-semibold text-primaryText"
         style={{
           color: COLORS.primaryText,
         }}

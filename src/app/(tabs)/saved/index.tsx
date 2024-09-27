@@ -22,6 +22,7 @@ const SavedScreen = () => {
             <ListMusicFiles
               musicFiles={allSavedMusicTracks}
               heading="Saved Music Files"
+              queueType="saved"
             />
           </View>
           <MiniMusicPlayer />

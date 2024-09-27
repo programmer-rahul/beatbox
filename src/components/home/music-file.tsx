@@ -8,7 +8,7 @@ import useQueueStore, { queueStore } from "@/store/queue-store";
 import useTrackStore, { trackStore } from "@/store/track-store";
 import { savedStore } from "@/store/saved-store";
 import { TMusicTrack } from "@/types/store/track-store";
-import { usePathname, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import TrackPlayer from "react-native-track-player";
 import { TQueueType } from "@/types/store/queue-store";
 
@@ -16,18 +16,23 @@ const MusicFile = React.memo(
   ({
     musicFile,
     lastFile,
+    queueType,
   }: {
     musicFile: TMusicTrack;
     index?: number;
     lastFile: boolean;
+    queueType: TQueueType;
   }) => {
-    const { setCurrentMusicTrack, setIsTrackPlaying } = useTrackStore([
-      "setCurrentMusicTrack",
-      "setIsTrackPlaying",
-    ]);
+    const { setCurrentMusicTrack, setIsTrackPlaying, allCoverImages } =
+      useTrackStore([
+        "setCurrentMusicTrack",
+        "setIsTrackPlaying",
+        "allCoverImages",
+      ]);
     const { setCurrentQueue } = useQueueStore(["setCurrentQueue"]);
     const { navigate } = useRouter();
-    const pathname = usePathname();
+
+    console.log("inside music-file");
 
     const onMusicFilePress = async (
       musicFile: TMusicTrack,
@@ -69,11 +74,11 @@ const MusicFile = React.memo(
     const [musicCover, setMusicCover] = useState("");
 
     useEffect(() => {
-      if (musicFile.cover) {
-        const musicCover = trackStore.getState().allCoverImages[musicFile.url];
+      if (musicFile.cover && allCoverImages[musicFile.url]) {
+        const musicCover = allCoverImages[musicFile.url];
         setMusicCover(musicCover);
       }
-    }, []);
+    }, [allCoverImages]);
 
     return (
       <View
@@ -84,12 +89,7 @@ const MusicFile = React.memo(
       >
         <Pressable
           className="flex-1 flex-row items-center space-x-2"
-          onPress={() =>
-            onMusicFilePress(
-              musicFile,
-              pathname === "/saved" ? "saved" : "home",
-            )
-          }
+          onPress={() => onMusicFilePress(musicFile, queueType)}
         >
           <View
             className="aspect-square h-10 items-center justify-center rounded-md bg-main"

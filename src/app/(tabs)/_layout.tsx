@@ -21,6 +21,8 @@ const TabLayout = () => {
     }
   }, [currentTab]);
 
+  console.log("currentTab", currentTab);
+
   return (
     <Tabs
       screenOptions={{

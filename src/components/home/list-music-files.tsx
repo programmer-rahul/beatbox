@@ -2,13 +2,16 @@ import { View, FlatList } from "react-native";
 import MusicFile from "./music-file";
 import { TMusicTrack } from "@/types/store/track-store";
 import ListMusicFilesHeader from "./list-music-files-header";
+import { TQueueType } from "@/types/store/queue-store";
 
 const ListMusicFiles = ({
   musicFiles,
   heading,
+  queueType,
 }: {
   musicFiles: TMusicTrack[];
   heading: string;
+  queueType: TQueueType;
 }) => {
   const musicFilesLength = musicFiles.length;
   console.log("inside list-music-files", heading);
@@ -29,6 +32,7 @@ const ListMusicFiles = ({
                 musicFile={item}
                 index={index}
                 lastFile={musicFilesLength == index + 1}
+                queueType={queueType}
               />
             );
           }}
