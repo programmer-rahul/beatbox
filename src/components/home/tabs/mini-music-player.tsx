@@ -54,7 +54,7 @@ const MiniMusicPlayer = () => {
             </View>
             <View className="flex-1">
               <Text
-                className="font-spacemono text-xs font-medium text-primaryText"
+                className="font-primary_semibold text-xs text-primaryText"
                 numberOfLines={1}
                 style={{
                   color: COLORS.primaryBg,
@@ -65,7 +65,7 @@ const MiniMusicPlayer = () => {
               <View className="flex-row items-center">
                 <DisplayCurrentMusicPosition />
                 <Text
-                  className="font-spacemono text-xs text-secondaryText"
+                  className="font-primary_regular text-xs text-secondaryText"
                   style={{
                     color: COLORS.secondaryText,
                   }}
@@ -73,7 +73,7 @@ const MiniMusicPlayer = () => {
                   :
                 </Text>
                 <Text
-                  className="font-spacemono text-xs text-secondaryText"
+                  className="font-primary_regular text-xs text-secondaryText"
                   style={{
                     color: COLORS.secondaryText,
                   }}

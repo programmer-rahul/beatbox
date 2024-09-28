@@ -11,6 +11,10 @@ const useFetchLocalMusic = () => {
   const [isFetching, setIsFetching] = useState(true);
 
   const fetchLocalMusicFiles = async () => {
+    setIsFetching(
+      trackStore.getState().allLocalMusicTracks.length ? false : true,
+    );
+
     const fetchedMusicFiles = await getAll({
       limit: 200,
       minSongDuration: 1000,
@@ -37,7 +41,7 @@ const useFetchLocalMusic = () => {
       setAllCoverImages(coverImages);
     }
 
-    setIsFetching(false);
+    setIsFetching(false)
   };
 
   useEffect(() => {

@@ -1,7 +1,7 @@
 const colors = require("tailwindcss/colors");
 
 const defaultColors = {
-  main: colors.rose[500],
+  main: colors.indigo[500],
   primaryText: colors.slate[100],
   secondaryText: colors.gray[500],
 

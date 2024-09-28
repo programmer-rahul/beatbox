@@ -8,7 +8,7 @@ const PlayerMusicNameDisplay = () => {
   return (
     <View className="flex justify-between px-2">
       <Text
-        className="font-spacemono text-base font-semibold text-primaryBg"
+        className="font-primary_semibold text-base text-primaryBg"
         numberOfLines={1}
         style={{
           color: COLORS.primaryBg,
@@ -17,7 +17,7 @@ const PlayerMusicNameDisplay = () => {
         {currentMusicTrack?.title}
       </Text>
       <Text
-        className="text-center font-spacemono text-sm font-semibold text-secondaryText"
+        className="text-center text-sm font-primary_regular text-secondaryText"
         numberOfLines={1}
         style={{
           color: COLORS.secondaryText,

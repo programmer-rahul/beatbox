@@ -38,16 +38,16 @@ const NoMusicFileSelected = () => {
 
   return (
     <View className="relative flex flex-1 items-center justify-center">
-      <View className="flex items-center justify-center gap-2">
-        <Text className="text-center font-spacemono text-xl font-semibold">
+      <View className="flex items-center justify-center gap-4">
+        <Text className="font-primary_regular text-center text-3xl">
           No Music File Selected Right Now
         </Text>
         <Link
           href="/(home)"
-          className="rounded-md bg-main px-3 py-1 font-spacemono text-xl font-medium text-primaryBg/90"
+          className="font-primary_semibold rounded-md bg-main px-3 py-1 text-xl"
           style={{
             color: COLORS.primaryBg,
-            backgroundColor: COLORS.main,
+            backgroundColor: COLORS.main + "aa",
           }}
         >
           Play Now

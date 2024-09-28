@@ -6,7 +6,7 @@ const NoSavedMusicFiles = () => {
   return (
     <View className="flex-1 flex-row items-center justify-center gap-2">
       <Text
-        className="font-spacemono text-2xl font-semibold text-primaryText"
+        className="font-primary_semibold text-2xl text-primaryText"
         style={{
           color: COLORS.primaryText,
         }}

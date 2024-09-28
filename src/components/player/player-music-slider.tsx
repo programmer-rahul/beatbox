@@ -14,7 +14,7 @@ const PlayerMusicSlider = () => {
       <CustomRangeSlider totalMusicDuration={currentMusicTrack?.duration} />
       <View className="flex-row justify-between px-4">
         <Text
-          className="text-xs text-secondaryText"
+          className="text-xs font-primary_semibold text-secondaryText"
           style={{
             color: COLORS.secondaryText,
           }}
@@ -22,7 +22,7 @@ const PlayerMusicSlider = () => {
           {formatMusicFileDuration(progress.position, "seconds")}
         </Text>
         <Text
-          className="text-right text-xs text-secondaryText"
+          className="text-right text-xs font-primary_semibold text-secondaryText"
           style={{
             color: COLORS.secondaryText,
           }}

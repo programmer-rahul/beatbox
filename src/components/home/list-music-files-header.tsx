@@ -11,15 +11,15 @@ function ListMusicFilesHeader({
   return (
     <View className="flex flex-row items-center justify-between px-2">
       <Text
-        className="font-spacemono text-xs font-bold text-primaryText"
+        className="font-primary_regular text-xs text-primaryText"
         style={{
-          color: COLORS.primaryText,
+          color: COLORS.primaryText + "dd",
         }}
       >
         {heading}
       </Text>
       <Text
-        className="font-spacemono text-xs font-bold text-secondaryText"
+        className="font-primary_regular text-xs text-secondaryText"
         style={{
           color: COLORS.secondaryText,
         }}

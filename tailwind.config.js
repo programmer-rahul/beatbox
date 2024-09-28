@@ -9,7 +9,10 @@ module.exports = {
         ...colors,
       },
       fontFamily: {
-        spacemono: ["SpaceMono", "Sans-Serif"],
+        primary_light: ["Primary_Light", "Sans-Serif"],
+        primary_regular: ["Primary_Regular", "Sans-Serif"],
+        primary_semibold: ["Primary_SemiBold", "Sans-Serif"],
+        primary_bold: ["Primary_Bold", "Sans-Serif"],
       },
     },
   },

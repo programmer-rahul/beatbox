@@ -15,7 +15,10 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   const isTrackPlayerInitialized = useRef(false);
   const [loaded, error] = useFonts({
-    SpaceMono: require("@/assets/fonts/SpaceMono-Regular.ttf"),
+    Primary_Light: require("@/assets/fonts/IBMPlexSans-Light.ttf"),
+    Primary_Regular: require("@/assets/fonts/IBMPlexSans-Regular.ttf"),
+    Primary_SemiBold: require("@/assets/fonts/IBMPlexSans-SemiBold.ttf"),
+    Primary_Bold: require("@/assets/fonts/IBMPlexSans-Bold.ttf"),
   });
 
   useSetupTrackPlayer({ isTrackPlayerInitialized });

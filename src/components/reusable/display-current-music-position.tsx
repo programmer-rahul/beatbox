@@ -6,10 +6,9 @@ import { useProgress } from "react-native-track-player";
 
 function DisplayCurrentMusicPosition() {
   const progress = useProgress();
-  //   console.log("inside music progress display");
   return (
     <Text
-      className="font-spacemono text-xs text-secondaryText"
+      className="font-primary_regular text-xs text-secondaryText"
       style={{
         color: COLORS.secondaryText,
       }}
