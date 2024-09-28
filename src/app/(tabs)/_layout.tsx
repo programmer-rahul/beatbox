@@ -3,21 +3,18 @@ import Header from "@/components/header/header";
 import { AntDesign, Ionicons, Octicons } from "@expo/vector-icons";
 import COLORS from "@/constants/colors";
 import { useEffect } from "react";
-import {
-  setStatusBarBackgroundColor,
-  setStatusBarStyle,
-} from "expo-status-bar";
+import { StatusBar } from "react-native";
 
 const TabLayout = () => {
   const currentTab = usePathname();
 
   useEffect(() => {
     if (currentTab === "/player") {
-      setStatusBarBackgroundColor(COLORS.secondaryBg, false);
-      setStatusBarStyle("dark");
+      StatusBar.setBackgroundColor(COLORS.secondaryBg, false);
+      StatusBar.setBarStyle("dark-content");
     } else {
-      setStatusBarBackgroundColor(COLORS.primaryBg, false);
-      setStatusBarStyle("light");
+      StatusBar.setBackgroundColor(COLORS.primaryBg, false);
+      StatusBar.setBarStyle("light-content");
     }
   }, [currentTab]);
 

@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-import { Alert, Linking } from "react-native";
-import * as MediaLibrary from "expo-media-library";
+import { Alert, Linking, PermissionsAndroid, Platform } from "react-native";
 import usePermissionStore from "@/store/permission-store";
 import { useRouter } from "expo-router";
 
@@ -29,9 +28,12 @@ const usePermission = () => {
 
   // show permissions dialog
   const askForPermissions = async () => {
-    const { status } = await MediaLibrary.requestPermissionsAsync();
+    const granted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.READ_MEDIA_AUDIO,
+    );
+    console.log("granted state", granted);
 
-    if (status === "granted") {
+    if (granted === "granted") {
       setIsHavePermission(true);
     } else {
       Alert.alert(

@@ -115,7 +115,10 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
-        versionName "1.0.0"
+        versionName "1.0.0",
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+        }
     }
     signingConfigs {
         debug {
@@ -125,11 +128,27 @@ android {
             keyPassword 'android'
         }
     }
+    splits {
+        abi {
+            enable true // Enable ABI splits
+            reset() // Reset to default behavior
+            include "armeabi-v7a", "arm64-v8a", "x86", "x86_64" // Specify ABIs to include
+            universalApk true // Generate a universal APK that includes all ABIs
+        }
+
+        density {
+            enable true // Enable density splits
+            compatibleScreens 'small', 'normal', 'large', 'xlarge' // Optional: Limit screen sizes
+        }
+    }
+    
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
         }
         release {
+            // Caution! In production, you need to generate your own keystore file.
+            // see https://reactnative.dev/docs/signed-apk-android.
             signingConfig signingConfigs.debug
             shrinkResources (findProperty('android.enableShrinkResourcesInReleaseBuilds')?.toBoolean() ?: false)
             minifyEnabled enableProguardInReleaseBuilds
@@ -137,16 +156,6 @@ android {
             crunchPngs (findProperty('android.enablePngCrunchInReleaseBuilds')?.toBoolean() ?: true)
         }
     }
-
-    splits {
-        abi {
-            enable true // Enables ABI splits
-            reset() // Clears any previous configuration
-            include "armeabi-v7a", "arm64-v8a", "x86", "x86_64" // Specify the ABIs you want to include
-            universalApk true // Set to true if you want a universal APK along with the splits
-        }
-    }
-
     packagingOptions {
         jniLibs {
             useLegacyPackaging (findProperty('expo.useLegacyPackaging')?.toBoolean() ?: false)
@@ -154,6 +163,25 @@ android {
     }
 }
 
+// Apply static values from `gradle.properties` to the `android.packagingOptions`
+// Accepts values in comma delimited lists, example:
+// android.packagingOptions.pickFirsts=/LICENSE,**/picasa.ini
+["pickFirsts", "excludes", "merges", "doNotStrip"].each { prop ->
+    // Split option: 'foo,bar' -> ['foo', 'bar']
+    def options = (findProperty("android.packagingOptions.$prop") ?: "").split(",");
+    // Trim all elements in place.
+    for (i in 0..<options.size()) options[i] = options[i].trim();
+    // `[] - ""` is essentially `[""].filter(Boolean)` removing all empty strings.
+    options -= ""
+
+    if (options.length > 0) {
+        println "android.packagingOptions.$prop += $options ($options.length)"
+        // Ex: android.packagingOptions.pickFirsts += '**/SCCS/**'
+        options.each {
+            android.packagingOptions[prop] += it
+        }
+    }
+}
 
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
