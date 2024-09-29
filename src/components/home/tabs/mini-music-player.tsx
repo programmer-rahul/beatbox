@@ -37,7 +37,7 @@ const MiniMusicPlayer = () => {
             onPress={() => navigate("/player")}
           >
             <View
-              className="aspect-square h-10 items-center justify-center rounded-md"
+              className="aspect-square h-11 items-center justify-center rounded-md"
               style={{ backgroundColor: COLORS.main + "22" }}
             >
               {currentMusicTrack.cover &&

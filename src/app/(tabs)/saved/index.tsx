@@ -4,6 +4,7 @@ import NoSavedMusicFiles from "@/components/saved/no-saved-music-files";
 import MiniMusicPlayer from "@/components/home/tabs/mini-music-player";
 import useSavedStore from "@/store/saved-store";
 import COLORS from "@/constants/colors";
+import ListMusicFilesHeader from "@/components/home/list-music-files-header";
 
 const SavedScreen = () => {
   const { allSavedMusicTracks } = useSavedStore(["allSavedMusicTracks"]);
@@ -18,10 +19,14 @@ const SavedScreen = () => {
       {allSavedMusicTracks.length <= 0 && <NoSavedMusicFiles />}
       {allSavedMusicTracks.length > 0 && (
         <View className="flex-1">
-          <View>
+          <View className="px-5">
+            <ListMusicFilesHeader
+              heading="Saved Music Files"
+              musicFilesLength={allSavedMusicTracks.length}
+            />
+
             <ListMusicFiles
               musicFiles={allSavedMusicTracks}
-              heading="Saved Music Files"
               queueType="saved"
             />
           </View>

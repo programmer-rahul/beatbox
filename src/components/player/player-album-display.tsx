@@ -10,7 +10,7 @@ const PlayerAlbumDisplay = () => {
   ]);
   return (
     <View
-      className="aspect-square w-11/12 items-center justify-center self-center rounded-full border-main/40 bg-main/30"
+      className="aspect-square w-11/12 items-center justify-center self-center rounded-xl border-main/40 bg-main/30"
       style={{
         backgroundColor: COLORS.main + "33",
         borderColor: COLORS.main + "44",
@@ -22,7 +22,7 @@ const PlayerAlbumDisplay = () => {
           source={{
             uri: allCoverImages[currentMusicTrack.url],
           }}
-          className="h-full w-full rounded-full"
+          className="h-full w-full rounded-xl"
         />
       ) : (
         <Feather name="music" size={180} color={COLORS.main} />

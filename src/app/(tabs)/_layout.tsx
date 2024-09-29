@@ -1,6 +1,11 @@
 import { Tabs, usePathname } from "expo-router";
 import Header from "@/components/header/header";
-import { AntDesign, Ionicons, Octicons } from "@expo/vector-icons";
+import {
+  AntDesign,
+  Ionicons,
+  MaterialCommunityIcons,
+  Octicons,
+} from "@expo/vector-icons";
 import COLORS from "@/constants/colors";
 import { useEffect } from "react";
 import { StatusBar } from "react-native";
@@ -25,6 +30,8 @@ const TabLayout = () => {
       screenOptions={{
         headerShown: true,
         header: () => <Header />,
+        title: "yes",
+        tabBarShowLabel: false,
         tabBarStyle: {
           backgroundColor:
             currentTab === "/player" ? COLORS.secondaryBg : COLORS.primaryBg,
@@ -48,7 +55,7 @@ const TabLayout = () => {
           title: "Home",
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
-              size={20}
+              size={25}
               name={focused ? "home-sharp" : "home-outline"}
               color={color}
             />
@@ -61,7 +68,7 @@ const TabLayout = () => {
           title: "Player",
           tabBarIcon: ({ color, focused }) => (
             <AntDesign
-              size={20}
+              size={25}
               name={focused ? "play" : "playcircleo"}
               color={color}
             />
@@ -75,8 +82,21 @@ const TabLayout = () => {
           title: "Saved",
           tabBarIcon: ({ color, focused }) => (
             <Octicons
-              size={20}
+              size={25}
               name={focused ? "heart-fill" : "heart"}
+              color={color}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="playlist"
+        options={{
+          title: "Playlist",
+          tabBarIcon: ({ color, focused }) => (
+            <MaterialCommunityIcons
+              name={focused ? "playlist-music" : "playlist-music-outline"}
+              size={30}
               color={color}
             />
           ),

@@ -13,6 +13,11 @@ const useFetchLocalMusic = () => {
   const fetchLocalMusicFiles = async () => {
     setIsFetching(!trackStore.getState().allLocalMusicTracks.length);
 
+    console.log(
+      "fetched",
+      trackStore.getState().allLocalMusicTracks.slice(8, 11),
+    );
+
     const fetchedMusicFiles = await getAll({
       limit: 200,
       minSongDuration: 1000,

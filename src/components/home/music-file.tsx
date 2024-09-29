@@ -105,8 +105,8 @@ const MusicFile = memo(
             )}
           </View>
 
-          <View className="flex-1 flex-row items-center self-center">
-            <View className="flex flex-1 justify-center">
+          <View className="flex-1 flex-row self-center">
+            <View className="flex-1 space-y-1 flex-col">
               <Text
                 className="flex-1 font-primary_semibold text-xs text-primaryText"
                 numberOfLines={1}
@@ -117,7 +117,7 @@ const MusicFile = memo(
                 {musicFile.title}
               </Text>
               <Text
-                className="flex-1 font-primary_regular text-xs text-primaryText"
+                className="flex-1 font-primary_regular text-xs text-secondaryText"
                 numberOfLines={1}
                 style={{
                   color: COLORS.secondaryText,
@@ -127,7 +127,7 @@ const MusicFile = memo(
               </Text>
             </View>
             <Text
-              className="ml-2 rounded-md px-2 py-[2px] font-primary_semibold text-xs text-secondaryText"
+              className="ml-2 self-center rounded-sm px-2 py-[2px] font-primary_semibold text-xs text-secondaryText"
               style={{
                 color: COLORS.primaryText + "66",
                 backgroundColor: COLORS.secondaryText + "33",
