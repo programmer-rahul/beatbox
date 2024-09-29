@@ -5,7 +5,7 @@ const NoMusicFilesFound = () => {
   return (
     <View className="h-full items-center justify-center">
       <Text
-        className="font-primary_semibold text-center text-2xl text-primaryText"
+        className="text-center font-primary_semibold text-2xl text-primaryText"
         style={{ color: COLORS.primaryText }}
       >
         No Music Files Found

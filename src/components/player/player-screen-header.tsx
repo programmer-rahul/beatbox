@@ -12,7 +12,7 @@ const PlayerScreenHeader = () => {
       }}
     >
       <Text
-        className="text-xl font-primary_regular text-secondaryText"
+        className="font-primary_regular text-xl text-secondaryText"
         style={{
           color: COLORS.secondaryText,
         }}

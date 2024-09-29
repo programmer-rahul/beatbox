@@ -1,4 +1,3 @@
-import React from "react";
 import { View } from "react-native";
 import PlayerAlbumDisplay from "./player-album-display";
 import PlayerControls from "./player-controls";

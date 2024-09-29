@@ -3,7 +3,7 @@ import Feather from "@expo/vector-icons/Feather";
 import Entypo from "@expo/vector-icons/Entypo";
 import { formatMusicFileDuration } from "@/lib/helper";
 import COLORS from "@/constants/colors";
-import React, { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import useQueueStore, { queueStore } from "@/store/queue-store";
 import useTrackStore, { trackStore } from "@/store/track-store";
 import { savedStore } from "@/store/saved-store";
@@ -12,7 +12,7 @@ import { useRouter } from "expo-router";
 import TrackPlayer from "react-native-track-player";
 import { TQueueType } from "@/types/store/queue-store";
 
-const MusicFile = React.memo(
+const MusicFile = memo(
   ({
     musicFile,
     lastFile,
@@ -32,7 +32,7 @@ const MusicFile = React.memo(
     const { setCurrentQueue } = useQueueStore(["setCurrentQueue"]);
     const { navigate } = useRouter();
 
-    console.log("inside music-file");
+    // console.log("inside music-file");
 
     const onMusicFilePress = async (
       musicFile: TMusicTrack,
@@ -92,7 +92,7 @@ const MusicFile = React.memo(
           onPress={() => onMusicFilePress(musicFile, queueType)}
         >
           <View
-            className="aspect-square h-10 items-center justify-center rounded-md bg-main"
+            className="aspect-square h-12 items-center justify-center rounded-md bg-main"
             style={{ backgroundColor: COLORS.main + "22" }}
           >
             {musicCover ? (

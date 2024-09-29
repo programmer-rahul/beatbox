@@ -8,6 +8,8 @@ import useSetupTrackPlayer from "@/hooks/useSetupTrackPlayer";
 import usePermission from "@/hooks/usePermission";
 import PermissionRequired from "@/components/reusable/permission-required";
 import usePlayerEvents from "@/hooks/usePlayerEvents";
+import { StatusBar } from "react-native";
+import COLORS from "@/constants/colors";
 
 TrackPlayer.registerPlaybackService(() => playbackService);
 SplashScreen.preventAutoHideAsync();
@@ -37,6 +39,10 @@ export default function RootLayout() {
     <>
       <SafeAreaView className="flex-1">
         <RootNavigation />
+        <StatusBar
+          backgroundColor={COLORS.primaryBg}
+          barStyle={"light-content"}
+        />
       </SafeAreaView>
     </>
   );

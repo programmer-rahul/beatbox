@@ -1,6 +1,5 @@
 import COLORS from "@/constants/colors";
 import { formatMusicFileDuration } from "@/lib/helper";
-import React from "react";
 import { Text } from "react-native";
 import { useProgress } from "react-native-track-player";
 

@@ -5,11 +5,13 @@ import COLORS from "@/constants/colors";
 import MiniMusicPlayer from "@/components/home/tabs/mini-music-player";
 import useTrackStore from "@/store/track-store";
 import useFetchLocalMusic from "@/hooks/useFetchLocalMusic";
+import useInitialQueue from "@/hooks/useInitialQueue";
 
 export default function HomeScreen() {
   const { allLocalMusicTracks } = useTrackStore(["allLocalMusicTracks"]);
 
   const { isFetching } = useFetchLocalMusic();
+  useInitialQueue();
 
   console.log("inside home page", allLocalMusicTracks.length);
 

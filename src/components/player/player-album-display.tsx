@@ -1,5 +1,5 @@
 import COLORS from "@/constants/colors";
-import useTrackStore, { trackStore } from "@/store/track-store";
+import useTrackStore from "@/store/track-store";
 import { Feather } from "@expo/vector-icons";
 import { Image, View } from "react-native";
 

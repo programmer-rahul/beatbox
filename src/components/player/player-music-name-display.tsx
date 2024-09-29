@@ -17,7 +17,7 @@ const PlayerMusicNameDisplay = () => {
         {currentMusicTrack?.title}
       </Text>
       <Text
-        className="text-center text-sm font-primary_regular text-secondaryText"
+        className="text-center font-primary_regular text-sm text-secondaryText"
         numberOfLines={1}
         style={{
           color: COLORS.secondaryText,

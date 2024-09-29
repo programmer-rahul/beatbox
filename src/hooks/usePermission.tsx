@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Alert, Linking, PermissionsAndroid, Platform } from "react-native";
+import { Alert, Linking, PermissionsAndroid } from "react-native";
 import usePermissionStore from "@/store/permission-store";
 import { useRouter } from "expo-router";
 
