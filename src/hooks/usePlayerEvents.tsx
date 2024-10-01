@@ -32,19 +32,19 @@ const usePlayerEvents = () => {
 
   // to handle music finish
   // useTrackPlayerEvents([Event.PlaybackActiveTrackChanged], (event) => {
+  //   const currentMusicTrack = trackStore.getState().currentMusicTrack;
+  //   const isLoopingTrack = trackStore.getState().isLoopingTrack;
+
+  //   if (isLoopingTrack) return;
   //   if (
   //     event.lastTrack &&
   //     event.track &&
-  //     trackStore.getState().currentMusicTrack &&
-  //     !trackStore.getState().isLoopingTrack
+  //     currentMusicTrack &&
+  //     event.lastTrack.url !== currentMusicTrack?.url
   //   ) {
-  //     if (
-  //       trackStore.getState().currentMusicTrack &&
-  //       event.lastTrack.url !== trackStore.getState().currentMusicTrack?.url
-  //     ) {
-  //       console.log("here inside this");
-  //       return changeCurrentMusicTrack("next");
-  //     }
+  //     console.log("currentTrack : ", currentMusicTrack);
+  //     console.log("event : ", event);
+  //     return changeCurrentMusicTrack("next");
   //   }
   // });
 };

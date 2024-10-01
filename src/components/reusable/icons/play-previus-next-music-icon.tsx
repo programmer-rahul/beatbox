@@ -21,11 +21,11 @@ function PlayPreviousNextMusicIcon({
       name={type === "previous" ? "skip-back" : "skip-forward"}
       size={size}
       color={COLORS.secondaryIcon}
-      onPress={() => {
+      onPress={async () => {
         changeCurrentMusicTrack(type);
         type === "previous"
-          ? TrackPlayer.skipToPrevious()
-          : TrackPlayer.skipToNext();
+          ? await TrackPlayer.skipToPrevious()
+          : await TrackPlayer.skipToNext();
       }}
     />
   );

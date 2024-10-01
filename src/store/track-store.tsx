@@ -20,6 +20,8 @@ const useTrackStore = create<TTrackStore>()(
       changeCurrentMusicTrack: (type) => {
         let itChanged = false;
         set((state) => {
+          if (state.isLoopingTrack) return {};
+
           const currentQueue = queueStore.getState().currentQueue;
           const currentSelectedQueueMusicFiles =
             currentQueue.type === "home"
@@ -36,6 +38,12 @@ const useTrackStore = create<TTrackStore>()(
             (localMusicTrack) =>
               localMusicTrack.url === state.currentMusicTrack?.url,
           );
+
+          if (currentTrackIndex === -1) {
+            return {
+              currentMusicTrack: currentSelectedQueueMusicFiles[1],
+            };
+          }
 
           if (
             (currentTrackIndex <= 0 && type === "previous") ||
@@ -75,10 +83,6 @@ const useTrackStore = create<TTrackStore>()(
       setIsLoopingTrack: (value) => set(() => ({ isLoopingTrack: value })),
       isShufflingQueue: false,
       setIsShufflingQueue: (value) => set(() => ({ isShufflingQueue: value })),
-
-      allCoverImages: {},
-      setAllCoverImages: (coverImages) =>
-        set(() => ({ allCoverImages: coverImages })),
     }),
 
     {

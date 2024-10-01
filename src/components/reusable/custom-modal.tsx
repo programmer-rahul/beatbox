@@ -17,31 +17,46 @@ function CustomModal({
   onPress: () => void;
 }) {
   return (
-    <Modal animationType="fade" transparent={true} visible={isVisible}>
+    <Modal animationType="slide" transparent={true} visible={isVisible}>
       <View
-        className="absolute bottom-1/2 left-[10%] h-[17%] w-4/5 rounded-md p-2"
-        style={{ backgroundColor: COLORS.secondaryBg }}
+        className="absolute left-[5%] top-1/4 w-[90%] rounded-md px-3 py-4"
+        style={{ backgroundColor: COLORS.primaryIcon }}
       >
         <View className="flex-row items-center justify-between pb-2">
-          <Text className="font-primary_semibold text-xl">New Playlist</Text>
+          <Text className="font-primary_semibold text-xl text-primaryText">
+            New Playlist
+          </Text>
           <Pressable onPress={() => setIsVisible(false)}>
-            <MaterialIcons name="close" color={COLORS.primaryBg} size={22} />
+            <MaterialIcons
+              name="close"
+              color={COLORS.secondaryIcon}
+              size={22}
+            />
           </Pressable>
         </View>
         <View className="w-full flex-1 justify-around space-y-2">
+          <Text
+            className="font-primary_regular text-base"
+            style={{ color: COLORS.secondaryText }}
+          >
+            Please enter a playlist name
+          </Text>
           <TextInput
-            placeholder="Playlist name here..."
-            className="rounded-sm border border-secondaryText px-2"
+            className="rounded-sm border border-secondaryText px-2 py-1"
             value={modalText}
             onChangeText={setModalText}
+            autoFocus
           />
           <View>
             <Pressable
-              className="flex-row items-center justify-center self-end rounded-sm bg-main px-2"
+              className="flex-row items-center justify-center self-end rounded-sm bg-secondaryBg px-2 py-1"
               onPress={onPress}
             >
               <Text
-                style={{ color: COLORS.primaryText }}
+                style={{
+                  backgroundColor: COLORS.secondaryBg,
+                  color: COLORS.primaryBg,
+                }}
                 className="font-primary_semibold text-base"
               >
                 Create

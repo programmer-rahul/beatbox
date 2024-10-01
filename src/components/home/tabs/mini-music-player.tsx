@@ -1,4 +1,4 @@
-import { Image, Pressable, Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { formatMusicFileDuration } from "@/lib/helper";
 import COLORS from "@/constants/colors";
@@ -8,13 +8,26 @@ import PlayPauseMusicIcon from "@/components/reusable/icons/play-pause-music-ico
 import DisplayCurrentMusicPosition from "@/components/reusable/display-current-music-position";
 import PlayPreviusNextMusicIcon from "@/components/reusable/icons/play-previus-next-music-icon";
 import { useProgress } from "react-native-track-player";
+import { useEffect, useState } from "react";
+import { searchSongs } from "react-native-get-music-files";
+import FastImage from "react-native-fast-image";
 
 const MiniMusicPlayer = () => {
-  const { currentMusicTrack, allCoverImages } = useTrackStore([
-    "currentMusicTrack",
-    "allCoverImages",
-  ]);
+  const { currentMusicTrack } = useTrackStore(["currentMusicTrack"]);
   const { navigate } = useRouter();
+
+  const [musicCover, setMusicCover] = useState("");
+
+  useEffect(() => {
+    (async () => {
+      const songs = await searchSongs({
+        searchBy: currentMusicTrack?.title,
+      });
+      if (typeof songs !== "string") {
+        setMusicCover(songs[0].cover);
+      }
+    })();
+  }, [currentMusicTrack]);
 
   console.log("inside mini-music-player");
 
@@ -40,11 +53,12 @@ const MiniMusicPlayer = () => {
               className="aspect-square h-11 items-center justify-center rounded-md"
               style={{ backgroundColor: COLORS.main + "22" }}
             >
-              {currentMusicTrack.cover &&
-              allCoverImages[currentMusicTrack.url] ? (
-                <Image
+              {currentMusicTrack.cover && musicCover ? (
+                <FastImage
                   source={{
-                    uri: allCoverImages[currentMusicTrack.url],
+                    uri: musicCover,
+                    priority: "normal",
+                    cache: FastImage.cacheControl.immutable,
                   }}
                   className="h-full w-full rounded-md"
                 />

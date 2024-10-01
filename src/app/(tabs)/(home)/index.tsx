@@ -7,8 +7,9 @@ import useTrackStore from "@/store/track-store";
 import useFetchLocalMusic from "@/hooks/useFetchLocalMusic";
 import useInitialQueue from "@/hooks/useInitialQueue";
 import ListMusicFilesHeader from "@/components/home/list-music-files-header";
+import MountOnMusicTrackFinish from "@/components/mount-on-music-track-finish";
 
-export default function HomeScreen() {
+const HomeScreen = () => {
   const { allLocalMusicTracks } = useTrackStore(["allLocalMusicTracks"]);
 
   const { isFetching } = useFetchLocalMusic();
@@ -34,6 +35,8 @@ export default function HomeScreen() {
           <MiniMusicPlayer />
         </View>
       )}
+
+      <MountOnMusicTrackFinish />
     </View>
   ) : (
     <View
@@ -46,4 +49,6 @@ export default function HomeScreen() {
       <ActivityIndicator size={"large"} color={COLORS.main} />
     </View>
   );
-}
+};
+
+export default HomeScreen;

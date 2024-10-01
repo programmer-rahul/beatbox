@@ -1,4 +1,4 @@
-import { View, Text, Pressable, Image } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import Feather from "@expo/vector-icons/Feather";
 import Entypo from "@expo/vector-icons/Entypo";
 import { formatMusicFileDuration } from "@/lib/helper";
@@ -12,6 +12,8 @@ import { TMusicTrack } from "@/types/store/track-store";
 import { useRouter } from "expo-router";
 import TrackPlayer from "react-native-track-player";
 import { TQueueType } from "@/types/store/queue-store";
+import { searchSongs } from "react-native-get-music-files";
+import FastImage from "react-native-fast-image";
 
 const MusicFile = memo(
   ({
@@ -26,12 +28,10 @@ const MusicFile = memo(
     queueType: TQueueType;
     playlistName?: string;
   }) => {
-    const { setCurrentMusicTrack, setIsTrackPlaying, allCoverImages } =
-      useTrackStore([
-        "setCurrentMusicTrack",
-        "setIsTrackPlaying",
-        "allCoverImages",
-      ]);
+    const { setCurrentMusicTrack, setIsTrackPlaying } = useTrackStore([
+      "setCurrentMusicTrack",
+      "setIsTrackPlaying",
+    ]);
     const { setCurrentQueue } = useQueueStore(["setCurrentQueue"]);
     const { navigate } = useRouter();
     const [musicCover, setMusicCover] = useState("");
@@ -89,11 +89,15 @@ const MusicFile = memo(
     };
 
     useEffect(() => {
-      if (musicFile.cover && allCoverImages[musicFile.url]) {
-        const musicCover = allCoverImages[musicFile.url];
-        setMusicCover(musicCover);
-      }
-    }, [allCoverImages]);
+      (async () => {
+        const songs = await searchSongs({
+          searchBy: musicFile?.title,
+        });
+        if (typeof songs !== "string") {
+          setMusicCover(songs[0].cover);
+        }
+      })();
+    }, []);
 
     return (
       <View
@@ -111,8 +115,12 @@ const MusicFile = memo(
             style={{ backgroundColor: COLORS.main + "22" }}
           >
             {musicCover ? (
-              <Image
-                source={{ uri: musicCover }}
+              <FastImage
+                source={{
+                  uri: musicCover,
+                  priority: "normal",
+                  cache: FastImage.cacheControl.immutable,
+                }}
                 className="h-full w-full rounded-md"
               />
             ) : (
