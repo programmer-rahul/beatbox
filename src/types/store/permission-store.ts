@@ -4,4 +4,3 @@ interface TusePermissionStore {
 }
 
 export { TusePermissionStore };
-

@@ -11,7 +11,7 @@ function ListAllPlaylists({
   const { allPlaylists } = usePlaylistStore(["allPlaylists"]);
 
   return allPlaylists.length ? (
-    <View className="w-full">
+    <View className="mt-4 w-full">
       <FlatList
         data={allPlaylists}
         renderItem={({ item }) => {

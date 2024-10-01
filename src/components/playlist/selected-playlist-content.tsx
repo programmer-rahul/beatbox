@@ -18,7 +18,7 @@ function SelectedPlaylistContent({
     (playlist) => playlist.name === selectedPlaylist,
   );
 
-  if (!currentPlaylist) return null;
+  if (!currentPlaylist || !selectedPlaylist) return null;
 
   return (
     <View
@@ -46,12 +46,13 @@ function SelectedPlaylistContent({
           </Text>
           <View />
         </View>
-        <View className="w-full mt-4">
+        <View className="mt-4 w-full">
           {!currentPlaylist?.musicTracksCount ? (
             <PlaylistIsEmpty />
           ) : (
             <ListMusicFiles
               queueType="playlist"
+              playlistName={selectedPlaylist}
               musicFiles={currentPlaylist.musicTracks}
             />
           )}

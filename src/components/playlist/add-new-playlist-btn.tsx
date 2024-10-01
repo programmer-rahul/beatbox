@@ -11,7 +11,7 @@ function AddNewPlaylistBtn({
   return (
     <Pressable
       onPress={() => setIsVisible(true)}
-      className="flex flex-row items-center space-x-2 rounded-md border px-4 py-1 my-4"
+      className="my-4 flex flex-row items-center space-x-2 rounded-md border px-4 py-1"
       style={{ borderColor: COLORS.secondaryText }}
     >
       <Entypo name="plus" size={30} color={COLORS.main} />

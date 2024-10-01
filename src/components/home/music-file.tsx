@@ -6,6 +6,7 @@ import COLORS from "@/constants/colors";
 import { memo, useEffect, useState } from "react";
 import useQueueStore, { queueStore } from "@/store/queue-store";
 import useTrackStore, { trackStore } from "@/store/track-store";
+import { playlistStore } from "@/store/playlist-store";
 import { savedStore } from "@/store/saved-store";
 import { TMusicTrack } from "@/types/store/track-store";
 import { useRouter } from "expo-router";
@@ -17,11 +18,13 @@ const MusicFile = memo(
     musicFile,
     lastFile,
     queueType,
+    playlistName,
   }: {
     musicFile: TMusicTrack;
     index?: number;
     lastFile: boolean;
     queueType: TQueueType;
+    playlistName?: string;
   }) => {
     const { setCurrentMusicTrack, setIsTrackPlaying, allCoverImages } =
       useTrackStore([
@@ -31,29 +34,43 @@ const MusicFile = memo(
       ]);
     const { setCurrentQueue } = useQueueStore(["setCurrentQueue"]);
     const { navigate } = useRouter();
+    const [musicCover, setMusicCover] = useState("");
 
-    // console.log("inside music-file");
+    console.log("inside music-file");
 
     const onMusicFilePress = async (
       musicFile: TMusicTrack,
       queueType: TQueueType,
     ) => {
-      const currentSelectedQueueMusicFiles =
+      let currentSelectedQueueMusicFiles =
         queueType === "home"
           ? trackStore.getState().allLocalMusicTracks
-          : savedStore.getState().allSavedMusicTracks;
+          : queueType === "saved"
+            ? savedStore.getState().allSavedMusicTracks
+            : playlistStore
+                .getState()
+                .allPlaylists.find((playlist) => playlist.name === playlistName)
+                ?.musicTracks || [];
+
       const currentMusicTrack = trackStore.getState().currentMusicTrack;
       const currentQueue = queueStore.getState().currentQueue;
 
       if (currentMusicTrack?.url !== musicFile.url) {
+        // add songs in queue if queue is empty or selected queue is different one
         if (!currentQueue.tracksCount || currentQueue.type !== queueType) {
           await TrackPlayer.reset();
           await TrackPlayer.add(currentSelectedQueueMusicFiles);
 
-          setCurrentQueue({
-            type: queueType,
-            tracksCount: currentSelectedQueueMusicFiles.length,
-          });
+          queueType !== "playlist"
+            ? setCurrentQueue({
+                type: queueType,
+                tracksCount: currentSelectedQueueMusicFiles.length,
+              })
+            : setCurrentQueue({
+                type: queueType,
+                name: playlistName,
+                tracksCount: currentSelectedQueueMusicFiles.length,
+              });
         }
 
         let trackIndex = currentSelectedQueueMusicFiles.findIndex(
@@ -70,8 +87,6 @@ const MusicFile = memo(
 
       setCurrentMusicTrack(musicFile);
     };
-
-    const [musicCover, setMusicCover] = useState("");
 
     useEffect(() => {
       if (musicFile.cover && allCoverImages[musicFile.url]) {
@@ -106,26 +121,10 @@ const MusicFile = memo(
           </View>
 
           <View className="flex-1 flex-row self-center">
-            <View className="flex-1 space-y-1 flex-col">
-              <Text
-                className="flex-1 font-primary_semibold text-xs text-primaryText"
-                numberOfLines={1}
-                style={{
-                  color: COLORS.primaryText,
-                }}
-              >
-                {musicFile.title}
-              </Text>
-              <Text
-                className="flex-1 font-primary_regular text-xs text-secondaryText"
-                numberOfLines={1}
-                style={{
-                  color: COLORS.secondaryText,
-                }}
-              >
-                {musicFile.artist}
-              </Text>
-            </View>
+            <MusicFileTitleArtistDisplay
+              title={musicFile.title}
+              artist={musicFile.artist}
+            />
             <Text
               className="ml-2 self-center rounded-sm px-2 py-[2px] font-primary_semibold text-xs text-secondaryText"
               style={{
@@ -150,3 +149,33 @@ const MusicFile = memo(
 );
 
 export default MusicFile;
+
+const MusicFileTitleArtistDisplay = memo(
+  ({ title, artist }: { title: string; artist: string }) => {
+    const { currentMusicTrack } = useTrackStore(["currentMusicTrack"]);
+    const isCurrentPlayingSong = currentMusicTrack?.title === title;
+
+    return (
+      <View className="flex-1 flex-col space-y-1">
+        <Text
+          className="flex-1 font-primary_semibold text-xs text-primaryText"
+          numberOfLines={1}
+          style={{
+            color: isCurrentPlayingSong ? COLORS.main : COLORS.primaryText,
+          }}
+        >
+          {title}
+        </Text>
+        <Text
+          className="flex-1 font-primary_regular text-xs text-secondaryText"
+          numberOfLines={1}
+          style={{
+            color: isCurrentPlayingSong ? COLORS.main : COLORS.secondaryText,
+          }}
+        >
+          {artist}
+        </Text>
+      </View>
+    );
+  },
+);

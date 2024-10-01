@@ -1,8 +1,8 @@
 import COLORS from "@/constants/colors";
 import { Feather } from "@expo/vector-icons";
 import { memo } from "react";
-import TrackPlayer from "react-native-track-player";
 import useTrackStore from "@/store/track-store";
+import TrackPlayer from "react-native-track-player";
 
 function PlayPreviousNextMusicIcon({
   size = 35,
@@ -22,10 +22,10 @@ function PlayPreviousNextMusicIcon({
       size={size}
       color={COLORS.secondaryIcon}
       onPress={() => {
+        changeCurrentMusicTrack(type);
         type === "previous"
           ? TrackPlayer.skipToPrevious()
           : TrackPlayer.skipToNext();
-        changeCurrentMusicTrack(type);
       }}
     />
   );

@@ -3,6 +3,7 @@ type TQueueType = "home" | "saved" | "playlist";
 interface TQueue {
   type: TQueueType;
   tracksCount?: number;
+  name?: string;
 }
 
 interface TQueueStore {

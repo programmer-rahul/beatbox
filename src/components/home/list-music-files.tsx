@@ -6,9 +6,11 @@ import { TQueueType } from "@/types/store/queue-store";
 const ListMusicFiles = ({
   musicFiles,
   queueType,
+  playlistName,
 }: {
   musicFiles: TMusicTrack[];
   queueType: TQueueType;
+  playlistName?: string;
 }) => {
   const musicFilesLength = musicFiles.length;
 
@@ -23,6 +25,7 @@ const ListMusicFiles = ({
               index={index}
               lastFile={musicFilesLength == index + 1}
               queueType={queueType}
+              playlistName={playlistName}
             />
           );
         }}

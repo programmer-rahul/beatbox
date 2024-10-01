@@ -31,21 +31,22 @@ const usePlayerEvents = () => {
   );
 
   // to handle music finish
-  useTrackPlayerEvents([Event.PlaybackActiveTrackChanged], (event) => {
-    if (
-      event.lastTrack &&
-      event.track &&
-      trackStore.getState().currentMusicTrack &&
-      !trackStore.getState().isLoopingTrack
-    ) {
-      if (
-        trackStore.getState().currentMusicTrack &&
-        event.lastTrack.url !== trackStore.getState().currentMusicTrack?.url
-      )
-        return;
-      changeCurrentMusicTrack("next");
-    }
-  });
+  // useTrackPlayerEvents([Event.PlaybackActiveTrackChanged], (event) => {
+  //   if (
+  //     event.lastTrack &&
+  //     event.track &&
+  //     trackStore.getState().currentMusicTrack &&
+  //     !trackStore.getState().isLoopingTrack
+  //   ) {
+  //     if (
+  //       trackStore.getState().currentMusicTrack &&
+  //       event.lastTrack.url !== trackStore.getState().currentMusicTrack?.url
+  //     ) {
+  //       console.log("here inside this");
+  //       return changeCurrentMusicTrack("next");
+  //     }
+  //   }
+  // });
 };
 
 export default usePlayerEvents;

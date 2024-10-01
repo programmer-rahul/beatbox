@@ -5,6 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createStoreWithShallow } from "@/lib/create-store-with-shallow";
 import { queueStore } from "./queue-store";
 import { savedStore } from "./saved-store";
+import { playlistStore } from "./playlist-store";
 
 const useTrackStore = create<TTrackStore>()(
   persist(
@@ -23,7 +24,13 @@ const useTrackStore = create<TTrackStore>()(
           const currentSelectedQueueMusicFiles =
             currentQueue.type === "home"
               ? state.allLocalMusicTracks
-              : savedStore.getState().allSavedMusicTracks;
+              : currentQueue.type === "saved"
+                ? savedStore.getState().allSavedMusicTracks
+                : playlistStore
+                    .getState()
+                    .allPlaylists.find(
+                      (playlist) => playlist.name === currentQueue.name,
+                    )?.musicTracks || [];
 
           const currentTrackIndex = currentSelectedQueueMusicFiles.findIndex(
             (localMusicTrack) =>
@@ -35,8 +42,19 @@ const useTrackStore = create<TTrackStore>()(
             (currentTrackIndex + 1 >= currentSelectedQueueMusicFiles.length &&
               type === "next")
           ) {
-            itChanged = false;
-            return {};
+            const isShufflingQueue = state.isShufflingQueue;
+
+            if (!isShufflingQueue) return {};
+
+            itChanged = true;
+            return {
+              currentMusicTrack:
+                type === "previous"
+                  ? currentSelectedQueueMusicFiles[
+                      currentSelectedQueueMusicFiles.length - 1
+                    ]
+                  : currentSelectedQueueMusicFiles[0],
+            };
           } else {
             itChanged = true;
             return {
