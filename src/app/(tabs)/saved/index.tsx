@@ -30,7 +30,6 @@ const SavedScreen = () => {
               queueType="saved"
             />
           </View>
-          <MiniMusicPlayer />
         </View>
       )}
     </View>

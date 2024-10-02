@@ -17,7 +17,7 @@ function LoopMusicTrackIcon({ size = 25 }: { size?: number }) {
       onPress={() => {
         setIsLoopingTrack(!isLoopingTrack);
         TrackPlayer.setRepeatMode(
-          isLoopingTrack ? RepeatMode.Queue : RepeatMode.Track,
+          isLoopingTrack ? RepeatMode.Off : RepeatMode.Track,
         );
       }}
     />

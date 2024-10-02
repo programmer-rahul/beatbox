@@ -2,7 +2,6 @@ import { Text, View, ActivityIndicator } from "react-native";
 import ListMusicFiles from "@/components/home/list-music-files";
 import NoMusicFilesFound from "@/components/home/no-music-files-found";
 import COLORS from "@/constants/colors";
-import MiniMusicPlayer from "@/components/home/tabs/mini-music-player";
 import useTrackStore from "@/store/track-store";
 import useFetchLocalMusic from "@/hooks/useFetchLocalMusic";
 import useInitialQueue from "@/hooks/useInitialQueue";
@@ -33,7 +32,6 @@ const HomeScreen = () => {
             />
             <ListMusicFiles musicFiles={allLocalMusicTracks} queueType="home" />
           </View>
-          <MiniMusicPlayer />
         </View>
       )}
 

@@ -12,7 +12,7 @@ function SelectedPlaylistContent({
   selectedPlaylist: null | string;
   setSelectedPlaylist: Dispatch<SetStateAction<null | string>>;
 }) {
-  const { allPlaylists } = usePlaylistStore(["allPlaylists"]);
+  const allPlaylists = usePlaylistStore((state) => state.allPlaylists);
 
   const currentPlaylist = allPlaylists.find(
     (playlist) => playlist.name === selectedPlaylist,

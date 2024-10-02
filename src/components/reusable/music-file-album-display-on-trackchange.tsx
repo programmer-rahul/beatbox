@@ -43,7 +43,11 @@ function MusicFileAlbumDisplayOnTrackChange({
           className="h-full w-full rounded-md"
         />
       ) : (
-        <Feather name="music" size={22} color={COLORS.main} />
+        <Feather
+          name="music"
+          size={size === "small" ? 22 : 250}
+          color={COLORS.main}
+        />
       )}
     </View>
   );

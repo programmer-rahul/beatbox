@@ -18,7 +18,7 @@ const MiniMusicPlayer = () => {
 
   return currentMusicTrack ? (
     <View
-      className="absolute -bottom-1 z-10 h-14 w-full rounded-t-xl"
+      className="absolute bottom-12 z-10 h-14 w-full rounded-t-xl"
       style={{
         backgroundColor: COLORS.primaryBg,
       }}
