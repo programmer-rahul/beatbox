@@ -89,12 +89,10 @@ const useTrackStore = create<TTrackStore>()(
       name: "track-store",
       storage: createJSONStorage(() => AsyncStorage),
       partialize: ({
-        currentMusicTrack,
         allLocalMusicTracks,
         isLoopingTrack,
         isShufflingQueue,
       }) => ({
-        currentMusicTrack,
         allLocalMusicTracks,
         isLoopingTrack,
         isShufflingQueue,

@@ -1,9 +1,8 @@
 import { View, Text, Pressable } from "react-native";
-import Feather from "@expo/vector-icons/Feather";
 import Entypo from "@expo/vector-icons/Entypo";
 import { formatMusicFileDuration } from "@/lib/helper";
 import COLORS from "@/constants/colors";
-import { memo, useEffect, useState } from "react";
+import { memo } from "react";
 import useQueueStore, { queueStore } from "@/store/queue-store";
 import useTrackStore, { trackStore } from "@/store/track-store";
 import { playlistStore } from "@/store/playlist-store";
@@ -12,156 +11,116 @@ import { TMusicTrack } from "@/types/store/track-store";
 import { useRouter } from "expo-router";
 import TrackPlayer from "react-native-track-player";
 import { TQueueType } from "@/types/store/queue-store";
-import { searchSongs } from "react-native-get-music-files";
-import FastImage from "react-native-fast-image";
+import MusicFileAlbumDisplay from "../reusable/music-file-album-display";
 
-const MusicFile = memo(
-  ({
-    musicFile,
-    lastFile,
-    queueType,
-    playlistName,
-  }: {
-    musicFile: TMusicTrack;
-    index?: number;
-    lastFile: boolean;
-    queueType: TQueueType;
-    playlistName?: string;
-  }) => {
-    const { setCurrentMusicTrack, setIsTrackPlaying } = useTrackStore([
-      "setCurrentMusicTrack",
-      "setIsTrackPlaying",
-    ]);
-    const { setCurrentQueue } = useQueueStore(["setCurrentQueue"]);
-    const { navigate } = useRouter();
-    const [musicCover, setMusicCover] = useState("");
+const MusicFile = ({
+  musicFile,
+  lastFile,
+  queueType,
+  playlistName,
+}: {
+  musicFile: TMusicTrack;
+  index?: number;
+  lastFile: boolean;
+  queueType: TQueueType;
+  playlistName?: string;
+}) => {
+  const { setCurrentMusicTrack, setIsTrackPlaying } = useTrackStore([
+    "setCurrentMusicTrack",
+    "setIsTrackPlaying",
+  ]);
+  const { setCurrentQueue } = useQueueStore(["setCurrentQueue"]);
+  const { navigate } = useRouter();
 
-    console.log("inside music-file");
+  console.log("INSIDE MUSIC_FILE");
 
-    const onMusicFilePress = async (
-      musicFile: TMusicTrack,
-      queueType: TQueueType,
-    ) => {
-      let currentSelectedQueueMusicFiles =
-        queueType === "home"
-          ? trackStore.getState().allLocalMusicTracks
-          : queueType === "saved"
-            ? savedStore.getState().allSavedMusicTracks
-            : playlistStore
-                .getState()
-                .allPlaylists.find((playlist) => playlist.name === playlistName)
-                ?.musicTracks || [];
+  const onMusicFilePress = async (
+    musicFile: TMusicTrack,
+    queueType: TQueueType,
+  ) => {
+    let currentSelectedQueueMusicFiles =
+      queueType === "home"
+        ? trackStore.getState().allLocalMusicTracks
+        : queueType === "saved"
+          ? savedStore.getState().allSavedMusicTracks
+          : playlistStore
+              .getState()
+              .allPlaylists.find((playlist) => playlist.name === playlistName)
+              ?.musicTracks || [];
 
-      const currentMusicTrack = trackStore.getState().currentMusicTrack;
-      const currentQueue = queueStore.getState().currentQueue;
+    const currentMusicTrack = trackStore.getState().currentMusicTrack;
+    const currentQueue = queueStore.getState().currentQueue;
 
-      if (currentMusicTrack?.url !== musicFile.url) {
-        // add songs in queue if queue is empty or selected queue is different one
-        if (!currentQueue.tracksCount || currentQueue.type !== queueType) {
-          await TrackPlayer.reset();
-          await TrackPlayer.add(currentSelectedQueueMusicFiles);
+    if (currentMusicTrack?.url !== musicFile.url) {
+      // add songs in queue if queue is empty or selected queue is different one
+      if (!currentQueue.tracksCount || currentQueue.type !== queueType) {
+        await TrackPlayer.reset();
+        await TrackPlayer.add(currentSelectedQueueMusicFiles);
 
-          queueType !== "playlist"
-            ? setCurrentQueue({
-                type: queueType,
-                tracksCount: currentSelectedQueueMusicFiles.length,
-              })
-            : setCurrentQueue({
-                type: queueType,
-                name: playlistName,
-                tracksCount: currentSelectedQueueMusicFiles.length,
-              });
-        }
-
-        let trackIndex = currentSelectedQueueMusicFiles.findIndex(
-          (localMusicTrack) => localMusicTrack.url === musicFile.url,
-        );
-
-        await TrackPlayer.skip(trackIndex);
-        await TrackPlayer.play();
-
-        setIsTrackPlaying(true);
-      } else {
-        navigate("/player");
+        queueType !== "playlist"
+          ? setCurrentQueue({
+              type: queueType,
+              tracksCount: currentSelectedQueueMusicFiles.length,
+            })
+          : setCurrentQueue({
+              type: queueType,
+              name: playlistName,
+              tracksCount: currentSelectedQueueMusicFiles.length,
+            });
       }
 
-      setCurrentMusicTrack(musicFile);
-    };
+      let trackIndex = currentSelectedQueueMusicFiles.findIndex(
+        (localMusicTrack) => localMusicTrack.url === musicFile.url,
+      );
 
-    useEffect(() => {
-      (async () => {
-        const songs = await searchSongs({
-          searchBy: musicFile?.title,
-        });
-        if (typeof songs !== "string") {
-          setMusicCover(songs[0].cover);
-        }
-      })();
-    }, []);
+      await TrackPlayer.skip(trackIndex);
+      await TrackPlayer.play();
 
-    return (
-      <View
-        className="mt-4 flex-row items-center justify-between rounded-md"
-        style={{
-          marginBottom: lastFile ? 120 : 0,
-        }}
+      setIsTrackPlaying(true);
+    } else {
+      navigate("/player");
+    }
+
+    setCurrentMusicTrack(musicFile);
+  };
+
+  return (
+    <View
+      className="mt-4 flex-row items-center justify-between rounded-md"
+      style={{
+        marginBottom: lastFile ? 120 : 0,
+      }}
+    >
+      <Pressable
+        className="flex-1 flex-row items-center space-x-2"
+        onPress={() => onMusicFilePress(musicFile, queueType)}
       >
-        <Pressable
-          className="flex-1 flex-row items-center space-x-2"
-          onPress={() => onMusicFilePress(musicFile, queueType)}
-        >
-          <View
-            className="aspect-square h-12 items-center justify-center rounded-md bg-main"
-            style={{ backgroundColor: COLORS.main + "22" }}
-          >
-            {musicCover ? (
-              <FastImage
-                source={{
-                  uri: musicCover,
-                  priority: "normal",
-                  cache: FastImage.cacheControl.immutable,
-                }}
-                className="h-full w-full rounded-md"
-              />
-            ) : (
-              <Feather name="music" size={22} color={COLORS.main} />
-            )}
-          </View>
+        <MusicFileAlbumDisplay
+          title={musicFile.title}
+          cover={musicFile.cover}
+        />
 
-          <View className="flex-1 flex-row self-center">
-            <MusicFileTitleArtistDisplay
-              title={musicFile.title}
-              artist={musicFile.artist}
-            />
-            <Text
-              className="ml-2 self-center rounded-sm px-2 py-[2px] font-primary_semibold text-xs text-secondaryText"
-              style={{
-                color: COLORS.primaryText + "66",
-                backgroundColor: COLORS.secondaryText + "33",
-              }}
-            >
-              {formatMusicFileDuration(musicFile.duration, "milliseconds")}
-            </Text>
-          </View>
-        </Pressable>
-        <View>
-          <Entypo
-            name="dots-three-vertical"
-            size={20}
-            color={COLORS.secondaryIcon}
+        <View className="flex-1 flex-row self-center">
+          <MusicFileTitleArtistDisplay
+            title={musicFile.title}
+            artist={musicFile.artist}
           />
+          <MusicFileTotalDurationBox duration={musicFile.duration} />
         </View>
-      </View>
-    );
-  },
-);
+      </Pressable>
+      <MusicFileMenuBarIcon />
+    </View>
+  );
+};
 
-export default MusicFile;
+export default memo(MusicFile);
 
 const MusicFileTitleArtistDisplay = memo(
   ({ title, artist }: { title: string; artist: string }) => {
     const { currentMusicTrack } = useTrackStore(["currentMusicTrack"]);
     const isCurrentPlayingSong = currentMusicTrack?.title === title;
+
+    // console.log("INSIDE MUSIC_FILE_TITLE_ARTIST_DISPLAY");
 
     return (
       <View className="flex-1 flex-col space-y-1">
@@ -178,7 +137,9 @@ const MusicFileTitleArtistDisplay = memo(
           className="flex-1 font-primary_regular text-xs text-secondaryText"
           numberOfLines={1}
           style={{
-            color: isCurrentPlayingSong ? COLORS.main : COLORS.secondaryText,
+            color: isCurrentPlayingSong
+              ? COLORS.main + "aa"
+              : COLORS.secondaryText,
           }}
         >
           {artist}
@@ -187,3 +148,30 @@ const MusicFileTitleArtistDisplay = memo(
     );
   },
 );
+
+const MusicFileTotalDurationBox = ({ duration }: { duration: number }) => {
+  console.log("INSIDE MUSIC_FILE_TOTAL_DURATION_BOX");
+  return (
+    <Text
+      className="ml-2 self-center rounded-sm px-2 py-[2px] font-primary_semibold text-xs text-secondaryText"
+      style={{
+        color: COLORS.primaryText + "66",
+        backgroundColor: COLORS.secondaryText + "33",
+      }}
+    >
+      {formatMusicFileDuration(duration, "milliseconds")}
+    </Text>
+  );
+};
+
+const MusicFileMenuBarIcon = memo(() => {
+  return (
+    <View>
+      <Entypo
+        name="dots-three-vertical"
+        size={20}
+        color={COLORS.secondaryIcon}
+      />
+    </View>
+  );
+});

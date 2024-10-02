@@ -11,7 +11,7 @@ const useFetchLocalMusic = () => {
     setIsFetching(!trackStore.getState().allLocalMusicTracks.length);
 
     const fetchedMusicFiles = await getAll({
-      limit: 200,
+      limit: 100,
       minSongDuration: 5000,
     });
 
@@ -34,7 +34,7 @@ const useFetchLocalMusic = () => {
       : setIsFetching(false);
   }, []);
 
-  console.log("inside useFetchLocalMusic");
+  console.log("INSIDE useFETCH_LOCAL_MUSIC");
 
   return { isFetching };
 };

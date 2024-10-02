@@ -1,7 +1,8 @@
-import { View, FlatList } from "react-native";
+import { View, VirtualizedList } from "react-native";
 import MusicFile from "./music-file";
 import { TMusicTrack } from "@/types/store/track-store";
 import { TQueueType } from "@/types/store/queue-store";
+import { memo } from "react";
 
 const ListMusicFiles = ({
   musicFiles,
@@ -14,11 +15,17 @@ const ListMusicFiles = ({
 }) => {
   const musicFilesLength = musicFiles.length;
 
+  console.log("INSIDE LIST_MUSIC_FILES");
+
   return (
     <View className="mb-2">
-      <FlatList
-        data={musicFiles}
-        renderItem={({ item, index }) => {
+      <VirtualizedList
+        keyExtractor={(item) => item.url}
+        getItem={(_, index) => {
+          return musicFiles[index];
+        }}
+        getItemCount={() => musicFiles.length}
+        renderItem={({ item, index }: { item: TMusicTrack; index: number }) => {
           return (
             <MusicFile
               musicFile={item}
@@ -29,7 +36,6 @@ const ListMusicFiles = ({
             />
           );
         }}
-        keyExtractor={(item) => item.url}
         initialNumToRender={10}
         maxToRenderPerBatch={10}
         showsVerticalScrollIndicator={false}
@@ -38,4 +44,4 @@ const ListMusicFiles = ({
   );
 };
 
-export default ListMusicFiles;
+export default memo(ListMusicFiles);

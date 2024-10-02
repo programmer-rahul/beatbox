@@ -7,7 +7,7 @@ import PlayerSavedMusicIcon from "./player-saved-music-icon";
 import AddMusicToPlaylistIcon from "../reusable/icons/add-music-to-playlist-icon";
 
 const MusicPlayerControls = () => {
-  console.log("inside music player controls");
+  console.log("INSIDE MUSIC PLAYER CONTROLS");
   return (
     <View className="h-full justify-evenly">
       <View className="flex-row items-center justify-between px-8">

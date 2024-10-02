@@ -4,10 +4,15 @@ import usePermissionStore from "@/store/permission-store";
 import { useRouter } from "expo-router";
 
 const usePermission = () => {
-  const { isHavePermission, setIsHavePermission } = usePermissionStore([
-    "isHavePermission",
-    "setIsHavePermission",
-  ]);
+  const isHavePermission = usePermissionStore(
+    (state) => state.isHavePermission,
+  );
+  const setIsHavePermission = usePermissionStore(
+    (state) => state.setIsHavePermission,
+  );
+
+  console.log("INSIDE usePERMISSION");
+
   const { navigate } = useRouter();
 
   const handleDeepLink = (event: { url: string }) => {

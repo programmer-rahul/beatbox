@@ -10,15 +10,10 @@ const onMusicTrackFinish = () => {
   ]);
 
   useEffect(() => {
-    // console.log("position", progress.position);
-    // console.log("duration", progress.duration);
-    // console.log("currentTrack", currentTrack?.title);
-    // console.log("currentMusicTrack", currentMusicTrack?.title);
-
     const currentMusicTrack = trackStore.getState().currentMusicTrack;
 
     if (progress.position >= progress.duration && currentMusicTrack) {
-      console.log("inside here");
+      console.log("TRACK FINISHED");
       currentMusicTrack?.title !== currentTrack?.title &&
         changeCurrentMusicTrack("next");
     }

@@ -1,23 +1,13 @@
 import { createStoreWithShallow } from "@/lib/create-store-with-shallow";
 import { TQueueStore } from "@/types/store/queue-store";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
-import { createJSONStorage, persist } from "zustand/middleware";
 
-const useQueueStore = create<TQueueStore>()(
-  persist(
-    (set) => ({
-      currentQueue: {
-        type: "home",
-      },
-      setCurrentQueue: (newQueue) => set(() => ({ currentQueue: newQueue })),
-    }),
-    {
-      name: "queue-store",
-      storage: createJSONStorage(() => AsyncStorage),
-      partialize: ({}) => ({}),
-    },
-  ),
-);
+const useQueueStore = create<TQueueStore>()((set) => ({
+  currentQueue: {
+    type: "home",
+  },
+  setCurrentQueue: (newQueue) => set(() => ({ currentQueue: newQueue })),
+}));
+
 export { useQueueStore as queueStore };
 export default createStoreWithShallow(useQueueStore);

@@ -4,13 +4,12 @@ import { formatMusicFileDuration } from "@/lib/helper";
 import useTrackStore from "@/store/track-store";
 import { useProgress } from "react-native-track-player";
 import COLORS from "@/constants/colors";
-import useOnMusicTrackFinish from "@/hooks/useOnMusicTrackFinish";
 
 const PlayerMusicSlider = () => {
   const progress = useProgress();
   const { currentMusicTrack } = useTrackStore(["currentMusicTrack"]);
 
-  console.log("inside slider");
+  console.log("INSIDE MUSIC_PLAYER_SLIDER");
 
   return currentMusicTrack ? (
     <View>

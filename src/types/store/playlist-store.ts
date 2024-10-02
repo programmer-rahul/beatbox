@@ -12,4 +12,4 @@ interface TusePlaylistStore {
   removePlaylist: (playlistName: string) => void;
 }
 
-export { TusePlaylistStore };
+export { TusePlaylistStore, TPlaylist };

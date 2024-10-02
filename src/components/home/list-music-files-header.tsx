@@ -1,4 +1,5 @@
 import COLORS from "@/constants/colors";
+import { memo } from "react";
 import { Text, View } from "react-native";
 
 function ListMusicFilesHeader({
@@ -30,4 +31,4 @@ function ListMusicFilesHeader({
   );
 }
 
-export default ListMusicFilesHeader;
+export default memo(ListMusicFilesHeader);

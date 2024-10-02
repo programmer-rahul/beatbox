@@ -10,7 +10,7 @@ import SelectedPlaylistContent from "@/components/playlist/selected-playlist-con
 const PlaylistScreen = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [modalText, setModalText] = useState("");
-  const { addPlaylist } = usePlaylistStore(["addPlaylist"]);
+  const addPlaylist = usePlaylistStore((state) => state.addPlaylist);
   const [selectedPlaylist, setSelectedPlaylist] = useState<null | string>(null);
 
   const onNewPlaylistPress = () => {

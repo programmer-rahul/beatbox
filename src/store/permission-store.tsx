@@ -1,4 +1,3 @@
-import { createStoreWithShallow } from "@/lib/create-store-with-shallow";
 import { TusePermissionStore } from "@/types/store/permission-store";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
@@ -18,4 +17,4 @@ const usePermissionStore = create<TusePermissionStore>()(
   ),
 );
 
-export default createStoreWithShallow(usePermissionStore);
+export default usePermissionStore;

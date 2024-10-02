@@ -36,15 +36,13 @@ export default function RootLayout() {
   }
 
   return (
-    <>
-      <SafeAreaView className="flex-1">
-        <RootNavigation />
-        <StatusBar
-          backgroundColor={COLORS.primaryBg}
-          barStyle={"light-content"}
-        />
-      </SafeAreaView>
-    </>
+    <SafeAreaView className="flex-1">
+      <RootNavigation />
+      <StatusBar
+        backgroundColor={COLORS.primaryBg}
+        barStyle={"light-content"}
+      />
+    </SafeAreaView>
   );
 }
 

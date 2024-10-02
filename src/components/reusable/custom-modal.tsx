@@ -1,7 +1,7 @@
 import COLORS from "@/constants/colors";
 import { MaterialIcons } from "@expo/vector-icons";
-import React, { Dispatch, SetStateAction, useState } from "react";
-import { Button, Modal, Pressable, Text, TextInput, View } from "react-native";
+import { Dispatch, SetStateAction } from "react";
+import { Modal, Pressable, Text, TextInput, View } from "react-native";
 
 function CustomModal({
   isVisible,
@@ -17,7 +17,12 @@ function CustomModal({
   onPress: () => void;
 }) {
   return (
-    <Modal animationType="slide" transparent={true} visible={isVisible}>
+    <Modal
+      animationType="slide"
+      transparent={true}
+      visible={isVisible}
+      focusable={true}
+    >
       <View
         className="absolute left-[5%] top-1/4 w-[90%] rounded-md px-3 py-4"
         style={{ backgroundColor: COLORS.primaryIcon }}
@@ -43,6 +48,7 @@ function CustomModal({
           </Text>
           <TextInput
             className="rounded-sm border border-secondaryText px-2 py-1"
+            style={{ color: COLORS.primaryText }}
             value={modalText}
             onChangeText={setModalText}
             autoFocus

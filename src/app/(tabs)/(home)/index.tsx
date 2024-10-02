@@ -11,24 +11,25 @@ import MountOnMusicTrackFinish from "@/components/mount-on-music-track-finish";
 
 const HomeScreen = () => {
   const { allLocalMusicTracks } = useTrackStore(["allLocalMusicTracks"]);
+  const allLocalMusicTracksLength = allLocalMusicTracks.length;
 
   const { isFetching } = useFetchLocalMusic();
   useInitialQueue();
 
-  console.log("inside home page", allLocalMusicTracks.length);
+  console.log("INSIDE HOME_PAGE");
 
   return !isFetching ? (
     <View
       className="flex flex-1 flex-col py-1"
       style={{ backgroundColor: COLORS.primaryBg }}
     >
-      {allLocalMusicTracks.length <= 0 && <NoMusicFilesFound />}
-      {allLocalMusicTracks.length > 0 && (
+      {allLocalMusicTracksLength <= 0 && <NoMusicFilesFound />}
+      {allLocalMusicTracksLength > 0 && (
         <View className="flex-1">
           <View className="px-5">
             <ListMusicFilesHeader
               heading="All Music Files"
-              musicFilesLength={allLocalMusicTracks.length}
+              musicFilesLength={allLocalMusicTracksLength}
             />
             <ListMusicFiles musicFiles={allLocalMusicTracks} queueType="home" />
           </View>

@@ -1,6 +1,4 @@
 import { Pressable, Text, View } from "react-native";
-import { Feather } from "@expo/vector-icons";
-import { formatMusicFileDuration } from "@/lib/helper";
 import COLORS from "@/constants/colors";
 import useTrackStore from "@/store/track-store";
 import { useRouter } from "expo-router";
@@ -8,28 +6,15 @@ import PlayPauseMusicIcon from "@/components/reusable/icons/play-pause-music-ico
 import DisplayCurrentMusicPosition from "@/components/reusable/display-current-music-position";
 import PlayPreviusNextMusicIcon from "@/components/reusable/icons/play-previus-next-music-icon";
 import { useProgress } from "react-native-track-player";
-import { useEffect, useState } from "react";
-import { searchSongs } from "react-native-get-music-files";
-import FastImage from "react-native-fast-image";
+import MusicFileTitle from "@/components/reusable/music-file-title";
+import MusicFileTotalDuration from "@/components/reusable/music-file-total-duration";
+import MusicFileAlbumDisplayOnTrackChange from "@/components/reusable/music-file-album-display-on-trackchange";
 
 const MiniMusicPlayer = () => {
   const { currentMusicTrack } = useTrackStore(["currentMusicTrack"]);
   const { navigate } = useRouter();
 
-  const [musicCover, setMusicCover] = useState("");
-
-  useEffect(() => {
-    (async () => {
-      const songs = await searchSongs({
-        searchBy: currentMusicTrack?.title,
-      });
-      if (typeof songs !== "string") {
-        setMusicCover(songs[0].cover);
-      }
-    })();
-  }, [currentMusicTrack]);
-
-  console.log("inside mini-music-player");
+  console.log("INSIDE MINI_MUSIC_MUSIC_PLAYER");
 
   return currentMusicTrack ? (
     <View
@@ -49,33 +34,9 @@ const MiniMusicPlayer = () => {
             className="flex-1 flex-row items-center space-x-2"
             onPress={() => navigate("/player")}
           >
-            <View
-              className="aspect-square h-11 items-center justify-center rounded-md"
-              style={{ backgroundColor: COLORS.main + "22" }}
-            >
-              {currentMusicTrack.cover && musicCover ? (
-                <FastImage
-                  source={{
-                    uri: musicCover,
-                    priority: "normal",
-                    cache: FastImage.cacheControl.immutable,
-                  }}
-                  className="h-full w-full rounded-md"
-                />
-              ) : (
-                <Feather name="music" size={22} color={COLORS.main} />
-              )}
-            </View>
+            <MusicFileAlbumDisplayOnTrackChange size="small" />
             <View className="flex-1">
-              <Text
-                className="font-primary_semibold text-xs text-primaryText"
-                numberOfLines={1}
-                style={{
-                  color: COLORS.primaryBg,
-                }}
-              >
-                {currentMusicTrack.title}
-              </Text>
+              <MusicFileTitle text="small" />
               <View className="flex-row items-center">
                 <DisplayCurrentMusicPosition />
                 <Text
@@ -86,17 +47,7 @@ const MiniMusicPlayer = () => {
                 >
                   :
                 </Text>
-                <Text
-                  className="font-primary_regular text-xs text-secondaryText"
-                  style={{
-                    color: COLORS.secondaryText,
-                  }}
-                >
-                  {formatMusicFileDuration(
-                    currentMusicTrack.duration,
-                    "milliseconds",
-                  )}
-                </Text>
+                <MusicFileTotalDuration />
               </View>
             </View>
           </Pressable>
@@ -107,7 +58,7 @@ const MiniMusicPlayer = () => {
             </View>
           </View>
         </View>
-        <MusicRemainingDurationVisual />
+        <MusicFileRemainingDurationVisual />
       </View>
     </View>
   ) : null;
@@ -115,7 +66,7 @@ const MiniMusicPlayer = () => {
 
 export default MiniMusicPlayer;
 
-const MusicRemainingDurationVisual = () => {
+const MusicFileRemainingDurationVisual = () => {
   const progress = useProgress();
   const { currentMusicTrack } = useTrackStore(["currentMusicTrack"]);
 

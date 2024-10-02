@@ -34,7 +34,7 @@ const PlayerScreen = () => {
 export default memo(PlayerScreen);
 
 const NoMusicFileSelected = () => {
-  console.log("inside no music file selected");
+  console.log("INSIDE NO MUSIC_FILE_SELECTED");
 
   return (
     <View className="relative flex flex-1 items-center justify-center">
@@ -54,7 +54,7 @@ const NoMusicFileSelected = () => {
         </Link>
       </View>
       <View className="absolute -z-10 opacity-10">
-        <Feather name="music" size={350} color={COLORS.main} />
+        <Feather name="music" size={320} color={COLORS.main} />
       </View>
     </View>
   );
