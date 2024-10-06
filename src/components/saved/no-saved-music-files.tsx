@@ -1,6 +1,7 @@
-import COLORS from "./../../constants/colors";
+import {Heart} from 'lucide-react-native';
+import COLORS from './../../constants/colors';
 // import { AntDesign } from "@expo/vector-icons";
-import { Text, View } from "react-native";
+import {Text, View} from 'react-native';
 
 const NoSavedMusicFiles = () => {
   return (
@@ -9,12 +10,11 @@ const NoSavedMusicFiles = () => {
         className="font-primary_semibold text-2xl text-primaryText"
         style={{
           color: COLORS.primaryText,
-        }}
-      >
+        }}>
         No Saved Music Files
       </Text>
       <View className="absolute -z-10 pt-8 opacity-10">
-        {/* <AntDesign name="hearto" size={300} color={COLORS.main} /> */}
+        <Heart size={300} color={COLORS.main} strokeWidth={1} />
       </View>
     </View>
   );

@@ -1,3 +1,4 @@
+import { Music } from "lucide-react-native";
 import COLORS from "./../../constants/colors";
 import { fetchCoverImage } from "./../../lib/music";
 // import { Feather } from "@expo/vector-icons";
@@ -37,8 +38,7 @@ function MusicFileAlbumDisplay({
           className="h-full w-full rounded-md"
         />
       ) : (
-        // <Feather name="music" size={22} color={COLORS.main} />
-        null
+        <Music color={COLORS.main} />
       )}
     </View>
   );

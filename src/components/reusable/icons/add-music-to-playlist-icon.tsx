@@ -1,15 +1,10 @@
 // import { MaterialCommunityIcons } from "@expo/vector-icons";
-import COLORS from "./../../../constants/colors";
+import {ListPlus} from 'lucide-react-native';
+import COLORS from './../../../constants/colors';
 
-function AddMusicToPlaylistIcon({ size = 25 }: { size?: number }) {
+function AddMusicToPlaylistIcon({size = 25}: {size?: number}) {
   return (
-    // <MaterialCommunityIcons
-    //   name="playlist-plus"
-    //   size={size}
-    //   color={COLORS.secondaryIcon}
-    //   onPress={() => {}}
-    // />
-    null
+    <ListPlus size={size} color={COLORS.secondaryIcon} onPress={() => {}} />
   );
 }
 

@@ -1,3 +1,4 @@
+import { Music } from 'lucide-react-native';
 import COLORS from './../../constants/colors';
 import {fetchCoverImage} from './../../lib/music';
 import useTrackStore, {trackStore} from './../../store/track-store';
@@ -41,12 +42,8 @@ function MusicFileAlbumDisplayOnTrackChange({
           }}
           className="h-full w-full rounded-md"
         />
-      ) : // <Feather
-      //   name="music"
-      //   size={size === 'small' ? 22 : 250}
-      //   color={COLORS.main}
-      // />
-      null}
+      ) : <Music color={COLORS.main} size={size === 'small' ? 22 : 250}/>
+      }
     </View>
   );
 }

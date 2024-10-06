@@ -1,6 +1,6 @@
 import {Pressable, Text, View} from 'react-native';
-import { trackStore } from '../../../store/track-store';
-import { useProgress } from 'react-native-track-player';
+import {trackStore} from '../../../store/track-store';
+import {useProgress} from 'react-native-track-player';
 import COLORS from '../../../constants/colors';
 import DisplayCurrentMusicPosition from '../../reusable/display-current-music-position';
 import PlayPauseMusicIcon from '../../reusable/icons/play-pause-music-icon';
@@ -8,10 +8,12 @@ import PlayPreviusNextMusicIcon from '../../reusable/icons/play-previus-next-mus
 import MusicFileAlbumDisplayOnTrackChange from '../../reusable/music-file-album-display-on-trackchange';
 import MusicFileTitle from '../../reusable/music-file-title';
 import MusicFileTotalDuration from '../../reusable/music-file-total-duration';
+import {useNavigation} from '@react-navigation/native';
+import {RootTabNavigationProp} from '../../../types/navigation-type';
 
 const MiniMusicPlayer = () => {
   const currentMusicTrack = trackStore(state => state.currentMusicTrack);
-  // const { navigate } = useRouter();
+  const {navigate} = useNavigation<RootTabNavigationProp>();
 
   console.log('INSIDE MINI_MUSIC_MUSIC_PLAYER');
 
@@ -26,10 +28,10 @@ const MiniMusicPlayer = () => {
         style={{
           backgroundColor: COLORS.secondaryBg,
         }}>
-        <View className="w-full flex-row items-center justify-between gap-2 pl-6 pr-2">
+        <View className="w-full flex-row items-center justify-between gap-2 px-4">
           <Pressable
             className="flex-1 flex-row items-center space-x-2"
-            onPress={() => {}}>
+            onPress={() => navigate('player')}>
             <MusicFileAlbumDisplayOnTrackChange size="small" />
             <View className="flex-1">
               <MusicFileTitle text="small" />
@@ -47,9 +49,9 @@ const MiniMusicPlayer = () => {
             </View>
           </Pressable>
           <View className="flex-row items-center">
-            <PlayPauseMusicIcon size={40} />
+            <PlayPauseMusicIcon size={32} />
             <View className="ml-2">
-              <PlayPreviusNextMusicIcon type="next" />
+              <PlayPreviusNextMusicIcon type="next" size={32} />
             </View>
           </View>
         </View>
@@ -64,7 +66,7 @@ export default MiniMusicPlayer;
 const MusicFileRemainingDurationVisual = () => {
   const progress = useProgress();
   const currentMusicTrack = trackStore(state => state.currentMusicTrack);
-  
+
   return currentMusicTrack ? (
     <View className="absolute -z-10 flex h-full w-full justify-end">
       <View

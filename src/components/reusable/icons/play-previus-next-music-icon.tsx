@@ -1,33 +1,42 @@
-import COLORS from "./../../../constants/colors";
+import COLORS from './../../../constants/colors';
 // import { Feather } from "@expo/vector-icons";
-import { memo } from "react";
-import useTrackStore, { trackStore } from "./../../../store/track-store";
-import TrackPlayer from "react-native-track-player";
+import {memo} from 'react';
+import useTrackStore, {trackStore} from './../../../store/track-store';
+import TrackPlayer from 'react-native-track-player';
+import {SkipBack, SkipForward} from 'lucide-react-native';
 
 function PlayPreviousNextMusicIcon({
   size = 35,
   type,
 }: {
   size?: number;
-  type: "previous" | "next";
+  type: 'previous' | 'next';
 }) {
-  const changeCurrentMusicTrack = trackStore(state => state.changeCurrentMusicTrack);
+  const changeCurrentMusicTrack = trackStore(
+    state => state.changeCurrentMusicTrack,
+  );
 
-  console.log("next");
+  const onPreviousNextPress = async () => {
+    changeCurrentMusicTrack(type);
+    type === 'previous'
+      ? await TrackPlayer.skipToPrevious()
+      : await TrackPlayer.skipToNext();
+  };
 
-  return (
-    // <Feather
-    //   name={type === "previous" ? "skip-back" : "skip-forward"}
-    //   size={size}
-    //   color={COLORS.secondaryIcon}
-    //   onPress={async () => {
-    //     changeCurrentMusicTrack(type);
-    //     type === "previous"
-    //       ? await TrackPlayer.skipToPrevious()
-    //       : await TrackPlayer.skipToNext();
-    //   }}
-    // />
-    null
+  console.log('next');
+
+  return type === 'previous' ? (
+    <SkipBack
+      size={size}
+      color={COLORS.secondaryIcon}
+      onPress={onPreviousNextPress}
+    />
+  ) : (
+    <SkipForward
+      size={size}
+      color={COLORS.secondaryIcon}
+      onPress={onPreviousNextPress}
+    />
   );
 }
 

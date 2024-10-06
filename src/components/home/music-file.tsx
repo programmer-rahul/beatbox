@@ -7,9 +7,10 @@ import {TMusicTrack} from './../../types/store/track-store';
 import TrackPlayer from 'react-native-track-player';
 import {TQueueType} from './../../types/store/queue-store';
 import MusicFileAlbumDisplay from '../reusable/music-file-album-display';
-import { trackStore } from '../../store/track-store';
-import { queueStore } from '../../store/queue-store';
-import { playlistStore } from '../../store/playlist-store';
+import {trackStore} from '../../store/track-store';
+import {queueStore} from '../../store/queue-store';
+import {playlistStore} from '../../store/playlist-store';
+import {EllipsisVertical} from 'lucide-react-native';
 
 const MusicFile = ({
   musicFile,
@@ -159,11 +160,7 @@ const MusicFileTotalDurationBox = ({duration}: {duration: number}) => {
 const MusicFileMenuBarIcon = memo(() => {
   return (
     <View>
-      {/* <Entypo
-        name="dots-three-vertical"
-        size={20}
-        color={COLORS.secondaryIcon}
-      /> */}
+      <EllipsisVertical color={COLORS.secondaryIcon} />
     </View>
   );
 });
