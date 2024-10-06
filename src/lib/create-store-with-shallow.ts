@@ -1,5 +1,5 @@
-import {StoreApi, UseBoundStore} from 'zustand';
-import {shallow} from 'zustand/shallow';
+import { StoreApi, UseBoundStore } from "zustand";
+import { shallow } from "zustand/shallow";
 
 type GenericState = Record<string, any>;
 
@@ -11,7 +11,7 @@ export const createStoreWithShallow = <T extends GenericState>(
   >(
     keys: K[],
   ) => {
-    return createWithEqualityFn(state => {
+    return createWithEqualityFn((state) => {
       const x = keys.reduce((acc, cur) => {
         acc[cur] = state[cur];
         return acc;

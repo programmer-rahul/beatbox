@@ -1,23 +1,23 @@
-import {Text, View} from 'react-native';
-import COLORS from './../constants/colors';
-import {useState} from 'react';
-import CustomModal from './../components/reusable/custom-modal';
-import ListAllPlaylists from './../components/playlist/list-all-playlists';
-import usePlaylistStore, {playlistStore} from './../store/playlist-store';
-import AddNewPlaylistBtn from './../components/playlist/add-new-playlist-btn';
-import SelectedPlaylistContent from './../components/playlist/selected-playlist-content';
+import { Text, View } from "react-native";
+import COLORS from "./../constants/colors";
+import { useState } from "react";
+import CustomModal from "./../components/reusable/custom-modal";
+import ListAllPlaylists from "./../components/playlist/list-all-playlists";
+import usePlaylistStore, { playlistStore } from "./../store/playlist-store";
+import AddNewPlaylistBtn from "./../components/playlist/add-new-playlist-btn";
+import SelectedPlaylistContent from "./../components/playlist/selected-playlist-content";
 
 const PlaylistScreen = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [modalText, setModalText] = useState('');
-  const addPlaylist = usePlaylistStore(state => state.addPlaylist);
+  const [modalText, setModalText] = useState("");
+  const addPlaylist = usePlaylistStore((state) => state.addPlaylist);
   const [selectedPlaylist, setSelectedPlaylist] = useState<null | string>(null);
 
   const onNewPlaylistPress = () => {
     // check if there are playlist with this name is already exists
     const isPlaylistAlreadyAvailable = playlistStore
       .getState()
-      .allPlaylists.some(playlist => playlist.name === modalText.trim());
+      .allPlaylists.some((playlist) => playlist.name === modalText.trim());
 
     if (isPlaylistAlreadyAvailable) return;
 
@@ -28,7 +28,7 @@ const PlaylistScreen = () => {
       musicTracks: [],
     });
     setIsVisible(false);
-    setModalText('');
+    setModalText("");
   };
 
   return !selectedPlaylist ? (
@@ -36,7 +36,8 @@ const PlaylistScreen = () => {
       className="flex h-full flex-col bg-primaryBg py-1"
       style={{
         backgroundColor: COLORS.primaryBg,
-      }}>
+      }}
+    >
       <View className="flex-col items-start px-6">
         <YourPlaylistsHeading />
         <ListAllPlaylists setSelectedPlaylist={setSelectedPlaylist} />
@@ -67,7 +68,8 @@ const YourPlaylistsHeading = () => {
       className="font-primary_regular text-2xl text-primaryText"
       style={{
         color: COLORS.primaryText,
-      }}>
+      }}
+    >
       Your Playlists
     </Text>
   );

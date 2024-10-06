@@ -10,4 +10,3 @@ export interface TQueueStore {
   currentQueue: TQueue;
   setCurrentQueue: (newQueue: TQueue) => void;
 }
-

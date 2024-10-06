@@ -1,9 +1,9 @@
-import COLORS from './../../constants/colors';
-import React, {Dispatch, SetStateAction} from 'react';
-import {Pressable, Text, View} from 'react-native';
-import usePlaylistStore from './../../store/playlist-store';
-import ListMusicFiles from '../home/list-music-files';
-import {ChevronLeft} from 'lucide-react-native';
+import COLORS from "./../../constants/colors";
+import React, { Dispatch, SetStateAction } from "react";
+import { Pressable, Text, View } from "react-native";
+import usePlaylistStore from "./../../store/playlist-store";
+import ListMusicFiles from "../home/list-music-files";
+import { ChevronLeft } from "lucide-react-native";
 
 function SelectedPlaylistContent({
   selectedPlaylist,
@@ -12,10 +12,10 @@ function SelectedPlaylistContent({
   selectedPlaylist: null | string;
   setSelectedPlaylist: Dispatch<SetStateAction<null | string>>;
 }) {
-  const allPlaylists = usePlaylistStore(state => state.allPlaylists);
+  const allPlaylists = usePlaylistStore((state) => state.allPlaylists);
 
   const currentPlaylist = allPlaylists.find(
-    playlist => playlist.name === selectedPlaylist,
+    (playlist) => playlist.name === selectedPlaylist,
   );
 
   if (!currentPlaylist || !selectedPlaylist) return null;
@@ -25,7 +25,8 @@ function SelectedPlaylistContent({
       className="flex h-full flex-col bg-primaryBg py-1"
       style={{
         backgroundColor: COLORS.primaryBg,
-      }}>
+      }}
+    >
       <View className="flex-col items-start px-6">
         <View className="w-full flex-row justify-between">
           <Pressable onPress={() => setSelectedPlaylist(null)}>
@@ -35,7 +36,8 @@ function SelectedPlaylistContent({
             className="font-primary_regular text-xl text-primaryText"
             style={{
               color: COLORS.primaryText,
-            }}>
+            }}
+          >
             {selectedPlaylist}
           </Text>
           <View />
@@ -61,8 +63,9 @@ export default SelectedPlaylistContent;
 const PlaylistIsEmpty = () => {
   return (
     <Text
-      className="mt-20 self-center font-primary_regular text-2xl text-secondaryText"
-      style={{color: COLORS.secondaryText}}>
+      className="font-primary_regular mt-20 self-center text-2xl text-secondaryText"
+      style={{ color: COLORS.secondaryText }}
+    >
       Playlist is empty
     </Text>
   );

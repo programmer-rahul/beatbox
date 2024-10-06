@@ -9,10 +9,10 @@ const usePermissionStore = create<TusePermissionStore>()(
       isHavePermission: false,
       setIsHavePermission: (value) => set(() => ({ isHavePermission: value })),
 
-      temp : [],
-      setTemp : () => set(state => ({temp : []})),
-      temp2 : "wrling",
-      setTemp2 : () => set(state => ({temp2 : Math.random().toString()}))
+      temp: [],
+      setTemp: () => set((state) => ({ temp: [] })),
+      temp2: "wrling",
+      setTemp2: () => set((state) => ({ temp2: Math.random().toString() })),
     }),
     {
       name: "permission-store",

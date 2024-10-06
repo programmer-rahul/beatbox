@@ -1,9 +1,11 @@
-import {Event, useTrackPlayerEvents} from 'react-native-track-player';
-import {trackStore} from './../store/track-store';
+import { Event, useTrackPlayerEvents } from "react-native-track-player";
+import { trackStore } from "./../store/track-store";
 
 const usePlayerEvents = () => {
-  const setIsTrackPlaying = trackStore(state => state.setIsTrackPlaying)
-  const changeCurrentMusicTrack = trackStore(state => state.changeCurrentMusicTrack)
+  const setIsTrackPlaying = trackStore((state) => state.setIsTrackPlaying);
+  const changeCurrentMusicTrack = trackStore(
+    (state) => state.changeCurrentMusicTrack,
+  );
 
   // to handle events from notification
   useTrackPlayerEvents(
@@ -14,16 +16,16 @@ const usePlayerEvents = () => {
       Event.RemotePrevious,
       Event.RemoteNext,
     ],
-    event => {
+    (event) => {
       if (event.type === Event.RemotePlay) setIsTrackPlaying(true);
       if (event.type === Event.RemotePause) setIsTrackPlaying(false);
       if (event.type === Event.RemotePrevious) {
         trackStore.getState().currentMusicTrack &&
-          changeCurrentMusicTrack('previous');
+          changeCurrentMusicTrack("previous");
       }
       if (event.type === Event.RemoteNext) {
         trackStore.getState().currentMusicTrack &&
-          changeCurrentMusicTrack('next');
+          changeCurrentMusicTrack("next");
       }
     },
   );

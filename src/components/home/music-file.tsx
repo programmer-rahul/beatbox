@@ -1,16 +1,16 @@
-import {View, Text, Pressable} from 'react-native';
-import {formatMusicFileDuration} from './../../lib/helper';
-import COLORS from './../../constants/colors';
-import {memo} from 'react';
-import {savedStore} from './../../store/saved-store';
-import {TMusicTrack} from './../../types/store/track-store';
-import TrackPlayer from 'react-native-track-player';
-import {TQueueType} from './../../types/store/queue-store';
-import MusicFileAlbumDisplay from '../reusable/music-file-album-display';
-import {trackStore} from '../../store/track-store';
-import {queueStore} from '../../store/queue-store';
-import {playlistStore} from '../../store/playlist-store';
-import {EllipsisVertical} from 'lucide-react-native';
+import { View, Text, Pressable } from "react-native";
+import { formatMusicFileDuration } from "./../../lib/helper";
+import COLORS from "./../../constants/colors";
+import { memo } from "react";
+import { savedStore } from "./../../store/saved-store";
+import { TMusicTrack } from "./../../types/store/track-store";
+import TrackPlayer from "react-native-track-player";
+import { TQueueType } from "./../../types/store/queue-store";
+import MusicFileAlbumDisplay from "../reusable/music-file-album-display";
+import { trackStore } from "../../store/track-store";
+import { queueStore } from "../../store/queue-store";
+import { playlistStore } from "../../store/playlist-store";
+import { EllipsisVertical } from "lucide-react-native";
 
 const MusicFile = ({
   musicFile,
@@ -24,27 +24,29 @@ const MusicFile = ({
   queueType: TQueueType;
   playlistName?: string;
 }) => {
-  const setCurrentMusicTrack = trackStore(state => state.setCurrentMusicTrack);
-  const setIsTrackPlaying = trackStore(state => state.setIsTrackPlaying);
+  const setCurrentMusicTrack = trackStore(
+    (state) => state.setCurrentMusicTrack,
+  );
+  const setIsTrackPlaying = trackStore((state) => state.setIsTrackPlaying);
 
-  const setCurrentQueue = queueStore(state => state.setCurrentQueue);
+  const setCurrentQueue = queueStore((state) => state.setCurrentQueue);
   // const { navigate } = useRouter();
 
-  console.log('INSIDE MUSIC_FILE');
+  console.log("INSIDE MUSIC_FILE");
 
   const onMusicFilePress = async (
     musicFile: TMusicTrack,
     queueType: TQueueType,
   ) => {
     let currentSelectedQueueMusicFiles =
-      queueType === 'home'
+      queueType === "home"
         ? trackStore.getState().allLocalMusicTracks
-        : queueType === 'saved'
-        ? savedStore.getState().allSavedMusicTracks
-        : playlistStore
-            .getState()
-            .allPlaylists.find(playlist => playlist.name === playlistName)
-            ?.musicTracks || [];
+        : queueType === "saved"
+          ? savedStore.getState().allSavedMusicTracks
+          : playlistStore
+              .getState()
+              .allPlaylists.find((playlist) => playlist.name === playlistName)
+              ?.musicTracks || [];
 
     const currentMusicTrack = trackStore.getState().currentMusicTrack;
     const currentQueue = queueStore.getState().currentQueue;
@@ -55,7 +57,7 @@ const MusicFile = ({
         await TrackPlayer.reset();
         await TrackPlayer.add(currentSelectedQueueMusicFiles);
 
-        queueType !== 'playlist'
+        queueType !== "playlist"
           ? setCurrentQueue({
               type: queueType,
               tracksCount: currentSelectedQueueMusicFiles.length,
@@ -68,7 +70,7 @@ const MusicFile = ({
       }
 
       let trackIndex = currentSelectedQueueMusicFiles.findIndex(
-        localMusicTrack => localMusicTrack.url === musicFile.url,
+        (localMusicTrack) => localMusicTrack.url === musicFile.url,
       );
 
       await TrackPlayer.skip(trackIndex);
@@ -87,10 +89,12 @@ const MusicFile = ({
       className="mt-4 flex-row items-center justify-between rounded-md"
       style={{
         marginBottom: lastFile ? 120 : 0,
-      }}>
+      }}
+    >
       <Pressable
         className="flex-1 flex-row items-center space-x-2"
-        onPress={() => onMusicFilePress(musicFile, queueType)}>
+        onPress={() => onMusicFilePress(musicFile, queueType)}
+      >
         <MusicFileAlbumDisplay
           title={musicFile.title}
           cover={musicFile.cover}
@@ -112,8 +116,8 @@ const MusicFile = ({
 export default memo(MusicFile);
 
 const MusicFileTitleArtistDisplay = memo(
-  ({title, artist}: {title: string; artist: string}) => {
-    const currentMusicTrack = trackStore(state => state.currentMusicTrack);
+  ({ title, artist }: { title: string; artist: string }) => {
+    const currentMusicTrack = trackStore((state) => state.currentMusicTrack);
     const isCurrentPlayingSong = currentMusicTrack?.title === title;
 
     // console.log("INSIDE MUSIC_FILE_TITLE_ARTIST_DISPLAY");
@@ -121,21 +125,23 @@ const MusicFileTitleArtistDisplay = memo(
     return (
       <View className="flex-1 flex-col space-y-1">
         <Text
-          className="flex-1 font-primary_semibold text-xs text-primaryText"
+          className="font-primary_semibold flex-1 text-xs text-primaryText"
           numberOfLines={1}
           style={{
             color: isCurrentPlayingSong ? COLORS.main : COLORS.primaryText,
-          }}>
+          }}
+        >
           {title}
         </Text>
         <Text
-          className="flex-1 font-primary_regular text-xs text-secondaryText"
+          className="font-primary_regular flex-1 text-xs text-secondaryText"
           numberOfLines={1}
           style={{
             color: isCurrentPlayingSong
-              ? COLORS.main + 'aa'
+              ? COLORS.main + "aa"
               : COLORS.secondaryText,
-          }}>
+          }}
+        >
           {artist}
         </Text>
       </View>
@@ -143,16 +149,17 @@ const MusicFileTitleArtistDisplay = memo(
   },
 );
 
-const MusicFileTotalDurationBox = ({duration}: {duration: number}) => {
-  console.log('INSIDE MUSIC_FILE_TOTAL_DURATION_BOX');
+const MusicFileTotalDurationBox = ({ duration }: { duration: number }) => {
+  console.log("INSIDE MUSIC_FILE_TOTAL_DURATION_BOX");
   return (
     <Text
-      className="ml-2 self-center rounded-sm px-2 py-[2px] font-primary_semibold text-xs text-secondaryText"
+      className="font-primary_semibold ml-2 self-center rounded-sm px-2 py-[2px] text-xs text-secondaryText"
       style={{
-        color: COLORS.primaryText + '66',
-        backgroundColor: COLORS.secondaryText + '33',
-      }}>
-      {formatMusicFileDuration(duration, 'milliseconds')}
+        color: COLORS.primaryText + "66",
+        backgroundColor: COLORS.secondaryText + "33",
+      }}
+    >
+      {formatMusicFileDuration(duration, "milliseconds")}
     </Text>
   );
 };

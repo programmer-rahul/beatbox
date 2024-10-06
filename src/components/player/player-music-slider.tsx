@@ -1,15 +1,15 @@
-import {Text, View} from 'react-native';
-import CustomRangeSlider from '../reusable/custom-range-slider';
-import {formatMusicFileDuration} from './../../lib/helper';
-import useTrackStore, {trackStore} from './../../store/track-store';
-import {useProgress} from 'react-native-track-player';
-import COLORS from './../../constants/colors';
+import { Text, View } from "react-native";
+import CustomRangeSlider from "../reusable/custom-range-slider";
+import { formatMusicFileDuration } from "./../../lib/helper";
+import useTrackStore, { trackStore } from "./../../store/track-store";
+import { useProgress } from "react-native-track-player";
+import COLORS from "./../../constants/colors";
 
 const PlayerMusicSlider = () => {
   const progress = useProgress();
-  const currentMusicTrack = trackStore(state => state.currentMusicTrack);
+  const currentMusicTrack = trackStore((state) => state.currentMusicTrack);
 
-  console.log('INSIDE MUSIC_PLAYER_SLIDER');
+  console.log("INSIDE MUSIC_PLAYER_SLIDER");
 
   return currentMusicTrack ? (
     <View>
@@ -19,15 +19,17 @@ const PlayerMusicSlider = () => {
           className="font-primary_semibold text-xs text-secondaryText"
           style={{
             color: COLORS.secondaryText,
-          }}>
-          {formatMusicFileDuration(progress.position, 'seconds')}
+          }}
+        >
+          {formatMusicFileDuration(progress.position, "seconds")}
         </Text>
         <Text
-          className="text-right font-primary_semibold text-xs text-secondaryText"
+          className="font-primary_semibold text-right text-xs text-secondaryText"
           style={{
             color: COLORS.secondaryText,
-          }}>
-          {formatMusicFileDuration(currentMusicTrack.duration, 'milliseconds')}
+          }}
+        >
+          {formatMusicFileDuration(currentMusicTrack.duration, "milliseconds")}
         </Text>
       </View>
     </View>

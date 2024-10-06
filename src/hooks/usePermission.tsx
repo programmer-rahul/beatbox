@@ -1,33 +1,20 @@
-import {useEffect} from 'react';
-import {Alert, Linking, PermissionsAndroid} from 'react-native';
-import usePermissionStore from './../store/permission-store';
-import { useShallow } from 'zustand/shallow';
-// import { useRouter } from "expo-router";
+import { useEffect } from "react";
+import { Alert, Linking, PermissionsAndroid } from "react-native";
+import usePermissionStore from "./../store/permission-store";
 
 const usePermission = () => {
-  const isHavePermission = usePermissionStore(state => state.isHavePermission)
+  const isHavePermission = usePermissionStore(
+    (state) => state.isHavePermission,
+  );
   const setIsHavePermission = usePermissionStore(
-    state => state.setIsHavePermission,
+    (state) => state.setIsHavePermission,
   );
 
-  console.log('INSIDE usePERMISSION');
-
-  // const { navigate } = useRouter();
-
-  const handleDeepLink = (event: {url: string}) => {
-    if (event.url === 'trackplayer://notification.click') {
-      // navigate("/player");
-    }
-  };
+  console.log("INSIDE usePERMISSION");
 
   // check for permissions
   useEffect(() => {
-    Linking.addEventListener('url', handleDeepLink);
     !isHavePermission && askForPermissions();
-
-    return () => {
-      Linking.removeAllListeners('url');
-    };
   }, []);
 
   // show permissions dialog
@@ -35,23 +22,23 @@ const usePermission = () => {
     const granted = await PermissionsAndroid.request(
       PermissionsAndroid.PERMISSIONS.READ_MEDIA_AUDIO,
     );
-    console.log('granted state', granted);
+    console.log("granted state", granted);
 
-    if (granted === 'granted') {
+    if (granted === "granted") {
       setIsHavePermission(true);
     } else {
       Alert.alert(
-        'Permissions Required',
-        'We need access to your media library to display your Music files.',
+        "Permissions Required",
+        "We need access to your media library to display your Music files.",
         [
-          {text: 'Cancel', style: 'cancel'},
-          {text: 'Open Settings', onPress: () => Linking.openSettings()},
+          { text: "Cancel", style: "cancel" },
+          { text: "Open Settings", onPress: () => Linking.openSettings() },
         ],
       );
     }
   };
 
-  return {isHavePermission};
+  return { isHavePermission };
 };
 
 export default usePermission;

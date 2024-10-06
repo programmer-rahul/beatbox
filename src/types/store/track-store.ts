@@ -24,4 +24,3 @@ export interface TTrackStore {
   isShufflingQueue: boolean;
   setIsShufflingQueue: (value: boolean) => void;
 }
-

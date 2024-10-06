@@ -5,4 +5,3 @@ export interface TSavedStore {
   addTrackInSavedMusic: (musicTrack: TMusicTrack) => void;
   removeTrackInSavedMusic: (savedMusicTrackUrl: string) => void;
 }
-

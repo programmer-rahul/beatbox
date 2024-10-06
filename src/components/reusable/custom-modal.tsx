@@ -1,7 +1,7 @@
-import {X} from 'lucide-react-native';
-import COLORS from './../../constants/colors';
-import {Dispatch, SetStateAction} from 'react';
-import {Modal, Pressable, Text, TextInput, View} from 'react-native';
+import { X } from "lucide-react-native";
+import COLORS from "./../../constants/colors";
+import { Dispatch, SetStateAction } from "react";
+import { Modal, Pressable, Text, TextInput, View } from "react-native";
 
 function CustomModal({
   isVisible,
@@ -21,13 +21,16 @@ function CustomModal({
       animationType="slide"
       transparent={true}
       visible={isVisible}
-      focusable={true}>
+      focusable={true}
+    >
       <View
         className="flex-1"
-        style={{backgroundColor: COLORS.primaryBg + 'bb'}}>
+        style={{ backgroundColor: COLORS.primaryBg + "bb" }}
+      >
         <View
           className="absolute left-[5%] top-1/4 w-[90%] rounded-md px-3 py-4"
-          style={{backgroundColor: COLORS.primaryIcon}}>
+          style={{ backgroundColor: COLORS.primaryIcon }}
+        >
           <View className="flex-row items-center justify-between pb-2">
             <Text className="font-primary_semibold text-xl text-primaryText">
               New Playlist
@@ -39,12 +42,13 @@ function CustomModal({
           <View className="w-full flex-1 justify-around space-y-2">
             <Text
               className="font-primary_regular text-base"
-              style={{color: COLORS.secondaryText}}>
+              style={{ color: COLORS.secondaryText }}
+            >
               Please enter a playlist name
             </Text>
             <TextInput
               className="rounded-sm border border-secondaryText px-2 py-1"
-              style={{color: COLORS.primaryText}}
+              style={{ color: COLORS.primaryText }}
               value={modalText}
               onChangeText={setModalText}
               autoFocus
@@ -52,13 +56,15 @@ function CustomModal({
             <View>
               <Pressable
                 className="flex-row items-center justify-center self-end rounded-sm bg-secondaryBg px-2 py-1"
-                onPress={onPress}>
+                onPress={onPress}
+              >
                 <Text
                   style={{
                     backgroundColor: COLORS.secondaryBg,
                     color: COLORS.primaryBg,
                   }}
-                  className="font-primary_semibold text-base">
+                  className="font-primary_semibold text-base"
+                >
                   Create
                 </Text>
               </Pressable>

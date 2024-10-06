@@ -11,4 +11,3 @@ export interface TusePlaylistStore {
   addPlaylist: (playlist: TPlaylist) => void;
   removePlaylist: (playlistName: string) => void;
 }
-
