@@ -8,7 +8,7 @@ import PlayerScreenView from './../components/player/player-screen-view';
 import COLORS from '../constants/colors';
 
 const PlayerScreen = () => {
-  const {currentMusicTrack} = trackStore(state => state);
+  const currentMusicTrack = trackStore(state => state.currentMusicTrack);
 
   console.log('inside player screen');
 

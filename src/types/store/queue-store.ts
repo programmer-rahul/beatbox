@@ -1,14 +1,13 @@
-type TQueueType = "home" | "saved" | "playlist";
+export type TQueueType = "home" | "saved" | "playlist";
 
-interface TQueue {
+export interface TQueue {
   type: TQueueType;
   tracksCount?: number;
   name?: string;
 }
 
-interface TQueueStore {
+export interface TQueueStore {
   currentQueue: TQueue;
   setCurrentQueue: (newQueue: TQueue) => void;
 }
 
-export { TQueueStore, TQueue, TQueueType };

@@ -3,7 +3,8 @@ import COLORS from './../../../constants/colors';
 import TrackPlayer, {RepeatMode} from 'react-native-track-player';
 
 function ShuffleMusicQueueIcon({size = 25}: {size?: number}) {
-  const {isShufflingQueue, setIsShufflingQueue} = trackStore(state => state);
+  const isShufflingQueue = trackStore(state => state.isShufflingQueue);
+  const setIsShufflingQueue = trackStore(state => state.setIsShufflingQueue);
 
   return (
     // <MaterialCommunityIcons

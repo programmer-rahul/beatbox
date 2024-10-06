@@ -1,6 +1,10 @@
-interface TusePermissionStore {
+export interface TusePermissionStore {
   isHavePermission: boolean;
   setIsHavePermission: (value: boolean) => void;
+  temp : [],
+  setTemp : () => void;
+  setTemp2 : () => void;
+  temp2 : string
+
 }
 
-export { TusePermissionStore };

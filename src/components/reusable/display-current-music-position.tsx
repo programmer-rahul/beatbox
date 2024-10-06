@@ -1,7 +1,7 @@
-import COLORS from "@/constants/colors";
-import { formatMusicFileDuration } from "@/lib/helper";
 import { Text } from "react-native";
 import { useProgress } from "react-native-track-player";
+import COLORS from "../../constants/colors";
+import { formatMusicFileDuration } from "../../lib/helper";
 
 function DisplayCurrentMusicPosition() {
   const progress = useProgress();

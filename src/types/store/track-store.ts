@@ -1,4 +1,4 @@
-interface TMusicTrack {
+export interface TMusicTrack {
   title: string;
   album: string;
   artist: string;
@@ -7,7 +7,7 @@ interface TMusicTrack {
   duration: number;
 }
 
-interface TTrackStore {
+export interface TTrackStore {
   allLocalMusicTracks: TMusicTrack[];
   setAllLocalMusicTracks: (newLocalMusicTracks: TMusicTrack[]) => void;
 
@@ -25,4 +25,3 @@ interface TTrackStore {
   setIsShufflingQueue: (value: boolean) => void;
 }
 
-export { TMusicTrack, TTrackStore };

@@ -4,7 +4,8 @@ import COLORS from './../../../constants/colors';
 import TrackPlayer, {RepeatMode} from 'react-native-track-player';
 
 function LoopMusicTrackIcon({size = 25}: {size?: number}) {
-  const {isLoopingTrack, setIsLoopingTrack} = trackStore(state => state);
+  const isLoopingTrack = trackStore(state => state.isLoopingTrack);
+  const setIsLoopingTrack = trackStore(state => state.setIsLoopingTrack);
 
   return (
     // <MaterialCommunityIcons

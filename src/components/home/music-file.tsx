@@ -1,17 +1,15 @@
 import {View, Text, Pressable} from 'react-native';
-// import Entypo from "@expo/vector-icons/Entypo";
 import {formatMusicFileDuration} from './../../lib/helper';
 import COLORS from './../../constants/colors';
 import {memo} from 'react';
-import useQueueStore, {queueStore} from './../../store/queue-store';
-import useTrackStore, {trackStore} from './../../store/track-store';
-import {playlistStore} from './../../store/playlist-store';
 import {savedStore} from './../../store/saved-store';
 import {TMusicTrack} from './../../types/store/track-store';
-// import { useRouter } from "expo-router";
 import TrackPlayer from 'react-native-track-player';
 import {TQueueType} from './../../types/store/queue-store';
 import MusicFileAlbumDisplay from '../reusable/music-file-album-display';
+import { trackStore } from '../../store/track-store';
+import { queueStore } from '../../store/queue-store';
+import { playlistStore } from '../../store/playlist-store';
 
 const MusicFile = ({
   musicFile,
@@ -25,8 +23,10 @@ const MusicFile = ({
   queueType: TQueueType;
   playlistName?: string;
 }) => {
-  const {setCurrentMusicTrack, setIsTrackPlaying} = trackStore(state => state);
-  const {setCurrentQueue} = queueStore(state => state);
+  const setCurrentMusicTrack = trackStore(state => state.setCurrentMusicTrack);
+  const setIsTrackPlaying = trackStore(state => state.setIsTrackPlaying);
+
+  const setCurrentQueue = queueStore(state => state.setCurrentQueue);
   // const { navigate } = useRouter();
 
   console.log('INSIDE MUSIC_FILE');
@@ -112,7 +112,7 @@ export default memo(MusicFile);
 
 const MusicFileTitleArtistDisplay = memo(
   ({title, artist}: {title: string; artist: string}) => {
-    const {currentMusicTrack} = trackStore(state => state);
+    const currentMusicTrack = trackStore(state => state.currentMusicTrack);
     const isCurrentPlayingSong = currentMusicTrack?.title === title;
 
     // console.log("INSIDE MUSIC_FILE_TITLE_ARTIST_DISPLAY");

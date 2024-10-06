@@ -2,9 +2,8 @@ import {Event, useTrackPlayerEvents} from 'react-native-track-player';
 import {trackStore} from './../store/track-store';
 
 const usePlayerEvents = () => {
-  const {setIsTrackPlaying, changeCurrentMusicTrack} = trackStore(
-    state => state,
-  );
+  const setIsTrackPlaying = trackStore(state => state.setIsTrackPlaying)
+  const changeCurrentMusicTrack = trackStore(state => state.changeCurrentMusicTrack)
 
   // to handle events from notification
   useTrackPlayerEvents(

@@ -1,10 +1,11 @@
 import {useEffect} from 'react';
 import {Alert, Linking, PermissionsAndroid} from 'react-native';
 import usePermissionStore from './../store/permission-store';
+import { useShallow } from 'zustand/shallow';
 // import { useRouter } from "expo-router";
 
 const usePermission = () => {
-  const isHavePermission = usePermissionStore(state => state.isHavePermission);
+  const isHavePermission = usePermissionStore(state => state.isHavePermission)
   const setIsHavePermission = usePermissionStore(
     state => state.setIsHavePermission,
   );

@@ -1,15 +1,14 @@
 import { TMusicTrack } from "./track-store";
 
-interface TPlaylist {
+export interface TPlaylist {
   name: string;
   musicTracksCount: number;
   musicTracks: TMusicTrack[];
 }
 
-interface TusePlaylistStore {
+export interface TusePlaylistStore {
   allPlaylists: TPlaylist[];
   addPlaylist: (playlist: TPlaylist) => void;
   removePlaylist: (playlistName: string) => void;
 }
 
-export { TusePlaylistStore, TPlaylist };

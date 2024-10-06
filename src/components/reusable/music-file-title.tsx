@@ -9,7 +9,7 @@ function MusicFileTitle({
   title?: string;
   text: 'small' | 'big';
 }) {
-  const {currentMusicTrack} = trackStore(state => state);
+  const currentMusicTrack = trackStore(state => state.currentMusicTrack);
   console.log('INSIDE MUSIC_FILE_TITLE');
 
   if (!title && !currentMusicTrack) return;

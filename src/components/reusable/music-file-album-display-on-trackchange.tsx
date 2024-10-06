@@ -12,7 +12,7 @@ function MusicFileAlbumDisplayOnTrackChange({
   size: 'small' | 'big';
 }) {
   const [musicCover, setMusicCover] = useState('');
-  const {currentMusicTrack} = trackStore(state => state);
+  const currentMusicTrack = trackStore(state => state.currentMusicTrack);
 
   console.log('INSIDE MUSIC_FILE_ALBUM_DISPLAY_ON_TRACK_CHANGE');
 

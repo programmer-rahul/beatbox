@@ -2,10 +2,10 @@
   "extends": "@react-native/typescript-config/tsconfig.json",
   "compilerOptions": {
     "strict": true,
-    "paths": {
-      "@/*": ["./src/*"],
-      "@/assets/*": ["./assets/*"]
-    }
+    // "paths": {
+    //   "@/*": ["./src/*"],
+    //   "@/assets/*": ["./assets/*"]
+    // }
   },
   "include": ["**/*.ts", "**/*.tsx", "./src/constants/colors.js"]
 }

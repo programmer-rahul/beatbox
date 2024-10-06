@@ -7,7 +7,7 @@ import COLORS from './../../constants/colors';
 
 const PlayerMusicSlider = () => {
   const progress = useProgress();
-  const {currentMusicTrack} = trackStore(state => state);
+  const currentMusicTrack = trackStore(state => state.currentMusicTrack);
 
   console.log('INSIDE MUSIC_PLAYER_SLIDER');
 

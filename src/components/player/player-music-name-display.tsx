@@ -4,7 +4,7 @@ import COLORS from './../../constants/colors';
 import MusicFileTitle from '../reusable/music-file-title';
 
 const PlayerMusicNameDisplay = () => {
-  const {currentMusicTrack} = trackStore(state => state);
+  const currentMusicTrack = trackStore(state => state.currentMusicTrack);
 
   return (
     <View className="flex justify-between px-2">

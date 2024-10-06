@@ -1,17 +1,16 @@
 import {Pressable, Text, View} from 'react-native';
-import COLORS from '@/constants/colors';
-import useTrackStore, {trackStore} from '@/store/track-store';
-// import { useRouter } from "expo-router";
-import PlayPauseMusicIcon from '@/components/reusable/icons/play-pause-music-icon';
-import DisplayCurrentMusicPosition from '@/components/reusable/display-current-music-position';
-import PlayPreviusNextMusicIcon from '@/components/reusable/icons/play-previus-next-music-icon';
-import {useProgress} from 'react-native-track-player';
-import MusicFileTitle from '@/components/reusable/music-file-title';
-import MusicFileTotalDuration from '@/components/reusable/music-file-total-duration';
-import MusicFileAlbumDisplayOnTrackChange from '@/components/reusable/music-file-album-display-on-trackchange';
+import { trackStore } from '../../../store/track-store';
+import { useProgress } from 'react-native-track-player';
+import COLORS from '../../../constants/colors';
+import DisplayCurrentMusicPosition from '../../reusable/display-current-music-position';
+import PlayPauseMusicIcon from '../../reusable/icons/play-pause-music-icon';
+import PlayPreviusNextMusicIcon from '../../reusable/icons/play-previus-next-music-icon';
+import MusicFileAlbumDisplayOnTrackChange from '../../reusable/music-file-album-display-on-trackchange';
+import MusicFileTitle from '../../reusable/music-file-title';
+import MusicFileTotalDuration from '../../reusable/music-file-total-duration';
 
 const MiniMusicPlayer = () => {
-  const {currentMusicTrack} = trackStore(state => state);
+  const currentMusicTrack = trackStore(state => state.currentMusicTrack);
   // const { navigate } = useRouter();
 
   console.log('INSIDE MINI_MUSIC_MUSIC_PLAYER');
@@ -64,8 +63,8 @@ export default MiniMusicPlayer;
 
 const MusicFileRemainingDurationVisual = () => {
   const progress = useProgress();
-  const {currentMusicTrack} = trackStore(state => state);
-
+  const currentMusicTrack = trackStore(state => state.currentMusicTrack);
+  
   return currentMusicTrack ? (
     <View className="absolute -z-10 flex h-full w-full justify-end">
       <View

@@ -1,8 +1,8 @@
 import { View, VirtualizedList } from "react-native";
 import MusicFile from "./music-file";
-import { TMusicTrack } from "@/types/store/track-store";
-import { TQueueType } from "@/types/store/queue-store";
 import { memo } from "react";
+import { TMusicTrack } from "../../types/store/track-store";
+import { TQueueType } from "../../types/store/queue-store";
 
 const ListMusicFiles = ({
   musicFiles,

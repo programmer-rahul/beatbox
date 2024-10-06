@@ -6,7 +6,7 @@ import COLORS from './../constants/colors';
 import ListMusicFilesHeader from './../components/home/list-music-files-header';
 
 const SavedScreen = () => {
-  const {allSavedMusicTracks} = savedStore(state => state);
+  const allSavedMusicTracks = savedStore(state => state.allSavedMusicTracks);
 
   return (
     <View
