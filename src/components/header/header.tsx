@@ -1,6 +1,6 @@
 import {View, Text} from 'react-native';
-// import Feather from "@expo/vector-icons/Feather";
 import COLORS from './../../constants/colors';
+import {Search} from 'lucide-react-native';
 
 const Header = () => {
   return (
@@ -15,7 +15,7 @@ const Header = () => {
         </Text>
       </View>
       <View>
-        {/* <Feather name="search" size={20} color={COLORS.secondaryIcon} /> */}
+        <Search size={20} color={COLORS.secondaryIcon} />
       </View>
     </View>
   );

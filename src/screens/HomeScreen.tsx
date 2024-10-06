@@ -1,6 +1,6 @@
 import {Text, View, ActivityIndicator} from 'react-native';
 
-import useTrackStore, {trackStore} from '../store/track-store';
+import {trackStore} from '../store/track-store';
 import ListMusicFiles from './../components/home/list-music-files';
 import ListMusicFilesHeader from './../components/home/list-music-files-header';
 import NoMusicFilesFound from './../components/home/no-music-files-found';
@@ -8,6 +8,7 @@ import MountOnMusicTrackFinish from './../components/mount-on-music-track-finish
 import COLORS from '../constants/colors';
 import useFetchLocalMusic from './../hooks/useFetchLocalMusic';
 import useInitialQueue from './../hooks/useInitialQueue';
+import Header from '../components/header/header';
 
 const HomeScreen = () => {
   const allLocalMusicTracks = trackStore(state => state.allLocalMusicTracks);
@@ -25,6 +26,7 @@ const HomeScreen = () => {
       {allLocalMusicTracksLength <= 0 && <NoMusicFilesFound />}
       {allLocalMusicTracksLength > 0 && (
         <View className="flex-1">
+          <Header />
           <View className="px-5">
             <ListMusicFilesHeader
               heading="All Music Files"
