@@ -1,4 +1,4 @@
-import useOnMusicTrackFinish from "@/hooks/useOnMusicTrackFinish";
+import useOnMusicTrackFinish from "./../hooks/useOnMusicTrackFinish";
 
 function MountOnMusicTrackFinish() {
   console.log("inside mount");

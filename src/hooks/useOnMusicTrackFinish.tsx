@@ -1,21 +1,19 @@
-import { useEffect } from "react";
-import { useActiveTrack, useProgress } from "react-native-track-player";
-import useTrackStore, { trackStore } from "@/store/track-store";
+import {useEffect} from 'react';
+import {useActiveTrack, useProgress} from 'react-native-track-player';
+import useTrackStore, {trackStore} from './../store/track-store';
 
 const onMusicTrackFinish = () => {
   const currentTrack = useActiveTrack();
   const progress = useProgress();
-  const { changeCurrentMusicTrack } = useTrackStore([
-    "changeCurrentMusicTrack",
-  ]);
+  const {changeCurrentMusicTrack} = trackStore(state => state);
 
   useEffect(() => {
     const currentMusicTrack = trackStore.getState().currentMusicTrack;
 
     if (progress.position >= progress.duration && currentMusicTrack) {
-      console.log("TRACK FINISHED");
+      console.log('TRACK FINISHED');
       currentMusicTrack?.title !== currentTrack?.title &&
-        changeCurrentMusicTrack("next");
+        changeCurrentMusicTrack('next');
     }
   }, [progress]);
 };

@@ -1,23 +1,24 @@
-import useQueueStore from "@/store/queue-store";
-import useTrackStore, { trackStore } from "@/store/track-store";
-import { useEffect } from "react";
-import TrackPlayer, { State } from "react-native-track-player";
+import {queueStore} from './../store/queue-store';
+import {trackStore} from './../store/track-store';
+import {useEffect} from 'react';
+import TrackPlayer, {State} from 'react-native-track-player';
 
 const useInitialQueue = () => {
-  const { setCurrentQueue } = useQueueStore(["setCurrentQueue"]);
-  const { setIsTrackPlaying } = useTrackStore(["setIsTrackPlaying"]);
+  const setIsTrackPlaying = trackStore(state => state.setIsTrackPlaying);
+
+  const setCurrentQueue = queueStore(state => state.setCurrentQueue);
 
   const mountInitialQueue = async () => {
     const currentTrackIndex = await TrackPlayer.getActiveTrackIndex();
     const currentMusicTrack = trackStore.getState().currentMusicTrack;
 
-    console.log("----------------------", currentTrackIndex);
-    console.log("----------------------", !currentMusicTrack);
+    console.log('----------------------', currentTrackIndex);
+    console.log('----------------------', !currentMusicTrack);
     if (!currentMusicTrack) return;
 
     // check is there music is playing or not for updating ui state
-    const { state } = await TrackPlayer.getPlaybackState();
-    console.log("setIsTrackPlaying", state);
+    const {state} = await TrackPlayer.getPlaybackState();
+    console.log('setIsTrackPlaying', state);
     setIsTrackPlaying(state === State.Playing ? true : false);
 
     // to add queue
@@ -25,11 +26,11 @@ const useInitialQueue = () => {
     const allLocalMusicTracks = trackStore.getState().allLocalMusicTracks;
     await TrackPlayer.add(allLocalMusicTracks);
     setCurrentQueue({
-      type: "home",
+      type: 'home',
       tracksCount: allLocalMusicTracks.length,
     });
     let trackIndex = allLocalMusicTracks.findIndex(
-      (localMusicTrack) => localMusicTrack.url === currentMusicTrack.url,
+      localMusicTrack => localMusicTrack.url === currentMusicTrack.url,
     );
 
     await TrackPlayer.skip(trackIndex);

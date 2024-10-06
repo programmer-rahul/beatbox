@@ -1,6 +1,6 @@
-import COLORS from "@/constants/colors";
-import { memo } from "react";
-import { Text, View } from "react-native";
+import COLORS from './../../constants/colors';
+import {memo} from 'react';
+import {Text, View} from 'react-native';
 
 function ListMusicFilesHeader({
   heading,
@@ -14,17 +14,15 @@ function ListMusicFilesHeader({
       <Text
         className="font-primary_regular text-xs text-primaryText"
         style={{
-          color: COLORS.primaryText + "dd",
-        }}
-      >
+          color: COLORS.primaryText + 'dd',
+        }}>
         {heading}
       </Text>
       <Text
         className="font-primary_regular text-xs text-secondaryText"
         style={{
           color: COLORS.secondaryText,
-        }}
-      >
+        }}>
         {musicFilesLength}
       </Text>
     </View>

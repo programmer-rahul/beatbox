@@ -1,8 +1,8 @@
-import { TTrackStore } from "@/types/store/track-store";
+import { TTrackStore } from "./../types/store/track-store";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { createStoreWithShallow } from "@/lib/create-store-with-shallow";
+import { createStoreWithShallow } from "./../lib/create-store-with-shallow";
 import { queueStore } from "./queue-store";
 import { savedStore } from "./saved-store";
 import { playlistStore } from "./playlist-store";

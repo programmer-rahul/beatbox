@@ -1,8 +1,8 @@
-import COLORS from "@/constants/colors";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import COLORS from "./../../constants/colors";
+// import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React, { Dispatch, SetStateAction } from "react";
 import { Pressable, Text, View } from "react-native";
-import usePlaylistStore from "@/store/playlist-store";
+import usePlaylistStore from "./../../store/playlist-store";
 import ListMusicFiles from "../home/list-music-files";
 
 function SelectedPlaylistContent({
@@ -30,11 +30,11 @@ function SelectedPlaylistContent({
       <View className="flex-col items-start px-6">
         <View className="w-full flex-row justify-between">
           <Pressable onPress={() => setSelectedPlaylist(null)}>
-            <MaterialCommunityIcons
+            {/* <MaterialCommunityIcons
               name="chevron-left-circle"
               size={30}
               color={COLORS.main}
-            />
+            /> */}
           </Pressable>
           <Text
             className="font-primary_regular text-2xl text-primaryText"

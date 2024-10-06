@@ -1,8 +1,8 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { TSavedStore } from "@/types/store/saved-store";
-import { createStoreWithShallow } from "@/lib/create-store-with-shallow";
+import { TSavedStore } from "./../types/store/saved-store";
+import { createStoreWithShallow } from "./../lib/create-store-with-shallow";
 
 const useSavedStore = create<TSavedStore>()(
   persist(

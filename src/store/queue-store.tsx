@@ -1,5 +1,5 @@
-import { createStoreWithShallow } from "@/lib/create-store-with-shallow";
-import { TQueueStore } from "@/types/store/queue-store";
+import { createStoreWithShallow } from "./../lib/create-store-with-shallow";
+import { TQueueStore } from "./../types/store/queue-store";
 import { create } from "zustand";
 
 const useQueueStore = create<TQueueStore>()((set) => ({

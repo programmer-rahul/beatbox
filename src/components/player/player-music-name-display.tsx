@@ -1,10 +1,10 @@
-import { Text, View } from "react-native";
-import useTrackStore from "@/store/track-store";
-import COLORS from "@/constants/colors";
-import MusicFileTitle from "../reusable/music-file-title";
+import {Text, View} from 'react-native';
+import useTrackStore, {trackStore} from './../../store/track-store';
+import COLORS from './../../constants/colors';
+import MusicFileTitle from '../reusable/music-file-title';
 
 const PlayerMusicNameDisplay = () => {
-  const { currentMusicTrack } = useTrackStore(["currentMusicTrack"]);
+  const {currentMusicTrack} = trackStore(state => state);
 
   return (
     <View className="flex justify-between px-2">
@@ -14,8 +14,7 @@ const PlayerMusicNameDisplay = () => {
         numberOfLines={1}
         style={{
           color: COLORS.secondaryText,
-        }}
-      >
+        }}>
         {currentMusicTrack?.album}
       </Text>
     </View>

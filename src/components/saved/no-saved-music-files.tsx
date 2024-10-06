@@ -1,5 +1,5 @@
-import COLORS from "@/constants/colors";
-import { AntDesign } from "@expo/vector-icons";
+import COLORS from "./../../constants/colors";
+// import { AntDesign } from "@expo/vector-icons";
 import { Text, View } from "react-native";
 
 const NoSavedMusicFiles = () => {
@@ -14,7 +14,7 @@ const NoSavedMusicFiles = () => {
         No Saved Music Files
       </Text>
       <View className="absolute -z-10 pt-8 opacity-10">
-        <AntDesign name="hearto" size={300} color={COLORS.main} />
+        {/* <AntDesign name="hearto" size={300} color={COLORS.main} /> */}
       </View>
     </View>
   );

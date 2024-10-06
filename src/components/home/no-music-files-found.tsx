@@ -1,4 +1,4 @@
-import COLORS from "@/constants/colors";
+import COLORS from "./../../constants/colors";
 import { Text, View } from "react-native";
 
 const NoMusicFilesFound = () => {

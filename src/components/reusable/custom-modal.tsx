@@ -1,5 +1,5 @@
-import COLORS from "@/constants/colors";
-import { MaterialIcons } from "@expo/vector-icons";
+import COLORS from "./../../constants/colors";
+// import { MaterialIcons } from "@expo/vector-icons";
 import { Dispatch, SetStateAction } from "react";
 import { Modal, Pressable, Text, TextInput, View } from "react-native";
 
@@ -36,11 +36,11 @@ function CustomModal({
               New Playlist
             </Text>
             <Pressable onPress={() => setIsVisible(false)}>
-              <MaterialIcons
+              {/* <MaterialIcons
                 name="close"
                 color={COLORS.secondaryIcon}
                 size={22}
-              />
+              /> */}
             </Pressable>
           </View>
           <View className="w-full flex-1 justify-around space-y-2">

@@ -1,25 +1,25 @@
-import COLORS from "@/constants/colors";
-import { fetchCoverImage } from "@/lib/music";
-import useTrackStore from "@/store/track-store";
-import { Feather } from "@expo/vector-icons";
-import { useEffect, useState } from "react";
-import { View } from "react-native";
-import FastImage from "react-native-fast-image";
+import COLORS from './../../constants/colors';
+import {fetchCoverImage} from './../../lib/music';
+import useTrackStore, {trackStore} from './../../store/track-store';
+// import {Feather} from '@expo/vector-icons';
+import {useEffect, useState} from 'react';
+import {View} from 'react-native';
+import FastImage from 'react-native-fast-image';
 
 function MusicFileAlbumDisplayOnTrackChange({
-  size = "small",
+  size = 'small',
 }: {
-  size: "small" | "big";
+  size: 'small' | 'big';
 }) {
-  const [musicCover, setMusicCover] = useState("");
-  const { currentMusicTrack } = useTrackStore(["currentMusicTrack"]);
+  const [musicCover, setMusicCover] = useState('');
+  const {currentMusicTrack} = trackStore(state => state);
 
-  console.log("INSIDE MUSIC_FILE_ALBUM_DISPLAY_ON_TRACK_CHANGE");
+  console.log('INSIDE MUSIC_FILE_ALBUM_DISPLAY_ON_TRACK_CHANGE');
 
   useEffect(() => {
     currentMusicTrack?.cover &&
       fetchCoverImage(currentMusicTrack?.title).then(
-        (coverImage) => coverImage && setMusicCover(coverImage),
+        coverImage => coverImage && setMusicCover(coverImage),
       );
   }, [currentMusicTrack]);
 
@@ -27,28 +27,26 @@ function MusicFileAlbumDisplayOnTrackChange({
   return (
     <View
       className={
-        size === "small"
-          ? "aspect-square h-11 items-center justify-center rounded-md"
-          : "aspect-square w-11/12 items-center justify-center self-center rounded-xl border-main/40 bg-main/30"
+        size === 'small'
+          ? 'aspect-square h-11 items-center justify-center rounded-md'
+          : 'aspect-square w-11/12 items-center justify-center self-center rounded-xl border-main/40 bg-main/30'
       }
-      style={{ backgroundColor: COLORS.main + "22" }}
-    >
+      style={{backgroundColor: COLORS.main + '22'}}>
       {musicCover ? (
         <FastImage
           source={{
             uri: musicCover,
-            priority: "normal",
+            priority: 'normal',
             cache: FastImage.cacheControl.immutable,
           }}
           className="h-full w-full rounded-md"
         />
-      ) : (
-        <Feather
-          name="music"
-          size={size === "small" ? 22 : 250}
-          color={COLORS.main}
-        />
-      )}
+      ) : // <Feather
+      //   name="music"
+      //   size={size === 'small' ? 22 : 250}
+      //   color={COLORS.main}
+      // />
+      null}
     </View>
   );
 }

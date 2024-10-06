@@ -1,24 +1,20 @@
-import COLORS from "@/constants/colors";
-import useSavedStore from "@/store/saved-store";
-import useTrackStore from "@/store/track-store";
-import { AntDesign } from "@expo/vector-icons";
-import { useEffect, useState } from "react";
-import { View } from "react-native";
+import COLORS from './../../constants/colors';
+import useSavedStore, {savedStore} from './../../store/saved-store';
+import useTrackStore, {trackStore} from './../../store/track-store';
+// import {AntDesign} from '@expo/vector-icons';
+import {useEffect, useState} from 'react';
+import {View} from 'react-native';
 
-const PlayerSavedMusicIcon = ({ size = 25 }: { size?: number }) => {
-  const { currentMusicTrack } = useTrackStore(["currentMusicTrack"]);
-  const { allSavedMusicTracks, addTrackInSavedMusic, removeTrackInSavedMusic } =
-    useSavedStore([
-      "allSavedMusicTracks",
-      "addTrackInSavedMusic",
-      "removeTrackInSavedMusic",
-    ]);
+const PlayerSavedMusicIcon = ({size = 25}: {size?: number}) => {
+  const {currentMusicTrack} = trackStore(state => state);
+  const {allSavedMusicTracks, addTrackInSavedMusic, removeTrackInSavedMusic} =
+    savedStore(state => state);
 
   // check whether current song is saved song or not
   const checkIsSavedMusic = () => {
     if (!currentMusicTrack) return false;
     return allSavedMusicTracks.some(
-      (savedMusic) => savedMusic.url === currentMusicTrack.url,
+      savedMusic => savedMusic.url === currentMusicTrack.url,
     );
   };
 
@@ -32,8 +28,8 @@ const PlayerSavedMusicIcon = ({ size = 25 }: { size?: number }) => {
 
   return (
     <View>
-      <AntDesign
-        name={isSavedMusic ? "heart" : "hearto"}
+      {/* <AntDesign
+        name={isSavedMusic ? 'heart' : 'hearto'}
         size={size}
         color={COLORS.main}
         onPress={() => {
@@ -51,7 +47,7 @@ const PlayerSavedMusicIcon = ({ size = 25 }: { size?: number }) => {
           // for ui perpose
           setIsSavedMusic(!isSavedMusic);
         }}
-      />
+      /> */}
     </View>
   );
 };

@@ -1,6 +1,6 @@
-import COLORS from "@/constants/colors";
-import { fetchCoverImage } from "@/lib/music";
-import { Feather } from "@expo/vector-icons";
+import COLORS from "./../../constants/colors";
+import { fetchCoverImage } from "./../../lib/music";
+// import { Feather } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
 import { View } from "react-native";
 import FastImage from "react-native-fast-image";
@@ -37,7 +37,8 @@ function MusicFileAlbumDisplay({
           className="h-full w-full rounded-md"
         />
       ) : (
-        <Feather name="music" size={22} color={COLORS.main} />
+        // <Feather name="music" size={22} color={COLORS.main} />
+        null
       )}
     </View>
   );

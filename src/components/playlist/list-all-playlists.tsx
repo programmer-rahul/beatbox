@@ -1,8 +1,8 @@
-import usePlaylistStore from "@/store/playlist-store";
+import usePlaylistStore from "./../../store/playlist-store";
 import { View, VirtualizedList } from "react-native";
 import PlaylistName from "./playlist-name";
 import { Dispatch } from "react";
-import { TPlaylist } from "@/types/store/playlist-store";
+import { TPlaylist } from "./../../types/store/playlist-store";
 
 function ListAllPlaylists({
   setSelectedPlaylist,
