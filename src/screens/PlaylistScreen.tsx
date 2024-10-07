@@ -3,19 +3,19 @@ import COLORS from "./../constants/colors";
 import { useState } from "react";
 import CustomModal from "./../components/reusable/custom-modal";
 import ListAllPlaylists from "./../components/playlist/list-all-playlists";
-import usePlaylistStore, { playlistStore } from "./../store/playlist-store";
-import AddNewPlaylistBtn from "./../components/playlist/add-new-playlist-btn";
 import SelectedPlaylistContent from "./../components/playlist/selected-playlist-content";
+import useZustandStore from "../store/useZustandStore";
+import AddNewPlaylistBtn from "../components/playlist/add-new-playlist-btn";
 
 const PlaylistScreen = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [modalText, setModalText] = useState("");
-  const addPlaylist = usePlaylistStore((state) => state.addPlaylist);
+  const addPlaylist = useZustandStore((state) => state.addPlaylist);
   const [selectedPlaylist, setSelectedPlaylist] = useState<null | string>(null);
 
   const onNewPlaylistPress = () => {
     // check if there are playlist with this name is already exists
-    const isPlaylistAlreadyAvailable = playlistStore
+    const isPlaylistAlreadyAvailable = useZustandStore
       .getState()
       .allPlaylists.some((playlist) => playlist.name === modalText.trim());
 

@@ -1,9 +1,9 @@
 import COLORS from "./../../constants/colors";
 import React, { Dispatch, SetStateAction } from "react";
 import { Pressable, Text, View } from "react-native";
-import usePlaylistStore from "./../../store/playlist-store";
 import ListMusicFiles from "../home/list-music-files";
 import { ChevronLeft } from "lucide-react-native";
+import useZustandStore from "../../store/useZustandStore";
 
 function SelectedPlaylistContent({
   selectedPlaylist,
@@ -12,7 +12,7 @@ function SelectedPlaylistContent({
   selectedPlaylist: null | string;
   setSelectedPlaylist: Dispatch<SetStateAction<null | string>>;
 }) {
-  const allPlaylists = usePlaylistStore((state) => state.allPlaylists);
+  const allPlaylists = useZustandStore((state) => state.allPlaylists);
 
   const currentPlaylist = allPlaylists.find(
     (playlist) => playlist.name === selectedPlaylist,

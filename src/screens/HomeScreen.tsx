@@ -1,6 +1,5 @@
 import { Text, View, ActivityIndicator } from "react-native";
 
-import { trackStore } from "../store/track-store";
 import ListMusicFiles from "./../components/home/list-music-files";
 import ListMusicFilesHeader from "./../components/home/list-music-files-header";
 import NoMusicFilesFound from "./../components/home/no-music-files-found";
@@ -9,9 +8,12 @@ import COLORS from "../constants/colors";
 import useFetchLocalMusic from "./../hooks/useFetchLocalMusic";
 import useInitialQueue from "./../hooks/useInitialQueue";
 import Header from "../components/header/header";
+import useZustandStore from "../store/useZustandStore";
 
 const HomeScreen = () => {
-  const allLocalMusicTracks = trackStore((state) => state.allLocalMusicTracks);
+  const allLocalMusicTracks = useZustandStore(
+    (state) => state.allLocalMusicTracks,
+  );
   const allLocalMusicTracksLength = allLocalMusicTracks.length;
 
   const { isFetching } = useFetchLocalMusic();

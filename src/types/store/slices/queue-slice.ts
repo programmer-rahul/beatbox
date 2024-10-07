@@ -6,7 +6,7 @@ export interface TQueue {
   name?: string;
 }
 
-export interface TQueueStore {
+export interface TQueueSlice {
   currentQueue: TQueue;
   setCurrentQueue: (newQueue: TQueue) => void;
 }

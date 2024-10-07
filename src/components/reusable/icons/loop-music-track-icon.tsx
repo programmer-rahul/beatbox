@@ -1,12 +1,12 @@
 // import { MaterialCommunityIcons } from "@expo/vector-icons";
-import useTrackStore, { trackStore } from "./../../../store/track-store";
 import COLORS from "./../../../constants/colors";
 import TrackPlayer, { RepeatMode } from "react-native-track-player";
 import { Repeat2 } from "lucide-react-native";
+import useZustandStore from "../../../store/useZustandStore";
 
 function LoopMusicTrackIcon({ size = 25 }: { size?: number }) {
-  const isLoopingTrack = trackStore((state) => state.isLoopingTrack);
-  const setIsLoopingTrack = trackStore((state) => state.setIsLoopingTrack);
+  const isLoopingTrack = useZustandStore((state) => state.isLoopingTrack);
+  const setIsLoopingTrack = useZustandStore((state) => state.setIsLoopingTrack);
 
   return (
     <Repeat2

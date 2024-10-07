@@ -8,27 +8,38 @@ import PermissionRequired from "./src/components/reusable/permission-required";
 import usePermission from "./src/hooks/usePermission";
 import { StatusBar } from "react-native";
 import COLORS from "./src/constants/colors";
+import usePlayerEvents from "./src/hooks/usePlayerEvents";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 TrackPlayer.registerPlaybackService(() => playbackService);
 
 function App(): React.JSX.Element {
-  const { isHavePermission } = usePermission();
   const isTrackPlayerInitialized = useRef(false);
-
   useSetupTrackPlayer({ isTrackPlayerInitialized });
 
+
   return (
-    <>
-      <NavigationContainer>
-        {isHavePermission ? <TabNavitation /> : <PermissionRequired />}
-      </NavigationContainer>
+    <SafeAreaView className="flex-1">
+      <RootNavigation />
 
       <StatusBar
         backgroundColor={COLORS.primaryBg}
         barStyle={"light-content"}
       />
-    </>
+    </SafeAreaView>
   );
 }
 
 export default App;
+
+const RootNavigation = () => {
+  const { isHavePermission } = usePermission();
+
+  usePlayerEvents();
+
+  return (
+    <NavigationContainer>
+      {isHavePermission ? <TabNavitation /> : <PermissionRequired />}
+    </NavigationContainer>
+  );
+};

@@ -1,10 +1,10 @@
 import { Text } from "react-native";
-import { trackStore } from "../../store/track-store";
 import COLORS from "../../constants/colors";
 import { formatMusicFileDuration } from "../../lib/helper";
+import useZustandStore from "../../store/useZustandStore";
 
 function MusicFileTotalDuration() {
-  const currentMusicTrack = trackStore((state) => state.currentMusicTrack);
+  const currentMusicTrack = useZustandStore((state) => state.currentMusicTrack);
 
   console.log("INSIDE MUSIC_FILE_TOTAL_DURATION");
 

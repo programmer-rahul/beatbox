@@ -1,16 +1,14 @@
 import { Text, View } from "react-native";
-import useTrackStore, { trackStore } from "../store/track-store";
-// import {Feather} from '@expo/vector-icons';
-// import { Link } from "expo-router";
 import { memo } from "react";
 import PlayerScreenHeader from "./../components/player/player-screen-header";
 import PlayerScreenView from "./../components/player/player-screen-view";
 import COLORS from "../constants/colors";
 import { Link, useNavigation } from "@react-navigation/native";
 import { Music } from "lucide-react-native";
+import useZustandStore from "../store/useZustandStore";
 
 const PlayerScreen = () => {
-  const currentMusicTrack = trackStore((state) => state.currentMusicTrack);
+  const currentMusicTrack = useZustandStore((state) => state.currentMusicTrack);
 
   console.log("inside player screen");
 

@@ -1,13 +1,12 @@
 import COLORS from "./../../../constants/colors";
-// import { Feather } from "@expo/vector-icons";
 import { memo } from "react";
 import TrackPlayer from "react-native-track-player";
-import useTrackStore, { trackStore } from "./../../../store/track-store";
 import { Pause, Play } from "lucide-react-native";
+import useZustandStore from "../../../store/useZustandStore";
 
 function PlayPauseMusicIcon({ size = 30 }: { size?: number }) {
-  const isTrackPlaying = trackStore((state) => state.isTrackPlaying);
-  const setIsTrackPlaying = trackStore((state) => state.setIsTrackPlaying);
+  const isTrackPlaying = useZustandStore((state) => state.isTrackPlaying);
+  const setIsTrackPlaying = useZustandStore((state) => state.setIsTrackPlaying);
 
   console.log("INSIDE PLAY_PAUSE_ICON");
 

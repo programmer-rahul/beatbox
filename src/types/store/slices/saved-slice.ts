@@ -1,6 +1,6 @@
-import { TMusicTrack } from "./track-store";
+import { TMusicTrack } from "./track-slice";
 
-export interface TSavedStore {
+export interface TSavedSlice {
   allSavedMusicTracks: TMusicTrack[];
   addTrackInSavedMusic: (musicTrack: TMusicTrack) => void;
   removeTrackInSavedMusic: (savedMusicTrackUrl: string) => void;

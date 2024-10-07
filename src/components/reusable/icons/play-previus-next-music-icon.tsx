@@ -1,9 +1,8 @@
 import COLORS from "./../../../constants/colors";
-// import { Feather } from "@expo/vector-icons";
 import { memo } from "react";
-import useTrackStore, { trackStore } from "./../../../store/track-store";
 import TrackPlayer from "react-native-track-player";
 import { SkipBack, SkipForward } from "lucide-react-native";
+import useZustandStore from "../../../store/useZustandStore";
 
 function PlayPreviousNextMusicIcon({
   size = 35,
@@ -12,7 +11,7 @@ function PlayPreviousNextMusicIcon({
   size?: number;
   type: "previous" | "next";
 }) {
-  const changeCurrentMusicTrack = trackStore(
+  const changeCurrentMusicTrack = useZustandStore(
     (state) => state.changeCurrentMusicTrack,
   );
 

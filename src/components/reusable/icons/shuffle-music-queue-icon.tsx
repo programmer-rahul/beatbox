@@ -1,11 +1,13 @@
-import useTrackStore, { trackStore } from "./../../../store/track-store";
 import COLORS from "./../../../constants/colors";
 import TrackPlayer, { RepeatMode } from "react-native-track-player";
 import { Repeat } from "lucide-react-native";
+import useZustandStore from "../../../store/useZustandStore";
 
 function ShuffleMusicQueueIcon({ size = 25 }: { size?: number }) {
-  const isShufflingQueue = trackStore((state) => state.isShufflingQueue);
-  const setIsShufflingQueue = trackStore((state) => state.setIsShufflingQueue);
+  const isShufflingQueue = useZustandStore((state) => state.isShufflingQueue);
+  const setIsShufflingQueue = useZustandStore(
+    (state) => state.setIsShufflingQueue,
+  );
 
   return (
     <Repeat

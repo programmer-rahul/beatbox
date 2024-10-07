@@ -1,12 +1,10 @@
 import { useEffect } from "react";
 import { Alert, Linking, PermissionsAndroid } from "react-native";
-import usePermissionStore from "./../store/permission-store";
+import useZustandStore from "../store/useZustandStore";
 
 const usePermission = () => {
-  const isHavePermission = usePermissionStore(
-    (state) => state.isHavePermission,
-  );
-  const setIsHavePermission = usePermissionStore(
+  const isHavePermission = useZustandStore((state) => state.isHavePermission);
+  const setIsHavePermission = useZustandStore(
     (state) => state.setIsHavePermission,
   );
 

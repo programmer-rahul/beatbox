@@ -1,12 +1,14 @@
 import { View } from "react-native";
 import ListMusicFiles from "./../components/home/list-music-files";
 import NoSavedMusicFiles from "./../components/saved/no-saved-music-files";
-import useSavedStore, { savedStore } from "./../store/saved-store";
 import COLORS from "./../constants/colors";
 import ListMusicFilesHeader from "./../components/home/list-music-files-header";
+import useZustandStore from "../store/useZustandStore";
 
 const SavedScreen = () => {
-  const allSavedMusicTracks = savedStore((state) => state.allSavedMusicTracks);
+  const allSavedMusicTracks = useZustandStore(
+    (state) => state.allSavedMusicTracks,
+  );
 
   return (
     <View

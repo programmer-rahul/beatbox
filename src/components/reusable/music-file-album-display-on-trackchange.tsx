@@ -1,11 +1,10 @@
 import { Music } from "lucide-react-native";
 import COLORS from "./../../constants/colors";
 import { fetchCoverImage } from "./../../lib/music";
-import useTrackStore, { trackStore } from "./../../store/track-store";
-// import {Feather} from '@expo/vector-icons';
 import { useEffect, useState } from "react";
 import { View } from "react-native";
 import FastImage from "react-native-fast-image";
+import useZustandStore from "../../store/useZustandStore";
 
 function MusicFileAlbumDisplayOnTrackChange({
   size = "small",
@@ -13,7 +12,7 @@ function MusicFileAlbumDisplayOnTrackChange({
   size: "small" | "big";
 }) {
   const [musicCover, setMusicCover] = useState("");
-  const currentMusicTrack = trackStore((state) => state.currentMusicTrack);
+  const currentMusicTrack = useZustandStore((state) => state.currentMusicTrack);
 
   console.log("INSIDE MUSIC_FILE_ALBUM_DISPLAY_ON_TRACK_CHANGE");
 

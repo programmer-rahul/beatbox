@@ -7,7 +7,7 @@ export interface TMusicTrack {
   duration: number;
 }
 
-export interface TTrackStore {
+export interface TTrackSlice {
   allLocalMusicTracks: TMusicTrack[];
   setAllLocalMusicTracks: (newLocalMusicTracks: TMusicTrack[]) => void;
 
@@ -17,10 +17,4 @@ export interface TTrackStore {
 
   isTrackPlaying: boolean;
   setIsTrackPlaying: (value: boolean) => void;
-
-  isLoopingTrack: boolean;
-  setIsLoopingTrack: (value: boolean) => void;
-
-  isShufflingQueue: boolean;
-  setIsShufflingQueue: (value: boolean) => void;
 }

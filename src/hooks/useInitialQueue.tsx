@@ -1,16 +1,15 @@
-import { queueStore } from "./../store/queue-store";
-import { trackStore } from "./../store/track-store";
 import { useEffect } from "react";
 import TrackPlayer, { State } from "react-native-track-player";
+import useZustandStore from "../store/useZustandStore";
 
 const useInitialQueue = () => {
-  const setIsTrackPlaying = trackStore((state) => state.setIsTrackPlaying);
+  const setIsTrackPlaying = useZustandStore((state) => state.setIsTrackPlaying);
 
-  const setCurrentQueue = queueStore((state) => state.setCurrentQueue);
+  const setCurrentQueue = useZustandStore((state) => state.setCurrentQueue);
 
   const mountInitialQueue = async () => {
     const currentTrackIndex = await TrackPlayer.getActiveTrackIndex();
-    const currentMusicTrack = trackStore.getState().currentMusicTrack;
+    const currentMusicTrack = useZustandStore.getState().currentMusicTrack;
 
     console.log("----------------------", currentTrackIndex);
     console.log("----------------------", !currentMusicTrack);
@@ -23,7 +22,7 @@ const useInitialQueue = () => {
 
     // to add queue
     if (currentTrackIndex !== undefined) return;
-    const allLocalMusicTracks = trackStore.getState().allLocalMusicTracks;
+    const allLocalMusicTracks = useZustandStore.getState().allLocalMusicTracks;
     await TrackPlayer.add(allLocalMusicTracks);
     setCurrentQueue({
       type: "home",

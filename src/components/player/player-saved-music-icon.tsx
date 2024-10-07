@@ -1,17 +1,18 @@
 import { Heart } from "lucide-react-native";
 import COLORS from "./../../constants/colors";
-import { savedStore } from "./../../store/saved-store";
-import { trackStore } from "./../../store/track-store";
 import { useEffect, useState } from "react";
 import { View } from "react-native";
+import useZustandStore from "../../store/useZustandStore";
 
 const PlayerSavedMusicIcon = ({ size = 25 }: { size?: number }) => {
-  const currentMusicTrack = trackStore((state) => state.currentMusicTrack);
-  const allSavedMusicTracks = savedStore((state) => state.allSavedMusicTracks);
-  const addTrackInSavedMusic = savedStore(
+  const currentMusicTrack = useZustandStore((state) => state.currentMusicTrack);
+  const allSavedMusicTracks = useZustandStore(
+    (state) => state.allSavedMusicTracks,
+  );
+  const addTrackInSavedMusic = useZustandStore(
     (state) => state.addTrackInSavedMusic,
   );
-  const removeTrackInSavedMusic = savedStore(
+  const removeTrackInSavedMusic = useZustandStore(
     (state) => state.removeTrackInSavedMusic,
   );
 

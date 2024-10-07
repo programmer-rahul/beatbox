@@ -1,15 +1,15 @@
-import usePlaylistStore from "./../../store/playlist-store";
 import { View, VirtualizedList } from "react-native";
 import PlaylistName from "./playlist-name";
 import { Dispatch } from "react";
-import { TPlaylist } from "./../../types/store/playlist-store";
+import useZustandStore from "../../store/useZustandStore";
+import { TPlaylist } from "../../types/store/slices/playlist-slice";
 
 function ListAllPlaylists({
   setSelectedPlaylist,
 }: {
   setSelectedPlaylist: Dispatch<React.SetStateAction<null | string>>;
 }) {
-  const allPlaylists = usePlaylistStore((state) => state.allPlaylists);
+  const allPlaylists = useZustandStore((state) => state.allPlaylists);
 
   return allPlaylists.length ? (
     <View className="mt-4 w-full">

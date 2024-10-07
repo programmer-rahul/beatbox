@@ -1,5 +1,4 @@
 import { Pressable, Text, View } from "react-native";
-import { trackStore } from "../../../store/track-store";
 import { useProgress } from "react-native-track-player";
 import COLORS from "../../../constants/colors";
 import DisplayCurrentMusicPosition from "../../reusable/display-current-music-position";
@@ -10,9 +9,10 @@ import MusicFileTitle from "../../reusable/music-file-title";
 import MusicFileTotalDuration from "../../reusable/music-file-total-duration";
 import { useNavigation } from "@react-navigation/native";
 import { RootTabNavigationProp } from "../../../types/navigation-type";
+import useZustandStore from "../../../store/useZustandStore";
 
 const MiniMusicPlayer = () => {
-  const currentMusicTrack = trackStore((state) => state.currentMusicTrack);
+  const currentMusicTrack = useZustandStore((state) => state.currentMusicTrack);
   const { navigate } = useNavigation<RootTabNavigationProp>();
 
   console.log("INSIDE MINI_MUSIC_MUSIC_PLAYER");
@@ -69,7 +69,7 @@ export default MiniMusicPlayer;
 
 const MusicFileRemainingDurationVisual = () => {
   const progress = useProgress();
-  const currentMusicTrack = trackStore((state) => state.currentMusicTrack);
+  const currentMusicTrack = useZustandStore((state) => state.currentMusicTrack);
 
   return currentMusicTrack ? (
     <View className="absolute -z-10 flex h-full w-full justify-end">

@@ -1,6 +1,6 @@
+import useZustandStore from "../../store/useZustandStore";
 import COLORS from "./../../constants/colors";
 import { Text } from "react-native";
-import useTrackStore, { trackStore } from "./../../store/track-store";
 
 function MusicFileTitle({
   title,
@@ -9,7 +9,7 @@ function MusicFileTitle({
   title?: string;
   text: "small" | "big";
 }) {
-  const currentMusicTrack = trackStore((state) => state.currentMusicTrack);
+  const currentMusicTrack = useZustandStore((state) => state.currentMusicTrack);
   console.log("INSIDE MUSIC_FILE_TITLE");
 
   if (!title && !currentMusicTrack) return;

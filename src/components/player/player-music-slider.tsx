@@ -1,13 +1,13 @@
 import { Text, View } from "react-native";
 import CustomRangeSlider from "../reusable/custom-range-slider";
 import { formatMusicFileDuration } from "./../../lib/helper";
-import useTrackStore, { trackStore } from "./../../store/track-store";
 import { useProgress } from "react-native-track-player";
 import COLORS from "./../../constants/colors";
+import useZustandStore from "../../store/useZustandStore";
 
 const PlayerMusicSlider = () => {
   const progress = useProgress();
-  const currentMusicTrack = trackStore((state) => state.currentMusicTrack);
+  const currentMusicTrack = useZustandStore((state) => state.currentMusicTrack);
 
   console.log("INSIDE MUSIC_PLAYER_SLIDER");
 

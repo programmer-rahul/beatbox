@@ -2,15 +2,12 @@ import { View, Text, Pressable } from "react-native";
 import { formatMusicFileDuration } from "./../../lib/helper";
 import COLORS from "./../../constants/colors";
 import { memo } from "react";
-import { savedStore } from "./../../store/saved-store";
-import { TMusicTrack } from "./../../types/store/track-store";
 import TrackPlayer from "react-native-track-player";
-import { TQueueType } from "./../../types/store/queue-store";
 import MusicFileAlbumDisplay from "../reusable/music-file-album-display";
-import { trackStore } from "../../store/track-store";
-import { queueStore } from "../../store/queue-store";
-import { playlistStore } from "../../store/playlist-store";
 import { EllipsisVertical } from "lucide-react-native";
+import { TQueueType } from "../../types/store/slices/queue-slice";
+import { TMusicTrack } from "../../types/store/slices/track-slice";
+import useZustandStore from "../../store/useZustandStore";
 
 const MusicFile = ({
   musicFile,
@@ -24,12 +21,12 @@ const MusicFile = ({
   queueType: TQueueType;
   playlistName?: string;
 }) => {
-  const setCurrentMusicTrack = trackStore(
+  const setCurrentMusicTrack = useZustandStore(
     (state) => state.setCurrentMusicTrack,
   );
-  const setIsTrackPlaying = trackStore((state) => state.setIsTrackPlaying);
+  const setIsTrackPlaying = useZustandStore((state) => state.setIsTrackPlaying);
 
-  const setCurrentQueue = queueStore((state) => state.setCurrentQueue);
+  const setCurrentQueue = useZustandStore((state) => state.setCurrentQueue);
   // const { navigate } = useRouter();
 
   console.log("INSIDE MUSIC_FILE");
@@ -40,16 +37,16 @@ const MusicFile = ({
   ) => {
     let currentSelectedQueueMusicFiles =
       queueType === "home"
-        ? trackStore.getState().allLocalMusicTracks
+        ? useZustandStore.getState().allLocalMusicTracks
         : queueType === "saved"
-          ? savedStore.getState().allSavedMusicTracks
-          : playlistStore
+          ? useZustandStore.getState().allSavedMusicTracks
+          : useZustandStore
               .getState()
               .allPlaylists.find((playlist) => playlist.name === playlistName)
               ?.musicTracks || [];
 
-    const currentMusicTrack = trackStore.getState().currentMusicTrack;
-    const currentQueue = queueStore.getState().currentQueue;
+    const currentMusicTrack = useZustandStore.getState().currentMusicTrack;
+    const currentQueue = useZustandStore.getState().currentQueue;
 
     if (currentMusicTrack?.url !== musicFile.url) {
       // add songs in queue if queue is empty or selected queue is different one
@@ -117,7 +114,9 @@ export default memo(MusicFile);
 
 const MusicFileTitleArtistDisplay = memo(
   ({ title, artist }: { title: string; artist: string }) => {
-    const currentMusicTrack = trackStore((state) => state.currentMusicTrack);
+    const currentMusicTrack = useZustandStore(
+      (state) => state.currentMusicTrack,
+    );
     const isCurrentPlayingSong = currentMusicTrack?.title === title;
 
     // console.log("INSIDE MUSIC_FILE_TITLE_ARTIST_DISPLAY");

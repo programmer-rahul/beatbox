@@ -1,24 +1,24 @@
-import { trackStore } from "./../store/track-store";
 import { useEffect, useState } from "react";
 import { getAll } from "react-native-get-music-files";
+import useZustandStore from "../store/useZustandStore";
 
 const useFetchLocalMusic = () => {
-  const setAllLocalMusicTracks = trackStore(
+  const setAllLocalMusicTracks = useZustandStore(
     (state) => state.setAllLocalMusicTracks,
   );
 
   const [isFetching, setIsFetching] = useState(true);
 
   const fetchLocalMusicFiles = async () => {
-    setIsFetching(!trackStore.getState().allLocalMusicTracks.length);
+    setIsFetching(!useZustandStore.getState().allLocalMusicTracks.length);
 
     const fetchedMusicFiles = await getAll({
-      limit: 40,
+      limit: 10,
       minSongDuration: 5000,
     });
 
     if (Array.isArray(fetchedMusicFiles)) {
-      trackStore.getState().allLocalMusicTracks.length <= 0 &&
+      useZustandStore.getState().allLocalMusicTracks.length <= 0 &&
         setAllLocalMusicTracks(
           fetchedMusicFiles.map((musicFile) => ({
             ...musicFile,
@@ -31,7 +31,7 @@ const useFetchLocalMusic = () => {
   };
 
   useEffect(() => {
-    trackStore.getState().allLocalMusicTracks.length === 0
+    useZustandStore.getState().allLocalMusicTracks.length === 0
       ? fetchLocalMusicFiles()
       : setIsFetching(false);
   }, []);

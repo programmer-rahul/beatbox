@@ -1,10 +1,10 @@
 import { Text, View } from "react-native";
-import useTrackStore, { trackStore } from "./../../store/track-store";
 import COLORS from "./../../constants/colors";
 import MusicFileTitle from "../reusable/music-file-title";
+import useZustandStore from "../../store/useZustandStore";
 
 const PlayerMusicNameDisplay = () => {
-  const currentMusicTrack = trackStore((state) => state.currentMusicTrack);
+  const currentMusicTrack = useZustandStore((state) => state.currentMusicTrack);
 
   return (
     <View className="flex justify-between px-2">

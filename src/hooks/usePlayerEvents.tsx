@@ -1,9 +1,9 @@
 import { Event, useTrackPlayerEvents } from "react-native-track-player";
-import { trackStore } from "./../store/track-store";
+import useZustandStore from "../store/useZustandStore";
 
 const usePlayerEvents = () => {
-  const setIsTrackPlaying = trackStore((state) => state.setIsTrackPlaying);
-  const changeCurrentMusicTrack = trackStore(
+  const setIsTrackPlaying = useZustandStore((state) => state.setIsTrackPlaying);
+  const changeCurrentMusicTrack = useZustandStore(
     (state) => state.changeCurrentMusicTrack,
   );
 
@@ -20,11 +20,11 @@ const usePlayerEvents = () => {
       if (event.type === Event.RemotePlay) setIsTrackPlaying(true);
       if (event.type === Event.RemotePause) setIsTrackPlaying(false);
       if (event.type === Event.RemotePrevious) {
-        trackStore.getState().currentMusicTrack &&
+        useZustandStore.getState().currentMusicTrack &&
           changeCurrentMusicTrack("previous");
       }
       if (event.type === Event.RemoteNext) {
-        trackStore.getState().currentMusicTrack &&
+        useZustandStore.getState().currentMusicTrack &&
           changeCurrentMusicTrack("next");
       }
     },
@@ -32,8 +32,8 @@ const usePlayerEvents = () => {
 
   // to handle music finish
   // useTrackPlayerEvents([Event.PlaybackActiveTrackChanged], (event) => {
-  //   const currentMusicTrack = trackStore.getState().currentMusicTrack;
-  //   const isLoopingTrack = trackStore.getState().isLoopingTrack;
+  //   const currentMusicTrack = useZustandStore.getState().currentMusicTrack;
+  //   const isLoopingTrack = useZustandStore.getState().isLoopingTrack;
 
   //   if (isLoopingTrack) return;
   //   if (
