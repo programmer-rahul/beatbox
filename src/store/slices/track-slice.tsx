@@ -1,6 +1,5 @@
 import { SetStateType } from "../../types/store/zustand-store";
 import { TTrackSlice } from "../../types/store/slices/track-slice";
-import useZustandStore from "../useZustandStore";
 
 const createTrackSlice = (set: SetStateType): TTrackSlice => ({
   allLocalMusicTracks: [],
@@ -15,17 +14,15 @@ const createTrackSlice = (set: SetStateType): TTrackSlice => ({
     set((state) => {
       if (state.isLoopingTrack) return {};
 
-      const currentQueue = useZustandStore.getState().currentQueue;
+      const currentQueue = state.currentQueue;
       const currentSelectedQueueMusicFiles =
         currentQueue.type === "home"
           ? state.allLocalMusicTracks
           : currentQueue.type === "saved"
-            ? useZustandStore.getState().allSavedMusicTracks
-            : useZustandStore
-                .getState()
-                .allPlaylists.find(
-                  (playlist) => playlist.name === currentQueue.name,
-                )?.musicTracks || [];
+            ? state.allSavedMusicTracks
+            : state.allPlaylists.find(
+                (playlist) => playlist.name === currentQueue.name,
+              )?.musicTracks || [];
 
       const currentTrackIndex = currentSelectedQueueMusicFiles.findIndex(
         (localMusicTrack) =>

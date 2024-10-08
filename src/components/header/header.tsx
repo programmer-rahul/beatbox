@@ -10,7 +10,7 @@ const Header = () => {
     >
       <View>
         <Text
-          className="font-primary_semibold text-xl"
+          className="font-sem font-primary_semibold text-4xl"
           style={{ color: COLORS.main }}
         >
           BeatBox

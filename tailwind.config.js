@@ -9,10 +9,10 @@ module.exports = {
     },
 
     fontFamily: {
-      primary_light: ["Primary_Light", "Sans-Serif"],
-      primary_regular: ["Primary_Regular", "Sans-Serif"],
-      primary_semibold: ["Primary_SemiBold", "Sans-Serif"],
-      primary_bold: ["Primary_Bold", "Sans-Serif"],
+      primary_light: ["Primary-Light"],
+      primary_regular: ["Primary-Regular"],
+      primary_semibold: ["Primary-SemiBold"],
+      primary_bold: ["Primary-Bold"],
     },
   },
   plugins: [],

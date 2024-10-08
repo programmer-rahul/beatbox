@@ -24,7 +24,7 @@ const PlayerMusicSlider = () => {
           {formatMusicFileDuration(progress.position, "seconds")}
         </Text>
         <Text
-          className="font-primary_semibold text-right text-xs text-secondaryText"
+          className="text-right font-primary_semibold text-xs text-secondaryText"
           style={{
             color: COLORS.secondaryText,
           }}

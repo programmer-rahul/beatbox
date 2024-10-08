@@ -63,7 +63,7 @@ export default SelectedPlaylistContent;
 const PlaylistIsEmpty = () => {
   return (
     <Text
-      className="font-primary_regular mt-20 self-center text-2xl text-secondaryText"
+      className="mt-20 self-center font-primary_regular text-2xl text-secondaryText"
       style={{ color: COLORS.secondaryText }}
     >
       Playlist is empty

@@ -124,7 +124,7 @@ const MusicFileTitleArtistDisplay = memo(
     return (
       <View className="flex-1 flex-col space-y-1">
         <Text
-          className="font-primary_semibold flex-1 text-xs text-primaryText"
+          className="flex-1 font-primary_semibold text-xs text-primaryText"
           numberOfLines={1}
           style={{
             color: isCurrentPlayingSong ? COLORS.main : COLORS.primaryText,
@@ -133,7 +133,7 @@ const MusicFileTitleArtistDisplay = memo(
           {title}
         </Text>
         <Text
-          className="font-primary_regular flex-1 text-xs text-secondaryText"
+          className="flex-1 font-primary_regular text-xs text-secondaryText"
           numberOfLines={1}
           style={{
             color: isCurrentPlayingSong
@@ -152,7 +152,7 @@ const MusicFileTotalDurationBox = ({ duration }: { duration: number }) => {
   console.log("INSIDE MUSIC_FILE_TOTAL_DURATION_BOX");
   return (
     <Text
-      className="font-primary_semibold ml-2 self-center rounded-sm px-2 py-[2px] text-xs text-secondaryText"
+      className="ml-2 self-center rounded-sm px-2 py-[2px] font-primary_semibold text-xs text-secondaryText"
       style={{
         color: COLORS.primaryText + "66",
         backgroundColor: COLORS.secondaryText + "33",

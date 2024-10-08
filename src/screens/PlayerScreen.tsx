@@ -39,12 +39,12 @@ const NoMusicFileSelected = () => {
   return (
     <View className="relative flex flex-1 items-center justify-center">
       <View className="flex items-center justify-center gap-4">
-        <Text className="font-primary_regular text-center text-3xl text-primaryBg">
+        <Text className="text-center font-primary_regular text-3xl text-primaryBg">
           No Music File Selected Right Now
         </Text>
         <Link to={"/home"}>
           <Text
-            className="font-primary_semibold px-4 text-xl"
+            className="px-4 font-primary_semibold text-xl"
             style={{
               color: COLORS.primaryBg,
               backgroundColor: COLORS.main + "aa",

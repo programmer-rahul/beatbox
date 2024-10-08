@@ -1,0 +1,21 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/Primary-Bold.ttf",
+      "sha1": "91bc9576b93d1a2ffc75da19665a3b8b654f5d40"
+    },
+    {
+      "path": "src/assets/fonts/Primary-Light.ttf",
+      "sha1": "b610a073df31c21b1378d9996a80c3056ec80329"
+    },
+    {
+      "path": "src/assets/fonts/Primary-Regular.ttf",
+      "sha1": "b610a073df31c21b1378d9996a80c3056ec80329"
+    },
+    {
+      "path": "src/assets/fonts/Primary-SemiBold.ttf",
+      "sha1": "91bc9576b93d1a2ffc75da19665a3b8b654f5d40"
+    }
+  ]
+}
