@@ -3,7 +3,6 @@ import HomeScreen from "./HomeScreen";
 import PlayerScreen from "./PlayerScreen";
 import SavedScreen from "./SavedScreen";
 import PlaylistScreen from "./PlaylistScreen";
-import usePlayerEvents from "./../hooks/usePlayerEvents";
 import { Linking, StatusBar, View } from "react-native";
 import MiniMusicPlayer from "../components/home/tabs/mini-music-player";
 import { useEffect, useState } from "react";
@@ -17,8 +16,6 @@ const Tab = createBottomTabNavigator();
 const TabNavitation = () => {
   const [currentTab, setCurrentTab] = useState("home");
   console.log("CURRENT TAB :- ", currentTab);
-
-  usePlayerEvents();
 
   const { navigate } = useNavigation<RootTabNavigationProp>();
 
@@ -69,6 +66,8 @@ const TabNavitation = () => {
             focus: () => {
               StatusBar.setBackgroundColor(COLORS.secondaryBg, false);
               StatusBar.setBarStyle("dark-content");
+
+              currentTab !== "player" && setCurrentTab("player");
             },
             blur: () => {
               StatusBar.setBackgroundColor(COLORS.primaryBg, false);

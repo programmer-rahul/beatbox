@@ -1,8 +1,8 @@
 import { TPermissionSlice } from "./slices/permission-slice";
+import { TPlayerOptionsSlice } from "./slices/player-options-slice";
 import { TPlaylistSlice } from "./slices/playlist-slice";
 import { TQueueSlice } from "./slices/queue-slice";
 import { TSavedSlice } from "./slices/saved-slice";
-import { TShuffleSlice } from "./slices/shuffle-slice";
 import { TTrackSlice } from "./slices/track-slice";
 
 export type TUseZustandStore = TPermissionSlice &
@@ -10,7 +10,7 @@ export type TUseZustandStore = TPermissionSlice &
   TQueueSlice &
   TSavedSlice &
   TTrackSlice &
-  TShuffleSlice;
+  TPlayerOptionsSlice;
 
 export type SetStateType = (
   partial:

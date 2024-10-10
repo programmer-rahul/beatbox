@@ -7,7 +7,7 @@ import createPlaylistSlice from "./slices/playlist-slice";
 import createQueueSlice from "./slices/queue-slice";
 import createSavedSlice from "./slices/saved-slice";
 import createTrackSlice from "./slices/track-slice";
-import createShuffleSlice from "./slices/shuffle-slice";
+import createPlayerOptionsSlice from "./slices/player-options-slice";
 
 const useZustandStore = create<TUseZustandStore>()(
   persist(
@@ -17,7 +17,7 @@ const useZustandStore = create<TUseZustandStore>()(
       ...createQueueSlice(set),
       ...createSavedSlice(set),
       ...createTrackSlice(set),
-      ...createShuffleSlice(set),
+      ...createPlayerOptionsSlice(set),
     }),
     {
       name: "bound-store",
@@ -28,16 +28,12 @@ const useZustandStore = create<TUseZustandStore>()(
         allSavedMusicTracks,
         allLocalMusicTracks,
         currentMusicTrack,
-        isLoopingTrack,
-        isShufflingQueue,
       }) => ({
         isHavePermission,
         allPlaylists,
         allSavedMusicTracks,
         allLocalMusicTracks,
         currentMusicTrack,
-        isLoopingTrack,
-        isShufflingQueue,
       }),
     },
   ),

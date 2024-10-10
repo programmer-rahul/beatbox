@@ -6,13 +6,14 @@ const onMusicTrackFinish = () => {
   const currentTrack = useActiveTrack();
   const progress = useProgress();
 
+  const currentMusicTrack = useZustandStore((state) => state.currentMusicTrack);
   const changeCurrentMusicTrack = useZustandStore(
     (state) => state.changeCurrentMusicTrack,
   );
 
-  useEffect(() => {
-    const currentMusicTrack = useZustandStore.getState().currentMusicTrack;
+  console.log("INSIDE onMusicTrackFinish");
 
+  useEffect(() => {
     if (progress.position >= progress.duration && currentMusicTrack) {
       console.log("TRACK FINISHED");
       currentMusicTrack?.title !== currentTrack?.title &&

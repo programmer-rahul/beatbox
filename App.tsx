@@ -17,7 +17,6 @@ function App(): React.JSX.Element {
   const isTrackPlayerInitialized = useRef(false);
   useSetupTrackPlayer({ isTrackPlayerInitialized });
 
-
   return (
     <SafeAreaView className="flex-1">
       <RootNavigation />
@@ -36,6 +35,8 @@ const RootNavigation = () => {
   const { isHavePermission } = usePermission();
 
   usePlayerEvents();
+
+  console.log("INSIDE ROOT_NAVIGATION");
 
   return (
     <NavigationContainer>

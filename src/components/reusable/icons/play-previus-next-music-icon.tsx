@@ -1,6 +1,6 @@
 import COLORS from "./../../../constants/colors";
 import { memo } from "react";
-import TrackPlayer from "react-native-track-player";
+import TrackPlayer, { RepeatMode } from "react-native-track-player";
 import { SkipBack, SkipForward } from "lucide-react-native";
 import useZustandStore from "../../../store/useZustandStore";
 
@@ -16,10 +16,18 @@ function PlayPreviousNextMusicIcon({
   );
 
   const onPreviousNextPress = async () => {
-    changeCurrentMusicTrack(type);
-    type === "previous"
-      ? await TrackPlayer.skipToPrevious()
-      : await TrackPlayer.skipToNext();
+    const currentRepeatMode = useZustandStore.getState().currentRepeatMode;
+
+    if (currentRepeatMode === RepeatMode.Track) {
+      TrackPlayer.seekTo(0);
+      TrackPlayer.play();
+      return;
+    } else {
+      const changed = changeCurrentMusicTrack(type);
+      changed && type === "previous"
+        ? await TrackPlayer.skipToPrevious()
+        : await TrackPlayer.skipToNext();
+    }
   };
 
   console.log("next");

@@ -1,5 +1,6 @@
 import { SetStateType } from "../../types/store/zustand-store";
 import { TTrackSlice } from "../../types/store/slices/track-slice";
+import { RepeatMode } from "react-native-track-player";
 
 const createTrackSlice = (set: SetStateType): TTrackSlice => ({
   allLocalMusicTracks: [],
@@ -9,12 +10,12 @@ const createTrackSlice = (set: SetStateType): TTrackSlice => ({
   currentMusicTrack: null,
   setCurrentMusicTrack: (musicTrack) =>
     set(() => ({ currentMusicTrack: musicTrack })),
+
   changeCurrentMusicTrack: (type) => {
     let itChanged = false;
     set((state) => {
-      if (state.isLoopingTrack) return {};
-
       const currentQueue = state.currentQueue;
+
       const currentSelectedQueueMusicFiles =
         currentQueue.type === "home"
           ? state.allLocalMusicTracks
@@ -31,7 +32,7 @@ const createTrackSlice = (set: SetStateType): TTrackSlice => ({
 
       if (currentTrackIndex === -1) {
         return {
-          currentMusicTrack: currentSelectedQueueMusicFiles[1],
+          currentMusicTrack: currentSelectedQueueMusicFiles[0],
         };
       }
 
@@ -40,7 +41,7 @@ const createTrackSlice = (set: SetStateType): TTrackSlice => ({
         (currentTrackIndex + 1 >= currentSelectedQueueMusicFiles.length &&
           type === "next")
       ) {
-        const isShufflingQueue = state.isShufflingQueue;
+        const isShufflingQueue = state.currentRepeatMode === RepeatMode.Queue;
 
         if (!isShufflingQueue) return {};
 
