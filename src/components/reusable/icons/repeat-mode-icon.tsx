@@ -1,6 +1,6 @@
 import COLORS from "./../../../constants/colors";
 import TrackPlayer, { RepeatMode } from "react-native-track-player";
-import { Repeat, Repeat2, HourglassIcon } from "lucide-react-native";
+import { Repeat, Repeat2,  Repeat1 } from "lucide-react-native";
 import useZustandStore from "../../../store/useZustandStore";
 
 function RepeatModeIcon({ size = 25 }: { size?: number }) {
@@ -33,21 +33,21 @@ function RepeatModeIcon({ size = 25 }: { size?: number }) {
   return (
     <>
       {currentRepeatMode === RepeatMode.Off && (
-        <HourglassIcon
+        <Repeat
           size={size}
           color={COLORS.secondaryIcon}
           onPress={onRepeatModeIconPress}
         />
       )}
       {currentRepeatMode === RepeatMode.Track && (
-        <Repeat2
+        <Repeat1
           size={size}
           color={COLORS.secondaryIcon}
           onPress={onRepeatModeIconPress}
         />
       )}
       {currentRepeatMode === RepeatMode.Queue && (
-        <Repeat
+        <Repeat2
           size={size}
           color={COLORS.secondaryIcon}
           onPress={onRepeatModeIconPress}

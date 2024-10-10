@@ -24,6 +24,7 @@ function ListAllPlaylists({
             <PlaylistName
               name={item.name}
               setSelectedPlaylist={setSelectedPlaylist}
+              tracksCount={item.musicTracksCount}
             />
           );
         }}

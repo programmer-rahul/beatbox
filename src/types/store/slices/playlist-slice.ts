@@ -10,4 +10,10 @@ export interface TPlaylistSlice {
   allPlaylists: TPlaylist[];
   addPlaylist: (playlist: TPlaylist) => void;
   removePlaylist: (playlistName: string) => void;
+
+  addTrackInPlaylists: (
+    currentTrack: TMusicTrack,
+    playlistTitles: string[],
+    type: "add" | "remove",
+  ) => void;
 }

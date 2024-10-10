@@ -1,4 +1,3 @@
-// import { AntDesign } from "@expo/vector-icons";
 import { FastForward } from "lucide-react-native";
 import COLORS from "./../../../constants/colors";
 import TrackPlayer from "react-native-track-player";
