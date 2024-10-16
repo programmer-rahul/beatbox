@@ -1,4 +1,3 @@
-import { memo } from "react";
 import PlayPreviusNextMusicIcon from "../reusable/icons/play-previus-next-music-icon";
 import PlayPauseMusicIcon from "../reusable/icons/play-pause-music-icon";
 import { View } from "react-native";
@@ -16,7 +15,7 @@ function MusicPlayerControlButtons() {
         <PlayBackwardMusicIcon size={40} />
       </View>
       <View>
-        <PlayPauseMusicIcon size={60} />
+        <PlayPauseMusicIcon size={80} />
       </View>
       <View>
         <PlayForwardMusicIcon size={40} />
@@ -28,4 +27,4 @@ function MusicPlayerControlButtons() {
   );
 }
 
-export default memo(MusicPlayerControlButtons);
+export default MusicPlayerControlButtons;

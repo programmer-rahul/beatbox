@@ -13,7 +13,7 @@ const useFetchLocalMusic = () => {
     setIsFetching(!useZustandStore.getState().allLocalMusicTracks.length);
 
     const fetchedMusicFiles = await getAll({
-      limit: 10,
+      limit: 100,
       minSongDuration: 5000,
     });
 

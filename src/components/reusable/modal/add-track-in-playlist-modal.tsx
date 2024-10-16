@@ -104,7 +104,7 @@ export default AddTrackInPlaylistModal;
 
 const MusicTrackTitle = ({ title }: { title: string }) => {
   return (
-    <Text numberOfLines={2} className="text-sm text-primaryText">
+    <Text numberOfLines={2} className="mb-2 text-sm text-primaryText">
       {title}
     </Text>
   );
@@ -131,7 +131,7 @@ const AddOrRemoveFromPlaylistBtns = ({
           size={25}
           color={playlistType === "add" ? COLORS.main : COLORS.secondaryIcon}
         />
-        <Text>Add To Playlists</Text>
+        <Text className="text-secondaryText">Add To Playlists</Text>
       </Pressable>
       <Pressable
         className="flex-1 items-center rounded-sm border p-1"
@@ -145,7 +145,7 @@ const AddOrRemoveFromPlaylistBtns = ({
           size={25}
           color={playlistType === "remove" ? COLORS.main : COLORS.secondaryIcon}
         />
-        <Text>Remove To Playlists</Text>
+        <Text className="text-secondaryText">Remove To Playlists</Text>
       </Pressable>
     </View>
   );
@@ -204,7 +204,7 @@ const PlaylistCheckbox = ({
       >
         {isSelected && <Check size={16} color={COLORS.main} />}
       </Pressable>
-      <Text className="flex-1 text-base" numberOfLines={1}>
+      <Text className="flex-1 text-base text-primaryText" numberOfLines={1}>
         {playlistTitle}
       </Text>
     </View>

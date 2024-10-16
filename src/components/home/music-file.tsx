@@ -4,7 +4,6 @@ import COLORS from "./../../constants/colors";
 import { memo } from "react";
 import TrackPlayer from "react-native-track-player";
 import MusicFileAlbumDisplay from "../reusable/music-file-album-display";
-import { EllipsisVertical } from "lucide-react-native";
 import { TQueueType } from "../../types/store/slices/queue-slice";
 import { TMusicTrack } from "../../types/store/slices/track-slice";
 import useZustandStore from "../../store/useZustandStore";
@@ -163,10 +162,6 @@ const MusicFileTotalDurationBox = ({ duration }: { duration: number }) => {
   );
 };
 
-const MusicFileMenuBarIcon = memo(() => {
-  return (
-    <View>
-      <EllipsisVertical color={COLORS.secondaryIcon} />
-    </View>
-  );
-});
+const MusicFileMenuBarIcon = () => {
+  return <View>{/* <EllipsisVertical color={COLORS.secondaryIcon} /> */}</View>;
+};

@@ -1,21 +1,29 @@
-import { useRef } from "react";
-import TabNavitation from "./src/screens/TabNavitation";
+import { useEffect, useRef } from "react";
+import { StatusBar } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
-import useSetupTrackPlayer from "./src/hooks/useSetupTrackPlayer";
 import TrackPlayer from "react-native-track-player";
+
+import TabNavitation from "./src/screens/TabNavitation";
+import useSetupTrackPlayer from "./src/hooks/useSetupTrackPlayer";
 import playbackService from "./src/lib/playback-service";
 import PermissionRequired from "./src/components/reusable/permission-required";
 import usePermission from "./src/hooks/usePermission";
-import { StatusBar } from "react-native";
 import COLORS from "./src/constants/colors";
 import usePlayerEvents from "./src/hooks/usePlayerEvents";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 TrackPlayer.registerPlaybackService(() => playbackService);
 
 function App(): React.JSX.Element {
   const isTrackPlayerInitialized = useRef(false);
   useSetupTrackPlayer({ isTrackPlayerInitialized });
+
+  useEffect(() => {
+    console.log("yes");
+    setTimeout(() => {
+      console.log("inside timeout");
+    }, 4000);
+  }, []);
 
   return (
     <SafeAreaView className="flex-1">

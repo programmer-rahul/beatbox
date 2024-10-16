@@ -1,5 +1,4 @@
 import COLORS from "./../../constants/colors";
-import { memo } from "react";
 import { Text, View } from "react-native";
 
 function ListMusicFilesHeader({
@@ -12,7 +11,7 @@ function ListMusicFilesHeader({
   return (
     <View className="flex flex-row items-center justify-between pb-1 pl-1 pr-2">
       <Text
-        className="font-primary_regular text-xs text-primaryText"
+        className="font-primary_regular text-xl text-primaryText"
         style={{
           color: COLORS.primaryText + "dd",
         }}
@@ -20,7 +19,7 @@ function ListMusicFilesHeader({
         {heading}
       </Text>
       <Text
-        className="font-primary_regular text-xs text-secondaryText"
+        className="font-primary_regular text-base text-secondaryText"
         style={{
           color: COLORS.secondaryText,
         }}
@@ -31,4 +30,4 @@ function ListMusicFilesHeader({
   );
 }
 
-export default memo(ListMusicFilesHeader);
+export default ListMusicFilesHeader;

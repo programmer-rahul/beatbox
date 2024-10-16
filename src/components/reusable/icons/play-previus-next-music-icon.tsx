@@ -36,12 +36,14 @@ function PlayPreviousNextMusicIcon({
     <SkipBack
       size={size}
       color={COLORS.secondaryIcon}
+      fill={COLORS.secondaryIcon}
       onPress={onPreviousNextPress}
     />
   ) : (
     <SkipForward
       size={size}
       color={COLORS.secondaryIcon}
+      fill={COLORS.secondaryIcon}
       onPress={onPreviousNextPress}
     />
   );

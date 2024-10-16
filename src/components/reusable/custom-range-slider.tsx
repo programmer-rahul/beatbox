@@ -17,7 +17,7 @@ const CustomRangeSlider = ({
       <Slider
         minimumValue={1}
         maximumValue={Math.floor(totalMusicDuration / 1000)}
-        onValueChange={async (value) => {
+        onSlidingComplete={async (value) => {
           try {
             if (!currentMusicTrack) return;
             await TrackPlayer.seekTo(value);

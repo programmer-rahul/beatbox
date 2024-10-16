@@ -7,6 +7,7 @@ function PlayBackwardMusicIcon({ size = 25 }: { size?: number }) {
     <FastForward
       size={size}
       color={COLORS.secondaryIcon}
+      fill={COLORS.secondaryIcon}
       onPress={() => {
         TrackPlayer.seekBy(-10);
       }}

@@ -1,8 +1,8 @@
 import { View, VirtualizedList } from "react-native";
 import MusicFile from "./music-file";
 import { memo } from "react";
-import { TMusicTrack } from "../../types/store/track-store";
-import { TQueueType } from "../../types/store/queue-store";
+import { TMusicTrack } from "../../types/store/slices/track-slice";
+import { TQueueType } from "../../types/store/slices/queue-slice";
 
 const ListMusicFiles = ({
   musicFiles,
@@ -20,11 +20,12 @@ const ListMusicFiles = ({
   return (
     <View className="mb-2">
       <VirtualizedList
+        data={musicFiles}
         keyExtractor={(item) => item.url}
-        getItem={(_, index) => {
-          return musicFiles[index];
+        getItem={(data, index) => {
+          return data[index];
         }}
-        getItemCount={() => musicFiles.length}
+        getItemCount={(data) => data.length}
         renderItem={({ item, index }: { item: TMusicTrack; index: number }) => {
           return (
             <MusicFile
@@ -38,6 +39,7 @@ const ListMusicFiles = ({
         }}
         initialNumToRender={10}
         maxToRenderPerBatch={10}
+        windowSize={18}
         showsVerticalScrollIndicator={false}
       />
     </View>

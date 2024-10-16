@@ -1,6 +1,5 @@
 import { View, Text } from "react-native";
 import COLORS from "./../../constants/colors";
-import { Search } from "lucide-react-native";
 
 const Header = () => {
   return (
@@ -16,9 +15,7 @@ const Header = () => {
           BeatBox
         </Text>
       </View>
-      <View>
-        <Search size={20} color={COLORS.secondaryIcon} />
-      </View>
+      <View>{/* <Search size={20} color={COLORS.secondaryIcon} /> */}</View>
     </View>
   );
 };

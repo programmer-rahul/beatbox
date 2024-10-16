@@ -3,6 +3,7 @@ import { memo } from "react";
 import TrackPlayer from "react-native-track-player";
 import { Pause, Play } from "lucide-react-native";
 import useZustandStore from "../../../store/useZustandStore";
+import { View } from "react-native";
 
 function PlayPauseMusicIcon({ size = 30 }: { size?: number }) {
   const isTrackPlaying = useZustandStore((state) => state.isTrackPlaying);
@@ -15,20 +16,25 @@ function PlayPauseMusicIcon({ size = 30 }: { size?: number }) {
     setIsTrackPlaying(!isTrackPlaying);
   };
 
-  return isTrackPlaying ? (
-    <Pause
-      color={COLORS.main}
-      size={size}
-      onPress={onTrackPlayPause}
-      strokeWidth={1.6}
-    />
-  ) : (
-    <Play
-      color={COLORS.secondaryIcon}
-      size={size}
-      onPress={onTrackPlayPause}
-      strokeWidth={1.6}
-    />
+  return (
+    <View>
+      {isTrackPlaying ? (
+        <Pause
+          size={size}
+          fill={COLORS.secondaryIcon}
+          onPress={onTrackPlayPause}
+          strokeWidth={1.6}
+        />
+      ) : (
+        <Play
+          size={size}
+          fill={COLORS.secondaryIcon}
+          onPress={onTrackPlayPause}
+          strokeWidth={1.6}
+          className="left-[2px]"
+        />
+      )}
+    </View>
   );
 }
 
