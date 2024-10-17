@@ -9,7 +9,7 @@ const defaultColors = {
   secondaryBg: colors.slate[300],
 
   primaryIcon: colors.slate[800],
-  secondaryIcon: colors.slate[7600],
+  secondaryIcon: colors.slate[600],
 };
 
 module.exports = defaultColors;
