@@ -3,7 +3,7 @@ import { memo } from "react";
 import PlayerScreenHeader from "./../components/player/player-screen-header";
 import PlayerScreenView from "./../components/player/player-screen-view";
 import COLORS from "../constants/colors";
-import { Link, useNavigation } from "@react-navigation/native";
+import { Link } from "@react-navigation/native";
 import { Music } from "lucide-react-native";
 import useZustandStore from "../store/useZustandStore";
 

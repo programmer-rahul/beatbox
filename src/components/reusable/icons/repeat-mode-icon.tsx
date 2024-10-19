@@ -1,6 +1,6 @@
 import COLORS from "./../../../constants/colors";
 import TrackPlayer, { RepeatMode } from "react-native-track-player";
-import { Repeat, Repeat2,  Repeat1 } from "lucide-react-native";
+import { Repeat, Repeat2, Repeat1 } from "lucide-react-native";
 import useZustandStore from "../../../store/useZustandStore";
 
 function RepeatModeIcon({ size = 25 }: { size?: number }) {

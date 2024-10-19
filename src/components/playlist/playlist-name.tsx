@@ -39,7 +39,7 @@ function PlaylistName({
             {String(tracksCount)}
           </Text>
         )}
-        <PlaylistNameMenu playlistName={playlistName}/>
+        <PlaylistNameMenu playlistName={playlistName} />
       </View>
     </View>
   );

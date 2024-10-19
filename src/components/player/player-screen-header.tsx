@@ -12,9 +12,9 @@ const PlayerScreenHeader = () => {
       }}
     >
       <Text
-        className="font-primary_regular text-xl text-secondaryText"
+        className="font-primary_semibold text-xl text-primaryBg"
         style={{
-          color: COLORS.secondaryText,
+          color: COLORS.primaryBg,
         }}
       >
         Now Playing
