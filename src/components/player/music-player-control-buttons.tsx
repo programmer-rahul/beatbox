@@ -15,7 +15,7 @@ function MusicPlayerControlButtons() {
         <PlayBackwardMusicIcon size={40} />
       </View>
       <View>
-        <PlayPauseMusicIcon size={80} />
+        <PlayPauseMusicIcon size={55} />
       </View>
       <View>
         <PlayForwardMusicIcon size={40} />

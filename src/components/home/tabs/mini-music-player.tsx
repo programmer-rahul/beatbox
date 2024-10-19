@@ -35,7 +35,10 @@ const MiniMusicPlayer = () => {
             className="flex-1 flex-row items-center space-x-2"
             onPress={() => navigate("player")}
           >
-            <MusicFileAlbumDisplayOnTrackChange size="small" />
+            <MusicFileAlbumDisplayOnTrackChange
+              size="small"
+              imgPriority={"high"}
+            />
             <View className="flex-1">
               <MusicFileTitle text="small" />
               <View className="flex-row items-center">
@@ -53,8 +56,8 @@ const MiniMusicPlayer = () => {
             </View>
           </Pressable>
           <View className="flex-row items-center">
-            <PlayPauseMusicIcon size={32} />
-            <View className="ml-2">
+            <PlayPauseMusicIcon size={26} small={true} />
+            <View className="ml-3">
               <PlayPreviusNextMusicIcon type="next" size={32} />
             </View>
           </View>

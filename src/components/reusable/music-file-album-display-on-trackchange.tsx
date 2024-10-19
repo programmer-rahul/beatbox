@@ -1,15 +1,17 @@
 import { Music } from "lucide-react-native";
 import COLORS from "./../../constants/colors";
 import { fetchCoverImage } from "./../../lib/music";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { View } from "react-native";
 import FastImage from "react-native-fast-image";
 import useZustandStore from "../../store/useZustandStore";
 
 function MusicFileAlbumDisplayOnTrackChange({
   size = "small",
+  imgPriority = "normal",
 }: {
   size: "small" | "big";
+  imgPriority?: "normal" | "high";
 }) {
   const [musicCover, setMusicCover] = useState("");
   const currentMusicTrack = useZustandStore((state) => state.currentMusicTrack);
@@ -17,10 +19,11 @@ function MusicFileAlbumDisplayOnTrackChange({
   console.log("INSIDE MUSIC_FILE_ALBUM_DISPLAY_ON_TRACK_CHANGE");
 
   useEffect(() => {
-    currentMusicTrack?.cover &&
-      fetchCoverImage(currentMusicTrack?.title).then(
-        (coverImage) => coverImage && setMusicCover(coverImage),
-      );
+    currentMusicTrack?.cover
+      ? fetchCoverImage(currentMusicTrack?.title).then(
+          (coverImage) => coverImage && setMusicCover(coverImage),
+        )
+      : musicCover && setMusicCover("");
   }, [currentMusicTrack]);
 
   if (!currentMusicTrack) return;
@@ -29,15 +32,15 @@ function MusicFileAlbumDisplayOnTrackChange({
       className={
         size === "small"
           ? "aspect-square h-11 items-center justify-center rounded-md"
-          : "aspect-square w-11/12 items-center justify-center self-center rounded-xl border-main/40 bg-main/30"
+          : "aspect-square w-11/12 items-center justify-center self-center rounded-xl bg-main/30"
       }
-      style={{ backgroundColor: COLORS.main + "22" }}
+      style={{ backgroundColor: COLORS.main + "33" }}
     >
       {musicCover ? (
         <FastImage
           source={{
             uri: musicCover,
-            priority: "normal",
+            priority: imgPriority,
             cache: FastImage.cacheControl.immutable,
           }}
           className="h-full w-full rounded-md"
@@ -49,4 +52,4 @@ function MusicFileAlbumDisplayOnTrackChange({
   );
 }
 
-export default MusicFileAlbumDisplayOnTrackChange;
+export default memo(MusicFileAlbumDisplayOnTrackChange);

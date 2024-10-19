@@ -4,7 +4,13 @@ import { Pause, Play } from "lucide-react-native";
 import useZustandStore from "../../../store/useZustandStore";
 import { View } from "react-native";
 
-function PlayPauseMusicIcon({ size = 30 }: { size?: number }) {
+function PlayPauseMusicIcon({
+  size = 30,
+  small = false,
+}: {
+  size?: number;
+  small?: boolean;
+}) {
   const isTrackPlaying = useZustandStore((state) => state.isTrackPlaying);
   const setIsTrackPlaying = useZustandStore((state) => state.setIsTrackPlaying);
 
@@ -16,22 +22,33 @@ function PlayPauseMusicIcon({ size = 30 }: { size?: number }) {
   };
 
   return (
-    <View>
+    <View
+      className="rounded-full bg-main"
+      style={{
+        padding: small ? 4 : 8,
+      }}
+    >
       {isTrackPlaying ? (
         <Pause
           size={size}
-          fill={COLORS.secondaryIcon}
+          fill={COLORS.secondaryBg}
           onPress={onTrackPlayPause}
           strokeWidth={1.6}
         />
       ) : (
-        <Play
-          size={size}
-          fill={COLORS.secondaryIcon}
-          onPress={onTrackPlayPause}
-          strokeWidth={1.6}
-          className="left-[2px]"
-        />
+        <View
+          style={{
+            right: small ? 1 : 0,
+          }}
+        >
+          <Play
+            size={size}
+            fill={COLORS.secondaryBg}
+            onPress={onTrackPlayPause}
+            strokeWidth={1.6}
+            className="left-[2px]"
+          />
+        </View>
       )}
     </View>
   );

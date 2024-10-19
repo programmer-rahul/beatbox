@@ -47,10 +47,10 @@ function AddTrackInPlaylistModal({
           style={{ backgroundColor: COLORS.primaryBg + "bb" }}
         >
           <View
-            className="absolute left-[5%] top-1/4 max-h-96 w-[90%] -translate-y-4 rounded-md px-3 py-4"
+            className="absolute left-[5%] top-1/4 h-96 max-h-96 w-[90%] -translate-y-4 rounded-md px-3 py-4"
             style={{ backgroundColor: COLORS.primaryIcon }}
           >
-            <View className="flex-col">
+            <View className="h-full flex-col">
               <MusicTrackTitle title={currentMusicTrack?.title || ""} />
               <AddOrRemoveFromPlaylistBtns
                 playlistType={playlistType}

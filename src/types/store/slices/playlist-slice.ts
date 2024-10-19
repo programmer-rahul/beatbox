@@ -8,7 +8,9 @@ export interface TPlaylist {
 
 export interface TPlaylistSlice {
   allPlaylists: TPlaylist[];
+
   addPlaylist: (playlist: TPlaylist) => void;
+  renamePlaylist: (playlistName: string, newPlaylistName: string) => void;
   removePlaylist: (playlistName: string) => void;
 
   addTrackInPlaylists: (

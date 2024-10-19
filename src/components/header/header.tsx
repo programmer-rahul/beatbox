@@ -1,10 +1,11 @@
 import { View, Text } from "react-native";
 import COLORS from "./../../constants/colors";
+import { Settings, Settings2 } from "lucide-react-native";
 
 const Header = () => {
   return (
     <View
-      className="flex flex-row items-center justify-between px-4 py-2 pb-4"
+      className="flex flex-row items-center justify-between px-3 py-2 pb-4"
       style={{ backgroundColor: COLORS.primaryBg }}
     >
       <View>
@@ -15,7 +16,9 @@ const Header = () => {
           BeatBox
         </Text>
       </View>
-      <View>{/* <Search size={20} color={COLORS.secondaryIcon} /> */}</View>
+      <View>
+        <Settings size={20} color={COLORS.secondaryIcon} />
+      </View>
     </View>
   );
 };

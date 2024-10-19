@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
-import { StatusBar } from "react-native";
+import { useRef } from "react";
+import { KeyboardAvoidingView, StatusBar } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import TrackPlayer from "react-native-track-player";
@@ -11,6 +11,7 @@ import PermissionRequired from "./src/components/reusable/permission-required";
 import usePermission from "./src/hooks/usePermission";
 import COLORS from "./src/constants/colors";
 import usePlayerEvents from "./src/hooks/usePlayerEvents";
+import { MenuProvider } from "react-native-popup-menu";
 
 TrackPlayer.registerPlaybackService(() => playbackService);
 
@@ -18,22 +19,19 @@ function App(): React.JSX.Element {
   const isTrackPlayerInitialized = useRef(false);
   useSetupTrackPlayer({ isTrackPlayerInitialized });
 
-  useEffect(() => {
-    console.log("yes");
-    setTimeout(() => {
-      console.log("inside timeout");
-    }, 4000);
-  }, []);
-
   return (
-    <SafeAreaView className="flex-1">
-      <RootNavigation />
+    <MenuProvider>
+      <KeyboardAvoidingView className="flex-1">
+        <SafeAreaView className="flex-1">
+          <RootNavigation />
 
-      <StatusBar
-        backgroundColor={COLORS.primaryBg}
-        barStyle={"light-content"}
-      />
-    </SafeAreaView>
+          <StatusBar
+            backgroundColor={COLORS.primaryBg}
+            barStyle={"light-content"}
+          />
+        </SafeAreaView>
+      </KeyboardAvoidingView>
+    </MenuProvider>
   );
 }
 

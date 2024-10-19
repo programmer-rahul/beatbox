@@ -3627,6 +3627,7 @@ __metadata:
     react-native-asset: ^2.1.1
     react-native-fast-image: ^8.6.3
     react-native-get-music-files: ^2.2.4
+    react-native-popup-menu: ^0.16.1
     react-native-safe-area-context: ^4.11.0
     react-native-screens: ^3.34.0
     react-native-svg: ^15.7.1
@@ -8854,6 +8855,13 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: cebc65abaf4c7e3e9941310ad4b8190833b95236dcbd95243065f0d0592c0a9297fe216929115ff03d179100e962d777e1c90b794d3314128ec0c255f5a0cb0f
+  languageName: node
+  linkType: hard
+
+"react-native-popup-menu@npm:^0.16.1":
+  version: 0.16.1
+  resolution: "react-native-popup-menu@npm:0.16.1"
+  checksum: 4a4cfdfdcd7ee0a2515dbd4fa427dd38af89121e375ea452a470091456ecb8fc35fd24d6a79936703ebc4a84905352e8df0de24d58b036f56d2a9ba61449a7d5
   languageName: node
   linkType: hard
 

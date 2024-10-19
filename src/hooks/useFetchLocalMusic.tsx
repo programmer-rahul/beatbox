@@ -14,7 +14,7 @@ const useFetchLocalMusic = () => {
 
     const fetchedMusicFiles = await getAll({
       limit: 100,
-      minSongDuration: 5000,
+      minSongDuration: 50000,
     });
 
     if (Array.isArray(fetchedMusicFiles)) {

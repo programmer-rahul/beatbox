@@ -3,8 +3,21 @@ import { TPlaylistSlice } from "../../types/store/slices/playlist-slice";
 
 const createPlaylistSlice = (set: SetStateType): TPlaylistSlice => ({
   allPlaylists: [],
+
   addPlaylist: (playlist) =>
     set((state) => ({ allPlaylists: [...state.allPlaylists, playlist] })),
+
+  renamePlaylist: (oldPlaylistName, newPlaylistName) =>
+    set((state) => ({
+      allPlaylists: state.allPlaylists.map((playlist) => {
+        if (playlist.name === oldPlaylistName) {
+          playlist.name = newPlaylistName;
+        }
+
+        return playlist;
+      }),
+    })),
+
   removePlaylist: (playlistName) =>
     set((state) => ({
       allPlaylists: state.allPlaylists.filter(
