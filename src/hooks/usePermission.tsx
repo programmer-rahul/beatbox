@@ -35,8 +35,6 @@ const usePermission = () => {
       );
     }
   };
-
-  return { isHavePermission };
 };
 
 export default usePermission;

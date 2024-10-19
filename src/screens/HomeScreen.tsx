@@ -9,6 +9,7 @@ import useFetchLocalMusic from "./../hooks/useFetchLocalMusic";
 import useInitialQueue from "./../hooks/useInitialQueue";
 import Header from "../components/header/header";
 import useZustandStore from "../store/useZustandStore";
+import ScanningMusicFiles from "../components/reusable/scanning-music-files";
 
 const HomeScreen = () => {
   const allLocalMusicTracks = useZustandStore(
@@ -43,15 +44,7 @@ const HomeScreen = () => {
       <MountOnMusicTrackFinish />
     </View>
   ) : (
-    <View
-      className="flex-1 items-center justify-center space-y-4"
-      style={{ backgroundColor: COLORS.primaryBg }}
-    >
-      <Text className="text-2xl" style={{ color: COLORS.primaryText }}>
-        Scanning Music Files
-      </Text>
-      <ActivityIndicator size={"large"} color={COLORS.main} />
-    </View>
+    <ScanningMusicFiles />
   );
 };
 

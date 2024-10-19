@@ -1,6 +1,6 @@
 const colors = require("tailwindcss/colors");
 
-const defaultColors = {
+const COLORS = {
   main: colors.cyan[600],
   primaryText: colors.slate[100],
   secondaryText: colors.gray[500],
@@ -12,4 +12,4 @@ const defaultColors = {
   secondaryIcon: colors.slate[600],
 };
 
-module.exports = defaultColors;
+module.exports = COLORS;
