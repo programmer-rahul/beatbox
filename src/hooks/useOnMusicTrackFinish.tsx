@@ -15,10 +15,14 @@ const onMusicTrackFinish = () => {
 
   useEffect(() => {
     if (
-      progress.duration &&
       progress.position >= progress.duration &&
-      currentMusicTrack
+      currentMusicTrack &&
+      currentTrack
     ) {
+      // console.log("Track Finished", progress);
+      // console.log("currentMusicTrack", currentMusicTrack.title);
+      // console.log("currentTrack", currentTrack?.title);
+
       currentMusicTrack?.title !== currentTrack?.title &&
         changeCurrentMusicTrack("next");
     }
