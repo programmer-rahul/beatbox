@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { KeyboardAvoidingView, StatusBar } from "react-native";
+import { StatusBar } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import TrackPlayer from "react-native-track-player";
@@ -12,8 +12,6 @@ import usePermission from "./src/hooks/usePermission";
 import COLORS from "./src/constants/colors";
 import usePlayerEvents from "./src/hooks/usePlayerEvents";
 import { MenuProvider } from "react-native-popup-menu";
-import useZustandStore from "./src/store/useZustandStore";
-import ScanningMusicFiles from "./src/components/reusable/scanning-music-files";
 import LoadingScreen from "./src/components/reusable/loading-screen";
 
 TrackPlayer.registerPlaybackService(() => playbackService);
@@ -24,16 +22,14 @@ function App(): React.JSX.Element {
 
   return (
     <MenuProvider>
-      <KeyboardAvoidingView className="flex-1">
-        <SafeAreaView className="flex-1">
-          <RootNavigation />
+      <SafeAreaView className="flex-1">
+        <RootNavigation />
 
-          <StatusBar
-            backgroundColor={COLORS.primaryBg}
-            barStyle={"light-content"}
-          />
-        </SafeAreaView>
-      </KeyboardAvoidingView>
+        <StatusBar
+          backgroundColor={COLORS.primaryBg}
+          barStyle={"light-content"}
+        />
+      </SafeAreaView>
     </MenuProvider>
   );
 }
@@ -41,28 +37,27 @@ function App(): React.JSX.Element {
 export default App;
 
 const RootNavigation = () => {
-  const isHavePermission = useZustandStore((state) => state.isHavePermission);
-
-  const [hasHydrated, setHasHydrated] = useState(false);
-  useZustandStore.persist.onFinishHydration(() => {
-    setHasHydrated(true);
+  const [appState, setAppState] = useState<{
+    isLoading: boolean;
+    screen?: undefined | "no-permissions";
+  }>({
+    isLoading: true,
+    screen: undefined,
   });
 
-  usePermission();
+  usePermission({ setAppState });
   usePlayerEvents();
 
-  console.log("INSIDE ROOT_NAVIGATION");
+  console.log("INSIDE ROOT_NAVIGATION", appState);
 
   return (
     <NavigationContainer>
-      {hasHydrated ? (
-        isHavePermission ? (
-          <TabNavitation />
-        ) : (
-          <PermissionRequired />
-        )
-      ) : (
+      {appState.isLoading ? (
         <LoadingScreen />
+      ) : appState.screen === "no-permissions" ? (
+        <PermissionRequired />
+      ) : (
+        <TabNavitation />
       )}
     </NavigationContainer>
   );

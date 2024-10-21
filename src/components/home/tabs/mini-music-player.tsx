@@ -15,11 +15,11 @@ const MiniMusicPlayer = () => {
   const currentMusicTrack = useZustandStore((state) => state.currentMusicTrack);
   const { navigate } = useNavigation<RootTabNavigationProp>();
 
-  console.log("INSIDE MINI_MUSIC_MUSIC_PLAYER");
+  console.log("INSIDE MINI_MUSIC_MUSIC_PLAYER", currentMusicTrack?.title);
 
   return currentMusicTrack ? (
     <View
-      className="absolute bottom-12 z-10 h-14 w-full rounded-t-xl"
+      className="absolute bottom-0 z-10 h-14 w-full rounded-t-xl"
       style={{
         backgroundColor: COLORS.primaryBg,
       }}
@@ -40,7 +40,7 @@ const MiniMusicPlayer = () => {
               imgPriority={"high"}
             />
             <View className="flex-1">
-              <MusicFileTitle text="small" />
+              <MusicFileTitle text="small" affectSwipable={false} />
               <View className="flex-row items-center">
                 <DisplayCurrentMusicPosition />
                 <Text

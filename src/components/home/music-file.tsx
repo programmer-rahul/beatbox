@@ -147,7 +147,7 @@ const MusicFileTitleArtistDisplay = memo(
   },
 );
 
-const MusicFileTotalDurationBox = ({ duration }: { duration: number }) => {
+const MusicFileTotalDurationBox = memo(({ duration }: { duration: number }) => {
   console.log("INSIDE MUSIC_FILE_TOTAL_DURATION_BOX");
   return (
     <Text
@@ -160,7 +160,7 @@ const MusicFileTotalDurationBox = ({ duration }: { duration: number }) => {
       {formatMusicFileDuration(duration, "milliseconds")}
     </Text>
   );
-};
+});
 
 const MusicFileMenuBarIcon = () => {
   return <View>{/* <EllipsisVertical color={COLORS.secondaryIcon} /> */}</View>;

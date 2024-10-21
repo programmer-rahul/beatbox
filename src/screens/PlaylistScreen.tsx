@@ -13,7 +13,7 @@ const PlaylistScreen = () => {
 
   return !selectedPlaylist ? (
     <View
-      className="flex h-full flex-col bg-primaryBg py-1"
+      className="flex h-full flex-col bg-primaryBg"
       style={{
         backgroundColor: COLORS.primaryBg,
       }}

@@ -4,8 +4,10 @@ import { TPlaylistSlice } from "./slices/playlist-slice";
 import { TQueueSlice } from "./slices/queue-slice";
 import { TSavedSlice } from "./slices/saved-slice";
 import { TTrackSlice } from "./slices/track-slice";
+import { TUiSlice } from "./slices/ui-slice";
 
-export type TUseZustandStore = TPermissionSlice &
+export type TUseZustandStore = TUiSlice &
+  TPermissionSlice &
   TPlaylistSlice &
   TQueueSlice &
   TSavedSlice &

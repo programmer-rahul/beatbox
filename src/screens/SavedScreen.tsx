@@ -4,6 +4,7 @@ import NoSavedMusicFiles from "./../components/saved/no-saved-music-files";
 import COLORS from "./../constants/colors";
 import ListMusicFilesHeader from "./../components/home/list-music-files-header";
 import useZustandStore from "../store/useZustandStore";
+import MiniMusicPlayer from "../components/home/tabs/mini-music-player";
 
 const SavedScreen = () => {
   const allSavedMusicTracks = useZustandStore(
@@ -12,7 +13,7 @@ const SavedScreen = () => {
 
   return (
     <View
-      className="flex h-full flex-col bg-primaryBg py-1"
+      className="flex h-full flex-col bg-primaryBg"
       style={{
         backgroundColor: COLORS.primaryBg,
       }}
@@ -31,6 +32,7 @@ const SavedScreen = () => {
               queueType="saved"
             />
           </View>
+          <MiniMusicPlayer />
         </View>
       )}
     </View>

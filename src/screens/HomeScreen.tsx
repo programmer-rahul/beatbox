@@ -1,4 +1,4 @@
-import { Text, View, ActivityIndicator } from "react-native";
+import { View } from "react-native";
 
 import ListMusicFiles from "./../components/home/list-music-files";
 import ListMusicFilesHeader from "./../components/home/list-music-files-header";
@@ -10,21 +10,22 @@ import useInitialQueue from "./../hooks/useInitialQueue";
 import Header from "../components/header/header";
 import useZustandStore from "../store/useZustandStore";
 import ScanningMusicFiles from "../components/reusable/scanning-music-files";
+import MiniMusicPlayer from "../components/home/tabs/mini-music-player";
 
 const HomeScreen = () => {
   const allLocalMusicTracks = useZustandStore(
     (state) => state.allLocalMusicTracks,
   );
-  const allLocalMusicTracksLength = allLocalMusicTracks.length;
 
   const { isFetching } = useFetchLocalMusic();
   useInitialQueue();
 
+  const allLocalMusicTracksLength = allLocalMusicTracks.length;
   console.log("INSIDE HOME_PAGE");
 
   return !isFetching ? (
     <View
-      className="flex flex-1 flex-col py-1"
+      className="flex flex-1 flex-col"
       style={{ backgroundColor: COLORS.primaryBg }}
     >
       {allLocalMusicTracksLength <= 0 && <NoMusicFilesFound />}
@@ -38,10 +39,10 @@ const HomeScreen = () => {
             />
             <ListMusicFiles musicFiles={allLocalMusicTracks} queueType="home" />
           </View>
+          <MiniMusicPlayer />
+          <MountOnMusicTrackFinish />
         </View>
       )}
-
-      <MountOnMusicTrackFinish />
     </View>
   ) : (
     <ScanningMusicFiles />

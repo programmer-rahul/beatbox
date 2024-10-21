@@ -5,11 +5,15 @@ import { Text } from "react-native";
 function MusicFileTitle({
   title,
   text = "small",
+  affectSwipable = true,
 }: {
   title?: string;
   text: "small" | "big";
+  affectSwipable?: boolean;
 }) {
   const currentMusicTrack = useZustandStore((state) => state.currentMusicTrack);
+  const isSwiping = useZustandStore((state) => state.isSwiping);
+
   console.log("INSIDE MUSIC_FILE_TITLE");
 
   if (!title && !currentMusicTrack) return;
@@ -20,7 +24,11 @@ function MusicFileTitle({
       } text-primaryText`}
       numberOfLines={1}
       style={{
-        color: COLORS.primaryBg,
+        color: affectSwipable
+          ? isSwiping
+            ? COLORS.primaryText
+            : COLORS.primaryBg
+          : COLORS.primaryBg,
       }}
     >
       {title ?? currentMusicTrack?.title}

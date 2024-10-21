@@ -26,6 +26,7 @@ function PlayPauseMusicIcon({
       className="rounded-full bg-main"
       style={{
         padding: small ? 4 : 8,
+        backgroundColor: COLORS.main,
       }}
     >
       {isTrackPlaying ? (
