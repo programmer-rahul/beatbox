@@ -19,7 +19,7 @@ function ListAllPlaylists({
           return allPlaylists[index];
         }}
         getItemCount={() => allPlaylists.length}
-        renderItem={({ item, index }: { item: TPlaylist; index: number }) => {
+        renderItem={({ item }: { item: TPlaylist; index: number }) => {
           return (
             <PlaylistName
               name={item.name}

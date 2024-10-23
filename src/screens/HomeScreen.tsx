@@ -1,7 +1,6 @@
 import { View } from "react-native";
 
 import ListMusicFiles from "./../components/home/list-music-files";
-import ListMusicFilesHeader from "./../components/home/list-music-files-header";
 import NoMusicFilesFound from "./../components/home/no-music-files-found";
 import MountOnMusicTrackFinish from "./../components/mount-on-music-track-finish";
 import COLORS from "../constants/colors";
@@ -11,6 +10,7 @@ import Header from "../components/header/header";
 import useZustandStore from "../store/useZustandStore";
 import ScanningMusicFiles from "../components/reusable/scanning-music-files";
 import MiniMusicPlayer from "../components/home/tabs/mini-music-player";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const HomeScreen = () => {
   const allLocalMusicTracks = useZustandStore(
@@ -23,29 +23,36 @@ const HomeScreen = () => {
   const allLocalMusicTracksLength = allLocalMusicTracks.length;
   console.log("INSIDE HOME_PAGE");
 
-  return !isFetching ? (
+  return (
     <View
-      className="flex flex-1 flex-col"
+      className="flex-1 bg-primaryBg pb-12"
       style={{ backgroundColor: COLORS.primaryBg }}
     >
-      {allLocalMusicTracksLength <= 0 && <NoMusicFilesFound />}
-      {allLocalMusicTracksLength > 0 && (
-        <View className="flex-1">
-          <Header />
-          <View className="px-5">
-            <ListMusicFilesHeader
-              heading="All Music Files"
-              musicFilesLength={allLocalMusicTracksLength}
-            />
-            <ListMusicFiles musicFiles={allLocalMusicTracks} queueType="home" />
-          </View>
-          <MiniMusicPlayer />
-          <MountOnMusicTrackFinish />
-        </View>
-      )}
+      <SafeAreaView className="flex-1">
+        {!isFetching ? (
+          <>
+            {allLocalMusicTracksLength > 0 ? (
+              <View className="flex-1">
+                <Header />
+                <View className="flex-1 px-5">
+                  {/* <ListMusicFiles
+                    heading={"All Music Files"}
+                    musicFiles={allLocalMusicTracks}
+                    queueType="home"
+                  /> */}
+                </View>
+                <MiniMusicPlayer />
+                <MountOnMusicTrackFinish />
+              </View>
+            ) : (
+              <NoMusicFilesFound />
+            )}
+          </>
+        ) : (
+          <ScanningMusicFiles />
+        )}
+      </SafeAreaView>
     </View>
-  ) : (
-    <ScanningMusicFiles />
   );
 };
 

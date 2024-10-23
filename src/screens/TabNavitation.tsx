@@ -2,19 +2,21 @@ import HomeScreen from "./HomeScreen";
 import PlayerScreen from "./PlayerScreen";
 import SavedScreen from "./SavedScreen";
 import PlaylistScreen from "./PlaylistScreen";
-import { Linking, StatusBar } from "react-native";
+import { Linking, View } from "react-native";
 import { useEffect } from "react";
 import COLORS from "../constants/colors";
 import { Heart, House, ListMusic, Music } from "lucide-react-native";
 import { useNavigation } from "@react-navigation/native";
 import { RootTabNavigationProp } from "../types/navigation-type";
-import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import {
+  createMaterialTopTabNavigator,
+  MaterialTopTabBar,
+} from "@react-navigation/material-top-tabs";
 import useZustandStore from "../store/useZustandStore";
 
 const Tab = createMaterialTopTabNavigator();
 
 const TabNavitation = () => {
-  const isSwiping = useZustandStore((state) => state.isSwiping);
   const setIsSwiping = useZustandStore((state) => state.setIsSwiping);
 
   const { navigate } = useNavigation<RootTabNavigationProp>();
@@ -34,16 +36,25 @@ const TabNavitation = () => {
   return (
     <Tab.Navigator
       tabBarPosition="bottom"
+      tabBar={(props) => {
+        return (
+          <View className="absolute bottom-0 left-0 right-0">
+            <MaterialTopTabBar {...props} />
+          </View>
+        );
+      }}
       screenOptions={{
         tabBarAndroidRipple: { borderless: false },
-        swipeEnabled: true,
         tabBarShowLabel: false,
+        tabBarActiveTintColor: COLORS.main,
+        tabBarInactiveTintColor: COLORS.secondaryIcon,
         tabBarIndicatorStyle: {
           display: "none",
         },
-
-        tabBarActiveTintColor: COLORS.main,
-        tabBarInactiveTintColor: COLORS.secondaryIcon,
+        tabBarStyle: {
+          backgroundColor: "transparent",
+          elevation: 0,
+        },
       }}
     >
       <Tab.Screen
@@ -51,44 +62,24 @@ const TabNavitation = () => {
         component={HomeScreen}
         options={{
           tabBarIcon: ({ color }) => <House color={color} />,
-          tabBarStyle: {
-            backgroundColor: COLORS.primaryBg,
-          },
         }}
       />
       <Tab.Screen
         name="player"
         component={PlayerScreen}
         listeners={{
-          focus: () => {
-            setTimeout(() => {
-              StatusBar.setBackgroundColor(COLORS.secondaryBg, true);
-              StatusBar.setBarStyle("dark-content");
-            }, 0);
-          },
-          blur: () => {
-            StatusBar.setBackgroundColor(COLORS.primaryBg, false);
-            StatusBar.setBarStyle("light-content");
-          },
           swipeStart: () => {
-            setTimeout(() => {
-              StatusBar.setBackgroundColor(COLORS.primaryBg, false);
-              StatusBar.setBarStyle("light-content");
-            }, 0);
             setIsSwiping(true);
           },
           swipeEnd: () => {
-            setTimeout(() => {
-              StatusBar.setBackgroundColor(COLORS.secondaryBg, false);
-              StatusBar.setBarStyle("dark-content");
-            }, 0);
             setIsSwiping(false);
           },
         }}
         options={{
           tabBarIcon: ({ color }) => <Music color={color} />,
           tabBarStyle: {
-            backgroundColor: isSwiping ? COLORS.primaryBg : COLORS.secondaryBg,
+            backgroundColor: "transparent",
+            elevation: 0,
           },
         }}
       />
@@ -97,9 +88,6 @@ const TabNavitation = () => {
         component={SavedScreen}
         options={{
           tabBarIcon: ({ color }) => <Heart color={color} />,
-          tabBarStyle: {
-            backgroundColor: COLORS.primaryBg,
-          },
         }}
       />
       <Tab.Screen
@@ -107,9 +95,6 @@ const TabNavitation = () => {
         component={PlaylistScreen}
         options={{
           tabBarIcon: ({ color }) => <ListMusic color={color} />,
-          tabBarStyle: {
-            backgroundColor: COLORS.primaryBg,
-          },
         }}
       />
     </Tab.Navigator>

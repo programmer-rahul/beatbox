@@ -11,13 +11,13 @@ const PlayerScreenHeader = () => {
     <View
       className="flex flex-row items-center justify-center border-b py-2"
       style={{
-        borderColor: COLORS.secondaryText,
+        borderColor: COLORS.primaryText,
       }}
     >
       <Text
-        className="font-primary_semibold text-xl text-primaryBg"
+        className="font-primary_semibold text-xl text-primaryText"
         style={{
-          color: isSwiping ? COLORS.secondaryText : COLORS.primaryBg,
+          color: COLORS.primaryText,
         }}
       >
         Now Playing

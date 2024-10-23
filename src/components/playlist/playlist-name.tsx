@@ -21,11 +21,11 @@ function PlaylistName({
           setSelectedPlaylist(playlistName);
         }}
       >
-        <ListMusic size={28} color={COLORS.main} />
+        <ListMusic size={26} color={COLORS.main} />
 
         <Text
-          className="font-primary_semibold text-base text-secondaryText"
-          style={{ color: COLORS.secondaryText }}
+          className="font-primary_semibold text-base text-primaryText"
+          style={{ color: COLORS.primaryText + "aa" }}
         >
           {playlistName}
         </Text>
@@ -33,8 +33,8 @@ function PlaylistName({
       <View className="flex flex-row items-center">
         {tracksCount !== 0 && (
           <Text
-            className="mr-2 font-primary_semibold text-base text-secondaryText"
-            style={{ color: COLORS.secondaryText }}
+            className="text-Tase mr-2 font-primary_semibold text-primaryText"
+            style={{ color: COLORS.primaryText + "aa" }}
           >
             {String(tracksCount)}
           </Text>

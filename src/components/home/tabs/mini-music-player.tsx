@@ -58,7 +58,7 @@ const MiniMusicPlayer = () => {
           <View className="flex-row items-center">
             <PlayPauseMusicIcon size={26} small={true} />
             <View className="ml-3">
-              <PlayPreviusNextMusicIcon type="next" size={32} />
+              <PlayPreviusNextMusicIcon type="next" size={32} color="primary" />
             </View>
           </View>
         </View>

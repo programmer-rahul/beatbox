@@ -3,35 +3,47 @@ import MusicFile from "./music-file";
 import { memo } from "react";
 import { TMusicTrack } from "../../types/store/slices/track-slice";
 import { TQueueType } from "../../types/store/slices/queue-slice";
+import ListMusicFilesHeader from "./list-music-files-header";
 
 const ListMusicFiles = ({
   musicFiles,
   queueType,
   playlistName,
+  heading,
 }: {
   musicFiles: TMusicTrack[];
   queueType: TQueueType;
   playlistName?: string;
+  heading?: string;
 }) => {
   const musicFilesLength = musicFiles.length;
 
   console.log("INSIDE LIST_MUSIC_FILES");
 
   return (
-    <View className="mb-2">
+    <View className="">
       <VirtualizedList
         data={musicFiles}
+        stickyHeaderHiddenOnScroll={false}
+        ListHeaderComponent={
+          heading ? (
+            <ListMusicFilesHeader
+              heading={heading}
+              musicFilesLength={musicFilesLength}
+            />
+          ) : (
+            <></>
+          )
+        }
         keyExtractor={(item) => item.url}
         getItem={(data, index) => {
           return data[index];
         }}
         getItemCount={(data) => data.length}
-        renderItem={({ item, index }: { item: TMusicTrack; index: number }) => {
+        renderItem={({ item }: { item: TMusicTrack }) => {
           return (
             <MusicFile
               musicFile={item}
-              index={index}
-              lastFile={musicFilesLength == index + 1}
               queueType={queueType}
               playlistName={playlistName}
             />
@@ -39,8 +51,9 @@ const ListMusicFiles = ({
         }}
         initialNumToRender={10}
         maxToRenderPerBatch={10}
-        windowSize={18}
+        windowSize={20}
         showsVerticalScrollIndicator={false}
+        ListFooterComponent={<View className="h-20 w-full"></View>}
       />
     </View>
   );

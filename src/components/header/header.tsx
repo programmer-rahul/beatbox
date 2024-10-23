@@ -1,6 +1,6 @@
 import { View, Text } from "react-native";
 import COLORS from "./../../constants/colors";
-import { Settings, Settings2 } from "lucide-react-native";
+import { Settings } from "lucide-react-native";
 
 const Header = () => {
   return (

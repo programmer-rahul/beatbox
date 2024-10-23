@@ -12,7 +12,6 @@ function MusicFileTitle({
   affectSwipable?: boolean;
 }) {
   const currentMusicTrack = useZustandStore((state) => state.currentMusicTrack);
-  const isSwiping = useZustandStore((state) => state.isSwiping);
 
   console.log("INSIDE MUSIC_FILE_TITLE");
 
@@ -24,11 +23,7 @@ function MusicFileTitle({
       } text-primaryText`}
       numberOfLines={1}
       style={{
-        color: affectSwipable
-          ? isSwiping
-            ? COLORS.primaryText
-            : COLORS.primaryBg
-          : COLORS.primaryBg,
+        color: affectSwipable ? COLORS.primaryText : COLORS.primaryBg,
       }}
     >
       {title ?? currentMusicTrack?.title}

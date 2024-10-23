@@ -32,7 +32,7 @@ function MusicFileAlbumDisplayOnTrackChange({
       className={
         size === "small"
           ? "aspect-square h-11 items-center justify-center rounded-md"
-          : "aspect-square w-11/12 items-center justify-center self-center rounded-xl bg-main/30"
+          : "aspect-square w-9/12 items-center justify-center self-center rounded-xl bg-main/30"
       }
       style={{ backgroundColor: COLORS.main + "33" }}
     >

@@ -9,7 +9,7 @@ function ListMusicFilesHeader({
   musicFilesLength: number;
 }) {
   return (
-    <View className="flex flex-row items-center justify-between pb-1 pl-1 pr-2">
+    <View className="flex flex-row items-center justify-between pr-1">
       <Text
         className="font-primary_regular text-xl text-primaryText"
         style={{

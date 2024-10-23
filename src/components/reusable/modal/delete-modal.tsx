@@ -1,7 +1,6 @@
 import { View, Text, Pressable, Modal } from "react-native";
 import { Dispatch, SetStateAction } from "react";
 import COLORS from "../../../constants/colors";
-import { X } from "lucide-react-native";
 
 interface TRenameModalProps {
   isVisible: boolean;
@@ -23,21 +22,16 @@ const DeleteModal = ({
     >
       <View
         className="flex-1"
-        style={{ backgroundColor: COLORS.primaryBg + "bb" }}
+        style={{ backgroundColor: COLORS.primaryBg + "cc" }}
       >
         <View
           className="absolute left-[5%] top-1/4 w-[90%] rounded-md px-3 py-4"
-          style={{ backgroundColor: COLORS.primaryIcon }}
+          style={{ backgroundColor: COLORS.modalBg }}
         >
-          <View className="flex-row items-center justify-between pb-2">
-            <Text className="font-primary_semibold text-xl text-primaryText">
+          <View className="flex-row items-center justify-between">
+            <Text className="font-primary_semibold text-xl text-primaryBg">
               Delete
             </Text>
-            <X
-              color={COLORS.secondaryIcon}
-              size={22}
-              onPress={() => setIsVisible(false)}
-            />
           </View>
           <View className="w-full flex-1 justify-around space-y-2">
             <Text

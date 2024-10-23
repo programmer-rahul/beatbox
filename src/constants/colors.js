@@ -2,14 +2,16 @@ const colors = require("tailwindcss/colors");
 
 const COLORS = {
   main: colors.sky[600],
-  primaryText: colors.slate[100],
-  secondaryText: colors.slate[500],
+  primaryText: colors.zinc[100],
+  secondaryText: colors.zinc[500],
 
-  primaryBg: colors.slate[800],
-  secondaryBg: colors.slate[300],
+  primaryBg: colors.zinc[800],
+  secondaryBg: colors.slate[400],
 
-  primaryIcon: colors.slate[800],
-  secondaryIcon: colors.slate[600],
+  primaryIcon: colors.zinc[500],
+  secondaryIcon: colors.zinc[400],
+
+  modalBg: colors.gray[300],
 };
 
 module.exports = COLORS;

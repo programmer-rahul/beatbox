@@ -7,7 +7,7 @@ const PlayerMusicNameDisplay = () => {
   const currentMusicTrack = useZustandStore((state) => state.currentMusicTrack);
 
   return (
-    <View className="flex justify-between px-2">
+    <View className="flex justify-between px-4">
       <MusicFileTitle text="big" />
       <Text
         className="text-center font-primary_regular text-sm text-secondaryText"

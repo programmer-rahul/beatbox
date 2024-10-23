@@ -10,13 +10,10 @@ import useZustandStore from "../../store/useZustandStore";
 
 const MusicFile = ({
   musicFile,
-  lastFile,
   queueType,
   playlistName,
 }: {
   musicFile: TMusicTrack;
-  index?: number;
-  lastFile: boolean;
   queueType: TQueueType;
   playlistName?: string;
 }) => {
@@ -81,12 +78,7 @@ const MusicFile = ({
   };
 
   return (
-    <View
-      className="mt-4 flex-row items-center justify-between rounded-md"
-      style={{
-        marginBottom: lastFile ? 120 : 0,
-      }}
-    >
+    <View className="mt-4 flex-row items-center justify-between rounded-md">
       <Pressable
         className="flex-1 flex-row items-center space-x-2"
         onPress={() => onMusicFilePress(musicFile, queueType)}
@@ -151,7 +143,7 @@ const MusicFileTotalDurationBox = memo(({ duration }: { duration: number }) => {
   console.log("INSIDE MUSIC_FILE_TOTAL_DURATION_BOX");
   return (
     <Text
-      className="ml-2 self-center rounded-sm px-2 py-[2px] font-primary_semibold text-xs text-secondaryText"
+      className="ml-2 self-center rounded-md px-2 py-[2px] font-primary_semibold text-xs text-secondaryText"
       style={{
         color: COLORS.primaryText + "66",
         backgroundColor: COLORS.secondaryText + "33",

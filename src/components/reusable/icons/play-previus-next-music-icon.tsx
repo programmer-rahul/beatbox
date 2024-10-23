@@ -7,9 +7,11 @@ import useZustandStore from "../../../store/useZustandStore";
 function PlayPreviousNextMusicIcon({
   size = 35,
   type,
+  color = "secondary",
 }: {
   size?: number;
   type: "previous" | "next";
+  color?: "primary" | "secondary";
 }) {
   const isButtonDisabled = useRef(false);
 
@@ -51,8 +53,8 @@ function PlayPreviousNextMusicIcon({
   ) : (
     <SkipForward
       size={size}
-      color={COLORS.secondaryIcon}
-      fill={COLORS.secondaryIcon}
+      color={color === "primary" ? COLORS.primaryIcon : COLORS.secondaryIcon}
+      fill={color === "primary" ? COLORS.primaryIcon : COLORS.secondaryIcon}
       onPress={onPreviousNextPress}
     />
   );

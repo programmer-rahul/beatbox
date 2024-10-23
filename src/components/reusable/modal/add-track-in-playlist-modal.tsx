@@ -44,11 +44,11 @@ function AddTrackInPlaylistModal({
       >
         <View
           className="flex-1"
-          style={{ backgroundColor: COLORS.primaryBg + "bb" }}
+          style={{ backgroundColor: COLORS.primaryBg + "cc" }}
         >
           <View
             className="absolute left-[5%] top-1/4 h-96 max-h-96 w-[90%] -translate-y-4 rounded-md px-3 py-4"
-            style={{ backgroundColor: COLORS.primaryIcon }}
+            style={{ backgroundColor: COLORS.modalBg }}
           >
             <View className="h-full flex-col">
               <MusicTrackTitle title={currentMusicTrack?.title || ""} />
@@ -104,7 +104,7 @@ export default AddTrackInPlaylistModal;
 
 const MusicTrackTitle = ({ title }: { title: string }) => {
   return (
-    <Text numberOfLines={2} className="mb-2 text-sm text-primaryText">
+    <Text numberOfLines={2} className="mb-2 text-sm text-primaryBg">
       {title}
     </Text>
   );
@@ -120,7 +120,7 @@ const AddOrRemoveFromPlaylistBtns = ({
   return (
     <View className="my-1 flex-row justify-between gap-2">
       <Pressable
-        className="flex-1 items-center rounded-sm border p-1"
+        className="flex-1 items-center rounded-md border-2 p-1"
         style={{
           borderColor:
             playlistType === "add" ? COLORS.main : COLORS.secondaryIcon,
@@ -134,7 +134,7 @@ const AddOrRemoveFromPlaylistBtns = ({
         <Text className="text-secondaryText">Add To Playlists</Text>
       </Pressable>
       <Pressable
-        className="flex-1 items-center rounded-sm border p-1"
+        className="flex-1 items-center rounded-md border-2 p-1"
         style={{
           borderColor:
             playlistType === "remove" ? COLORS.main : COLORS.secondaryIcon,
@@ -194,19 +194,27 @@ const PlaylistCheckbox = ({
     setIsSelected(!isSelected);
   };
   return (
-    <View className="mb-2 flex-row items-center gap-2">
-      <Pressable
-        onPress={onCheckboxPress}
+    <Pressable
+      className="mb-2 flex-row items-center gap-2 self-start"
+      onPress={onCheckboxPress}
+    >
+      <View
         className="h-5 w-5 items-center justify-center rounded-sm border"
         style={{
-          borderColor: isSelected ? COLORS.main : COLORS.secondaryIcon,
+          borderColor: isSelected ? COLORS.main : COLORS.primaryBg,
         }}
       >
         {isSelected && <Check size={16} color={COLORS.main} />}
-      </Pressable>
-      <Text className="flex-1 text-base text-primaryText" numberOfLines={1}>
+      </View>
+      <Text
+        className="flex-1 text-base text-primaryBg"
+        style={{
+          color: isSelected ? COLORS.main : COLORS.primaryBg,
+        }}
+        numberOfLines={1}
+      >
         {playlistTitle}
       </Text>
-    </View>
+    </Pressable>
   );
 };

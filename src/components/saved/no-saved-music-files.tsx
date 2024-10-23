@@ -1,6 +1,5 @@
 import { Heart } from "lucide-react-native";
 import COLORS from "./../../constants/colors";
-// import { AntDesign } from "@expo/vector-icons";
 import { Text, View } from "react-native";
 
 const NoSavedMusicFiles = () => {

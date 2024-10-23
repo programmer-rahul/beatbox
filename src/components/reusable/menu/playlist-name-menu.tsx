@@ -73,7 +73,7 @@ const PlaylistNameMenu = ({ playlistName }: TPlaylistNameMenuProps) => {
         <MenuOptions
           customStyles={{
             optionsContainer: {
-              backgroundColor: COLORS.primaryIcon,
+              backgroundColor: COLORS.modalBg,
               borderRadius: 6,
             },
           }}

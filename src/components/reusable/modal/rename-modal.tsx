@@ -1,7 +1,6 @@
 import { View, Text, Pressable, Modal, TextInput } from "react-native";
 import { Dispatch, SetStateAction, useState } from "react";
 import COLORS from "../../../constants/colors";
-import { X } from "lucide-react-native";
 
 interface TRenameModalProps {
   isVisible: boolean;
@@ -27,21 +26,16 @@ const RenameModal = ({
     >
       <View
         className="flex-1"
-        style={{ backgroundColor: COLORS.primaryBg + "bb" }}
+        style={{ backgroundColor: COLORS.primaryBg + "cc" }}
       >
         <View
           className="absolute left-[5%] top-1/4 w-[90%] rounded-md px-3 py-4"
-          style={{ backgroundColor: COLORS.primaryIcon }}
+          style={{ backgroundColor: COLORS.modalBg }}
         >
-          <View className="flex-row items-center justify-between pb-2">
-            <Text className="font-primary_semibold text-xl text-primaryText">
+          <View className="flex-row items-center justify-between">
+            <Text className="font-primary_semibold text-xl text-primaryBg">
               Rename
             </Text>
-            <X
-              color={COLORS.secondaryIcon}
-              size={22}
-              onPress={() => setIsVisible(false)}
-            />
           </View>
           <View className="w-full flex-1 justify-around space-y-2">
             <Text
@@ -51,11 +45,12 @@ const RenameModal = ({
               Please enter a new playlist name
             </Text>
             <TextInput
-              className="rounded-sm border-b border-b-main px-2 py-1"
-              style={{ color: COLORS.primaryText }}
+              className="rounded-sm border-b border-b-main py-1"
+              style={{ color: COLORS.primaryBg }}
               value={modalText}
               onChangeText={setModalText}
               autoFocus={true}
+              cursorColor={COLORS.main}
             />
 
             <View className="flex-row justify-end gap-4">

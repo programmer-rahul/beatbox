@@ -1,10 +1,14 @@
-import { Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
 import PlayerScreenHeader from "./../components/player/player-screen-header";
 import PlayerScreenView from "./../components/player/player-screen-view";
 import COLORS from "../constants/colors";
 import { Link, useIsFocused } from "@react-navigation/native";
 import { Music } from "lucide-react-native";
 import useZustandStore from "../store/useZustandStore";
+import { useState } from "react";
+import { fetchCoverImage } from "../lib/music";
+import { BlurView as BlurView2 } from "@react-native-community/blur";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const PlayerScreen = () => {
   const currentMusicTrack = useZustandStore((state) => state.currentMusicTrack);
@@ -14,24 +18,54 @@ const PlayerScreen = () => {
 
   console.log("inside player screen");
 
+  const [musicCover, setMusicCover] = useState("");
+  if (currentMusicTrack) {
+    fetchCoverImage(currentMusicTrack?.title).then(
+      (coverImage) => coverImage && setMusicCover(coverImage),
+    );
+  }
+
   return (
-    <View
-      className="flex-1 space-y-10 px-4 transition-colors"
-      style={{
-        backgroundColor: isFocused
-          ? isSwiping
-            ? COLORS.primaryBg
-            : COLORS.secondaryBg
-          : COLORS.primaryBg,
-      }}
-    >
-      {currentMusicTrack ? (
-        <View className="flex-1">
-          <PlayerScreenHeader />
-          <PlayerScreenView />
+    <View className="flex-1">
+      <SafeAreaView className="z-10 flex-1 transition-colors">
+        {currentMusicTrack ? (
+          <View className="flex-1 pb-20">
+            <PlayerScreenHeader />
+            <PlayerScreenView />
+          </View>
+        ) : (
+          <NoMusicFileSelected />
+        )}
+      </SafeAreaView>
+      {currentMusicTrack && currentMusicTrack.cover && (
+        <View className="absolute left-0 top-0 -z-10 h-full w-full transition-colors">
+          {isSwiping || !isFocused ? (
+            <View
+              className="h-full w-full bg-primaryBg transition-colors"
+              style={{ backgroundColor: COLORS.primaryBg }}
+            />
+          ) : (
+            <>
+              <Image
+                key={"blurryImage"}
+                source={{ uri: musicCover }}
+                className="h-full w-full"
+                resizeMode="repeat"
+              />
+              <BlurView2
+                blurRadius={25}
+                blurAmount={100}
+                style={{
+                  position: "absolute",
+                  left: 0,
+                  top: 0,
+                  right: 0,
+                  bottom: 0,
+                }}
+              />
+            </>
+          )}
         </View>
-      ) : (
-        <NoMusicFileSelected />
       )}
     </View>
   );

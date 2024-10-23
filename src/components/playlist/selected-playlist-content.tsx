@@ -22,7 +22,7 @@ function SelectedPlaylistContent({
 
   return (
     <View
-      className="flex h-full flex-col bg-primaryBg py-1"
+      className="flex-1 flex-col bg-primaryBg py-1"
       style={{
         backgroundColor: COLORS.primaryBg,
       }}
