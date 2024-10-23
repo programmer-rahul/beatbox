@@ -6,7 +6,7 @@ const COLORS = {
   secondaryText: colors.zinc[500],
 
   primaryBg: colors.zinc[800],
-  secondaryBg: colors.slate[400],
+  secondaryBg: colors.slate[300],
 
   primaryIcon: colors.zinc[500],
   secondaryIcon: colors.zinc[400],

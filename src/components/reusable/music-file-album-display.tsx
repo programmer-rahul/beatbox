@@ -24,7 +24,7 @@ function MusicFileAlbumDisplay({
 
   return (
     <View
-      className="aspect-square h-11 items-center justify-center rounded-md"
+      className="aspect-square h-12 items-center justify-center rounded-md"
       style={{ backgroundColor: COLORS.main + "33" }}
     >
       {musicCover ? (

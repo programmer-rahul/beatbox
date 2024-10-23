@@ -23,7 +23,6 @@ const MusicFile = ({
   const setIsTrackPlaying = useZustandStore((state) => state.setIsTrackPlaying);
 
   const setCurrentQueue = useZustandStore((state) => state.setCurrentQueue);
-  // const { navigate } = useRouter();
 
   console.log("INSIDE MUSIC_FILE");
 

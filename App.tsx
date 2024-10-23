@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import TrackPlayer from "react-native-track-player";
@@ -11,6 +11,7 @@ import usePermission from "./src/hooks/usePermission";
 import usePlayerEvents from "./src/hooks/usePlayerEvents";
 import { MenuProvider } from "react-native-popup-menu";
 import LoadingScreen from "./src/components/reusable/loading-screen";
+import useZustandStore from "./src/store/useZustandStore";
 
 TrackPlayer.registerPlaybackService(() => playbackService);
 
@@ -20,7 +21,7 @@ function App(): React.JSX.Element {
 
   return (
     <MenuProvider>
-      <RootNavigation />
+      {<RootNavigation />}
 
       <StatusBar
         backgroundColor={"transparent"}
@@ -34,27 +35,24 @@ function App(): React.JSX.Element {
 export default App;
 
 const RootNavigation = () => {
-  const [appState, setAppState] = useState<{
-    isLoading: boolean;
-    screen?: undefined | "no-permissions";
-  }>({
-    isLoading: true,
-    screen: undefined,
-  });
+  const hasHydrated = useZustandStore((state) => state.hasHydrated);
+  const isHavePermission = useZustandStore((state) => state.isHavePermission);
 
-  usePermission({ setAppState });
+  usePermission();
   usePlayerEvents();
-
-  console.log("INSIDE ROOT_NAVIGATION", appState);
+  
+  console.log("INSIDE ROOT_NAVIGATION", hasHydrated);
 
   return (
     <NavigationContainer>
-      {appState.isLoading ? (
-        <LoadingScreen />
-      ) : appState.screen === "no-permissions" ? (
-        <PermissionRequired />
+      {hasHydrated ? (
+        isHavePermission ? (
+          <TabNavitation />
+        ) : (
+          <PermissionRequired />
+        )
       ) : (
-        <TabNavitation />
+        <LoadingScreen />
       )}
     </NavigationContainer>
   );

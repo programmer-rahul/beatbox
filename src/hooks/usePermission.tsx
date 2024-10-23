@@ -1,17 +1,8 @@
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { useEffect } from "react";
 import { Alert, Linking, Platform, PermissionsAndroid } from "react-native";
 import useZustandStore from "../store/useZustandStore";
 
-const usePermission = ({
-  setAppState,
-}: {
-  setAppState: Dispatch<
-    SetStateAction<{
-      isLoading: boolean;
-      screen?: undefined | "no-permissions";
-    }>
-  >;
-}) => {
+const usePermission = () => {
   const isHavePermission = useZustandStore((state) => state.isHavePermission);
   const setIsHavePermission = useZustandStore(
     (state) => state.setIsHavePermission,
@@ -21,7 +12,7 @@ const usePermission = ({
 
   // Check for permissions
   useEffect(() => {
-    isHavePermission ? setAppState({ isLoading: false }) : askForPermissions();
+    !isHavePermission && askForPermissions();
   }, []);
 
   // Show permissions dialog
@@ -51,7 +42,6 @@ const usePermission = ({
 
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
         setIsHavePermission(true);
-        setAppState({ isLoading: false });
       } else {
         Alert.alert(
           "Permissions Required",
@@ -61,10 +51,6 @@ const usePermission = ({
             { text: "Open Settings", onPress: () => Linking.openSettings() },
           ],
         );
-        setAppState({
-          isLoading: false,
-          screen: "no-permissions",
-        });
       }
     } catch (err) {
       console.warn(err);

@@ -18,14 +18,9 @@ const MiniMusicPlayer = () => {
   console.log("INSIDE MINI_MUSIC_MUSIC_PLAYER", currentMusicTrack?.title);
 
   return currentMusicTrack ? (
-    <View
-      className="absolute bottom-0 z-10 h-14 w-full rounded-t-xl"
-      style={{
-        backgroundColor: COLORS.primaryBg,
-      }}
-    >
+    <View className="absolute bottom-0 flex h-14 w-full flex-col rounded-t-lg">
       <View
-        className="h-full w-full items-center justify-center rounded-t-xl"
+        className="w-full flex-1 items-center justify-center rounded-t-lg py-1"
         style={{
           backgroundColor: COLORS.secondaryBg,
         }}
@@ -62,6 +57,8 @@ const MiniMusicPlayer = () => {
             </View>
           </View>
         </View>
+      </View>
+      <View className="borderred-500 relative h-[3px]">
         <MusicFileRemainingDurationVisual />
       </View>
     </View>
@@ -75,9 +72,14 @@ const MusicFileRemainingDurationVisual = () => {
   const currentMusicTrack = useZustandStore((state) => state.currentMusicTrack);
 
   return currentMusicTrack ? (
-    <View className="absolute -z-10 flex h-full w-full justify-end">
+    <View
+      className="h-full w-full"
+      style={{
+        backgroundColor: COLORS.secondaryBg,
+      }}
+    >
       <View
-        className="h-[6%] self-start"
+        className="h-full self-start"
         style={{
           backgroundColor: COLORS.main + "aa",
           width: `${Math.floor(

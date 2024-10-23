@@ -1,7 +1,7 @@
 import { Heart } from "lucide-react-native";
 import COLORS from "./../../constants/colors";
 import { useEffect, useState } from "react";
-import { View } from "react-native";
+import { Pressable } from "react-native";
 import useZustandStore from "../../store/useZustandStore";
 
 const PlayerSavedMusicIcon = ({ size = 25 }: { size?: number }) => {
@@ -49,14 +49,13 @@ const PlayerSavedMusicIcon = ({ size = 25 }: { size?: number }) => {
   };
 
   return (
-    <View>
+    <Pressable onPress={onSavedIconPress}>
       <Heart
         size={size}
         color={isSavedMusic ? COLORS.main : COLORS.secondaryIcon}
-        onPress={onSavedIconPress}
         fill={isSavedMusic ? COLORS.main : "transparent"}
       />
-    </View>
+    </Pressable>
   );
 };
 

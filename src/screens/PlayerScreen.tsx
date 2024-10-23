@@ -5,7 +5,7 @@ import COLORS from "../constants/colors";
 import { Link, useIsFocused } from "@react-navigation/native";
 import { Music } from "lucide-react-native";
 import useZustandStore from "../store/useZustandStore";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchCoverImage } from "../lib/music";
 import { BlurView as BlurView2 } from "@react-native-community/blur";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -19,14 +19,23 @@ const PlayerScreen = () => {
   console.log("inside player screen");
 
   const [musicCover, setMusicCover] = useState("");
-  if (currentMusicTrack) {
-    fetchCoverImage(currentMusicTrack?.title).then(
-      (coverImage) => coverImage && setMusicCover(coverImage),
-    );
-  }
+  useEffect(() => {
+    if (currentMusicTrack?.cover) {
+      fetchCoverImage(currentMusicTrack?.title).then(
+        (coverImage) => coverImage && setMusicCover(coverImage),
+      );
+    } else {
+      setMusicCover("");
+    }
+  }, [currentMusicTrack]);
 
   return (
-    <View className="flex-1">
+    <View
+      className="flex-1"
+      style={{
+        backgroundColor: COLORS.primaryBg,
+      }}
+    >
       <SafeAreaView className="z-10 flex-1 transition-colors">
         {currentMusicTrack ? (
           <View className="flex-1 pb-20">
@@ -37,6 +46,7 @@ const PlayerScreen = () => {
           <NoMusicFileSelected />
         )}
       </SafeAreaView>
+
       {currentMusicTrack && currentMusicTrack.cover && (
         <View className="absolute left-0 top-0 -z-10 h-full w-full transition-colors">
           {isSwiping || !isFocused ? (
@@ -74,17 +84,15 @@ const PlayerScreen = () => {
 export default PlayerScreen;
 
 const NoMusicFileSelected = () => {
-  const isSwiping = useZustandStore((state) => state.isSwiping);
-
   console.log("INSIDE NO MUSIC_FILE_SELECTED");
 
   return (
     <View className="relative flex flex-1 items-center justify-center">
       <View className="flex items-center justify-center gap-4">
         <Text
-          className="text-center font-primary_regular text-3xl text-primaryBg"
+          className="text-center font-primary_regular text-3xl text-primaryText"
           style={{
-            color: isSwiping ? COLORS.primaryText : COLORS.primaryBg,
+            color: COLORS.primaryText,
           }}
         >
           No Music File Selected Right Now
@@ -97,7 +105,7 @@ const NoMusicFileSelected = () => {
             <Text
               className="font-primary_semibold text-xl"
               style={{
-                color: isSwiping ? COLORS.primaryText : COLORS.primaryBg,
+                color: COLORS.primaryText + "aa",
               }}
             >
               Play Now

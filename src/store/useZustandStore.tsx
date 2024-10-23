@@ -24,6 +24,11 @@ const useZustandStore = create<TUseZustandStore>()(
     {
       name: "bound-store",
       storage: createJSONStorage(() => AsyncStorage),
+      onRehydrateStorage: () => (state) => {
+        if (state) {
+          state.setHasHydrated();
+        }
+      },
       partialize: ({
         isHavePermission,
         allPlaylists,

@@ -32,7 +32,7 @@ function PlayPauseMusicIcon({
       {isTrackPlaying ? (
         <Pause
           size={size}
-          fill={COLORS.secondaryBg}
+          fill={COLORS.primaryText}
           onPress={onTrackPlayPause}
           strokeWidth={1.6}
         />

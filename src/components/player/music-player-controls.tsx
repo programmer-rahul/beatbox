@@ -20,7 +20,7 @@ const MusicPlayerControls = () => {
         </View>
         <View className="flex-row items-center space-x-4">
           <View>
-            <PlayerSavedMusicIcon size={28} />
+            <PlayerSavedMusicIcon size={30} />
           </View>
         </View>
       </View>
