@@ -13,6 +13,7 @@ import {
   MaterialTopTabBar,
 } from "@react-navigation/material-top-tabs";
 import useZustandStore from "../store/useZustandStore";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -33,13 +34,16 @@ const TabNavitation = () => {
     };
   }, []);
 
+  const insets = useSafeAreaInsets();
+
   return (
     <Tab.Navigator
+      style={{ marginBottom: insets.bottom, marginTop: insets.top }}
       tabBarPosition="bottom"
       tabBar={(props) => {
         return (
           <View className="absolute bottom-0 left-0 right-0">
-            <MaterialTopTabBar {...props} />
+            <MaterialTopTabBar {...props} key={props.state.key} />
           </View>
         );
       }}
@@ -48,6 +52,7 @@ const TabNavitation = () => {
         tabBarShowLabel: false,
         tabBarActiveTintColor: COLORS.main,
         tabBarInactiveTintColor: COLORS.secondaryIcon,
+        tabBarPressColor: "transparent",
         tabBarIndicatorStyle: {
           display: "none",
         },
@@ -77,10 +82,6 @@ const TabNavitation = () => {
         }}
         options={{
           tabBarIcon: ({ color }) => <Music color={color} />,
-          tabBarStyle: {
-            backgroundColor: "transparent",
-            elevation: 0,
-          },
         }}
       />
       <Tab.Screen

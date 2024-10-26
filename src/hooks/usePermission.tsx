@@ -3,7 +3,6 @@ import { Alert, Linking, Platform, PermissionsAndroid } from "react-native";
 import useZustandStore from "../store/useZustandStore";
 
 const usePermission = () => {
-  const isHavePermission = useZustandStore((state) => state.isHavePermission);
   const setIsHavePermission = useZustandStore(
     (state) => state.setIsHavePermission,
   );
@@ -12,7 +11,7 @@ const usePermission = () => {
 
   // Check for permissions
   useEffect(() => {
-    !isHavePermission && askForPermissions();
+    !useZustandStore.getState().isHavePermission && askForPermissions();
   }, []);
 
   // Show permissions dialog
@@ -41,6 +40,7 @@ const usePermission = () => {
       console.log("Granted state:", granted);
 
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log("PERMISSIONS _GRANTED HERE", granted);
         setIsHavePermission(true);
       } else {
         Alert.alert(
@@ -56,8 +56,6 @@ const usePermission = () => {
       console.warn(err);
     }
   };
-
-  return { isHavePermission };
 };
 
 export default usePermission;

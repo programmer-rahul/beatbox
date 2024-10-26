@@ -7,6 +7,8 @@ import MusicFileAlbumDisplay from "../reusable/music-file-album-display";
 import { TQueueType } from "../../types/store/slices/queue-slice";
 import { TMusicTrack } from "../../types/store/slices/track-slice";
 import useZustandStore from "../../store/useZustandStore";
+import { useNavigation } from "@react-navigation/native";
+import { RootTabNavigationProp } from "../../types/navigation-type";
 
 const MusicFile = ({
   musicFile,
@@ -21,8 +23,9 @@ const MusicFile = ({
     (state) => state.setCurrentMusicTrack,
   );
   const setIsTrackPlaying = useZustandStore((state) => state.setIsTrackPlaying);
-
   const setCurrentQueue = useZustandStore((state) => state.setCurrentQueue);
+
+  const { navigate } = useNavigation<RootTabNavigationProp>();
 
   console.log("INSIDE MUSIC_FILE");
 
@@ -70,7 +73,7 @@ const MusicFile = ({
 
       setIsTrackPlaying(true);
     } else {
-      // navigate("/player");
+      navigate("player");
     }
 
     setCurrentMusicTrack(musicFile);

@@ -3608,6 +3608,7 @@ __metadata:
     react-native-asset: ^2.1.1
     react-native-fast-image: ^8.6.3
     react-native-get-music-files: ^2.2.4
+    react-native-navigation-bar-color: ^2.0.2
     react-native-pager-view: ^6.4.1
     react-native-popup-menu: ^0.16.1
     react-native-safe-area-context: ^4.11.0
@@ -8828,6 +8829,13 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: cebc65abaf4c7e3e9941310ad4b8190833b95236dcbd95243065f0d0592c0a9297fe216929115ff03d179100e962d777e1c90b794d3314128ec0c255f5a0cb0f
+  languageName: node
+  linkType: hard
+
+"react-native-navigation-bar-color@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "react-native-navigation-bar-color@npm:2.0.2"
+  checksum: 47b74fc343c63b90819a67889b7af6e9b6524a663586dc8a7927d81e8517fbf8b395545d651ddf44e978167e4d8994a4b6d6e3dc086a35903c48087fa40155cd
   languageName: node
   linkType: hard
 

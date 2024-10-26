@@ -1,7 +1,4 @@
-import TrackPlayer, {
-  Event,
-  useTrackPlayerEvents,
-} from "react-native-track-player";
+import { Event, useTrackPlayerEvents } from "react-native-track-player";
 import useZustandStore from "../store/useZustandStore";
 
 const usePlayerEvents = () => {

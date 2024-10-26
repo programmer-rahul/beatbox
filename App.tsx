@@ -1,7 +1,10 @@
 import { useRef } from "react";
-import { StatusBar } from "react-native";
+import { StatusBar, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import TrackPlayer from "react-native-track-player";
+import { MenuProvider } from "react-native-popup-menu";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import changeNavigationBarColor from "react-native-navigation-bar-color";
 
 import TabNavitation from "./src/screens/TabNavitation";
 import useSetupTrackPlayer from "./src/hooks/useSetupTrackPlayer";
@@ -9,9 +12,10 @@ import playbackService from "./src/lib/playback-service";
 import PermissionRequired from "./src/components/reusable/permission-required";
 import usePermission from "./src/hooks/usePermission";
 import usePlayerEvents from "./src/hooks/usePlayerEvents";
-import { MenuProvider } from "react-native-popup-menu";
 import LoadingScreen from "./src/components/reusable/loading-screen";
 import useZustandStore from "./src/store/useZustandStore";
+import ShowBlurredImageBg from "./src/components/reusable/show-blurred-image-bg";
+import COLORS from "./src/constants/colors";
 
 TrackPlayer.registerPlaybackService(() => playbackService);
 
@@ -19,15 +23,22 @@ function App(): React.JSX.Element {
   const isTrackPlayerInitialized = useRef(false);
   useSetupTrackPlayer({ isTrackPlayerInitialized });
 
+  const hasHydrated = useZustandStore((state) => state.hasHydrated);
+
   return (
     <MenuProvider>
-      {<RootNavigation />}
+      <SafeAreaProvider
+        className="flex-1"
+        style={{ backgroundColor: COLORS.primaryBg }}
+      >
+        {hasHydrated ? <RootNavigation /> : <LoadingScreen />}
 
-      <StatusBar
-        backgroundColor={"transparent"}
-        barStyle={"light-content"}
-        translucent={true}
-      />
+        <StatusBar
+          backgroundColor={"transparent"}
+          barStyle={"light-content"}
+          translucent={true}
+        />
+      </SafeAreaProvider>
     </MenuProvider>
   );
 }
@@ -35,24 +46,26 @@ function App(): React.JSX.Element {
 export default App;
 
 const RootNavigation = () => {
-  const hasHydrated = useZustandStore((state) => state.hasHydrated);
   const isHavePermission = useZustandStore((state) => state.isHavePermission);
 
   usePermission();
   usePlayerEvents();
-  
-  console.log("INSIDE ROOT_NAVIGATION", hasHydrated);
+
+  console.log("INSIDE ROOT_NAVIGATION");
+
+  changeNavigationBarColor("transparent");
 
   return (
     <NavigationContainer>
-      {hasHydrated ? (
-        isHavePermission ? (
+      {isHavePermission ? (
+        <>
           <TabNavitation />
-        ) : (
-          <PermissionRequired />
-        )
+          <View className="absolute -z-10 h-full w-full">
+            <ShowBlurredImageBg />
+          </View>
+        </>
       ) : (
-        <LoadingScreen />
+        <PermissionRequired />
       )}
     </NavigationContainer>
   );

@@ -4,7 +4,6 @@ import NoSavedMusicFiles from "./../components/saved/no-saved-music-files";
 import COLORS from "./../constants/colors";
 import useZustandStore from "../store/useZustandStore";
 import MiniMusicPlayer from "../components/home/tabs/mini-music-player";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 const SavedScreen = () => {
   const allSavedMusicTracks = useZustandStore(
@@ -18,7 +17,7 @@ const SavedScreen = () => {
         backgroundColor: COLORS.primaryBg,
       }}
     >
-      <SafeAreaView className="flex-1 pt-3">
+      <View className="flex-1 pt-3">
         {allSavedMusicTracks.length > 0 ? (
           <View className="flex-1">
             <View className="px-5">
@@ -33,7 +32,7 @@ const SavedScreen = () => {
         ) : (
           <NoSavedMusicFiles />
         )}
-      </SafeAreaView>
+      </View>
     </View>
   );
 };

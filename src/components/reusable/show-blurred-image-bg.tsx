@@ -1,0 +1,68 @@
+import { View } from "react-native";
+import React, { memo, useEffect, useState } from "react";
+import useZustandStore from "../../store/useZustandStore";
+import { useIsFocused, useNavigationState } from "@react-navigation/native";
+import { Image } from "react-native";
+import { BlurView } from "@react-native-community/blur";
+import COLORS from "../../constants/colors";
+import { fetchCoverImage } from "../../lib/music";
+
+const ShowBlurredImageBg = () => {
+  const currentMusicTrack = useZustandStore((state) => state.currentMusicTrack);
+
+  const isSwiping = useZustandStore((state) => state.isSwiping);
+  const isFocused = useIsFocused();
+
+  const navigationTab = useNavigationState((state) => state);
+
+  const [musicCover, setMusicCover] = useState("");
+
+  useEffect(() => {
+    if (currentMusicTrack?.cover) {
+      fetchCoverImage(currentMusicTrack?.title).then(
+        (coverImage) => coverImage && setMusicCover(coverImage),
+      );
+    } else {
+      setMusicCover("");
+    }
+  }, [currentMusicTrack]);
+
+  if (!currentMusicTrack || !navigationTab || navigationTab.index !== 1)
+    return null;
+  return (
+    <View className="absolute h-full w-full">
+      {currentMusicTrack && currentMusicTrack.cover && (
+        <View>
+          {isSwiping || !isFocused ? (
+            <View
+              className="h-full w-full bg-primaryBg transition-colors"
+              style={{ backgroundColor: COLORS.primaryBg }}
+            />
+          ) : (
+            <>
+              <Image
+                key={"blurryImage"}
+                source={{ uri: musicCover }}
+                className="h-full w-full"
+                resizeMode="repeat"
+              />
+              <BlurView
+                blurRadius={25}
+                blurAmount={60}
+                style={{
+                  position: "absolute",
+                  left: 0,
+                  top: 0,
+                  right: 0,
+                  bottom: 0,
+                }}
+              />
+            </>
+          )}
+        </View>
+      )}
+    </View>
+  );
+};
+
+export default memo(ShowBlurredImageBg);

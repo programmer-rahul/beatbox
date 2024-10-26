@@ -25,7 +25,7 @@ function PlaylistName({
 
         <Text
           className="font-primary_semibold text-base text-primaryText"
-          style={{ color: COLORS.primaryText + "aa" }}
+          style={{ color: COLORS.secondaryText }}
         >
           {playlistName}
         </Text>
@@ -34,7 +34,7 @@ function PlaylistName({
         {tracksCount !== 0 && (
           <Text
             className="text-Tase mr-2 font-primary_semibold text-primaryText"
-            style={{ color: COLORS.primaryText + "aa" }}
+            style={{ color: COLORS.secondaryText }}
           >
             {String(tracksCount)}
           </Text>

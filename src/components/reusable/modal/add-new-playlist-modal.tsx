@@ -62,8 +62,8 @@ function AddNewPlaylistModal({
               Please enter a playlist name
             </Text>
             <TextInput
-              className="rounded-sm border-b border-b-main py-1"
-              style={{ color: COLORS.primaryText }}
+              className="rounded-sm border-b border-b-main py-1 text-black"
+              style={{ color: COLORS.primaryBg }}
               value={modalText}
               onChangeText={setModalText}
               autoFocus={true}

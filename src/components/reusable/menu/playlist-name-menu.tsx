@@ -68,7 +68,7 @@ const PlaylistNameMenu = ({ playlistName }: TPlaylistNameMenuProps) => {
     <>
       <Menu>
         <MenuTrigger>
-          <EllipsisVertical color={COLORS.secondaryIcon} />
+          <EllipsisVertical color={COLORS.secondaryText} />
         </MenuTrigger>
         <MenuOptions
           customStyles={{

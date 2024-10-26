@@ -5,7 +5,6 @@ import ListAllPlaylists from "./../components/playlist/list-all-playlists";
 import SelectedPlaylistContent from "./../components/playlist/selected-playlist-content";
 import AddNewPlaylistBtn from "../components/playlist/add-new-playlist-btn";
 import AddNewPlaylistModal from "../components/reusable/modal/add-new-playlist-modal";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 const PlaylistScreen = () => {
   const [isNewPlaylistModalVisible, setIsNewPlaylistModalVisible] =
@@ -19,7 +18,7 @@ const PlaylistScreen = () => {
         backgroundColor: COLORS.primaryBg,
       }}
     >
-      <SafeAreaView className="flex-1 pt-2">
+      <View className="flex-1 pt-2">
         {!selectedPlaylist ? (
           <>
             <View className="mb-12 flex-1 flex-col items-start px-6">
@@ -39,7 +38,7 @@ const PlaylistScreen = () => {
             setSelectedPlaylist={setSelectedPlaylist}
           />
         )}
-      </SafeAreaView>
+      </View>
     </View>
   );
 };
