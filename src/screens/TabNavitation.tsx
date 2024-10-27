@@ -40,6 +40,7 @@ const TabNavitation = () => {
     <Tab.Navigator
       style={{ marginBottom: insets.bottom, marginTop: insets.top }}
       tabBarPosition="bottom"
+      initialRouteName="player"
       tabBar={(props) => {
         return (
           <View className="absolute bottom-0 left-0 right-0">

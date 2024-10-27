@@ -9,10 +9,8 @@ import { fetchCoverImage } from "../../lib/music";
 
 const ShowBlurredImageBg = () => {
   const currentMusicTrack = useZustandStore((state) => state.currentMusicTrack);
-
   const isSwiping = useZustandStore((state) => state.isSwiping);
   const isFocused = useIsFocused();
-
   const navigationTab = useNavigationState((state) => state);
 
   const [musicCover, setMusicCover] = useState("");
@@ -27,11 +25,15 @@ const ShowBlurredImageBg = () => {
     }
   }, [currentMusicTrack]);
 
-  if (!currentMusicTrack || !navigationTab || navigationTab.index !== 1)
-    return null;
+  if (!currentMusicTrack || !navigationTab || navigationTab?.index !== 1) {
+    if (navigationTab && navigationTab.index !== 1) {
+      return null;
+    }
+  }
+
   return (
     <View className="absolute h-full w-full">
-      {currentMusicTrack && currentMusicTrack.cover && (
+      {currentMusicTrack && currentMusicTrack.cover && musicCover && (
         <View>
           {isSwiping || !isFocused ? (
             <View
@@ -48,7 +50,7 @@ const ShowBlurredImageBg = () => {
               />
               <BlurView
                 blurRadius={25}
-                blurAmount={60}
+                blurAmount={100}
                 style={{
                   position: "absolute",
                   left: 0,

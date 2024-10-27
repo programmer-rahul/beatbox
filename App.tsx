@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { lazy, Suspense, useRef } from "react";
 import { StatusBar, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import TrackPlayer from "react-native-track-player";
@@ -6,7 +6,6 @@ import { MenuProvider } from "react-native-popup-menu";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import changeNavigationBarColor from "react-native-navigation-bar-color";
 
-import TabNavitation from "./src/screens/TabNavitation";
 import useSetupTrackPlayer from "./src/hooks/useSetupTrackPlayer";
 import playbackService from "./src/lib/playback-service";
 import PermissionRequired from "./src/components/reusable/permission-required";
@@ -17,6 +16,8 @@ import useZustandStore from "./src/store/useZustandStore";
 import ShowBlurredImageBg from "./src/components/reusable/show-blurred-image-bg";
 import COLORS from "./src/constants/colors";
 
+const TabNavitation = lazy(() => import("./src/screens/TabNavitation"));
+
 TrackPlayer.registerPlaybackService(() => playbackService);
 
 function App(): React.JSX.Element {
@@ -24,6 +25,9 @@ function App(): React.JSX.Element {
   useSetupTrackPlayer({ isTrackPlayerInitialized });
 
   const hasHydrated = useZustandStore((state) => state.hasHydrated);
+  console.log("hasHydrated", hasHydrated);
+
+  changeNavigationBarColor("transparent");
 
   return (
     <MenuProvider>
@@ -51,18 +55,18 @@ const RootNavigation = () => {
   usePermission();
   usePlayerEvents();
 
-  console.log("INSIDE ROOT_NAVIGATION");
-
-  changeNavigationBarColor("transparent");
+  console.log("INSIDE ROOT_NAVIGATION", isHavePermission);
 
   return (
     <NavigationContainer>
       {isHavePermission ? (
         <>
-          <TabNavitation />
-          <View className="absolute -z-10 h-full w-full">
-            <ShowBlurredImageBg />
-          </View>
+          <Suspense fallback={<LoadingScreen />}>
+            <TabNavitation />
+            <View className="absolute -z-10 h-full w-full">
+              <ShowBlurredImageBg />
+            </View>
+          </Suspense>
         </>
       ) : (
         <PermissionRequired />

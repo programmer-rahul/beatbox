@@ -1,16 +1,21 @@
 import { useEffect, useState } from "react";
 import { getAll } from "react-native-get-music-files";
 import useZustandStore from "../store/useZustandStore";
+import { useNavigation } from "@react-navigation/native";
+import { RootTabNavigationProp } from "../types/navigation-type";
 
 const useFetchLocalMusic = () => {
   const setAllLocalMusicTracks = useZustandStore(
     (state) => state.setAllLocalMusicTracks,
   );
 
+  const { navigate } = useNavigation<RootTabNavigationProp>();
+
   const [isFetching, setIsFetching] = useState(true);
 
   const fetchLocalMusicFiles = async () => {
     const allLocalMusicTracks = useZustandStore.getState().allLocalMusicTracks;
+    navigate("home");
 
     const fetchedMusicFiles = await getAll({
       limit: 300,

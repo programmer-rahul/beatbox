@@ -11,6 +11,8 @@ const PlaylistScreen = () => {
     useState(false);
   const [selectedPlaylist, setSelectedPlaylist] = useState<null | string>(null);
 
+  console.log("INSIDE PLAYLIST SCREEN");
+
   return (
     <View
       className="flex-1 bg-primaryBg"

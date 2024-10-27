@@ -1,16 +1,27 @@
 import { Text, View } from "react-native";
 import PlayerScreenHeader from "./../components/player/player-screen-header";
-import PlayerScreenView from "./../components/player/player-screen-view";
 import COLORS from "../constants/colors";
 import { Link } from "@react-navigation/native";
 import { Music } from "lucide-react-native";
 import useZustandStore from "../store/useZustandStore";
 import ShowBlurredImageBg from "../components/reusable/show-blurred-image-bg";
+import {
+  useSafeAreaFrame,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
+import ScanningMusicFiles from "../components/reusable/scanning-music-files";
+import PlayerScreenView from "./../components/player/player-screen-view";
 
 const PlayerScreen = () => {
   const currentMusicTrack = useZustandStore((state) => state.currentMusicTrack);
+  const allLocalMusicTracks = useZustandStore(
+    (state) => state.allLocalMusicTracks,
+  );
 
   console.log("inside player screen");
+
+  const insets = useSafeAreaInsets();
+  const frame = useSafeAreaFrame();
 
   return (
     <View
@@ -25,12 +36,22 @@ const PlayerScreen = () => {
             <PlayerScreenHeader />
             <PlayerScreenView />
           </View>
-        ) : (
+        ) : allLocalMusicTracks.length > 0 ? (
           <NoMusicFileSelected />
+        ) : (
+          <ScanningMusicFiles />
         )}
       </View>
 
-      <ShowBlurredImageBg />
+      <View
+        className="absolute h-full w-full"
+        style={{
+          height: frame.height,
+          top: -insets.top,
+        }}
+      >
+        <ShowBlurredImageBg />
+      </View>
     </View>
   );
 };
