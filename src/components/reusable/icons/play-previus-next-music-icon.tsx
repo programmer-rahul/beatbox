@@ -20,7 +20,6 @@ function PlayPreviousNextMusicIcon({
   );
 
   const onPreviousNextPress = async () => {
-    console.log("returning here", isButtonDisabled.current);
     if (isButtonDisabled.current) return;
 
     isButtonDisabled.current = true;
@@ -40,8 +39,6 @@ function PlayPreviousNextMusicIcon({
 
     isButtonDisabled.current = false;
   };
-
-  console.log("next");
 
   return type === "previous" ? (
     <SkipBack

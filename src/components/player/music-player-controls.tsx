@@ -6,7 +6,7 @@ import AddMusicToPlaylistIcon from "../reusable/icons/add-music-to-playlist-icon
 import RepeatModeIcon from "../reusable/icons/repeat-mode-icon";
 
 const MusicPlayerControls = () => {
-  console.log("INSIDE MUSIC PLAYER CONTROLS");
+  // console.log("INSIDE MUSIC PLAYER CONTROLS");
   return (
     <View className="h-full justify-evenly">
       <View className="flex-row items-center justify-between px-8">

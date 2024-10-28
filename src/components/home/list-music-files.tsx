@@ -16,46 +16,42 @@ const ListMusicFiles = ({
   playlistName?: string;
   heading?: string;
 }) => {
-  const musicFilesLength = musicFiles.length;
-
-  console.log("INSIDE LIST_MUSIC_FILES");
+  // console.log("INSIDE LIST_MUSIC_FILES");
 
   return (
-    <View className="">
-      <VirtualizedList
-        data={musicFiles}
-        stickyHeaderHiddenOnScroll={false}
-        ListHeaderComponent={
-          heading ? (
-            <ListMusicFilesHeader
-              heading={heading}
-              musicFilesLength={musicFilesLength}
-            />
-          ) : (
-            <></>
-          )
-        }
-        keyExtractor={(item) => item.url}
-        getItem={(data, index) => {
-          return data[index];
-        }}
-        getItemCount={(data) => data.length}
-        renderItem={({ item }: { item: TMusicTrack }) => {
-          return (
-            <MusicFile
-              musicFile={item}
-              queueType={queueType}
-              playlistName={playlistName}
-            />
-          );
-        }}
-        initialNumToRender={10}
-        maxToRenderPerBatch={10}
-        windowSize={20}
-        showsVerticalScrollIndicator={false}
-        ListFooterComponent={<View className="h-20 w-full"></View>}
-      />
-    </View>
+    <VirtualizedList
+      data={musicFiles}
+      stickyHeaderHiddenOnScroll={false}
+      ListHeaderComponent={
+        heading ? (
+          <ListMusicFilesHeader
+            heading={heading}
+            musicFilesLength={musicFiles.length}
+          />
+        ) : (
+          <></>
+        )
+      }
+      keyExtractor={(item) => item.url}
+      getItem={(data, index) => {
+        return data[index];
+      }}
+      getItemCount={(data) => data.length}
+      renderItem={({ item }: { item: TMusicTrack }) => {
+        return (
+          <MusicFile
+            musicFile={item}
+            queueType={queueType}
+            playlistName={playlistName}
+          />
+        );
+      }}
+      initialNumToRender={10}
+      maxToRenderPerBatch={10}
+      windowSize={20}
+      showsVerticalScrollIndicator={false}
+      ListFooterComponent={<View className="h-20 w-full"></View>}
+    />
   );
 };
 

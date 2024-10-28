@@ -4,7 +4,7 @@ import PlayerMusicNameDisplay from "./player-music-name-display";
 import MusicFileAlbumDisplayOnTrackChange from "../reusable/music-file-album-display-on-trackchange";
 
 function PlayerScreenView() {
-  console.log("INSIDE PLAYER VIEW");
+  // console.log("INSIDE PLAYER VIEW");
   return (
     <View className="flex-1">
       <View

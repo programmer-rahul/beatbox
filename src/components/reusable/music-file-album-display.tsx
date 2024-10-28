@@ -13,7 +13,7 @@ function MusicFileAlbumDisplay({
   cover: boolean;
 }) {
   const [musicCover, setMusicCover] = useState("");
-  console.log("INSIDE MUSIC_FILE_ALBUM_DISPLAY");
+  // console.log("INSIDE MUSIC_FILE_ALBUM_DISPLAY");
 
   useEffect(() => {
     cover &&

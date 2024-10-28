@@ -1,7 +1,7 @@
 import { Music } from "lucide-react-native";
 import COLORS from "./../../constants/colors";
 import { fetchCoverImage } from "./../../lib/music";
-import { memo, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { View } from "react-native";
 import FastImage from "react-native-fast-image";
 import useZustandStore from "../../store/useZustandStore";
@@ -16,7 +16,7 @@ function MusicFileAlbumDisplayOnTrackChange({
   const [musicCover, setMusicCover] = useState("");
   const currentMusicTrack = useZustandStore((state) => state.currentMusicTrack);
 
-  console.log("INSIDE MUSIC_FILE_ALBUM_DISPLAY_ON_TRACK_CHANGE");
+  // console.log("INSIDE MUSIC_FILE_ALBUM_DISPLAY_ON_TRACK_CHANGE");
 
   useEffect(() => {
     currentMusicTrack?.cover
@@ -52,4 +52,4 @@ function MusicFileAlbumDisplayOnTrackChange({
   );
 }
 
-export default memo(MusicFileAlbumDisplayOnTrackChange);
+export default MusicFileAlbumDisplayOnTrackChange;

@@ -18,7 +18,7 @@ const PlayerScreen = () => {
     (state) => state.allLocalMusicTracks,
   );
 
-  console.log("inside player screen");
+  // console.log("inside player screen");
 
   const insets = useSafeAreaInsets();
   const frame = useSafeAreaFrame();
@@ -30,7 +30,10 @@ const PlayerScreen = () => {
         backgroundColor: COLORS.primaryBg,
       }}
     >
-      <View className="z-10 flex-1 transition-colors">
+      <View
+        className="z-10 flex-1 transition-colors"
+        style={{ paddingTop: insets.top }}
+      >
         {currentMusicTrack ? (
           <View className="flex-1 pb-20">
             <PlayerScreenHeader />
@@ -47,7 +50,6 @@ const PlayerScreen = () => {
         className="absolute h-full w-full"
         style={{
           height: frame.height,
-          top: -insets.top,
         }}
       >
         <ShowBlurredImageBg />
@@ -59,7 +61,7 @@ const PlayerScreen = () => {
 export default PlayerScreen;
 
 const NoMusicFileSelected = () => {
-  console.log("INSIDE NO MUSIC_FILE_SELECTED");
+  // console.log("INSIDE NO MUSIC_FILE_SELECTED");
 
   return (
     <View className="relative flex flex-1 items-center justify-center">

@@ -18,8 +18,7 @@ const HomeScreen = () => {
   const { isFetching } = useFetchLocalMusic();
   useInitialQueue();
 
-  const allLocalMusicTracksLength = allLocalMusicTracks.length;
-  console.log("INSIDE HOME_PAGE");
+  // console.log("INSIDE HOME_PAGE");
 
   return (
     <View
@@ -29,8 +28,8 @@ const HomeScreen = () => {
       <View className="flex-1">
         {!isFetching ? (
           <>
-            {allLocalMusicTracksLength > 0 ? (
-              <View className="flex-1">
+            {allLocalMusicTracks.length > 0 ? (
+              <View className="flex-1 space-y-1">
                 <Header />
                 <View className="flex-1 px-5">
                   <ListMusicFiles

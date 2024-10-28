@@ -12,7 +12,7 @@ function AddNewPlaylistBtn({
     <Pressable
       onPress={() => setIsVisible(true)}
       className="my-4 flex flex-row items-center space-x-2 rounded-md border px-4 py-1"
-      style={{ borderColor: COLORS.secondaryText }}
+      style={{ borderColor: COLORS.main + "aa" }}
     >
       <ListPlus size={25} color={COLORS.main} />
       <Text

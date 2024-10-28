@@ -5,7 +5,7 @@ import PlayForwardMusicIcon from "../reusable/icons/play-forward-music-icon";
 import PlayBackwardMusicIcon from "../reusable/icons/play-backward-music-icon";
 
 function MusicPlayerControlButtons() {
-  console.log("inside music player control buttons");
+  // console.log("inside music player control buttons");
   return (
     <View className="flex-row items-center justify-evenly px-2">
       <View>

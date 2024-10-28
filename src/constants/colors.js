@@ -5,13 +5,13 @@ const COLORS = {
   primaryText: colors.neutral[100],
   secondaryText: colors.neutral[500],
 
-  primaryBg: colors.neutral[800],
+  primaryBg: colors.slate[900],
   secondaryBg: colors.slate[300],
 
   primaryIcon: colors.neutral[500],
   secondaryIcon: colors.neutral[400],
 
-  modalBg: colors.gray[300],
+  modalBg: colors.slate[300],
 };
 
 module.exports = COLORS;

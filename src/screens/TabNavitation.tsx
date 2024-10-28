@@ -19,8 +19,8 @@ const Tab = createMaterialTopTabNavigator();
 
 const TabNavitation = () => {
   const setIsSwiping = useZustandStore((state) => state.setIsSwiping);
-
   const { navigate } = useNavigation<RootTabNavigationProp>();
+  const insets = useSafeAreaInsets();
 
   useEffect(() => {
     const handleDeepLink = (event: { url: string }) => {
@@ -34,17 +34,18 @@ const TabNavitation = () => {
     };
   }, []);
 
-  const insets = useSafeAreaInsets();
-
   return (
     <Tab.Navigator
-      style={{ marginBottom: insets.bottom, marginTop: insets.top }}
+      style={{ marginBottom: insets.bottom }}
       tabBarPosition="bottom"
       initialRouteName="player"
       tabBar={(props) => {
         return (
-          <View className="absolute bottom-0 left-0 right-0">
-            <MaterialTopTabBar {...props} key={props.state.key} />
+          <View
+            className="absolute bottom-0 left-0 right-0"
+            key={Math.random() * 1}
+          >
+            <MaterialTopTabBar {...props} key={Math.random() * 1} />
           </View>
         );
       }}
@@ -52,7 +53,7 @@ const TabNavitation = () => {
         tabBarAndroidRipple: { borderless: false },
         tabBarShowLabel: false,
         tabBarActiveTintColor: COLORS.main,
-        tabBarInactiveTintColor: COLORS.secondaryIcon,
+        tabBarInactiveTintColor: COLORS.primaryText,
         tabBarPressColor: "transparent",
         tabBarIndicatorStyle: {
           display: "none",
@@ -70,6 +71,7 @@ const TabNavitation = () => {
           tabBarIcon: ({ color }) => <House color={color} />,
         }}
       />
+
       <Tab.Screen
         name="player"
         component={PlayerScreen}

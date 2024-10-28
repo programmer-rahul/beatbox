@@ -13,7 +13,7 @@ function MusicFileTitle({
 }) {
   const currentMusicTrack = useZustandStore((state) => state.currentMusicTrack);
 
-  console.log("INSIDE MUSIC_FILE_TITLE");
+  // console.log("INSIDE MUSIC_FILE_TITLE");
 
   if (!title && !currentMusicTrack) return;
   return (

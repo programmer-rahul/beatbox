@@ -6,7 +6,7 @@ import useZustandStore from "../../store/useZustandStore";
 function MusicFileTotalDuration() {
   const currentMusicTrack = useZustandStore((state) => state.currentMusicTrack);
 
-  console.log("INSIDE MUSIC_FILE_TOTAL_DURATION");
+  // console.log("INSIDE MUSIC_FILE_TOTAL_DURATION");
 
   if (!currentMusicTrack) return;
   return (

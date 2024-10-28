@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import React, { memo, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useZustandStore from "../../store/useZustandStore";
 import { useIsFocused, useNavigationState } from "@react-navigation/native";
 import { Image } from "react-native";
@@ -16,6 +16,7 @@ const ShowBlurredImageBg = () => {
   const [musicCover, setMusicCover] = useState("");
 
   useEffect(() => {
+    if (navigationTab?.index !== 1) return;
     if (currentMusicTrack?.cover) {
       fetchCoverImage(currentMusicTrack?.title).then(
         (coverImage) => coverImage && setMusicCover(coverImage),
@@ -50,7 +51,7 @@ const ShowBlurredImageBg = () => {
               />
               <BlurView
                 blurRadius={25}
-                blurAmount={100}
+                blurAmount={10}
                 style={{
                   position: "absolute",
                   left: 0,
@@ -67,4 +68,4 @@ const ShowBlurredImageBg = () => {
   );
 };
 
-export default memo(ShowBlurredImageBg);
+export default ShowBlurredImageBg;

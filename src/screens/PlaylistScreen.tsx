@@ -5,19 +5,23 @@ import ListAllPlaylists from "./../components/playlist/list-all-playlists";
 import SelectedPlaylistContent from "./../components/playlist/selected-playlist-content";
 import AddNewPlaylistBtn from "../components/playlist/add-new-playlist-btn";
 import AddNewPlaylistModal from "../components/reusable/modal/add-new-playlist-modal";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const PlaylistScreen = () => {
   const [isNewPlaylistModalVisible, setIsNewPlaylistModalVisible] =
     useState(false);
   const [selectedPlaylist, setSelectedPlaylist] = useState<null | string>(null);
+  const insets = useSafeAreaInsets();
 
-  console.log("INSIDE PLAYLIST SCREEN");
+  // console.log("INSIDE PLAYLIST SCREEN");
+
 
   return (
     <View
       className="flex-1 bg-primaryBg"
       style={{
         backgroundColor: COLORS.primaryBg,
+        paddingTop: insets.top,
       }}
     >
       <View className="flex-1 pt-2">

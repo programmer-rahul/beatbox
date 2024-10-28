@@ -4,17 +4,21 @@ import NoSavedMusicFiles from "./../components/saved/no-saved-music-files";
 import COLORS from "./../constants/colors";
 import useZustandStore from "../store/useZustandStore";
 import MiniMusicPlayer from "../components/home/tabs/mini-music-player";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const SavedScreen = () => {
   const allSavedMusicTracks = useZustandStore(
     (state) => state.allSavedMusicTracks,
   );
 
+  const insets = useSafeAreaInsets();
+
   return (
     <View
       className="flex-1 bg-primaryBg pb-12"
       style={{
         backgroundColor: COLORS.primaryBg,
+        paddingTop: insets.top,
       }}
     >
       <View className="flex-1 pt-3">

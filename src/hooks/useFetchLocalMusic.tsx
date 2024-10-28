@@ -8,7 +8,6 @@ const useFetchLocalMusic = () => {
   const setAllLocalMusicTracks = useZustandStore(
     (state) => state.setAllLocalMusicTracks,
   );
-
   const { navigate } = useNavigation<RootTabNavigationProp>();
 
   const [isFetching, setIsFetching] = useState(true);
@@ -20,6 +19,7 @@ const useFetchLocalMusic = () => {
     const fetchedMusicFiles = await getAll({
       limit: 300,
       minSongDuration: 50000,
+      coverQuality: 1,
     });
 
     if (Array.isArray(fetchedMusicFiles)) {

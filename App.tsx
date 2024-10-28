@@ -24,9 +24,6 @@ function App(): React.JSX.Element {
   const isTrackPlayerInitialized = useRef(false);
   useSetupTrackPlayer({ isTrackPlayerInitialized });
 
-  const hasHydrated = useZustandStore((state) => state.hasHydrated);
-  console.log("hasHydrated", hasHydrated);
-
   changeNavigationBarColor("transparent");
 
   return (
@@ -35,7 +32,7 @@ function App(): React.JSX.Element {
         className="flex-1"
         style={{ backgroundColor: COLORS.primaryBg }}
       >
-        {hasHydrated ? <RootNavigation /> : <LoadingScreen />}
+        <RootNavigation />
 
         <StatusBar
           backgroundColor={"transparent"}

@@ -14,7 +14,7 @@ function PlayPauseMusicIcon({
   const isTrackPlaying = useZustandStore((state) => state.isTrackPlaying);
   const setIsTrackPlaying = useZustandStore((state) => state.setIsTrackPlaying);
 
-  console.log("INSIDE PLAY_PAUSE_ICON");
+  // console.log("INSIDE PLAY_PAUSE_ICON");
 
   const onTrackPlayPause = async () => {
     isTrackPlaying ? TrackPlayer.pause() : TrackPlayer.play();

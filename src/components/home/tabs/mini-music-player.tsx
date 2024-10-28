@@ -15,7 +15,7 @@ const MiniMusicPlayer = () => {
   const currentMusicTrack = useZustandStore((state) => state.currentMusicTrack);
   const { navigate } = useNavigation<RootTabNavigationProp>();
 
-  console.log("INSIDE MINI_MUSIC_MUSIC_PLAYER", currentMusicTrack?.title);
+  // console.log("INSIDE MINI_MUSIC_MUSIC_PLAYER", currentMusicTrack?.title);
 
   return currentMusicTrack ? (
     <View className="absolute bottom-0 flex h-14 w-full flex-col rounded-t-lg">

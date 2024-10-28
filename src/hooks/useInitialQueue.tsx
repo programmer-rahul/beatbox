@@ -4,20 +4,18 @@ import useZustandStore from "../store/useZustandStore";
 
 const useInitialQueue = () => {
   const setIsTrackPlaying = useZustandStore((state) => state.setIsTrackPlaying);
-
   const setCurrentQueue = useZustandStore((state) => state.setCurrentQueue);
 
   const mountInitialQueue = async () => {
     const currentTrackIndex = await TrackPlayer.getActiveTrackIndex();
     const currentMusicTrack = useZustandStore.getState().currentMusicTrack;
 
-    console.log("----------------------", currentTrackIndex);
-    console.log("----------------------", !currentMusicTrack);
+    // console.log("----------------------", currentTrackIndex);
+    // console.log("----------------------", !currentMusicTrack);
     if (!currentMusicTrack) return;
 
     // check is there music is playing or not for updating ui state
     const { state } = await TrackPlayer.getPlaybackState();
-    console.log("setIsTrackPlaying", state);
     setIsTrackPlaying(state === State.Playing ? true : false);
 
     // to add queue

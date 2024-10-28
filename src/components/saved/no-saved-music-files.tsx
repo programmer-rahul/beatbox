@@ -14,7 +14,7 @@ const NoSavedMusicFiles = () => {
         No Saved Music Files
       </Text>
       <View className="absolute -z-10 pt-8 opacity-10">
-        <Heart size={240} color={COLORS.main} strokeWidth={1} />
+        <Heart size={280} color={COLORS.main} strokeWidth={1} />
       </View>
     </View>
   );

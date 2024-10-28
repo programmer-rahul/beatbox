@@ -27,7 +27,7 @@ const MusicFile = ({
 
   const { navigate } = useNavigation<RootTabNavigationProp>();
 
-  console.log("INSIDE MUSIC_FILE");
+  // console.log("INSIDE MUSIC_FILE");
 
   const onMusicFilePress = async (
     musicFile: TMusicTrack,
@@ -142,7 +142,7 @@ const MusicFileTitleArtistDisplay = memo(
 );
 
 const MusicFileTotalDurationBox = memo(({ duration }: { duration: number }) => {
-  console.log("INSIDE MUSIC_FILE_TOTAL_DURATION_BOX");
+  // console.log("INSIDE MUSIC_FILE_TOTAL_DURATION_BOX");
   return (
     <Text
       className="ml-2 self-center rounded-md px-2 py-[2px] font-primary_semibold text-xs text-secondaryText"
