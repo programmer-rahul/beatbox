@@ -123,13 +123,13 @@ const AddOrRemoveFromPlaylistBtns = ({
         className="flex-1 items-center rounded-md border-2 p-1"
         style={{
           borderColor:
-            playlistType === "add" ? COLORS.main : COLORS.secondaryIcon,
+            playlistType === "add" ? COLORS.main : COLORS.primaryIcon,
         }}
         onPress={() => setPlaylistType("add")}
       >
         <ListPlus
           size={25}
-          color={playlistType === "add" ? COLORS.main : COLORS.secondaryIcon}
+          color={playlistType === "add" ? COLORS.main : COLORS.primaryIcon}
         />
         <Text className="text-secondaryText">Add To Playlists</Text>
       </Pressable>
@@ -137,13 +137,13 @@ const AddOrRemoveFromPlaylistBtns = ({
         className="flex-1 items-center rounded-md border-2 p-1"
         style={{
           borderColor:
-            playlistType === "remove" ? COLORS.main : COLORS.secondaryIcon,
+            playlistType === "remove" ? COLORS.main : COLORS.primaryIcon,
         }}
         onPress={() => setPlaylistType("remove")}
       >
         <ListMinus
           size={25}
-          color={playlistType === "remove" ? COLORS.main : COLORS.secondaryIcon}
+          color={playlistType === "remove" ? COLORS.main : COLORS.primaryIcon}
         />
         <Text className="text-secondaryText">Remove To Playlists</Text>
       </Pressable>

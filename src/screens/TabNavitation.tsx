@@ -3,7 +3,7 @@ import PlayerScreen from "./PlayerScreen";
 import SavedScreen from "./SavedScreen";
 import PlaylistScreen from "./PlaylistScreen";
 import { Linking, View } from "react-native";
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 import COLORS from "../constants/colors";
 import { Heart, House, ListMusic, Music } from "lucide-react-native";
 import { useNavigation } from "@react-navigation/native";
@@ -38,14 +38,10 @@ const TabNavitation = () => {
     <Tab.Navigator
       style={{ marginBottom: insets.bottom }}
       tabBarPosition="bottom"
-      initialRouteName="player"
       tabBar={(props) => {
         return (
-          <View
-            className="absolute bottom-0 left-0 right-0"
-            key={Math.random() * 1}
-          >
-            <MaterialTopTabBar {...props} key={Math.random() * 1} />
+          <View className="absolute bottom-0 left-0 right-0">
+            <MaterialTopTabBar {...props} />
           </View>
         );
       }}
@@ -105,4 +101,4 @@ const TabNavitation = () => {
   );
 };
 
-export default TabNavitation;
+export default memo(TabNavitation);

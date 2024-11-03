@@ -15,7 +15,6 @@ const PlaylistScreen = () => {
 
   // console.log("INSIDE PLAYLIST SCREEN");
 
-
   return (
     <View
       className="flex-1 bg-primaryBg"

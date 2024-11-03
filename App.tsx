@@ -4,8 +4,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import TrackPlayer from "react-native-track-player";
 import { MenuProvider } from "react-native-popup-menu";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import changeNavigationBarColor from "react-native-navigation-bar-color";
-
 import useSetupTrackPlayer from "./src/hooks/useSetupTrackPlayer";
 import playbackService from "./src/lib/playback-service";
 import PermissionRequired from "./src/components/reusable/permission-required";
@@ -15,6 +13,7 @@ import LoadingScreen from "./src/components/reusable/loading-screen";
 import useZustandStore from "./src/store/useZustandStore";
 import ShowBlurredImageBg from "./src/components/reusable/show-blurred-image-bg";
 import COLORS from "./src/constants/colors";
+import changeNavigationBarColor from "react-native-navigation-bar-color";
 
 const TabNavitation = lazy(() => import("./src/screens/TabNavitation"));
 
@@ -24,6 +23,7 @@ function App(): React.JSX.Element {
   const isTrackPlayerInitialized = useRef(false);
   useSetupTrackPlayer({ isTrackPlayerInitialized });
 
+  const hasHydrated = useZustandStore((state) => state.hasHydrated);
   changeNavigationBarColor("transparent");
 
   return (
@@ -32,7 +32,7 @@ function App(): React.JSX.Element {
         className="flex-1"
         style={{ backgroundColor: COLORS.primaryBg }}
       >
-        <RootNavigation />
+        {hasHydrated ? <RootNavigation /> : <LoadingScreen />}
 
         <StatusBar
           backgroundColor={"transparent"}

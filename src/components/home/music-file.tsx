@@ -80,7 +80,7 @@ const MusicFile = ({
   };
 
   return (
-    <View className="mt-4 flex-row items-center justify-between rounded-md">
+    <View className="mt-4 flex-row items-center justify-between rounded-md py-1">
       <Pressable
         className="flex-1 flex-row items-center space-x-2"
         onPress={() => onMusicFilePress(musicFile, queueType)}
@@ -130,7 +130,7 @@ const MusicFileTitleArtistDisplay = memo(
           numberOfLines={1}
           style={{
             color: isCurrentPlayingSong
-              ? COLORS.main + "aa"
+              ? COLORS.main + "99"
               : COLORS.secondaryText,
           }}
         >

@@ -31,7 +31,7 @@ function MusicFileAlbumDisplay({
         <FastImage
           source={{
             uri: musicCover,
-            priority: "normal",
+            priority: "low",
             cache: FastImage.cacheControl.immutable,
           }}
           className="h-full w-full rounded-md"

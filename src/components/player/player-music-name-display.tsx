@@ -10,7 +10,7 @@ const PlayerMusicNameDisplay = () => {
     <View className="flex justify-between px-4">
       <MusicFileTitle text="big" />
       <Text
-        className="text-center font-primary_regular text-sm text-secondaryText"
+        className="text-start font-primary_regular text-sm text-secondaryText"
         numberOfLines={1}
         style={{
           color: COLORS.secondaryText,

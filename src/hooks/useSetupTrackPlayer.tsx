@@ -1,8 +1,17 @@
 import { useEffect } from "react";
-import TrackPlayer, { Capability } from "react-native-track-player";
+import TrackPlayer, {
+  AppKilledPlaybackBehavior,
+  Capability,
+} from "react-native-track-player";
 
 const setupTrackPlayer = async () => {
   await TrackPlayer.setupPlayer({});
+  TrackPlayer.updateOptions({
+    android: {
+      appKilledPlaybackBehavior:
+        AppKilledPlaybackBehavior.StopPlaybackAndRemoveNotification,
+    },
+  });
 
   await TrackPlayer.updateOptions({
     capabilities: [

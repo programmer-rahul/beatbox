@@ -18,14 +18,14 @@ const MiniMusicPlayer = () => {
   // console.log("INSIDE MINI_MUSIC_MUSIC_PLAYER", currentMusicTrack?.title);
 
   return currentMusicTrack ? (
-    <View className="absolute bottom-0 flex h-14 w-full flex-col rounded-t-lg">
+    <View className="absolute bottom-1 flex h-14 w-full flex-col rounded-lg">
       <View
-        className="w-full flex-1 items-center justify-center rounded-t-lg py-1"
+        className="mx-4 flex-1 flex-col justify-center overflow-hidden rounded-lg py-1 pb-0"
         style={{
           backgroundColor: COLORS.secondaryBg,
         }}
       >
-        <View className="w-full flex-row items-center justify-between gap-2 px-4">
+        <View className="flex-1 flex-row items-center justify-between gap-2 px-1">
           <Pressable
             className="flex-1 flex-row items-center space-x-2"
             onPress={() => navigate("player")}
@@ -57,8 +57,6 @@ const MiniMusicPlayer = () => {
             </View>
           </View>
         </View>
-      </View>
-      <View className="borderred-500 relative h-[3px]">
         <MusicFileRemainingDurationVisual />
       </View>
     </View>
@@ -73,20 +71,13 @@ const MusicFileRemainingDurationVisual = () => {
 
   return currentMusicTrack ? (
     <View
-      className="h-full w-full"
+      className="mt-1 h-1 rounded-lg"
       style={{
-        backgroundColor: COLORS.secondaryBg,
+        backgroundColor: COLORS.main + "aa",
+        width: `${Math.floor(
+          (progress.position / (currentMusicTrack?.duration / 1000)) * 100,
+        )}%`,
       }}
-    >
-      <View
-        className="h-full self-start"
-        style={{
-          backgroundColor: COLORS.main + "aa",
-          width: `${Math.floor(
-            (progress.position / (currentMusicTrack?.duration / 1000)) * 100,
-          )}%`,
-        }}
-      />
-    </View>
+    />
   ) : null;
 };
