@@ -4,12 +4,14 @@ import useZustandStore from "../../../store/useZustandStore";
 
 function SleepTimerMusicIcon({ size = 25 }: { size?: number }) {
   const setBottomSheet = useZustandStore((state) => state.setBottomSheet);
+  const sleepTimer = useZustandStore((state) => state.sleepTimer);
 
   return (
     <Clock
       size={size}
-      color={COLORS.secondaryIcon}
       onPress={() => setBottomSheet({ isVisible: true, sheet: "sleep-timer" })}
+      fill={sleepTimer.status ? COLORS.main : "transparent"}
+      stroke={COLORS.secondaryIcon}
     />
   );
 }

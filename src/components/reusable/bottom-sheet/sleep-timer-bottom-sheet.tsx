@@ -10,14 +10,13 @@ import TrackPlayer from "react-native-track-player";
 function SleepTimerBottomSheet() {
   const bottomSheet = useZustandStore((state) => state.bottomSheet);
   const setBottomSheet = useZustandStore((state) => state.setBottomSheet);
+  const sleepTimer = useZustandStore((state) => state.sleepTimer);
   const setSleepTimer = useZustandStore((state) => state.setSleepTimer);
   const setIsTrackPlaying = useZustandStore((state) => state.setIsTrackPlaying);
 
   const bottomSheetRef = useRef<BottomSheet>(null);
 
   const onSleepTimerValueClick = (minutes: number) => {
-    const sleepTimer = useZustandStore.getState().sleepTimer;
-
     // clear timeout if there is already running
     if (sleepTimer.status) {
       _BackgroundTimer.clearTimeout(sleepTimer.timeoutId);
@@ -38,6 +37,15 @@ function SleepTimerBottomSheet() {
     bottomSheetRef.current?.close();
   };
 
+  const onTurnOfTimerClick = () => {
+    if (sleepTimer.timeoutId) {
+      _BackgroundTimer.clearTimeout(sleepTimer.timeoutId);
+    }
+
+    setSleepTimer({ status: false, minutes: 0, timeoutId: 0 });
+    bottomSheetRef.current?.close();
+  };
+
   return bottomSheet.isVisible ? (
     <GestureHandlerRootView
       style={{
@@ -48,7 +56,7 @@ function SleepTimerBottomSheet() {
         ref={bottomSheetRef}
         enablePanDownToClose
         index={0}
-        snapPoints={["55%", "100%"]}
+        snapPoints={["60%", "100%"]}
         onClose={() => {
           setBottomSheet({ isVisible: false, sheet: null });
         }}
@@ -74,6 +82,14 @@ function SleepTimerBottomSheet() {
           </View>
 
           <View className="h-full w-full space-y-4 px-5">
+            {sleepTimer.status && (
+              <Pressable onPress={() => onTurnOfTimerClick()}>
+                <Text className="font-primary_regular text-base text-primaryText">
+                  Turn of timer
+                </Text>
+              </Pressable>
+            )}
+
             {[1, 5, 10, 15, 20, 30, 45, 60].map((num) => {
               return (
                 <Pressable
