@@ -15,4 +15,12 @@ const formatMusicFileDuration = (
   return `${minutes}:${remainingSeconds}`;
 };
 
-export { formatMusicFileDuration };
+const calculateRemainingTime = (startTime: Date, duration: number) => {
+  const currentTime = new Date();
+  const elapsedSeconds = Math.floor(
+    (currentTime.getTime() - startTime.getTime()) / 1000,
+  );
+  return duration - elapsedSeconds;
+};
+
+export { formatMusicFileDuration, calculateRemainingTime };

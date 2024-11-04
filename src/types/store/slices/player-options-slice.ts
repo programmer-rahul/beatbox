@@ -4,6 +4,7 @@ interface TSleepTimer {
   status: boolean;
   timeoutId: number;
   minutes: number;
+  startedTime: null | Date;
 }
 
 export interface TPlayerOptionsSlice {
