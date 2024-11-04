@@ -12,6 +12,7 @@ const COLORS = {
   secondaryIcon: colors.neutral[300],
 
   modalBg: colors.slate[300],
+  bottomSheet: colors.zinc[700],
 };
 
 module.exports = COLORS;

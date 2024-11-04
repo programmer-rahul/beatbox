@@ -6,6 +6,12 @@ const createUiSlice = (set: SetStateType): TUiSlice => ({
   setHasHydrated: () => set(() => ({ hasHydrated: true })),
   isSwiping: false,
   setIsSwiping: (value) => set(() => ({ isSwiping: value })),
+
+  bottomSheet: { isVisible: false, sheet: null },
+  setBottomSheet: (bottomSheet) =>
+    set(() => ({
+      bottomSheet: bottomSheet,
+    })),
 });
 
 export default createUiSlice;

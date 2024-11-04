@@ -6,6 +6,9 @@ const createPlayerOptionsSlice = (set: SetStateType): TPlayerOptionsSlice => ({
   currentRepeatMode: RepeatMode.Off,
   setCurrentRepeatMode: (repeatMode) =>
     set(() => ({ currentRepeatMode: repeatMode })),
+
+  sleepTimer: { status: false, minutes: 0, timeoutId: 0 },
+  setSleepTimer: (sleepTimer) => set(() => ({ sleepTimer: sleepTimer })),
 });
 
 export default createPlayerOptionsSlice;

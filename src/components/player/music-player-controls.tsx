@@ -4,6 +4,7 @@ import MusicPlayerControlButtons from "./music-player-control-buttons";
 import PlayerSavedMusicIcon from "./player-saved-music-icon";
 import AddMusicToPlaylistIcon from "../reusable/icons/add-music-to-playlist-icon";
 import RepeatModeIcon from "../reusable/icons/repeat-mode-icon";
+import SleepTimerMusicIcon from "../reusable/icons/sleep-timer-music-icon";
 
 const MusicPlayerControls = () => {
   // console.log("INSIDE MUSIC PLAYER CONTROLS");
@@ -16,6 +17,9 @@ const MusicPlayerControls = () => {
           </View>
           <View>
             <AddMusicToPlaylistIcon size={30} />
+          </View>
+          <View>
+            <SleepTimerMusicIcon size={27} />
           </View>
         </View>
         <View className="flex-row items-center space-x-4">

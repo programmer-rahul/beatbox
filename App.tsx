@@ -14,6 +14,7 @@ import useZustandStore from "./src/store/useZustandStore";
 import ShowBlurredImageBg from "./src/components/reusable/show-blurred-image-bg";
 import COLORS from "./src/constants/colors";
 import changeNavigationBarColor from "react-native-navigation-bar-color";
+import SleepTimerBottomSheet from "./src/components/reusable/bottom-sheet/sleep-timer-bottom-sheet";
 
 const TabNavitation = lazy(() => import("./src/screens/TabNavitation"));
 
@@ -63,6 +64,7 @@ const RootNavigation = () => {
             <View className="absolute -z-10 h-full w-full">
               <ShowBlurredImageBg />
             </View>
+            <SleepTimerBottomSheet />
           </Suspense>
         </>
       ) : (
