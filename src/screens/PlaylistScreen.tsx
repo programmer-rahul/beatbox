@@ -12,7 +12,6 @@ const PlaylistScreen = () => {
     useState(false);
   const [selectedPlaylist, setSelectedPlaylist] = useState<null | string>(null);
   const insets = useSafeAreaInsets();
-
   // console.log("INSIDE PLAYLIST SCREEN");
 
   return (
