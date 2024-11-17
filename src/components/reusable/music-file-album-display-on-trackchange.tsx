@@ -32,7 +32,7 @@ function MusicFileAlbumDisplayOnTrackChange({
       className={
         size === "small"
           ? "aspect-square h-11 items-center justify-center rounded-md"
-          : "aspect-square w-9/12 items-center justify-center self-center rounded-xl bg-main/30"
+          : "aspect-square h-3/5 items-center justify-center self-center rounded-xl bg-main/30"
       }
       style={{ backgroundColor: COLORS.main + "33" }}
     >
@@ -46,7 +46,7 @@ function MusicFileAlbumDisplayOnTrackChange({
           className="h-full w-full rounded-md"
         />
       ) : (
-        <Music color={COLORS.main} size={size === "small" ? 22 : 250} />
+        <Music color={COLORS.main} size={size === "small" ? 22 : 200} />
       )}
     </View>
   );

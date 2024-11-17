@@ -6,13 +6,12 @@ import TrackPlayer, {
 
 const setupTrackPlayer = async () => {
   await TrackPlayer.setupPlayer({});
-  TrackPlayer.updateOptions({
+  await TrackPlayer.updateOptions({
     android: {
       appKilledPlaybackBehavior:
         AppKilledPlaybackBehavior.StopPlaybackAndRemoveNotification,
     },
   });
-
   await TrackPlayer.updateOptions({
     capabilities: [
       Capability.Play,

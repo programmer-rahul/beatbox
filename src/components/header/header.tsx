@@ -1,8 +1,7 @@
 import { View, Text } from "react-native";
 import COLORS from "./../../constants/colors";
-import { RefreshCcw } from "lucide-react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import RefreshMusicFilesModal from "../reusable/modal/refresh-music-files-modal";
+import ScanMusicFilesIcon from "../reusable/scan-music-files-icon";
 import { useState } from "react";
 
 const Header = () => {
@@ -24,17 +23,10 @@ const Header = () => {
           BeatBox
         </Text>
       </View>
-      <View>
-        <RefreshCcw
-          size={20}
-          color={COLORS.primaryText}
-          onPress={() => setRefreshMusicFilesModal(true)}
-        />
-        <RefreshMusicFilesModal
-          isVisible={refreshMusicFilesModal}
-          setIsVisible={setRefreshMusicFilesModal}
-        />
-      </View>
+      <ScanMusicFilesIcon
+        refreshMusicFilesModal={refreshMusicFilesModal}
+        setRefreshMusicFilesModal={setRefreshMusicFilesModal}
+      />
     </View>
   );
 };

@@ -1,57 +1,86 @@
-import { View, VirtualizedList } from "react-native";
+import { Text, View, VirtualizedList } from "react-native";
 import MusicFile from "./music-file";
-import { memo } from "react";
+import { memo, useMemo, useState, useCallback } from "react";
 import { TMusicTrack } from "../../types/store/slices/track-slice";
 import { TQueueType } from "../../types/store/slices/queue-slice";
 import ListMusicFilesHeader from "./list-music-files-header";
+import SearchBar from "../reusable/search-bar";
+import { useDebouncedValue } from "../../hooks/useDebounce";
 
 const ListMusicFiles = ({
   musicFiles,
   queueType,
   playlistName,
   heading,
+  searchBar = true,
 }: {
   musicFiles: TMusicTrack[];
   queueType: TQueueType;
   playlistName?: string;
   heading?: string;
+  searchBar?: boolean;
 }) => {
-  // console.log("INSIDE LIST_MUSIC_FILES");
+  const [searchText, setSearchText] = useState("");
+  const debouncedSearchText = useDebouncedValue(searchText, 300);
+
+  const filteredMusicsList = useMemo(() => {
+    if (!debouncedSearchText.trim()) return musicFiles;
+    const lowerSearchText = debouncedSearchText.toLowerCase();
+    return musicFiles.filter((musicFile) =>
+      musicFile.title.toLowerCase().includes(lowerSearchText),
+    );
+  }, [debouncedSearchText, musicFiles]);
+
+  const renderMusicFile = useCallback(
+    ({ item }: { item: TMusicTrack }) => (
+      <MusicFile
+        musicFile={item}
+        queueType={queueType}
+        playlistName={playlistName}
+      />
+    ),
+    [queueType, playlistName],
+  );
 
   return (
-    <VirtualizedList
-      data={musicFiles}
-      stickyHeaderHiddenOnScroll={false}
-      ListHeaderComponent={
-        heading ? (
-          <ListMusicFilesHeader
-            heading={heading}
-            musicFilesLength={musicFiles.length}
-          />
-        ) : (
-          <></>
-        )
-      }
-      keyExtractor={(item) => item.url}
-      getItem={(data, index) => {
-        return data[index];
-      }}
-      getItemCount={(data) => data.length}
-      renderItem={({ item }: { item: TMusicTrack }) => {
-        return (
-          <MusicFile
-            musicFile={item}
-            queueType={queueType}
-            playlistName={playlistName}
-          />
-        );
-      }}
-      initialNumToRender={10}
-      maxToRenderPerBatch={10}
-      windowSize={20}
-      showsVerticalScrollIndicator={false}
-      ListFooterComponent={<View className="h-20 w-full"></View>}
-    />
+    <View>
+      <VirtualizedList
+        data={filteredMusicsList}
+        stickyHeaderHiddenOnScroll={false}
+        ListHeaderComponent={
+          <>
+            {heading && (
+              <ListMusicFilesHeader
+                heading={heading}
+                musicFilesLength={filteredMusicsList.length}
+              />
+            )}
+            {searchBar && (
+              <SearchBar
+                searchText={searchText}
+                setSearchText={setSearchText}
+              />
+            )}
+          </>
+        }
+        keyExtractor={(item) => item.url}
+        getItem={(data, index) => data[index]}
+        getItemCount={(data) => data.length}
+        renderItem={renderMusicFile}
+        initialNumToRender={10}
+        maxToRenderPerBatch={10}
+        windowSize={20}
+        showsVerticalScrollIndicator={false}
+        ListFooterComponent={<View className="h-20 w-full"></View>}
+      />
+      {filteredMusicsList.length === 0 && (
+        <View>
+          <Text className="text-center text-2xl text-primaryText">
+            No Music Files Found
+          </Text>
+        </View>
+      )}
+    </View>
   );
 };
 

@@ -1,5 +1,6 @@
 import { searchSongs } from "react-native-get-music-files";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Alert } from "react-native";
 
 const fetchCoverImage = async (title: string) => {
   try {
@@ -23,6 +24,7 @@ const fetchCoverImage = async (title: string) => {
     return null;
   } catch (error) {
     console.error("Error fetching cover image:", error);
+    Alert.alert("Error while fetching cover images", JSON.stringify(error));
     return null;
   }
 };

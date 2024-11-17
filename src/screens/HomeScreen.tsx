@@ -34,7 +34,7 @@ const HomeScreen = () => {
                 <View className="flex-1 px-5">
                   <ListMusicFiles
                     heading={"All Music Files"}
-                    musicFiles={allLocalMusicTracks.splice(0, 5)}
+                    musicFiles={allLocalMusicTracks}
                     queueType="home"
                   />
                 </View>

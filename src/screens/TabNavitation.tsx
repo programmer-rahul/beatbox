@@ -64,7 +64,7 @@ const TabNavitation = () => {
         name="home"
         component={HomeScreen}
         options={{
-          tabBarIcon: ({ color }) => <House color={color} />,
+          tabBarIcon: ({ color }) => <House color={color}/>,
         }}
       />
 

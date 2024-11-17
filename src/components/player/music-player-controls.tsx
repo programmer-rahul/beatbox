@@ -13,7 +13,7 @@ const MusicPlayerControls = () => {
       <View className="flex-row items-center justify-between px-8">
         <View className="flex-row items-center space-x-4">
           <View>
-            <RepeatModeIcon size={30} />
+            <RepeatModeIcon size={26} />
           </View>
           <View>
             <AddMusicToPlaylistIcon size={30} />

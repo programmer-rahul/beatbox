@@ -11,7 +11,7 @@ function SleepTimerMusicIcon({ size = 25 }: { size?: number }) {
       size={size}
       onPress={() => setBottomSheet({ isVisible: true, sheet: "sleep-timer" })}
       fill={sleepTimer.status ? COLORS.main : "transparent"}
-      stroke={COLORS.secondaryIcon}
+      stroke={sleepTimer.status ? COLORS.primaryBg : COLORS.secondaryIcon}
     />
   );
 }

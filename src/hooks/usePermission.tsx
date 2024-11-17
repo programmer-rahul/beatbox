@@ -54,6 +54,7 @@ const usePermission = () => {
       }
     } catch (err) {
       console.warn(err);
+      Alert.alert("Error in getting Permissions :- ", JSON.stringify(err));
     }
   };
 };

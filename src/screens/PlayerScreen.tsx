@@ -9,14 +9,10 @@ import {
   useSafeAreaFrame,
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
-import ScanningMusicFiles from "../components/reusable/scanning-music-files";
 import PlayerScreenView from "./../components/player/player-screen-view";
 
 const PlayerScreen = () => {
   const currentMusicTrack = useZustandStore((state) => state.currentMusicTrack);
-  const allLocalMusicTracks = useZustandStore(
-    (state) => state.allLocalMusicTracks,
-  );
 
   // console.log("inside player screen");
 
@@ -39,10 +35,8 @@ const PlayerScreen = () => {
             <PlayerScreenHeader />
             <PlayerScreenView />
           </View>
-        ) : allLocalMusicTracks.length > 0 ? (
-          <NoMusicFileSelected />
         ) : (
-          <ScanningMusicFiles />
+          <NoMusicFileSelected />
         )}
       </View>
 
@@ -82,7 +76,7 @@ const NoMusicFileSelected = () => {
             <Text
               className="font-primary_semibold text-xl"
               style={{
-                color: COLORS.primaryText + "aa",
+                color: COLORS.primaryText,
               }}
             >
               Play Now
