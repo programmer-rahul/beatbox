@@ -80,7 +80,7 @@ const MusicFile = ({
   };
 
   return (
-    <View className="mt-4 flex-row items-center justify-between rounded-md py-1">
+    <View className="mb-4 flex-row items-center justify-between rounded-md py-1">
       <Pressable
         className="flex-1 flex-row items-center space-x-2"
         onPress={() => onMusicFilePress(musicFile, queueType)}

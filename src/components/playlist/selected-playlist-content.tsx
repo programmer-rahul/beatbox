@@ -22,7 +22,7 @@ function SelectedPlaylistContent({
 
   return (
     <View
-      className="flex-1 flex-col bg-primaryBg py-1"
+      className="flex-1 flex-col bg-primaryBg py-1 mt-4"
       style={{
         backgroundColor: COLORS.primaryBg,
       }}
@@ -63,8 +63,8 @@ export default SelectedPlaylistContent;
 const PlaylistIsEmpty = () => {
   return (
     <Text
-      className="mt-20 self-center font-primary_regular text-2xl text-secondaryText"
-      style={{ color: COLORS.secondaryText }}
+      className="mt-20 self-center font-primary_regular text-2xl text-primaryText"
+      style={{ color: COLORS.primaryText }}
     >
       Playlist is empty
     </Text>

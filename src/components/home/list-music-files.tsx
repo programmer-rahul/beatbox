@@ -47,8 +47,9 @@ const ListMusicFiles = ({
       <VirtualizedList
         data={filteredMusicsList}
         stickyHeaderHiddenOnScroll={false}
+        stickyHeaderIndices={[0]}
         ListHeaderComponent={
-          <>
+          <View className="bg-primaryBg py-4">
             {heading && (
               <ListMusicFilesHeader
                 heading={heading}
@@ -61,7 +62,7 @@ const ListMusicFiles = ({
                 setSearchText={setSearchText}
               />
             )}
-          </>
+          </View>
         }
         keyExtractor={(item) => item.url}
         getItem={(data, index) => data[index]}

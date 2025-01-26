@@ -25,7 +25,7 @@ const PlaylistScreen = () => {
       <View className="flex-1 pt-2">
         {!selectedPlaylist ? (
           <>
-            <View className="mb-12 flex-1 flex-col items-start px-6">
+            <View className="mb-12 mt-5 flex-1 flex-col items-start px-6">
               <YourPlaylistsHeading />
               <ListAllPlaylists setSelectedPlaylist={setSelectedPlaylist} />
               <AddNewPlaylistBtn setIsVisible={setIsNewPlaylistModalVisible} />
