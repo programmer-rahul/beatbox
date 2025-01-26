@@ -6,15 +6,15 @@ const PlayerScreenHeader = () => {
   // console.log("inside player screen header");
   return (
     <View
-      className="flex flex-row items-center justify-center border-b py-2"
+      className="border-b-primar flex flex-row items-center justify-center border-b py-2"
       style={{
-        borderColor: COLORS.primaryText,
+        borderColor: COLORS.primaryText + "aa",
       }}
     >
       <Text
         className="font-primary_semibold text-xl text-primaryText"
         style={{
-          color: COLORS.primaryText,
+          color: COLORS.primaryText + "aa",
         }}
       >
         Now Playing

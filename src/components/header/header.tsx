@@ -2,8 +2,7 @@ import { View, Text } from "react-native";
 import COLORS from "./../../constants/colors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import ScanMusicFilesIcon from "../reusable/scan-music-files-icon";
-import { useState } from "react";
-import { Settings } from "lucide-react-native";
+import React, { useState } from "react";
 
 const Header = () => {
   const insets = useSafeAreaInsets();

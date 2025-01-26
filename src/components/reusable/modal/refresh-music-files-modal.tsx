@@ -1,15 +1,8 @@
 import COLORS from "../../../constants/colors";
 import { Dispatch, SetStateAction, useState } from "react";
-import {
-  ActivityIndicator,
-  Modal,
-  Pressable,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { ActivityIndicator, Modal, Pressable, Text, View } from "react-native";
 import useZustandStore from "../../../store/useZustandStore";
-import { Flashlight, RefreshCcw } from "lucide-react-native";
+import { RefreshCcw } from "lucide-react-native";
 import { scanLocalMusicFiles } from "../../../hooks/useFetchLocalMusic";
 
 interface TRefreshMusicFilesModal {
@@ -86,7 +79,7 @@ function RefreshMusicFilesModal({
                 >
                   Scanning
                 </Text>
-                <Pressable
+                {/* <Pressable
                   onPress={() => setIsScanning(false)}
                   className="flex flex-row items-center justify-center space-x-2 self-center rounded-md border px-4 py-1"
                   style={{
@@ -100,7 +93,7 @@ function RefreshMusicFilesModal({
                   >
                     Cancel
                   </Text>
-                </Pressable>
+                </Pressable> */}
               </View>
             )}
 

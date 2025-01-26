@@ -1,16 +1,14 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import useZustandStore from "../../../store/useZustandStore";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import COLORS from "../../../constants/colors";
 import _BackgroundTimer from "react-native-background-timer";
 import TrackPlayer from "react-native-track-player";
-import { BottomSheetMethods } from "@gorhom/bottom-sheet/lib/typescript/types";
 import {
   calculateRemainingTime,
   formatMusicFileDuration,
 } from "../../../lib/helper";
+import RBSheet from "react-native-raw-bottom-sheet";
 
 const onSleepTimerStart = (minutes: number) => {
   const sleepTimer = useZustandStore.getState().sleepTimer;
@@ -41,59 +39,66 @@ const onSleepTimerStart = (minutes: number) => {
 
 function SleepTimerBottomSheet() {
   const bottomSheet = useZustandStore((state) => state.bottomSheet);
-  const setBottomSheet = useZustandStore((state) => state.setBottomSheet);
-  const bottomSheetRef = useRef<BottomSheet>(null);
+  const refRBSheet = useRef(null);
+
+  useEffect(() => {
+    if (bottomSheet.sheet == "sleep-timer" && bottomSheet.isVisible) {
+      (refRBSheet.current as any)?.open();
+    }
+  }, [bottomSheet]);
 
   return bottomSheet.isVisible ? (
-    <GestureHandlerRootView style={styles.container}>
-      <BottomSheet
-        ref={bottomSheetRef}
-        enablePanDownToClose
-        index={0}
-        snapPoints={["60%", "100%"]}
-        onClose={() => setBottomSheet({ isVisible: false, sheet: null })}
-        containerStyle={{ backgroundColor: `${COLORS.primaryBg}88` }}
-        backgroundStyle={{ backgroundColor: COLORS.bottomSheet }}
-        handleStyle={{ backgroundColor: COLORS.bottomSheet, borderRadius: 50 }}
-        handleIndicatorStyle={{ backgroundColor: COLORS.secondaryText }}
-      >
-        <BottomSheetView style={styles.contentContainer}>
-          <View style={styles.header}>
-            <Text style={styles.headerText}>
-              {bottomSheet.sheet === "sleep-timer" && "Sleep Timer"}
-            </Text>
-          </View>
-          <View style={styles.optionContainer}>
-            <TurnOfTimer bottomSheetRef={bottomSheetRef} />
-            {[1, 5, 10, 15, 20, 30, 45, 60].map((num) => (
-              <Pressable
-                onPress={() => {
-                  onSleepTimerStart(num);
-                  bottomSheetRef.current?.close();
-                }}
-                key={num}
-              >
-                <Text style={styles.optionText}>{num} Minutes</Text>
-              </Pressable>
-            ))}
-          </View>
-        </BottomSheetView>
-      </BottomSheet>
-    </GestureHandlerRootView>
+    <RBSheet
+      ref={refRBSheet}
+      draggable={true}
+      dragOnContent
+      closeOnPressMask
+      customStyles={{
+        wrapper: {
+          backgroundColor: "transparent",
+        },
+        draggableIcon: {
+          backgroundColor: COLORS.primaryText,
+        },
+        container: {
+          backgroundColor: COLORS.bottomSheet,
+          borderRadius: 20,
+          height: "50%",
+        },
+      }}
+      customModalProps={{
+        animationType: "slide",
+        statusBarTranslucent: true,
+      }}
+    >
+      <View>
+        <View style={styles.header}>
+          <Text style={styles.headerText}>
+            {bottomSheet.sheet === "sleep-timer" && "Sleep Timer"}
+          </Text>
+        </View>
+        <View style={styles.optionContainer}>
+          <TurnOfTimer bottomSheetRef={refRBSheet} />
+          {[1, 5, 10, 15, 20, 30, 45, 60].map((num) => (
+            <Pressable
+              onPress={() => {
+                onSleepTimerStart(num);
+                (refRBSheet.current as any)?.close();
+              }}
+              key={num}
+            >
+              <Text style={styles.optionText}>{num} Minutes</Text>
+            </Pressable>
+          ))}
+        </View>
+      </View>
+    </RBSheet>
   ) : null;
 }
 
 export default SleepTimerBottomSheet;
 
 const styles = StyleSheet.create({
-  container: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    height: "96%",
-    width: "100%",
-  },
-  contentContainer: { flex: 1, alignItems: "center" },
   header: {
     marginBottom: 8,
     width: "100%",
@@ -107,14 +112,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: COLORS.primaryText,
   },
-  optionContainer: { flex: 1, width: "100%", paddingHorizontal: 20, gap: 16 },
+  optionContainer: { width: "100%", paddingHorizontal: 20, gap: 16 },
   optionText: { fontSize: 16, color: COLORS.primaryText },
 });
 
 const TurnOfTimer = ({
   bottomSheetRef,
 }: {
-  bottomSheetRef: React.RefObject<BottomSheetMethods>;
+  bottomSheetRef: React.MutableRefObject<null>;
 }) => {
   const sleepTimer = useZustandStore((state) => state.sleepTimer);
   const setSleepTimer = useZustandStore((state) => state.setSleepTimer);
@@ -131,7 +136,7 @@ const TurnOfTimer = ({
       timeoutId: 0,
       startedTime: null,
     });
-    bottomSheetRef.current?.close();
+    (bottomSheetRef.current as any)?.close();
   }, [sleepTimer, setSleepTimer]);
 
   useEffect(() => {
