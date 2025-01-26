@@ -14,7 +14,12 @@ function PlaylistName({
   tracksCount: number;
 }) {
   return (
-    <View className="mt-2 flex-row items-center justify-between rounded-md bg-secondaryBg p-1">
+    <View
+      className="mt-2 flex-row items-center justify-between rounded-md bg-modalBg p-1"
+      style={{
+        backgroundColor: COLORS.modalBg,
+      }}
+    >
       <Pressable
         className="flex-1 flex-row items-center space-x-2"
         onPress={() => {

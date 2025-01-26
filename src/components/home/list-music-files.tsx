@@ -6,6 +6,7 @@ import { TQueueType } from "../../types/store/slices/queue-slice";
 import ListMusicFilesHeader from "./list-music-files-header";
 import SearchBar from "../reusable/search-bar";
 import { useDebouncedValue } from "../../hooks/useDebounce";
+import COLORS from "../../constants/colors";
 
 const ListMusicFiles = ({
   musicFiles,
@@ -49,7 +50,10 @@ const ListMusicFiles = ({
         stickyHeaderHiddenOnScroll={false}
         stickyHeaderIndices={[0]}
         ListHeaderComponent={
-          <View className="bg-primaryBg py-4">
+          <View
+            className="bg-primaryBg py-4"
+            style={{ backgroundColor: COLORS.primaryBg }}
+          >
             {heading && (
               <ListMusicFilesHeader
                 heading={heading}

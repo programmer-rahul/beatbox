@@ -10,9 +10,9 @@ const Header = () => {
 
   return (
     <View
-      className="flex flex-row items-center justify-between px-3 pb-1"
+      className="flex flex-row items-center justify-between px-3"
       style={{
-        paddingTop: insets.top + 6,
+        paddingTop: insets.top + 8,
       }}
     >
       <View>

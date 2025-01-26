@@ -22,7 +22,7 @@ const MiniMusicPlayer = () => {
       <View
         className="mx-4 flex-1 flex-col justify-center overflow-hidden rounded-lg py-1 pb-0"
         style={{
-          backgroundColor: COLORS.secondaryBg,
+          backgroundColor: COLORS.modalBg,
         }}
       >
         <View className="flex-1 flex-row items-center justify-between gap-2 px-1">

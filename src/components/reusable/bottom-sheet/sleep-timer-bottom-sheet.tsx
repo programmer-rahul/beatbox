@@ -39,6 +39,7 @@ const onSleepTimerStart = (minutes: number) => {
 
 function SleepTimerBottomSheet() {
   const bottomSheet = useZustandStore((state) => state.bottomSheet);
+  const setBottomSheet = useZustandStore((state) => state.setBottomSheet);
   const refRBSheet = useRef(null);
 
   useEffect(() => {
@@ -69,6 +70,9 @@ function SleepTimerBottomSheet() {
       customModalProps={{
         animationType: "slide",
         statusBarTranslucent: true,
+      }}
+      onClose={() => {
+        setBottomSheet({ isVisible: false, sheet: "sleep-timer" });
       }}
     >
       <View>

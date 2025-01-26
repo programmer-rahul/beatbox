@@ -17,7 +17,7 @@ const ScanMusicFilesIcon = ({
     <View>
       <RefreshCcw
         size={20}
-        color={COLORS.primaryText}
+        color={COLORS.secondaryIcon}
         onPress={() => setRefreshMusicFilesModal(true)}
       />
       <RefreshMusicFilesModal

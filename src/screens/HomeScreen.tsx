@@ -32,11 +32,11 @@ const HomeScreen = () => {
               <View className="flex-1 space-y-1">
                 <Header />
                 <View className="flex-1 px-5">
-                  {/* <ListMusicFiles
+                  <ListMusicFiles
                     heading={"All Music Files"}
                     musicFiles={allLocalMusicTracks}
                     queueType="home"
-                  /> */}
+                  />
                 </View>
                 <MiniMusicPlayer />
                 <MountOnMusicTrackFinish />

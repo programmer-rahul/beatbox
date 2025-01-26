@@ -22,7 +22,7 @@ function SelectedPlaylistContent({
 
   return (
     <View
-      className="flex-1 flex-col bg-primaryBg py-1 mt-4"
+      className="mt-4 flex-1 flex-col bg-primaryBg py-1"
       style={{
         backgroundColor: COLORS.primaryBg,
       }}
@@ -40,7 +40,7 @@ function SelectedPlaylistContent({
           >
             {selectedPlaylist}
           </Text>
-          <View />
+          <ChevronLeft size={30} color={"transparent"} disabled />
         </View>
         <View className="mt-4 w-full">
           {!currentPlaylist?.musicTracksCount ? (
