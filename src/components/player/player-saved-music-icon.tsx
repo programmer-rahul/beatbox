@@ -1,7 +1,7 @@
 import { Heart } from "lucide-react-native";
 import COLORS from "./../../constants/colors";
-import { useEffect, useState } from "react";
-import { Pressable } from "react-native";
+import { useEffect, useRef, useState } from "react";
+import { Animated, Pressable } from "react-native";
 import useZustandStore from "../../store/useZustandStore";
 
 const PlayerSavedMusicIcon = ({ size = 25 }: { size?: number }) => {
@@ -15,6 +15,8 @@ const PlayerSavedMusicIcon = ({ size = 25 }: { size?: number }) => {
   const removeTrackInSavedMusic = useZustandStore(
     (state) => state.removeTrackInSavedMusic,
   );
+
+  const scaleValue = useRef(new Animated.Value(1)).current;
 
   // check whether current song is saved song or not
   const checkIsSavedMusic = () => {
@@ -46,15 +48,31 @@ const PlayerSavedMusicIcon = ({ size = 25 }: { size?: number }) => {
 
     // for ui perpose
     setIsSavedMusic(!isSavedMusic);
+
+    // Start the animation
+    Animated.sequence([
+      Animated.timing(scaleValue, {
+        toValue: 1.2,
+        duration: 150,
+        useNativeDriver: true,
+      }),
+      Animated.timing(scaleValue, {
+        toValue: 1,
+        duration: 150,
+        useNativeDriver: true,
+      }),
+    ]).start();
   };
 
   return (
     <Pressable onPress={onSavedIconPress}>
-      <Heart
-        size={size}
-        color={isSavedMusic ? COLORS.main : COLORS.secondaryIcon}
-        fill={isSavedMusic ? COLORS.main : "transparent"}
-      />
+      <Animated.View style={{ transform: [{ scale: scaleValue }] }}>
+        <Heart
+          size={size}
+          color={isSavedMusic ? COLORS.main : COLORS.secondaryIcon}
+          fill={isSavedMusic ? COLORS.main : "transparent"}
+        />
+      </Animated.View>
     </Pressable>
   );
 };
