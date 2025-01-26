@@ -36,7 +36,7 @@ const TabNavitation = () => {
 
   return (
     <Tab.Navigator
-      style={{ marginBottom: insets.bottom }}
+      style={{ marginBottom: insets.bottom + 20 }}
       tabBarPosition="bottom"
       tabBar={(props) => {
         return (
@@ -64,7 +64,7 @@ const TabNavitation = () => {
         name="home"
         component={HomeScreen}
         options={{
-          tabBarIcon: ({ color }) => <House color={color}/>,
+          tabBarIcon: ({ color }) => <House color={color} size={26} />,
         }}
       />
 
@@ -80,21 +80,21 @@ const TabNavitation = () => {
           },
         }}
         options={{
-          tabBarIcon: ({ color }) => <Music color={color} />,
+          tabBarIcon: ({ color }) => <Music color={color} size={26} />,
         }}
       />
       <Tab.Screen
         name="saved"
         component={SavedScreen}
         options={{
-          tabBarIcon: ({ color }) => <Heart color={color} />,
+          tabBarIcon: ({ color }) => <Heart color={color} size={26} />,
         }}
       />
       <Tab.Screen
         name="playlist"
         component={PlaylistScreen}
         options={{
-          tabBarIcon: ({ color }) => <ListMusic color={color} />,
+          tabBarIcon: ({ color }) => <ListMusic color={color} size={26} />,
         }}
       />
     </Tab.Navigator>
