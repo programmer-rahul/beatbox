@@ -33,7 +33,13 @@ function App(): React.JSX.Element {
         className="flex-1"
         style={{ backgroundColor: COLORS.primaryBg }}
       >
-        {hasHydrated ? <RootNavigation /> : <LoadingScreen />}
+        {hasHydrated ? (
+          <>
+            <RootNavigation />
+          </>
+        ) : (
+          <LoadingScreen />
+        )}
 
         <StatusBar
           backgroundColor={"transparent"}
