@@ -46,24 +46,24 @@ const ListMusicFiles = ({
   return (
     <View>
       <VirtualizedList
-        data={filteredMusicsList}
+        data={filteredMusicsList.splice(0, 12)}
         stickyHeaderHiddenOnScroll={false}
         stickyHeaderIndices={[0]}
         ListHeaderComponent={
           <View
-            className="bg-primaryBg py-4"
+            className="bg-primaryBg py-2"
             style={{ backgroundColor: COLORS.primaryBg }}
           >
-            {heading && (
-              <ListMusicFilesHeader
-                heading={heading}
-                musicFilesLength={filteredMusicsList.length}
-              />
-            )}
             {searchBar && (
               <SearchBar
                 searchText={searchText}
                 setSearchText={setSearchText}
+              />
+            )}
+            {heading && (
+              <ListMusicFilesHeader
+                heading={heading}
+                musicFilesLength={filteredMusicsList.splice(0, 12).length}
               />
             )}
           </View>

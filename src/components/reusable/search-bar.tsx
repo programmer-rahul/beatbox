@@ -11,8 +11,8 @@ interface SearchBarProps {
 const SearchBar: React.FC<SearchBarProps> = ({ searchText, setSearchText }) => {
   return (
     <View
-      className="mt-3 w-full flex-row items-center rounded-full bg-bottomSheet px-3"
-      style={{ backgroundColor: COLORS.bottomSheet }}
+      className="w-full flex-row items-center rounded-xl px-3"
+      style={{ backgroundColor: COLORS.navigationBg }}
     >
       <SearchIcon color={COLORS.modalBg + "88"} size={20} />
       <TextInput

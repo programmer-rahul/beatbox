@@ -1,15 +1,18 @@
 const colors = require("tailwindcss/colors");
 
 const COLORS = {
-  main: colors.indigo[500],
-  primaryText: colors.zinc[100],
-  secondaryText: colors.zinc[500],
+  main: "#9667e0",
+  primaryText: "#efefef",
+  secondaryText: "#282828",
 
-  primaryBg: colors.zinc[800],
-  secondaryBg: colors.slate[300],
+  primaryBg: "#151515",
+  secondaryBg: "#bfd7ff",
+  navigationBg: "#282828",
 
-  primaryIcon: colors.zinc[600],
-  secondaryIcon: colors.zinc[300],
+  primaryIcon: "#efefef",
+  secondaryIcon: "#efefef",
+
+  musicItemBg: "transparent",
 
   modalBg: colors.zinc[300],
   bottomSheet: colors.zinc[700],

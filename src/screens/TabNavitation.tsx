@@ -47,7 +47,7 @@ const TabNavitation = () => {
       }}
       screenOptions={{
         tabBarAndroidRipple: { borderless: false },
-        tabBarShowLabel: false,
+        tabBarShowLabel: true,
         tabBarActiveTintColor: COLORS.main,
         tabBarInactiveTintColor: COLORS.primaryText,
         tabBarPressColor: "transparent",
@@ -55,16 +55,22 @@ const TabNavitation = () => {
           display: "none",
         },
         tabBarStyle: {
-          backgroundColor: "transparent",
+          backgroundColor: COLORS.navigationBg,
           elevation: 0,
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20,
+          // paddingTop: 8
         },
+        tabBarLabelStyle: {
+          fontSize: 10,
+        }
       }}
     >
       <Tab.Screen
         name="home"
         component={HomeScreen}
         options={{
-          tabBarIcon: ({ color }) => <House color={color} size={26} />,
+          tabBarIcon: ({ color }) => <House color={color} size={24} />,
         }}
       />
 
@@ -80,21 +86,21 @@ const TabNavitation = () => {
           },
         }}
         options={{
-          tabBarIcon: ({ color }) => <Music color={color} size={26} />,
+          tabBarIcon: ({ color }) => <Music color={color} size={24} />,
         }}
       />
       <Tab.Screen
         name="saved"
         component={SavedScreen}
         options={{
-          tabBarIcon: ({ color }) => <Heart color={color} size={26} />,
+          tabBarIcon: ({ color }) => <Heart color={color} size={24} />,
         }}
       />
       <Tab.Screen
         name="playlist"
         component={PlaylistScreen}
         options={{
-          tabBarIcon: ({ color }) => <ListMusic color={color} size={26} />,
+          tabBarIcon: ({ color }) => <ListMusic color={color} size={24} />,
         }}
       />
     </Tab.Navigator>
