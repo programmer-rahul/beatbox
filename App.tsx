@@ -31,12 +31,10 @@ function App(): React.JSX.Element {
     <MenuProvider>
       <SafeAreaProvider
         className="flex-1"
-        style={{ backgroundColor: COLORS.primaryBg }}
+        style={{ backgroundColor: COLORS.navigationBg }}
       >
         {hasHydrated ? (
-          <>
-            <RootNavigation />
-          </>
+          <RootNavigation />
         ) : (
           <LoadingScreen />
         )}

@@ -39,9 +39,9 @@ const MusicFile = ({
         : queueType === "saved"
           ? useZustandStore.getState().allSavedMusicTracks
           : useZustandStore
-            .getState()
-            .allPlaylists.find((playlist) => playlist.name === playlistName)
-            ?.musicTracks || [];
+              .getState()
+              .allPlaylists.find((playlist) => playlist.name === playlistName)
+              ?.musicTracks || [];
 
     const currentMusicTrack = useZustandStore.getState().currentMusicTrack;
     const currentQueue = useZustandStore.getState().currentQueue;
@@ -54,14 +54,14 @@ const MusicFile = ({
 
         queueType !== "playlist"
           ? setCurrentQueue({
-            type: queueType,
-            tracksCount: currentSelectedQueueMusicFiles.length,
-          })
+              type: queueType,
+              tracksCount: currentSelectedQueueMusicFiles.length,
+            })
           : setCurrentQueue({
-            type: queueType,
-            name: playlistName,
-            tracksCount: currentSelectedQueueMusicFiles.length,
-          });
+              type: queueType,
+              name: playlistName,
+              tracksCount: currentSelectedQueueMusicFiles.length,
+            });
       }
 
       let trackIndex = currentSelectedQueueMusicFiles.findIndex(
@@ -81,23 +81,22 @@ const MusicFile = ({
 
   return (
     <View
-      className="mb-4 flex-row items-center justify-between px-1 py-1 border-b"
+      className="mb-4 flex-row items-center justify-between border-b px-1 py-1"
       style={{
         backgroundColor: COLORS.musicItemBg,
-        borderColor: COLORS.navigationBg
+        borderColor: COLORS.navigationBg,
       }}
     >
       <Pressable
         className="flex-1 flex-row items-center space-x-2"
         onPress={() => {
-
           try {
-            onMusicFilePress(musicFile, queueType)
+            onMusicFilePress(musicFile, queueType);
           } catch (error) {
-            console.log("ERORR", error)
+            console.log("ERORR", error);
           }
-
-        }}>
+        }}
+      >
         <MusicFileAlbumDisplay
           title={musicFile.title}
           cover={musicFile.cover}

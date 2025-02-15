@@ -11,13 +11,12 @@ const Header = () => {
 
   return (
     <View
-      className="px-6 rounded-b-3x"
+      className="rounded-b-3x px-6"
       style={{
         paddingTop: insets.top + 20,
         paddingBottom: 20,
-        backgroundColor: COLORS.navigationBg
+        backgroundColor: COLORS.navigationBg,
       }}
-
     >
       <View className="flex flex-row items-center justify-between">
         <View>
@@ -35,8 +34,9 @@ const Header = () => {
           />
         </View>
       </View>
-      <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']}>
-      </LinearGradient>
+      <LinearGradient
+        colors={["#4c669f", "#3b5998", "#192f6a"]}
+      ></LinearGradient>
     </View>
   );
 };

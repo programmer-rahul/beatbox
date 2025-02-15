@@ -63,7 +63,7 @@ const TabNavitation = () => {
         },
         tabBarLabelStyle: {
           fontSize: 10,
-        }
+        },
       }}
     >
       <Tab.Screen
