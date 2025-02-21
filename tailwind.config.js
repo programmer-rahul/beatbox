@@ -1,19 +1,10 @@
-const colors = require("./src/constants/colors.js");
-
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [],
-  content: ["./App.{js,jsx,ts,tsx}", "./src/**/*.{js,jsx,ts,tsx}"],
+  darkMode: "class",
+  content: ["./app/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
+  presets: [require("nativewind/preset")],
   theme: {
-    extend: {
-      colors: { ...colors },
-    },
-
-    fontFamily: {
-      primary_light: ["Primary-Light"],
-      primary_regular: ["Primary-Regular"],
-      primary_semibold: ["Primary-SemiBold"],
-      primary_bold: ["Primary-Bold"],
-    },
+    extend: {},
   },
   plugins: [],
 };

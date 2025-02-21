@@ -1,14 +1,13 @@
-const { getDefaultConfig, mergeConfig } = require("@react-native/metro-config");
-const {
-  wrapWithReanimatedMetroConfig,
-} = require("react-native-reanimated/metro-config");
+const { getDefaultConfig } = require("expo/metro-config");
 
-/**
- * Metro configuration
- * https://reactnative.dev/docs/metro
- *
- * @type {import('metro-config').MetroConfig}
- */
-const config = {};
+/** @type {import('expo/metro-config').MetroConfig} */
+const config = getDefaultConfig(__dirname, {
+  isCSSEnabled: true,
+});
 
-module.exports = wrapWithReanimatedMetroConfig(mergeConfig(getDefaultConfig(__dirname, "src"), config));
+config.resolver.sourceExts.push("mjs");
+
+const { withNativeWind } = require("nativewind/metro");
+module.exports = withNativeWind(config, {
+  input: "./global.css",
+});
